@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2016 IS2T. All rights reserved.
+ * Copyright 2014-2019 IS2T. All rights reserved.
  * For demonstration purpose only.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
@@ -34,7 +34,9 @@
 typedef struct {
 	uint32_t start_address;
 	uint32_t end_address;
-
+	double write_speed;
+	double read_speed;
+	double transfert_speed;
 } RAM_TEST_zone_t;
 
 /** public function declaration */
@@ -58,6 +60,9 @@ void RAM_TEST_MemoryCleanup(void);
 __weak RAM_TEST_zone_t* RAM_TEST_get32bitZones(void);
 __weak RAM_TEST_zone_t* RAM_TEST_get16bitZones(void);
 __weak RAM_TEST_zone_t* RAM_TEST_get8bitZones(void);
+__weak RAM_TEST_zone_t* RAM_TEST_get32bitSourceZone(void);
+__weak RAM_TEST_zone_t* RAM_TEST_get16bitSourceZone(void);
+__weak RAM_TEST_zone_t* RAM_TEST_get8bitSourceZone(void);
 __weak uint8_t RAM_TEST_get32bitZoneNumber(void);
 __weak uint8_t RAM_TEST_get16bitZoneNumber(void);
 __weak uint8_t RAM_TEST_get8bitZoneNumber(void);

@@ -994,3 +994,18 @@ __weak uint8_t RAM_TEST_get8bitZoneNumber(void)
 {
 	return 0;
 }
+
+__weak RAM_TEST_zone_t* RAM_TEST_get32bitSourceZone(void)
+{
+	return (RAM_TEST_zone_t*)NULL;
+}
+
+__weak RAM_TEST_zone_t* RAM_TEST_get16bitSourceZone(void)
+{
+	return (RAM_TEST_zone_t*)NULL;
+}
+
+__weak RAM_TEST_zone_t* RAM_TEST_get8bitSourceZone(void)
+{
+		return (RAM_TEST_zone_t*)NULL;
+}
