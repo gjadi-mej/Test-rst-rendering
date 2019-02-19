@@ -126,13 +126,13 @@ static uint32_t checkPatternAllMemory32(uint32_t pattern)
     	pointer = (uint32_t *) zones[z].start_address;
     	
 			// ... writes pattern in each word
-			for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint32_t))); i++)
+			for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint32_t))); i++)
     	{
     		*(pointer + i) = pattern;
     	}
 			
 			// ... reads each word and counts errors
-    	for (i = 0 ; i <((zones[z].start_address - zones[z].end_address) / (sizeof(uint32_t))); i++)
+    	for (i = 0 ; i <((zones[z].end_address - zones[z].start_address) / (sizeof(uint32_t))); i++)
     	{
     		if (*(pointer + i) != pattern)
     		{
@@ -185,7 +185,7 @@ static uint32_t checkPatternMemory32(uint32_t pattern)
 		pointer = (uint32_t *) zones[z].start_address;
 		
 		// ... writes each word, next reads it and counts errors 
-		for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint32_t))); i++)
+		for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint32_t))); i++)
     {
         *(pointer + i) = pattern;
         if (*(pointer + i) != pattern)
@@ -239,12 +239,12 @@ static uint32_t checkPatternAllMemory16(uint16_t pattern)
     
 		pointer = (uint16_t *) zones[z].start_address;
 		// ... writes pattern in each word
-		for (i = 0; i < ((zones[z].start_address - zones[z].end_address)/ (sizeof(uint16_t))); i++)
+		for (i = 0; i < ((zones[z].end_address - zones[z].start_address)/ (sizeof(uint16_t))); i++)
     {
         *(pointer + i) = pattern;
     }
 		// ... reads each word and counts errors
-    for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint16_t))); i++)
+    for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint16_t))); i++)
     {
         if (*(pointer + i) != pattern)
         {
@@ -292,7 +292,7 @@ static uint32_t checkPatternMemory16(uint16_t pattern)
 	{
 		pointer = (uint16_t *) zones[z].start_address;
 		
-		for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint16_t))); i++)
+		for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint16_t))); i++)
     {
         *(pointer + i) = pattern;
         if (*(pointer + i) != pattern)
@@ -342,12 +342,12 @@ static uint32_t checkPatternAllMemory8(uint8_t pattern)
 	for (z = 0; z < RAM_TEST_get8bitZoneNumber(); z++)
 	{
 		pointer = (uint8_t *) zones[z].start_address;
-		for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint8_t))); i++)
+		for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint8_t))); i++)
     {
         *(pointer + i) = pattern;
     }
 
-    for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint8_t))); i++)
+    for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint8_t))); i++)
     {
         if (*(pointer + i) != pattern)
         {
@@ -394,7 +394,7 @@ static uint32_t checkPatternMemory8(uint8_t pattern)
 	for (z = 0; z < RAM_TEST_get8bitZoneNumber(); z++)
 	{
 		pointer = (uint8_t *) zones[z].start_address;
-		for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / sizeof(uint8_t)); i++)
+		for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / sizeof(uint8_t)); i++)
     {
         *(pointer + i) = pattern;
         if (*(pointer + i) != pattern)
@@ -445,12 +445,12 @@ uint32_t RAM_TEST_checkAddress32(void)
 	{
     pointer = (uint32_t *) zones[z].start_address;
 		// ... writes index in the memory words
-		for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint32_t))); i++)
+		for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint32_t))); i++)
     {
         *(pointer + i) = i;
     }
 		// ... reads and checks index in the memory words
-    for (i = 0; i < ((zones[z].start_address - zones[z].end_address) / (sizeof(uint32_t))); i++)
+    for (i = 0; i < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint32_t))); i++)
     {
         if (*(pointer + i) != i)
         {
@@ -494,7 +494,7 @@ uint32_t RAM_TEST_checkAddress16(void)
 	
 	for (z = 0; z < RAM_TEST_get16bitZoneNumber(); z++)
 	{
-    while (p < (((zones[z].start_address - zones[z].end_address) / (sizeof(uint16_t))) * (UINT16_MAX + 1)))
+    while (p < (((zones[z].end_address - zones[z].start_address) / (sizeof(uint16_t))) * (UINT16_MAX + 1)))
     {
       pointer = (uint16_t *) zones[z].start_address;  
 			for (i = 0; i < UINT16_MAX; i++)
@@ -547,7 +547,7 @@ uint32_t RAM_TEST_checkAddress8(void )
 	{
 		pointer = (uint8_t *) zones[z].start_address;
 	
-    while (p < ((zones[z].start_address - zones[z].end_address)  / (sizeof(uint8_t) * (UINT8_MAX + 1))))
+    while (p < ((zones[z].end_address - zones[z].start_address)  / (sizeof(uint8_t) * (UINT8_MAX + 1))))
     {
         for (i = 0; i < UINT8_MAX; i++)
         {
@@ -922,15 +922,15 @@ uint32_t RAM_TEST_check8bitWriteRead(uint16_t testType)
 
 void RAM_TEST_MemoryCleanup(void)
 {
-    uint32_t *pointer;
+    uint8_t *pointer;
     uint32_t i,j;
 		// get the 32-bit zone definition array 
 		RAM_TEST_zone_t* zones = RAM_TEST_get32bitZones();
 	  // reset 32-bit zones
     for( j = 0; j < RAM_TEST_get32bitZoneNumber(); j++ )
 		{
-			pointer = (uint32_t *) zones[j].start_address;
-			for (i = 0; i < ((zones[j].start_address - zones[j].end_address) / (sizeof(uint32_t))); i++)
+			pointer = (uint8_t *) zones[j].start_address;
+			for (i = 0; i < ((zones[j].end_address - zones[j].start_address)); i++)
 			{
         *(pointer + i) = 0x00;
 			}
@@ -941,8 +941,8 @@ void RAM_TEST_MemoryCleanup(void)
 	  // reset 16-bit zones
     for( j = 0; j < RAM_TEST_get16bitZoneNumber(); j++ )
 		{
-			pointer = (uint32_t *) zones[j].start_address;
-			for (i = 0; i < ((zones[j].start_address - zones[j].end_address) / (sizeof(uint32_t))); i++)
+			pointer = (uint8_t *) zones[j].start_address;
+			for (i = 0; i < ((zones[j].end_address - zones[j].start_address)); i++)
 			{
         *(pointer + i) = 0x00;
 			}
@@ -953,8 +953,8 @@ void RAM_TEST_MemoryCleanup(void)
 	  // reset 8-bit zones
     for( j = 0; j < RAM_TEST_get8bitZoneNumber(); j++ )
 		{
-			pointer = (uint32_t *) zones[j].start_address;
-			for (i = 0; i < ((zones[j].start_address - zones[j].end_address) / (sizeof(uint32_t))); i++)
+			pointer = (uint8_t *) zones[j].start_address;
+			for (i = 0; i < ((zones[j].end_address - zones[j].start_address)); i++)
 			{
         *(pointer + i) = 0x00;
 			}

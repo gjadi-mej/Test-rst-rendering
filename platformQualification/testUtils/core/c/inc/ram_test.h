@@ -57,14 +57,15 @@ double RAM_TEST_getAverageTransfertSpeed(void);
 
 void RAM_TEST_MemoryCleanup(void);
 
-__weak RAM_TEST_zone_t* RAM_TEST_get32bitZones(void);
-__weak RAM_TEST_zone_t* RAM_TEST_get16bitZones(void);
-__weak RAM_TEST_zone_t* RAM_TEST_get8bitZones(void);
-__weak RAM_TEST_zone_t* RAM_TEST_get32bitSourceZone(void);
-__weak RAM_TEST_zone_t* RAM_TEST_get16bitSourceZone(void);
-__weak RAM_TEST_zone_t* RAM_TEST_get8bitSourceZone(void);
-__weak uint8_t RAM_TEST_get32bitZoneNumber(void);
-__weak uint8_t RAM_TEST_get16bitZoneNumber(void);
-__weak uint8_t RAM_TEST_get8bitZoneNumber(void);
+// weak function to implement
+RAM_TEST_zone_t* RAM_TEST_get32bitZones(void);
+RAM_TEST_zone_t* RAM_TEST_get16bitZones(void);
+RAM_TEST_zone_t* RAM_TEST_get8bitZones(void);
+RAM_TEST_zone_t* RAM_TEST_get32bitSourceZone(void);
+RAM_TEST_zone_t* RAM_TEST_get16bitSourceZone(void);
+RAM_TEST_zone_t* RAM_TEST_get8bitSourceZone(void);
+uint8_t RAM_TEST_get32bitZoneNumber(void);
+uint8_t RAM_TEST_get16bitZoneNumber(void);
+uint8_t RAM_TEST_get8bitZoneNumber(void);
 
 #endif
