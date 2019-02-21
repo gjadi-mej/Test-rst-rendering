@@ -29,7 +29,7 @@
 #define X_RAM_SPEED_PATTERN16                    0xAAAA
 #define X_RAM_SPEED_PATTERN8                     0xAA
 
-#endif
+
 
 /** public function declaration */
 double X_RAM_SPEED_getAverageWriteSpeed(void);
