@@ -20,7 +20,7 @@
 
 __weak void UTIL_TIME_BASE_initialize(void)
 {
-	stdimpl_print("[Warning]: No implementation of UTIL_TIME_BASE_initialize found!");
+	stdimpl_print("[Warning]: No implementation of UTIL_TIME_BASE_initialize found!\n");
 }	
 
 __weak uint64_t UTIL_TIME_BASE_getTime(void)
