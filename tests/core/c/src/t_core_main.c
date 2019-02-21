@@ -9,16 +9,18 @@
 #include <stdarg.h>
 #include <embUnit/embUnit.h>
 #include "t_core_ram.h"
+#include "t_core_time_base.h"
 
 
 
 void T_CORE_main(void) {
 
-	static TestCaller test;
+
 
 	TestRunner_start();
-	TestRunner_runTest(UT_ram_tests());
-	TestRunner_runTest(UT_ram_speed_tests());
+	TestRunner_runTest(T_CORE_TIME_BASE_tests());
+	TestRunner_runTest(T_CORE_RAM_tests());
+	TestRunner_runTest(T_CORE_RAM_speed_tests());
 	TestRunner_end();
 	return;
 }

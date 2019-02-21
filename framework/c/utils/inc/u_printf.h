@@ -6,8 +6,8 @@
 
 /* Prevent recursive inclusion */
 
-#ifndef __UTIL_TIME_BASE_H
-#define __UTIL_TIME_BASE_H
+#ifndef __UTIL_PRINTF_H
+#define __UTIL_PRINTF_H
 
 #include <stdint.h>
 
@@ -23,7 +23,6 @@
 
 
 // weak function to implement
-void UTIL_TIME_BASE_initialize(void);
-uint64_t UTIL_TIME_BASE_getTime(void);
+
 
 #endif

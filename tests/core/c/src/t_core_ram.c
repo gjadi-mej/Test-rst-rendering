@@ -6,125 +6,125 @@
 
 #include <embUnit/embUnit.h>
 #include <embUnit/config.h>
-#include "ram_test.h"
-
+#include "x_ram_checks.h"
+#include "x_ram_speed.h"
 
 
 static void T_CORE_RAM_setUp(void)
 {
-    RAM_TEST_MemoryCleanup();
+    X_RAM_CHECKS_MemoryCleanup();
 }
 
 static void T_CORE_RAM_tearDown(void)
 {
-    RAM_TEST_MemoryCleanup();
+    X_RAM_CHECKS_MemoryCleanup();
 }
 
 /** 32-bit tests */
 static void T_CORE_RAM_is_32bit_zones_defined(void)
 {
-	TEST_ASSERT_MESSAGE( RAM_TEST_get32bitZones() != NULL,  "No defined zones to test. Please implement RAM_TEST_get32bitZones and RAM_TEST_get32bitZoneNumber functions.\n" );
+	TEST_ASSERT_MESSAGE( X_RAM_CHECKS_get32bitZones() != NULL,  "No defined zones to test. Please implement RAM_TEST_get32bitZones and RAM_TEST_get32bitZoneNumber functions.\n" );
 }
 
 static void T_CORE_RAM_write_read_test_32bit_all_bits_low(void)
 { 
-	if (RAM_TEST_get32bitZones() != NULL) 
+	if (X_RAM_CHECKS_get32bitZones() != NULL) 
 	{
-		TEST_ASSERT_EQUAL_INT(RAM_TEST_check32bitWriteRead(RAM_TEST_ALL_LOW_DATA), 0);
+		TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check32bitWriteRead(X_RAM_CHECKS_ALL_LOW_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_32bit_all_bits_high(void)
 {
-		if (RAM_TEST_get32bitZones() != NULL) 
+		if (X_RAM_CHECKS_get32bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check32bitWriteRead(RAM_TEST_ALL_HIGH_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check32bitWriteRead(X_RAM_CHECKS_ALL_HIGH_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_32bit_odd_bits_high(void)
 {
-	if (RAM_TEST_get32bitZones() != NULL) 
+	if (X_RAM_CHECKS_get32bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check32bitWriteRead(RAM_TEST_ODD_BIT_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check32bitWriteRead(X_RAM_CHECKS_ODD_BIT_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_32bit_even_bits_high(void)
 {
-	if (RAM_TEST_get32bitZones() != NULL) 
+	if (X_RAM_CHECKS_get32bitZones() != NULL) 
 	{ 
-		TEST_ASSERT_EQUAL_INT(RAM_TEST_check32bitWriteRead(RAM_TEST_EVEN_BIT_DATA), 0);
+		TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check32bitWriteRead(X_RAM_CHECKS_EVEN_BIT_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_32bit_generic_data(void)
 {
-	if (RAM_TEST_get32bitZones() != NULL) 
+	if (X_RAM_CHECKS_get32bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check32bitWriteRead(RAM_TEST_GENERIC_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check32bitWriteRead(X_RAM_CHECKS_GENERIC_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_32bit_address_bits(void)
 {
-	if (RAM_TEST_get32bitZones() != NULL) 
+	if (X_RAM_CHECKS_get32bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_checkAddress32(), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_checkAddress32(), 0);
 	}
 }
 
 /** 16-bit tests */
 static void T_CORE_RAM_is_16bit_zones_defined(void)
 {
-	TEST_ASSERT_MESSAGE( 	RAM_TEST_get16bitZones() != NULL, "No defined zones to test. Please implement RAM_TEST_get16bitZones and RAM_TEST_get16bitZoneNumber functions.\n" );
+	TEST_ASSERT_MESSAGE( 	X_RAM_CHECKS_get16bitZones() != NULL, "No defined zones to test. Please implement RAM_TEST_get16bitZones and RAM_TEST_get16bitZoneNumber functions.\n" );
 }
 
 static void T_CORE_RAM_write_read_test_16bit_all_bits_low(void)
 {
-	if (RAM_TEST_get16bitZones() != NULL) 
+	if (X_RAM_CHECKS_get16bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check16bitWriteRead(RAM_TEST_ALL_LOW_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check16bitWriteRead(X_RAM_CHECKS_ALL_LOW_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_16bit_all_bits_high(void)
 {
-	if (RAM_TEST_get16bitZones() != NULL) 
+	if (X_RAM_CHECKS_get16bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check16bitWriteRead(RAM_TEST_ALL_HIGH_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check16bitWriteRead(X_RAM_CHECKS_ALL_HIGH_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_16bit_odd_bits_high(void)
 {
-	if (RAM_TEST_get16bitZones() != NULL) 
+	if (X_RAM_CHECKS_get16bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check16bitWriteRead(RAM_TEST_ODD_BIT_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check16bitWriteRead(X_RAM_CHECKS_ODD_BIT_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_16bit_even_bits_high(void)
 {
-	if (RAM_TEST_get16bitZones() != NULL) 
+	if (X_RAM_CHECKS_get16bitZones() != NULL) 
 	{
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check16bitWriteRead(RAM_TEST_EVEN_BIT_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check16bitWriteRead(X_RAM_CHECKS_EVEN_BIT_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_16bit_generic_data(void)
 {
-	if (RAM_TEST_get16bitZones() != NULL) 
+	if (X_RAM_CHECKS_get16bitZones() != NULL) 
 	{
-		TEST_ASSERT_EQUAL_INT(RAM_TEST_check16bitWriteRead(RAM_TEST_GENERIC_DATA), 0);
+		TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check16bitWriteRead(X_RAM_CHECKS_GENERIC_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_16bit_address_bits(void)
 {
-  if (RAM_TEST_get16bitZones() != NULL) 
+  if (X_RAM_CHECKS_get16bitZones() != NULL) 
 	{ 
-		TEST_ASSERT_EQUAL_INT(RAM_TEST_checkAddress16(), 0);
+		TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_checkAddress16(), 0);
 	}
 }
 
@@ -132,71 +132,71 @@ static void T_CORE_RAM_write_read_test_16bit_address_bits(void)
 /** 8-bit tests */
 static void T_CORE_RAM_is_8bit_zones_defined(void)
 {
-		TEST_ASSERT_MESSAGE( 	RAM_TEST_get8bitZones() != NULL, "No defined zones to test. Please implement RAM_TEST_get8bitZones and RAM_TEST_get8bitZoneNumber functions.\n" );
+		TEST_ASSERT_MESSAGE( 	X_RAM_CHECKS_get8bitZones() != NULL, "No defined zones to test. Please implement RAM_TEST_get8bitZones and RAM_TEST_get8bitZoneNumber functions.\n" );
 }
 
 static void T_CORE_RAM_write_read_test_8bit_all_bits_low(void)
 {
-	if (RAM_TEST_get8bitZones() != NULL) 
+	if (X_RAM_CHECKS_get8bitZones() != NULL) 
 	{ 
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check8bitWriteRead(RAM_TEST_ALL_LOW_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check8bitWriteRead(X_RAM_CHECKS_ALL_LOW_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_8bit_all_bits_high(void)
 {
-	if (RAM_TEST_get8bitZones() != NULL) 
+	if (X_RAM_CHECKS_get8bitZones() != NULL) 
 	{ 
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check8bitWriteRead(RAM_TEST_ALL_HIGH_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check8bitWriteRead(X_RAM_CHECKS_ALL_HIGH_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_8bit_odd_bits_high(void)
 {
-	if (RAM_TEST_get8bitZones() != NULL) 
+	if (X_RAM_CHECKS_get8bitZones() != NULL) 
 	{ 
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check8bitWriteRead(RAM_TEST_ODD_BIT_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check8bitWriteRead(X_RAM_CHECKS_ODD_BIT_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_8bit_even_bits_high(void)
 {
-	if (RAM_TEST_get8bitZones() != NULL) 
+	if (X_RAM_CHECKS_get8bitZones() != NULL) 
 	{ 
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check8bitWriteRead(RAM_TEST_EVEN_BIT_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check8bitWriteRead(X_RAM_CHECKS_EVEN_BIT_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_8bit_generic_data(void)
 {
-	if (RAM_TEST_get8bitZones() != NULL) 
+	if (X_RAM_CHECKS_get8bitZones() != NULL) 
 	{ 
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_check8bitWriteRead(RAM_TEST_GENERIC_DATA), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_check8bitWriteRead(X_RAM_CHECKS_GENERIC_DATA), 0);
 	}
 }
 
 static void T_CORE_RAM_write_read_test_8bit_address_bits(void)
 {
-	if (RAM_TEST_get8bitZones() != NULL) 
+	if (X_RAM_CHECKS_get8bitZones() != NULL) 
 	{ 
-    TEST_ASSERT_EQUAL_INT(RAM_TEST_checkAddress8(), 0);
+    TEST_ASSERT_EQUAL_INT(X_RAM_CHECKS_checkAddress8(), 0);
 	}
 }
 
 /** speed benchmark */
 static void T_CORE_RAM_read_speed_f(void)
 {
-	stdimpl_print("RAM_TEST_Speed average read access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (RAM_TEST_getAverageReadSpeed() / 1024.0) / 1024.0);
+	stdimpl_print("RAM speed average read access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (X_RAM_SPEED_getAverageReadSpeed() / 1024.0) / 1024.0);
 }
 
 static void T_CORE_RAM_write_speed_f(void)
 {
-	stdimpl_print("RAM_TEST_Speed average write access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (RAM_TEST_getAverageWriteSpeed() / 1024.0) / 1024.0);
+	stdimpl_print("RAM speed average write access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (X_RAM_SPEED_getAverageWriteSpeed() / 1024.0) / 1024.0);
 }
 
 static void T_CORE_RAM_transfert_speed_f(void)
 {
-	stdimpl_print("RAM_TEST_Speed average transfert access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (RAM_TEST_getAverageTransfertSpeed() / 1024.0) / 1024.0);
+	stdimpl_print("RAM speed average transfert access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (X_RAM_SPEED_getAverageTransfertSpeed() / 1024.0) / 1024.0);
 }
 
 TestRef T_CORE_RAM_tests(void)

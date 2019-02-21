@@ -6,12 +6,12 @@
 
 /* Prevent recursive inclusion */
 
-#ifndef __UNIT_TEST_RAM_H
-#define __UNIT_TEST_RAM_H
+#ifndef __T_CORE_RAM_H
+#define __T_CORE_RAM_H
 #include <embUnit/embUnit.h>
 
 
-TestRef UT_ram_tests(void);
-TestRef UT_ram_speed_tests(void);
+TestRef  T_CORE_RAM_tests(void);
+TestRef  T_CORE_RAM_speed_tests(void);
 
 #endif
