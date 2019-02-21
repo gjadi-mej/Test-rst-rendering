@@ -9,6 +9,7 @@
 #include <stdio.h>
 
 #include "u_time_base.h"
+#include "bsp_util.h"
 #include "embunit/config.h"
 /** Private constant declarations */
 
@@ -18,12 +19,12 @@
 
 /** public function definitions */
 
-__weak void UTIL_TIME_BASE_initialize(void)
+BSP_DECLARE_WEAK_FCNT void UTIL_TIME_BASE_initialize(void)
 {
 	stdimpl_print("[Warning]: No implementation of UTIL_TIME_BASE_initialize found!\n");
 }	
 
-__weak uint64_t UTIL_TIME_BASE_getTime(void)
+BSP_DECLARE_WEAK_FCNT uint64_t UTIL_TIME_BASE_getTime(void)
 {
 	return 0;
 }
