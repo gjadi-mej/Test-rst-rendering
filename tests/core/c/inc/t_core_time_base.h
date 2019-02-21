@@ -7,9 +7,11 @@
 
 /* Prevent recursive inclusion */
 
-#ifndef __UNIT_TEST_TIME_BASE_H
-#define __UNIT_TEST_TIME_BASE_H
+#ifndef __T_CORE_TIME_BASE_H
+#define __T_CORE_TIME_BASE_H
 #include <embUnit/embUnit.h>
 
 
-TestRef UT_time_base_tests(void);
+TestRef T_CORE_TIME_BASE_tests(void);
+
+#endif
