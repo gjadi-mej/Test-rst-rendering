@@ -23,7 +23,6 @@ static void T_CORE_TIME_BASE_tearDown(void)
 static void T_CORE_TIME_BASE_check_time_evolution(void)
 {
 	uint64_t startTime = UTIL_TIME_BASE_getTime();
-	stdimpl_print("waiting ...");
 	for (int32_t i = 0; i < T_CORE_TIME_BASE_MAX_WAITING; i++)
 	{
 	};
@@ -35,6 +34,8 @@ TestRef T_CORE_TIME_BASE_tests(void)
     EMB_UNIT_TESTFIXTURES(fixtures) { 
 			new_TestFixture("Check time progression", T_CORE_TIME_BASE_check_time_evolution),
 		};
+		
+		stdimpl_print("\nTime base check:\n");
 		EMB_UNIT_TESTCALLER(timeBaseTest, "Time_base_tests", T_CORE_TIME_BASE_setUp, T_CORE_TIME_BASE_tearDown, fixtures);
 
     return (TestRef)&timeBaseTest;

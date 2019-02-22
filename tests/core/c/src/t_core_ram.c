@@ -201,7 +201,8 @@ static void T_CORE_RAM_transfert_speed_f(void)
 
 TestRef T_CORE_RAM_tests(void)
 {
-    EMB_UNIT_TESTFIXTURES(fixtures) { 
+
+		EMB_UNIT_TESTFIXTURES(fixtures) { 
 			new_TestFixture("Check for existing 32-bit zones", T_CORE_RAM_is_32bit_zones_defined),
 			new_TestFixture("Write all bits low in 32-bit zones", T_CORE_RAM_write_read_test_32bit_all_bits_low),
 			new_TestFixture("Write all bits high in 32-bit zones", T_CORE_RAM_write_read_test_32bit_all_bits_high),
@@ -226,6 +227,7 @@ TestRef T_CORE_RAM_tests(void)
 			new_TestFixture("Write generic data in 8-bit zones", T_CORE_RAM_write_read_test_8bit_generic_data),
 			new_TestFixture("Check address bits in 8-bit zones", T_CORE_RAM_write_read_test_8bit_address_bits),
 		};
+		stdimpl_print("\nRAM tests:\n");
 		EMB_UNIT_TESTCALLER(ramTest, "RAM_tests", T_CORE_RAM_setUp, T_CORE_RAM_tearDown, fixtures);
 
     return (TestRef)&ramTest;
@@ -238,7 +240,7 @@ TestRef T_CORE_RAM_speed_tests(void)
         new_TestFixture("T_CORE_RAM_write_speed_f", T_CORE_RAM_write_speed_f),
         new_TestFixture("T_CORE_RAM_transfert_speed_f", T_CORE_RAM_transfert_speed_f),
 	};
-	
+	stdimpl_print("\nRAM speed benchmark:\n");
 	EMB_UNIT_TESTCALLER(ramTestSpeed, "RAM speed_tests", T_CORE_RAM_setUp, T_CORE_RAM_tearDown, fixtures_speed);
 	
 	return (TestRef)&ramTestSpeed;
