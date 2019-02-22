@@ -8,7 +8,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "x_ram_checks.h"
-#include "x_ram_test-intern.h"
+#include "x_ram_speed.h"
+
 
 /** Private constant declarations */
 
