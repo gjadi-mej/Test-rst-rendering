@@ -44,15 +44,22 @@ Coremark
     * Implement useful following functions:
 
 ```
-    X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)
-    X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)
-    X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)
-    uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)
-    uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)
-    uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)
-    void UTIL_TIME_BASE_initialize(void)
-    uint64_t UTIL_TIME_BASE_getTime(void)
-    bool X_CORE_BENCHMARK_run(void)
+	void UTIL_TIME_BASE_initialize(void)
+	uint64_t UTIL_TIME_BASE_getTime(void)
+
+	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)
+	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)
+	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)
+
+	uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)
+	uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)
+	uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)
+	
+	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitSourceZone(void)
+	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)
+	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)
+
+	bool X_CORE_BENCHMARK_run(void)
 ```
 2. In the MicroEJ SDK platform environment:
     * import the Java MicroEJ project 'JVM.Portage.Validation' into folder 'tests/core/java'
