@@ -5,9 +5,9 @@
  */
 
 #include <embUnit/embUnit.h>
-#include <embUnit/config.h>
 #include "x_ram_checks.h"
 #include "x_ram_speed.h"
+#include "u_print.h"
 
 
 static void T_CORE_RAM_setUp(void)
@@ -186,17 +186,23 @@ static void T_CORE_RAM_write_read_test_8bit_address_bits(void)
 /** speed benchmark */
 static void T_CORE_RAM_read_speed_f(void)
 {
-	stdimpl_print("RAM speed average read access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (X_RAM_SPEED_getAverageReadSpeed() / 1024.0) / 1024.0);
+	UTIL_print_string("RAM speed average read access (according to your configuration file 8/16/32 bits) : ");
+	UTIL_print_float( (X_RAM_SPEED_getAverageReadSpeed() / 1024.0) / 1024.0);
+	UTIL_print_string( "MBytes/s \n" );
 }
 
 static void T_CORE_RAM_write_speed_f(void)
 {
-	stdimpl_print("RAM speed average write access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (X_RAM_SPEED_getAverageWriteSpeed() / 1024.0) / 1024.0);
+	UTIL_print_string("RAM speed average write access (according to your configuration file 8/16/32 bits) : ");
+	UTIL_print_float( (X_RAM_SPEED_getAverageWriteSpeed() / 1024.0) / 1024.0);
+	UTIL_print_string(" MBytes/s \n");
 }
 
 static void T_CORE_RAM_transfert_speed_f(void)
 {
-	stdimpl_print("RAM speed average transfert access (according to your configuration file 8/16/32 bits) : %f MBytes/s \n" , (X_RAM_SPEED_getAverageTransfertSpeed() / 1024.0) / 1024.0);
+	UTIL_print_string("RAM speed average transfert access (according to your configuration file 8/16/32 bits) : ");
+	UTIL_print_float((X_RAM_SPEED_getAverageTransfertSpeed() / 1024.0) / 1024.0);
+	UTIL_print_string("MBytes/s \n");
 }
 
 TestRef T_CORE_RAM_tests(void)
@@ -227,7 +233,7 @@ TestRef T_CORE_RAM_tests(void)
 			new_TestFixture("Write generic data in 8-bit zones", T_CORE_RAM_write_read_test_8bit_generic_data),
 			new_TestFixture("Check address bits in 8-bit zones", T_CORE_RAM_write_read_test_8bit_address_bits),
 		};
-		stdimpl_print("\nRAM tests:\n");
+		UTIL_print_string("\nRAM tests:\n");
 		EMB_UNIT_TESTCALLER(ramTest, "RAM_tests", T_CORE_RAM_setUp, T_CORE_RAM_tearDown, fixtures);
 
     return (TestRef)&ramTest;
@@ -240,7 +246,7 @@ TestRef T_CORE_RAM_speed_tests(void)
         new_TestFixture("T_CORE_RAM_write_speed_f", T_CORE_RAM_write_speed_f),
         new_TestFixture("T_CORE_RAM_transfert_speed_f", T_CORE_RAM_transfert_speed_f),
 	};
-	stdimpl_print("\nRAM speed benchmark:\n");
+	UTIL_print_string("\nRAM speed benchmark:\n");
 	EMB_UNIT_TESTCALLER(ramTestSpeed, "RAM speed_tests", T_CORE_RAM_setUp, T_CORE_RAM_tearDown, fixtures_speed);
 	
 	return (TestRef)&ramTestSpeed;
