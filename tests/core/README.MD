@@ -24,14 +24,14 @@ This folder is a part of a project which gathers the platform qualification tool
         * /c ( C language source and header files)
             * /src 
             * /inc
-        * /java (eclipse Java project)
+        * /java (Eclipse Java project)
 
 
     
 
 # Dependencies
-Embedded Unit
-Coremark 
+* Embedded Unit
+* EEMBC Coremark 
 
 # Use
 
@@ -41,7 +41,7 @@ Coremark
 
     * Download and port EEMBC CoreMark (http://www.eembc.org/coremark/index.php). Add it to the BSP project.
 
-    * Implement useful following functions:
+    * Implement the following C functions in the BSP project:
 
 ```
 	void UTIL_TIME_BASE_initialize(void)
@@ -62,10 +62,10 @@ Coremark
 	bool X_CORE_BENCHMARK_run(void)
 ```
 2. In the MicroEJ SDK platform environment:
-    * import the Java MicroEJ project 'JVM.Portage.Validation' into folder 'tests/core/java'
-    *  Build 'JVM.Portage.Validation' MicroEJ Application  against the checked platform
+    * Import the Java MicroEJ project 'JVM.Portage.Validation' into folder 'tests/core/java'
+    * Build 'JVM.Portage.Validation' MicroEJ Application  against the checked platform
     
-3. Build the binairy firmware and run it on the target
+3. Build the binary firmware and run it on the target
 
 # Output example
 
