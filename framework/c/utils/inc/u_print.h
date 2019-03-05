@@ -9,6 +9,10 @@
 #ifndef __UTIL_PRINT_H
 #define __UTIL_PRINT_H
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 #include <stdint.h>
 
 /** Public constant declaration */
@@ -22,5 +26,9 @@ void UTIL_print_string(const char* string);
 void UTIL_print_integer(int integer);
 void UTIL_print_float(double value);
 void UTIL_print_longlong(long long value);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

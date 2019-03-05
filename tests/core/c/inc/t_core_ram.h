@@ -8,10 +8,18 @@
 
 #ifndef __T_CORE_RAM_H
 #define __T_CORE_RAM_H
-#include <embUnit/embUnit.h>
+#include "../../../../framework/c/embunit/embUnit/embUnit.h"
 
-/** Public function declarations */
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+/* Public function declarations */
 TestRef  T_CORE_RAM_tests(void);
 TestRef  T_CORE_RAM_speed_tests(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

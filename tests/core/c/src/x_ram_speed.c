@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "bsp_util.h"
-#include "u_time_base.h"
+#include "../../../../framework/c/utils/inc/bsp_util.h"
+#include "../../../../framework/c/utils/inc/u_time_base.h"
 #include "x_ram_checks.h"
 #include "x_ram_speed.h"
 

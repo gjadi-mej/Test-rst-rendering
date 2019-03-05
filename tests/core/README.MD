@@ -36,15 +36,13 @@ This folder is a part of a project which gathers the platform qualification tool
 # Use
 
 1. In the platform BSP project IDE:
-    * Add to "include folders", the folders 'framework/c/utils/inc', 'framework/c/embunit' and 'tests/core/c/inc'
+    * Add to "include folders", the folder 'tests/core/c/inc'
     * Add to "source files" all files of the folders 'framework/c/utils/src', 'framework/c/embunit' and 'tests/core/c/src'
 
     * Download and port EEMBC CoreMark (http://www.eembc.org/coremark/index.php). Add it to the BSP project.
 
-    * Implement the following C functions in the BSP project:
-
-```
-	void UTIL_TIME_BASE_initialize(void)
+    * Implement the following C functions in the BSP project : 
+    ``` void UTIL_TIME_BASE_initialize(void)
 	uint64_t UTIL_TIME_BASE_getTime(void)
 
 	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)
@@ -60,7 +58,10 @@ This folder is a part of a project which gathers the platform qualification tool
 	X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)
 
 	bool X_CORE_BENCHMARK_run(void)
-```
+    ```
+   
+    *  Add a call to the function "T_CORE_main()", in the BSP project main function, before the JVM start and after the hardware initialization.
+          
 2. In the MicroEJ SDK platform environment:
     * Import the Java MicroEJ project 'JVM.Portage.Validation' into folder 'tests/core/java'
     * Build 'JVM.Portage.Validation' MicroEJ Application  against the checked platform
@@ -75,7 +76,7 @@ This folder is a part of a project which gathers the platform qualification tool
 **                      Platform Qualification Core                    **
 **                              version 1.0                            **
 *************************************************************************
-*           Copyright 2013-2016 IS2T. All rights reserved.              *
+*           Copyright 2013-2019 IS2T. All rights reserved.              *
 * Modification and distribution is permitted under certain conditions.  *
 * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.       *
 *************************************************************************

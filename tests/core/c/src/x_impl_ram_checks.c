@@ -11,13 +11,14 @@
 #include "bsp_util.h"
 
 
-/** public weak function default definitions */
+/* public weak function default definitions */
 
 
 /**
- * @brief 
+ * 
+ * @brief  this function provide a definition array of  memory zones to test with 32-bit accesses.
  *
- * @return 
+ * @return array of X_RAM_CHECKS_zone_t
  */
 
 BSP_DECLARE_WEAK_FCNT X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)
@@ -27,9 +28,9 @@ BSP_DECLARE_WEAK_FCNT X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)
 
 
 /**
- * @brief 
+ * @brief this function provide a definition array of  memory zones to test with 16-bit accesses.
  *
- * @return 
+ * @return array of X_RAM_CHECKS_zone_t
  */
 
 BSP_DECLARE_WEAK_FCNT X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)
@@ -41,7 +42,7 @@ BSP_DECLARE_WEAK_FCNT X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)
 /**
  * @brief 
  *
- * @return 
+ * @return array of X_RAM_CHECKS_zone_t
  */
 
 BSP_DECLARE_WEAK_FCNT X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)
@@ -53,7 +54,7 @@ BSP_DECLARE_WEAK_FCNT X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)
 /**
  * @brief 
  *
- * @return 
+ * @return number of zones to test
  */
 
 BSP_DECLARE_WEAK_FCNT uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)

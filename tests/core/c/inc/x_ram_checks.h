@@ -8,6 +8,11 @@
 
 #ifndef __X_RAM_CHECKS_H
 #define __X_RAM_CHECKS_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 #include <stdint.h>
 
 /** Public constant declaration */
@@ -29,8 +34,11 @@
 #define X_RAM_CHECKS_ALL_TESTS          0xFFFF
 
 
-/** public structure declaration */
+/* public structure declaration */
 
+/**
+ * @brief provide a memory zone definition and a storage location for memory benchmark result
+ */
 typedef struct {
 	uint32_t start_address;
 	uint32_t end_address;
@@ -39,7 +47,7 @@ typedef struct {
 	double transfert_speed;
 } X_RAM_CHECKS_zone_t;
 
-/** public function declaration */
+/* public function declaration */
 
 uint32_t X_RAM_CHECKS_check32bitWriteAllNextReadAll(uint16_t patternType);
 uint32_t X_RAM_CHECKS_check32bitWriteRead(uint16_t patternType);
@@ -63,5 +71,9 @@ X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void);
 uint8_t X_RAM_CHECKS_get32bitZoneNumber(void);
 uint8_t X_RAM_CHECKS_get16bitZoneNumber(void);
 uint8_t X_RAM_CHECKS_get8bitZoneNumber(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

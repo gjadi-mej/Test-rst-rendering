@@ -9,21 +9,23 @@
 #ifndef __UTIL_TIME_BASE_H
 #define __UTIL_TIME_BASE_H
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 #include <stdint.h>
 
-/** Public constant declaration */
+/* Public constant declaration */
 
+/* public structure declaration */
 
-/** public structure declaration */
-
-
-
-/** public function declaration */
-
-
-
+/* public function declaration */
 // weak function to implement
 void UTIL_TIME_BASE_initialize(void);
 uint64_t UTIL_TIME_BASE_getTime(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -4,10 +4,10 @@
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-#include <embUnit/embUnit.h>
+#include "../../../../framework/c/embunit/embUnit/embUnit.h"
 #include "x_ram_checks.h"
 #include "x_ram_speed.h"
-#include "u_print.h"
+#include "../../../../framework/c/utils/inc/u_print.h"
 
 
 static void T_CORE_RAM_setUp(void)

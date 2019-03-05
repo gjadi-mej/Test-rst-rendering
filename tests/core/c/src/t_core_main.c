@@ -7,7 +7,7 @@
  */
 #include <stdio.h>
 #include <stdarg.h>
-#include <embUnit/embUnit.h>
+#include "../../../../framework/c/embunit/embUnit/embUnit.h"
 #include "t_core_print.h"
 #include "t_core_time_base.h"
 #include "t_core_ram.h"
