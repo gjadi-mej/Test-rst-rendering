@@ -508,7 +508,7 @@ EXTRACT_ANON_NSPACES   = NO
 # section is generated. This option has no effect if EXTRACT_ALL is enabled.
 # The default value is: NO.
 
-HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_MEMBERS     = YES
 
 # If the HIDE_UNDOC_CLASSES tag is set to YES, doxygen will hide all
 # undocumented classes that are normally visible in the class hierarchy. If set
@@ -516,7 +516,7 @@ HIDE_UNDOC_MEMBERS     = NO
 # has no effect if EXTRACT_ALL is enabled.
 # The default value is: NO.
 
-HIDE_UNDOC_CLASSES     = NO
+HIDE_UNDOC_CLASSES     = YES
 
 # If the HIDE_FRIEND_COMPOUNDS tag is set to YES, doxygen will hide all friend
 # (class|struct|union) declarations. If set to NO, these declarations will be
@@ -688,7 +688,7 @@ MAX_INITIALIZER_LINES  = 30
 # list will mention the files that were used to generate the documentation.
 # The default value is: YES.
 
-SHOW_USED_FILES        = YES
+SHOW_USED_FILES        = NO
 
 # Set the SHOW_FILES tag to NO to disable the generation of the Files page. This
 # will remove the Files entry from the Quick Index and from the Folder Tree View
@@ -875,7 +875,7 @@ EXCLUDE_SYMLINKS       = NO
 # Note that the wildcards are matched against the file with absolute path, so to
 # exclude all test directories for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       =
+EXCLUDE_PATTERNS       = x_impl*.c
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the

@@ -7,7 +7,7 @@
 /* Prevent recursive inclusion */
 
 #ifndef __X_CORE_BENCHMARK_H
-#define __X_CORE_BENCHMARK_H_H
+#define __X_CORE_BENCHMARK_H
 
 #ifdef __cplusplus
  extern "C" {

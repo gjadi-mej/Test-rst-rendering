@@ -15,7 +15,11 @@
 
 #include "../../../../framework/c/embunit/embunit/embUnit.h"
 
-
+/* Public function declarations */
+/**
+ *@brief This test uses the 'UTIL_print_ xx' functions to display a message.
+ *  If the message appears on the display peripheral, this test is passed.
+ */
 TestRef T_CORE_PRINT_tests(void);
 
 #ifdef __cplusplus

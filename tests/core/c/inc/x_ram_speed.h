@@ -34,9 +34,22 @@
 #define X_RAM_SPEED_PATTERN16                    0xAAAA
 #define X_RAM_SPEED_PATTERN8                     0xAA
 
-
-
 /* public function declaration */
+/**
+ * @fn  X_RAM_SPEED_getAverageWriteSpeed(void)
+ * @brief writes the patterns X_RAM_SPEED_PATTERNxx, in all words of areas returned by X_RAM_CHECKS_getxxbitZones functions, and mesures the average time for this write.
+ * @return the average write speed of all memory areas in Mbytes/s
+ *
+ *
+ * @fn  X_RAM_SPEED_getAverageReadSpeed(void)
+ * @brief reads, in all words of areas returned by X_RAM_CHECKS_getxxbitZones functions, and mesures the average time for this read.
+ * @return the average read speed of all memory areas in Mbytes/s
+ *
+ * @fn  X_RAM_SPEED_getAverageTransfertSpeed(void)
+ * @brief copies all words of memory source areas returned by X_RAM_CHECKS_getxxbitSourceZone functions into memoy areas defined by X_RAM_CHECKS_getxxbitZones functions, and mesures the average time for this copy.
+ * @return the average transfert speed of all memory areas in Mbytes/s
+ *
+ */
 double X_RAM_SPEED_getAverageWriteSpeed(void);
 double X_RAM_SPEED_getAverageReadSpeed(void);
 double X_RAM_SPEED_getAverageTransfertSpeed(void);

@@ -16,9 +16,6 @@
 
 
 void T_CORE_main(void) {
-
-
-
 	TestRunner_start();
 	TestRunner_runTest(T_CORE_PRINT_tests());
 	TestRunner_runTest(T_CORE_TIME_BASE_tests());

@@ -21,6 +21,15 @@
 
 /* public function declaration */
 // weak function to implement
+
+/**
+ * @fn void UTIL_TIME_BASE_initialize(void)
+ * @brief This function is called by the SetUp functions of tests wich require some time references.
+ *
+ * @fn uint64_t UTIL_TIME_BASE_getTime(void)
+ * @brief This function provides a time reference for tests
+ * @return a current time in microsecond (µs)
+ */
 void UTIL_TIME_BASE_initialize(void);
 uint64_t UTIL_TIME_BASE_getTime(void);
 

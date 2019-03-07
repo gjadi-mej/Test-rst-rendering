@@ -25,7 +25,7 @@ static void T_CORE_COREBENCH_check(void)
 	TEST_ASSERT_MESSAGE(X_CORE_BENCHMARK_run(), "\nNo core benchmark can be found.\nPlease install a core benchmark in your platform and implement X_CORE_BENCHMARK_run function.\n");
 }
 
-/** Public function definitions */
+/* Public function definitions */
 
 TestRef T_CORE_COREBENCH_tests(void)
 {

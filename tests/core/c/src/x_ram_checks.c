@@ -423,7 +423,7 @@ static uint32_t checkPatternMemory8(uint8_t pattern)
 * @brief Checks the memory addressing: writes a memory index in each 32-bit words of the memory zones defined in the array returned
  * 				by the  X_RAM_CHECKS_get32bitZones function; next reads each memory word.
  *
- * @return count of the pattern read error
+ * @return count of the pattern read errors
  */
 uint32_t X_RAM_CHECKS_checkAddress32(void)
 {
@@ -475,7 +475,7 @@ uint32_t X_RAM_CHECKS_checkAddress32(void)
 * @brief Checks the memory addressing: writes a memory index in each 16-bit words of the memory zones defined in the array returned
  * 				by the  X_RAM_CHECKS_get16bitZones function; next reads each memory word.
  *
- * @return count of the pattern read error
+ * @return count of the pattern read errors
  */
 uint32_t X_RAM_CHECKS_checkAddress16(void)
 {
@@ -527,7 +527,12 @@ uint32_t X_RAM_CHECKS_checkAddress16(void)
 }
 
 
-
+/**
+* @brief Checks the memory addressing: writes a memory index in each byte of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get8bitZones function; next reads each memory byte.
+ *
+ * @return count of the pattern read errors
+ */
 uint32_t X_RAM_CHECKS_checkAddress8(void )
 {
 	uint8_t *pointer;
@@ -580,7 +585,9 @@ uint32_t X_RAM_CHECKS_checkAddress8(void )
 
 
 /**
- * @brief 
+ * @brief Writes the pattern in all 32-bit words of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get32bitZones function. Next, reads all 32-bit words of defined zones, to check 
+ *        the memory integrity.
  *
  * @param[in] testType  test to run :
  * - X_RAM_CHECKS_ALL_LOW_DATA : the function uses 0x00000000 pattern value to check memory.
@@ -636,7 +643,8 @@ uint32_t X_RAM_CHECKS_check32bitWriteAllNextReadAll(uint16_t patternType)
 }
 
 /**
- * @brief 
+ * @brief Writes and reads the pattern for each 32-bit words of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get32bitZones function. 
  *
  * @param[in] testType  test to run :
  * - X_RAM_CHECKS_ALL_LOW_DATA : the function uses 0x00000000 pattern value to check memory.
@@ -692,7 +700,9 @@ uint32_t X_RAM_CHECKS_check32bitWriteRead(uint16_t patternType)
 }
 
 /**
- * @brief 
+ * @brief Writes the pattern in all 16-bit words of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get16bitZones function. Next, reads all 16-bit words of defined zones, to check 
+ *        the memory integrity.
  *
  * @param[in] testType  test to run :
  * - X_RAM_CHECKS_ALL_LOW_DATA : the function uses 0x0000 pattern value to check memory.
@@ -749,7 +759,8 @@ uint32_t X_RAM_CHECKS_check16bitWriteAllNextReadAll(uint16_t patternType)
 
 
 /**
- * @brief 
+ * @brief Writes and reads the pattern for each 16-bit words of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get16bitZones function. 
  *
  * @param[in] testType  test to run :
  * - X_RAM_CHECKS_ALL_LOW_DATA : the function uses 0x00 pattern value to check memory.
@@ -806,7 +817,9 @@ uint32_t X_RAM_CHECKS_check16bitWriteRead(uint16_t testType)
 
 
 /**
- * @brief 
+ * @brief Writes the pattern in all bytes of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get8bitZones function. Next, reads all bytes of defined zones, to check 
+ *        the memory integrity.
  *
  * @param[in] testType  test to run :
  * - X_RAM_CHECKS_ALL_LOW_DATA : the function uses 0x0000 pattern value to check memory.
@@ -864,7 +877,8 @@ uint32_t X_RAM_CHECKS_check8bitWriteAllNextReadAll(uint16_t patternType)
 
 
 /**
- * @brief 
+ * @brief Writes and reads the pattern for each byte of the memory zones defined in the array returned
+ * 				by the  X_RAM_CHECKS_get8bitZones function. 
  *
  * @param[in] testType  test to run :
  * - X_RAM_CHECKS_ALL_LOW_DATA : the function uses 0x0000 pattern value to check memory.
@@ -920,7 +934,10 @@ uint32_t X_RAM_CHECKS_check8bitWriteRead(uint16_t testType)
 }
 
 
-
+/**
+ * @brief Writes 0x00 value in each byte of the area returned by the functions X_RAM_CHECKS_get32bitZones,
+ * X_RAM_CHECKS_get16bitZones and X_RAM_CHECKS_get8bitZones.
+ */
 void X_RAM_CHECKS_MemoryCleanup(void)
 {
     uint8_t *pointer;

@@ -15,7 +15,10 @@
 
 #include "../../../../framework/c/embunit/embUnit/embUnit.h"
 
-/** Public function declarations */
+/* Public function declarations */
+/**
+ *@brief This test start an external CORE benchmark. If the benchmark is not implemented or integrated, this test fails.
+ */
 TestRef T_CORE_COREBENCH_tests(void);
 
 #ifdef __cplusplus

@@ -15,30 +15,30 @@
 #include "x_ram_speed.h"
 
 
-/** public variables */
+/* public variables */
 
-/** private constant definition */
+/* private constant definition */
 
-/** private variable definitions */
+/* private variable definitions */
 
-/** private function declaration */
-
-
-    double X_RAM_SPEED_getWriteSpeed32(void);
-    double X_RAM_SPEED_getReadSpeed32(void);
-    double X_RAM_SPEED_getTransfertSpeed32(void);
-
-    double X_RAM_SPEED_getWriteSpeed16(void);
-    double X_RAM_SPEED_getReadSpeed16(void);
-    double X_RAM_SPEED_getTransfertSpeed16(void);
-
-    double X_RAM_SPEED_getWriteSpeed8(void);
-    double X_RAM_SPEED_getReadSpeed8(void);
-    double X_RAM_SPEED_getTransfertSpeed8(void);
+/* private function declaration */
 
 
+static double X_RAM_SPEED_getWriteSpeed32(void);
+static double X_RAM_SPEED_getReadSpeed32(void);
+static double X_RAM_SPEED_getTransfertSpeed32(void);
 
-/** function definitions */
+static double X_RAM_SPEED_getWriteSpeed16(void);
+static double X_RAM_SPEED_getReadSpeed16(void);
+static double X_RAM_SPEED_getTransfertSpeed16(void);
+
+static double X_RAM_SPEED_getWriteSpeed8(void);
+static double X_RAM_SPEED_getReadSpeed8(void);
+static double X_RAM_SPEED_getTransfertSpeed8(void);
+
+
+
+/* function definitions */
 double X_RAM_SPEED_getAverageWriteSpeed(void)
 {
     double avrSpeed = 0;
@@ -120,7 +120,7 @@ double X_RAM_SPEED_getAverageTransfertSpeed(void)
 }
 
 
-double X_RAM_SPEED_getWriteSpeed32(void)
+static double X_RAM_SPEED_getWriteSpeed32(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -147,7 +147,7 @@ double X_RAM_SPEED_getWriteSpeed32(void)
 
 
 
-double X_RAM_SPEED_getReadSpeed32(void)
+static double X_RAM_SPEED_getReadSpeed32(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -174,7 +174,7 @@ double X_RAM_SPEED_getReadSpeed32(void)
 	return average_speed / X_RAM_CHECKS_get32bitZoneNumber();
 }
 
-double X_RAM_SPEED_getTransfertSpeed32(void)
+static double X_RAM_SPEED_getTransfertSpeed32(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -209,7 +209,7 @@ double X_RAM_SPEED_getTransfertSpeed32(void)
 
 
 
-double X_RAM_SPEED_getWriteSpeed16(void)
+static double X_RAM_SPEED_getWriteSpeed16(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -235,7 +235,7 @@ double X_RAM_SPEED_getWriteSpeed16(void)
 	return average_speed / X_RAM_CHECKS_get16bitZoneNumber();
 }
 
-double X_RAM_SPEED_getReadSpeed16(void)
+static double X_RAM_SPEED_getReadSpeed16(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -262,7 +262,7 @@ double X_RAM_SPEED_getReadSpeed16(void)
 }
 
 
-double X_RAM_SPEED_getTransfertSpeed16(void)
+static double X_RAM_SPEED_getTransfertSpeed16(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -297,7 +297,7 @@ double X_RAM_SPEED_getTransfertSpeed16(void)
 }
 
 
-double X_RAM_SPEED_getWriteSpeed8(void)
+static double X_RAM_SPEED_getWriteSpeed8(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -324,7 +324,7 @@ double X_RAM_SPEED_getWriteSpeed8(void)
 }
 
 
-double X_RAM_SPEED_getReadSpeed8(void)
+static double X_RAM_SPEED_getReadSpeed8(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;
@@ -349,7 +349,7 @@ double X_RAM_SPEED_getReadSpeed8(void)
   return average_speed / X_RAM_CHECKS_get8bitZoneNumber();
 }
 
-double X_RAM_SPEED_getTransfertSpeed8(void)
+static double X_RAM_SPEED_getTransfertSpeed8(void)
 {
 	int64_t time;
 	double speed, average_speed = 0;

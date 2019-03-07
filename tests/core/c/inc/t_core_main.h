@@ -13,7 +13,16 @@
  extern "C" {
 #endif
 
-/** public function declaration */
+/* public function declaration */
+
+/**
+ * @brief this function is the entry point for the core test suite. By default, the executed test sequence is :
+ *		-# the print test
+ *		-# the time base test
+ *		-# the RAM integrity tests
+ *		-# the RAM speed benchmark
+ *		-# the Coremark benchmark
+ */
 void T_CORE_main(void);
 
 #ifdef __cplusplus
