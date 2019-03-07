@@ -4,9 +4,9 @@
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-#include <embUnit/embUnit.h>
-#include <embUnit/config.h>
-#include "u_time_base.h"
+#include "../../../../framework/c/embunit/embUnit/embUnit.h"
+#include "../../../../framework/c/embunit/embUnit/config.h"
+#include "../../../../framework/c/utils/inc/u_time_base.h"
 
 #define T_CORE_TIME_BASE_MAX_WAITING	10000
 

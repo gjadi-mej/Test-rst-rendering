@@ -4,10 +4,10 @@
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-#include <embUnit/embUnit.h>
-#include <embUnit/config.h>
+#include "../../../../framework/c/embunit/embUnit/embUnit.h"
+#include "../../../../framework/c/embunit/embUnit/config.h"
 #include "x_core_benchmark.h"
-#include "u_time_base.h"
+#include "../../../../framework/c/utils/inc/u_time_base.h"
 
 /** Private function definitions */
 static void T_CORE_COREBENCH_setUp(void)
@@ -25,7 +25,7 @@ static void T_CORE_COREBENCH_check(void)
 	TEST_ASSERT_MESSAGE(X_CORE_BENCHMARK_run(), "\nNo core benchmark can be found.\nPlease install a core benchmark in your platform and implement X_CORE_BENCHMARK_run function.\n");
 }
 
-/** Public function definitions */
+/* Public function definitions */
 
 TestRef T_CORE_COREBENCH_tests(void)
 {

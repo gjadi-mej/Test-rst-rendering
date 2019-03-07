@@ -8,9 +8,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#include "u_print.h"
-#include "bsp_util.h"
-#include "embunit/config.h"
+#include "../../../../framework/c/utils/inc/u_print.h"
+#include "../../../../framework/c/utils/inc/bsp_util.h"
+#include "../../../../framework/c/embunit/embunit/config.h"
 
 /** public function definitions */
 

@@ -7,8 +7,8 @@
  */
 #include <stdio.h>
 #include <stdarg.h>
-#include <embUnit/embUnit.h>
-#include "u_print.h"
+#include "../../../../framework/c/embunit/embUnit/embUnit.h"
+#include "../../../../framework/c/utils/inc/u_print.h"
 #include "x_version.h"
 #include "t_core_print.h"
 
@@ -31,7 +31,7 @@ static void T_CORE_PRINT_displayMessage(void)
 	UTIL_print_string(X_VERSION);
 	UTIL_print_string("                            **\n");
 	UTIL_print_string("*************************************************************************\n");
-	UTIL_print_string("*           Copyright 2013-2016 IS2T. All rights reserved.              *\n");
+	UTIL_print_string("*           Copyright 2013-2019 IS2T. All rights reserved.              *\n");
 	UTIL_print_string("* Modification and distribution is permitted under certain conditions.  *\n");
 	UTIL_print_string("* IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.       *\n");
 	UTIL_print_string("*************************************************************************\n");
