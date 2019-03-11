@@ -1,10 +1,10 @@
 <!--
 	Markdown
 	
-	Copyright 2019 IS2T. All rights reserved.
+	Copyright 2019 MicroEJ Corp. All rights reserved.
 	Modification and distribution is permitted under certain conditions.
 	
-	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+	MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
 -->
 
 # Overview
@@ -72,14 +72,14 @@ This folder is a part of a project which gathers the platform qualification tool
 
 ```start
 .
-*************************************************************************
-**                      Platform Qualification Core                    **
-**                              version 1.0                            **
-*************************************************************************
-*           Copyright 2013-2019 IS2T. All rights reserved.              *
-* Modification and distribution is permitted under certain conditions.  *
-* IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.       *
-*************************************************************************
+****************************************************************************
+**                      Platform Qualification Core                       **
+**                              version 1.0                               **
+****************************************************************************
+*           Copyright 2013-2019 MicroEJ Corp. All rights reserved.         *
+* Modification and distribution is permitted under certain conditions.     *
+* MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms. *
+****************************************************************************
 
 Print test:
  if this message is displayed, the test is passed!

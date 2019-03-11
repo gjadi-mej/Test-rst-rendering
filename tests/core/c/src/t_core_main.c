@@ -1,9 +1,9 @@
 /*
  * C
  *
- * Copyright 2019 IS2T. All rights reserved.
+ * Copyright 2019 MicroEJ Corp. All rights reserved.
  * For demonstration purpose only.
- * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 #include <stdio.h>
 #include <stdarg.h>

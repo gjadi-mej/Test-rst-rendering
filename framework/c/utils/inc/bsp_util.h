@@ -1,8 +1,8 @@
 /*
  * C
  *
- * Copyright 2015-2018 IS2T.
- * This Software has been designed or modified by IS2T S.A.
+ * Copyright 2015-2019 MicroEJ Corp.
+ * This Software has been designed or modified by MicroEJ Corp.
  */
 
 /**

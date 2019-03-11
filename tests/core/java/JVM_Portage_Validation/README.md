@@ -1,10 +1,10 @@
 <!--
 	Markdown
 	
-	Copyright 2017 IS2T. All rights reserved.
+	Copyright 2017 MicroEJ Corp. All rights reserved.
 	Modification and distribution is permitted under certain conditions.
 	
-	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+	MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
 -->
 
 # Overview
