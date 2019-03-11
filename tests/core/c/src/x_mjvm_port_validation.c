@@ -1,7 +1,7 @@
 /*
- * Copyright 2016 IS2T. All rights reserved.
+ * Copyright 2016-2019 MicroEJ Corp. All rights reserved.
  * For demonstration purpose only.
- * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
 #include "sni.h"
