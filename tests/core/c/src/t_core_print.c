@@ -25,11 +25,11 @@ static void T_CORE_PRINT_tearDown(void)
 
 static void T_CORE_PRINT_displayMessage(void)
 {
-	UTIL_print_string("\n**************************************************************************\n");
-	UTIL_print_string("**                      Platform Qualification Core                     **\n");
+	UTIL_print_string("\n****************************************************************************\n");
+	UTIL_print_string("**                      Platform Qualification Core                       **\n");
 	UTIL_print_string("**                              version ");
 	UTIL_print_string(X_VERSION);
-	UTIL_print_string("                             **\n");
+	UTIL_print_string("                               **\n");
 	UTIL_print_string("****************************************************************************\n");
 	UTIL_print_string("*           Copyright 2013-2019 MicroEJ Corp. All rights reserved.         *\n");
 	UTIL_print_string("* Modification and distribution is permitted under certain conditions.     *\n");
