@@ -6,21 +6,21 @@
 
 /* Prevent recursive inclusion */
 
-#ifndef __T_UI_MAIN_H
-#define __T_UI_MAIN_H
+#ifndef __T_UI_FRAMERATE_H
+#define __T_UI_FRAMERATE_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* public function declaration */
+#include "../../../../framework/c/embunit/embunit/embUnit.h"
+
+/* Public function declarations */
 
 /**
- * @brief this function is the entry point for the UI test suite. By default, the executed test sequence is :
- *		-# Check LLDisplay implementation
- *		-# Retrieve the LCD framerate
+ * @brief Retrieves the LCD minimal time to refresh itself.
  */
-void T_UI_main(void);
+TestRef T_UI_FRAMERATE_tests(void);
 
 #ifdef __cplusplus
 }
