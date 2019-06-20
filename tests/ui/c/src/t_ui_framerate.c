@@ -46,7 +46,7 @@ static void T_UI_FRAMERATE_getFramerate(void)
 	float frequency = 1/(((float)framerate_time_us)/1000000);
 
         UTIL_print_string("\n");
-	UTIL_print_string("Flush copy time is ");
+	UTIL_print_string("LCD framerate time is ");
 	UTIL_print_float(((float)framerate_time_us)/1000);
 	UTIL_print_string(" ms (");
 	UTIL_print_float(frequency);
