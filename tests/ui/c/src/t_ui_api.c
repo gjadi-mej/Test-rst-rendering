@@ -43,8 +43,7 @@ static void T_UI_API_tearDown(void)
  */
 static void T_UI_API_initialize(void)
 {
-	LLDISPLAY_initialize();
-
+	// LLDISPLAY_initialize() already called in t_ui_main.c
 	// actually nothing to test, just ensure compilation is working
 	TEST_ASSERT(1);
 }

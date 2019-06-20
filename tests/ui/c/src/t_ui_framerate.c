@@ -18,7 +18,6 @@
 static void T_UI_FRAMERATE_setUp(void)
 {
 	UTIL_print_initialize();
-	LLDISPLAY_initialize();
 	UTIL_TIME_BASE_initialize();
 }
 

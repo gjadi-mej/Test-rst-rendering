@@ -10,9 +10,13 @@
 #include "../../../../framework/c/embunit/embUnit/embUnit.h"
 #include "t_ui_api.h"
 #include "t_ui_framerate.h"
+#include "LLDISPLAY.h"
 
 void T_UI_main(void)
 {
+	// this call should be executed only once
+	LLDISPLAY_initialize();
+
 	TestRunner_start();
 	TestRunner_runTest(T_UI_API_tests());
 	TestRunner_runTest(T_UI_FRAMERATE_tests());
