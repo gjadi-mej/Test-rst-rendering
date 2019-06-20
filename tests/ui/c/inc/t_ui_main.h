@@ -17,7 +17,7 @@ extern "C" {
 
 /**
  * @brief this function is the entry point for the UI test suite. By default, the executed test sequence is :
- *		-# XXX
+ *		-# Check LLDisplay implementation
  */
 void T_UI_main(void);
 

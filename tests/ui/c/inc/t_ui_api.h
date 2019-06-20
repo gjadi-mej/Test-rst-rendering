@@ -18,7 +18,7 @@ extern "C" {
 /* Public function declarations */
 
 /**
- * @brief XXX
+ * @brief Performs several tests on LLDisplay API to validate LLDisplay implementation.
  */
 TestRef T_UI_API_tests(void);
 

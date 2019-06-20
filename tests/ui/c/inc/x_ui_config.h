@@ -22,7 +22,9 @@ extern "C" {
 /* Public function declarations */
 
 /**
- * @brief XXX
+ * @brief Gets the LCD number of bits-per-pixel. This information is not required by the LLDisplay
+ * implementation (already available in MicroEJ platform) but it is highly recommended to perform
+ * some tests.
  */
 uint32_t UI_CONFIG_getBPP(void);
 
