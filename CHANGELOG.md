@@ -11,7 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
   - Add UI test `t_ui_api.c`: test LLDisplay implementation.
   - Add UI test `t_ui_framerate.c`: retrieve LCD framerate.
-  
+
+### Fixed
+
+  - Fix `X_RAM_CHECKS_checkAddress16()`: test checked memory accesses outside memory range
+
 ## 1.0.1 - 2019-04-25
 
 ### Fixed
