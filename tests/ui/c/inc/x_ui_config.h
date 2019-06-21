@@ -12,6 +12,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+  
+#include <stdint.h>
 
 #define UI_LCD_BPP_ARGB8888 32
 #define UI_LCD_BPP_RGB888 24
