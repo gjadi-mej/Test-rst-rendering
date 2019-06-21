@@ -14,7 +14,7 @@ For each test, its configuration and its results are described in a dedicated se
 
 # Tests Description
 
-## Print
+## Print: _t_core_print.c_
 
 An implementation of `print` is required by MicroEJ platform to debug the Java exceptions. Furthermore this implementation is also required to check this qualification bundle.
 
@@ -40,7 +40,7 @@ Print test:
  if this message is displayed, the test is passed!
 ```
 
-## Timer
+## Timer: _t_core_time_base.c_
 
 A time counter is required by MicroEJ platform. This timer must respect the following rules: 
 * during MicroEJ application, this counter must not return to zero (return in the past),
@@ -65,7 +65,7 @@ Time base check:
 .
 ```
 
-## RAM Tests
+## RAM Tests: _t_core_ram.c_
 
 This test is useful to check external RAM when it is available on the hardware. The test performs several read and write actions, with different patterns. All accesses are aligned on value to write: 8, 16 or 32 bits, like the MicroEJ platform will use the RAM.
 
@@ -90,7 +90,7 @@ RAM tests:
 .....................
 ```
 
-## RAM Benchs
+## RAM Benchs: _t_core_ram.c_
 
 This test is useful to bench external RAM accesses when it is available on the hardware. This test only performs some benches. In addition with previous test, the external RAM timings can be adjusted to obtain the faster RAM accesses (and without any error!).
 
@@ -116,7 +116,7 @@ RAM speed benchmark:
 
 These results can be sent to MicroEJ in order to compare the BSP implementation with all others MicroEJ platforms. 
 
-## Coremark
+## Coremark: _t_core_core_benchmark.c_
 
 EEMBC Coremark allows to compare CPU and BSP configurations. Refer to EEMBC Coremark website (http://www.eembc.org/coremark/index.php) to have more information about results.
 
@@ -146,7 +146,7 @@ Correct operation validated. See readme.txt for run and reporting rules.
 CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
 ```
 
-## JVM.Portage.Validation
+## MicroEJ Portage Validation: _JVM.Portage.Validation_
 
 This MicroEJ application validates the LLAPI `LLMJVM_impl.h` implementation executing several tests. Two first tests check the time, and require an human check to be sure the time is correct.
 
