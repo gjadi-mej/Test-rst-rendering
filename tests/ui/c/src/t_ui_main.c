@@ -10,6 +10,7 @@
 #include "../../../../framework/c/embunit/embUnit/embUnit.h"
 #include "t_ui_api.h"
 #include "t_ui_framerate.h"
+#include "t_ui_tearing.h"
 #include "LLDISPLAY.h"
 
 void T_UI_main(void)
@@ -19,6 +20,7 @@ void T_UI_main(void)
 
 	TestRunner_start();
 	TestRunner_runTest(T_UI_API_tests());
+	TestRunner_runTest(T_UI_TEARING_tests());
 	TestRunner_runTest(T_UI_FRAMERATE_tests());
 	TestRunner_end();
 	return;
