@@ -13,6 +13,7 @@
 #include "t_ui_api.h"
 #include "x_ui_config.h"
 #include "LLDISPLAY.h"
+#include "t_ui_main.h"
 
 /*
  * LCD size (width or height) cannot be higher than this value.
@@ -43,7 +44,8 @@ static void T_UI_API_tearDown(void)
  */
 static void T_UI_API_initialize(void)
 {
-	// LLDISPLAY_initialize() already called in t_ui_main.c
+	T_UI_LCD_initialize();
+
 	// actually nothing to test, just ensure compilation is working
 	TEST_ASSERT(1);
 }

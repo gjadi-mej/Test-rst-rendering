@@ -16,11 +16,17 @@ extern "C" {
 /* public function declaration */
 
 /**
- * @brief this function is the entry point for the UI test suite. By default, the executed test sequence is :
+ * @brief This function is the entry point for the UI test suite. By default, the executed test sequence is :
  *		-# Check LLDisplay implementation
  *		-# Retrieve the LCD framerate
  */
 void T_UI_main(void);
+
+/**
+ * @brief The LLDisplay initialize function should be only called once. This function ensures to not call
+ * several time initialize function in case of all UI tests are not executed as originally planned.
+ */
+void T_UI_LCD_initialize(void);
 
 #ifdef __cplusplus
 }

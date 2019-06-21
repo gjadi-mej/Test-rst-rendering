@@ -14,11 +14,13 @@
 #include "x_ui_framerate.h"
 #include "LLDISPLAY.h"
 #include "u_time_base.h"
+#include "t_ui_main.h"
 
 static void T_UI_FRAMERATE_setUp(void)
 {
 	UTIL_print_initialize();
 	UTIL_TIME_BASE_initialize();
+	T_UI_LCD_initialize();
 }
 
 static void T_UI_FRAMERATE_tearDown(void)
@@ -45,12 +47,16 @@ static void T_UI_FRAMERATE_getFramerate(void)
 
 	float frequency = 1/(((float)framerate_time_us)/1000000);
 
-        UTIL_print_string("\n");
+	UTIL_print_string("\n");
 	UTIL_print_string("LCD framerate time is ");
 	UTIL_print_float(((float)framerate_time_us)/1000);
 	UTIL_print_string(" ms (");
 	UTIL_print_float(frequency);
+
 	UTIL_print_string(" Hz)\n");
+	UTIL_print_string("The copy time is ");
+	UTIL_print_float(((float)flush_copy_time_us)/1000);
+	UTIL_print_string(" ms\n");
 
 	print_drawing_time_report(frequency, 1, framerate_time_us, flush_copy_time_us);
 	print_drawing_time_report(frequency, 2, framerate_time_us, flush_copy_time_us);
@@ -60,9 +66,9 @@ static void T_UI_FRAMERATE_getFramerate(void)
 TestRef T_UI_FRAMERATE_tests(void)
 {
 	EMB_UNIT_TESTFIXTURES(fixtures)
-	{
+			{
 		new_TestFixture("Framerate", T_UI_FRAMERATE_getFramerate),
-	};
+			};
 
 	EMB_UNIT_TESTCALLER(framerateTest, "Framerate_tests", T_UI_FRAMERATE_setUp, T_UI_FRAMERATE_tearDown, fixtures);
 

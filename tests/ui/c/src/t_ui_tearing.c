@@ -15,6 +15,7 @@
 #include "t_ui_tearing.h"
 #include "LLDISPLAY.h"
 #include "x_ui_config.h"
+#include "t_ui_main.h"
 
 /*
  * Time in second the test is running
@@ -25,6 +26,7 @@ static void T_UI_FRAMERATE_setUp(void)
 {
 	UTIL_print_initialize();
 	UTIL_TIME_BASE_initialize();
+	T_UI_LCD_initialize();
 }
 
 static void T_UI_FRAMERATE_tearDown(void)
