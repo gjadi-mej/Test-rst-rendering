@@ -10,7 +10,7 @@
 #include <string.h>
 #include "../../../../framework/c/embunit/embUnit/embUnit.h"
 #include "../../../../framework/c/utils/inc/u_time_base.h"
-#include "u_print.h"
+#include "../../../../framework/c/utils/inc/u_print.h"
 #include "x_version.h"
 #include "t_ui_tearing.h"
 #include "LLDISPLAY.h"
