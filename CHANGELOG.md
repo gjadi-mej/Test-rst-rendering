@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
   - Add UI test `t_ui_api.c`: test LLDisplay implementation.
+  - Add UI test `t_ui_tearing.c`: test LCD tearing synchronization.
   - Add UI test `t_ui_framerate.c`: retrieve LCD framerate.
 
 ### Fixed
