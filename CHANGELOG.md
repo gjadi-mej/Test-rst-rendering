@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.0.2 - 
+## 1.1.0 - 
+
+### Added
+
+  - Add UI test `t_ui_api.c`: test LLDisplay implementation.
+  - Add UI test `t_ui_tearing.c`: test LCD tearing synchronization.
+  - Add UI test `t_ui_framerate.c`: retrieve LCD framerate.
 
 ### Fixed
 
