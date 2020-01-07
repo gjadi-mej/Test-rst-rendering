@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ANT
+	
+	Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<project name="deployHookExternalBuild" default="deploy/hook">
+	<dirname file="${ant.file.deployHookExternalBuild}" property="deployHookExternalBuild.dir"/>
+	<import file="${deployHookExternalBuild.dir}/activity.xml" />
+	<import file="${deployHookExternalBuild.dir}/deployHookAPI.xml"/>
+	<property name="activity.deploy.external.build.id" value="external.build"/>
+	
+	
+	
+	<target name="deploy/externalBuild" extensionOf="deploy/hook" if="external.scripts.dir">
+		<start.activity 
+			activity.id="${activity.deploy.external.build.id}"
+			message="External Build"
+		/>
+		<property name="external.build.name" value="build"/>
+		<condition property="external.scripts.extension" value="bat" else="sh">
+			<istrue value="${isWindows}"/>
+		</condition>
+		<property name="external.build.filename" location="${external.scripts.dir}/${external.build.name}.${external.scripts.extension}"/>
+		<fail message="The external build script file is undefined (${external.build.filename})">
+			<condition>
+				<not>
+					<resourceexists>
+					 	<file file="${external.build.filename}"/>
+					</resourceexists>
+	        	</not>
+		    </condition>
+		</fail>
+		<echo message="EXEC START ${external.build.filename}..."/>
+		<exec dir="${application.output.dir}" executable="${external.build.filename}" failonerror="true" />
+		<echo message="EXEC DONE ${external.build.filename}."/>
+	
+		<echoproperties prefix="external.scripts." destfile="${application.output.dir}/deployHookExternalBuild.properties"/>
+	</target>
+	
+</project>
