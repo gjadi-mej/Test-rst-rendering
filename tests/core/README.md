@@ -71,11 +71,11 @@ This test is useful to check external RAM when it is available on the hardware. 
 
 To run, several functions must be implemented. See `x_ram_checks.h`:
     * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)`
-	* `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)`
-	* `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)`
-	* `uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)`
-	* `uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)`
-	* `uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)`
+    * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)`
+    * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)`
+    * `uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)`
+    * `uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)`
+    * `uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)`
 
 **Configuration**
 
@@ -98,8 +98,8 @@ This test is useful to bench external RAM accesses when it is available on the h
 
 To run, several functions must be implemented. See `x_ram_checks.h`:
     * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitSourceZone(void)`
-	* `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)`
-	* `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)`
+    * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)`
+    * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)`
 
 These _sources_ can target a region in internal flash, internal RAM or any other regions.
 
