@@ -3,14 +3,14 @@
 
 This folder is a part of a project which gathers the platform qualification tools. It contains sources and projects to check drivers and implementation of print, time base, RAM, Core, and micro JVM.
 
-All tests can be run in one step: all tests will be executed one by one and are run in a specific order, _next one_ expects _previous one_ is passed. 
+All tests can be run in one step: all tests will be executed one by one and are run in a specific order, _next one_ expects _previous one_ is passed.
 
 For each test, its configuration and its results are described in a dedicated section. See #SumUp chapter which resume how to configure the tests, how to launch them and the expected results.
 
 # Dependencies
 
-* Follow the main readme file 
-* EEMBC Coremark 
+* Follow the main readme file
+* EEMBC Coremark
 
 # Tests Description
 
@@ -42,7 +42,7 @@ Print test:
 
 ## Timer: _t_core_time_base.c_
 
-A time counter is required by MicroEJ platform. This timer must respect the following rules: 
+A time counter is required by MicroEJ platform. This timer must respect the following rules:
 * during MicroEJ application, this counter must not return to zero (return in the past),
 * its precision must be around one or ten microseconds (often running at 1MHz).
 
@@ -50,7 +50,7 @@ This timer can be the OS timer but most of time the OS timer does not respect th
 
 This timer is used by the next qualification tests and by the LLMJVM implementation (see `LLMJVM_impl.h`, functions `LLMJVM_IMPL_getCurrentTime` and `LLMJVM_IMPL_getTimeNanos`).
 
-This test ensures a timer is implemented but it does not check its accuracy (tested later). 
+This test ensures a timer is implemented but it does not check its accuracy (tested later).
 
 **Configuration**
 
@@ -75,7 +75,7 @@ To run, several functions must be implemented. See `x_ram_checks.h`:
     * `X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)`
     * `uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)`
     * `uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)`
-    * `uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)`	
+    * `uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)`
 
 **Configuration**
 
@@ -107,14 +107,14 @@ These _sources_ can target a region in internal flash, internal RAM or any other
 
 ```
 RAM speed benchmark:
-.RAM speed average read access (according to your configuration file 8/16/32 bits) : 51.180522MBytes/s 
-.RAM speed average write access (according to your configuration file 8/16/32 bits) : 131.289164 MBytes/s 
-.RAM speed average transfert access (according to your configuration file 8/16/32 bits) : 86.466471MBytes/s 
+.RAM speed average read access (according to your configuration file 8/16/32 bits) : 51.180522MBytes/s
+.RAM speed average write access (according to your configuration file 8/16/32 bits) : 131.289164 MBytes/s
+.RAM speed average transfert access (according to your configuration file 8/16/32 bits) : 86.466471MBytes/s
 ```
 
 **Notes**
 
-These results can be sent to MicroEJ in order to compare the BSP implementation with all others MicroEJ platforms. 
+These results can be sent to MicroEJ in order to compare the BSP implementation with all others MicroEJ platforms.
 
 ## Coremark: _t_core_core_benchmark.c_
 
@@ -157,18 +157,19 @@ In the MicroEJ SDK platform environment, import the MicroEJ project `JVM.Portage
 **Expected results**
 
 No error must be thrown when executing this test:
-
 ```
+Create VM
 VM START
-*************************************************************************
-*                    LLMJVM Port Validation - 2.2.5                     *
-*************************************************************************
-* Copyright 2013-2016 IS2T. All rights reserved.                             *
-* Modification and distribution is permitted under certain conditions.  *
-* IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.       *
-*************************************************************************
+*****************************************************************************************************
+*                                  LLMJVM Port Validation - 2.4.0                                   *
+*****************************************************************************************************
+* Copyright 2013-2019 MicroEJ Corp. All rights reserved.                                            *
+* This library is provided in source code for use, modification and test, subject to license terms. *
+* Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *
+*****************************************************************************************************
 
 -> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...
+Property 'MJVMPortValidation.clock.seconds' is not set (default to '10' seconds)
 1
 2
 3
@@ -184,45 +185,32 @@ VM START
 Waiting for 5s...
 ...done
 
+-> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
+Waiting for 5s...
+...done
+
 -> Check FPU (soft/hard FP option)...
-In BSP, write and compile the following functions:
---------------------
-#include "sni.h"
-jfloat Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__FF (jfloat a, jfloat b) {return a * b;}
-jdouble Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__DD (jdouble a, jdouble b) {return a * b;}
---------------------
 
 -> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...
 Test synchronize on literal string
 Test synchronize on class
 Test multiple synchronize
 
--> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
-Waiting for 5s...
-...done
-
 -> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)...
-Task 3is waiting for start...
-Task 2is waiting for start...
-Task 1is waiting for start...
-Task 0is waiting for start...
-Starting tasks...
-Task 3 starts.
-Task 2 starts.
-Task 1 starts.
-Task 0 starts.
-...done. Stopping tasks...
-Task 0 ends.
+For a best resut, please disable all the C native tasks except the MicroEJ task.
+Task 3 is waiting for start...
+Task 2 is waiting for start...
+Task 1 is waiting for start...
+Task 0 is waiting for start...
+Starting tasks and wait for 10 seconds...
 Task 1 ends.
 Task 2 ends.
 Task 3 ends.
+Task 0 ends.
 ...done.
-MAX DELTA = 21875, at 991175 loops
-Error : com.is2t.microjvm.test.MJVMPortValidation deltaPer10000=50
- ( == false ) , expected true
-@ASSERTIONS_OK:17#
-@ASSERTIONS_NOK:1#
-com.is2t.microjvm.test.MJVMPortValidation FAILED
+@ASSERTIONS_OK:21#
+@ASSERTIONS_NOK:0#
+com.is2t.microjvm.test.MJVMPortValidation PASSED
 VM END (exit code = 0)
 ```
 
@@ -235,10 +223,10 @@ VM END (exit code = 0)
 1. Add these folders as include folders:
     * `tests/core/c/inc`
 1. Download and port EEMBC CoreMark (http://www.eembc.org/coremark/index.php). Add it to the BSP project.
-1. Implement all functions defined in these files: 
+1. Implement all functions defined in these files:
     * `x_ram_checks.h`: see #RAM Tests and #RAM Benchs
     * `x_core_benchmark.h`: Call EEMBC Coremark implementation.
-1. Add a call to the function `T_CORE_main()` just before the call to `microjvm_main()`. 
+1. Add a call to the function `T_CORE_main()` just before the call to `microjvm_main()`.
 1. In the MicroEJ SDK platform environment, import the MicroEJ project `JVM.Portage.Validation` from the folder `tests/core/java`
 1. Build this MicroEJ application against the platform to qualify
 1. Build the BSP and link it with the MicroEJ platform runtime library and MicroEJ application.
@@ -265,9 +253,9 @@ Time base check:
 RAM tests:
 .....................
 RAM speed benchmark:
-.RAM speed average read access (according to your configuration file 8/16/32 bits) : 51.180522MBytes/s 
-.RAM speed average write access (according to your configuration file 8/16/32 bits) : 131.289164 MBytes/s 
-.RAM speed average transfert access (according to your configuration file 8/16/32 bits) : 86.466471MBytes/s 
+.RAM speed average read access (according to your configuration file 8/16/32 bits) : 51.180522MBytes/s
+.RAM speed average write access (according to your configuration file 8/16/32 bits) : 131.289164 MBytes/s
+.RAM speed average transfert access (according to your configuration file 8/16/32 bits) : 86.466471MBytes/s
 
 Core/Flash benchmark:
 .2K performance run parameters for coremark.
@@ -289,15 +277,16 @@ CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.
 
 OK (27 tests)
 VM START
-*************************************************************************
-*                    LLMJVM Port Validation - 2.2.5                     *
-*************************************************************************
-* Copyright 2013-2016 IS2T. All rights reserved.                             *
-* Modification and distribution is permitted under certain conditions.  *
-* IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.       *
-*************************************************************************
+*****************************************************************************************************
+*                                  LLMJVM Port Validation - 2.4.0                                   *
+*****************************************************************************************************
+* Copyright 2013-2019 MicroEJ Corp. All rights reserved.                                            *
+* This library is provided in source code for use, modification and test, subject to license terms. *
+* Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *
+*****************************************************************************************************
 
 -> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...
+Property 'MJVMPortValidation.clock.seconds' is not set (default to '10' seconds)
 1
 2
 3
@@ -313,50 +302,37 @@ VM START
 Waiting for 5s...
 ...done
 
+-> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
+Waiting for 5s...
+...done
+
 -> Check FPU (soft/hard FP option)...
-In BSP, write and compile the following functions:
---------------------
-#include "sni.h"
-jfloat Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__FF (jfloat a, jfloat b) {return a * b;}
-jdouble Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__DD (jdouble a, jdouble b) {return a * b;}
---------------------
 
 -> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...
 Test synchronize on literal string
 Test synchronize on class
 Test multiple synchronize
 
--> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
-Waiting for 5s...
-...done
-
 -> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)...
-Task 3is waiting for start...
-Task 2is waiting for start...
-Task 1is waiting for start...
-Task 0is waiting for start...
-Starting tasks...
-Task 3 starts.
-Task 2 starts.
-Task 1 starts.
-Task 0 starts.
-...done. Stopping tasks...
-Task 0 ends.
+For a best resut, please disable all the C native tasks except the MicroEJ task.
+Task 3 is waiting for start...
+Task 2 is waiting for start...
+Task 1 is waiting for start...
+Task 0 is waiting for start...
+Starting tasks and wait for 10 seconds...
 Task 1 ends.
 Task 2 ends.
 Task 3 ends.
+Task 0 ends.
 ...done.
-MAX DELTA = 21875, at 991175 loops
-Error : com.is2t.microjvm.test.MJVMPortValidation deltaPer10000=50
- ( == false ) , expected true
-@ASSERTIONS_OK:17#
-@ASSERTIONS_NOK:1#
-com.is2t.microjvm.test.MJVMPortValidation FAILED
+@ASSERTIONS_OK:21#
+@ASSERTIONS_NOK:0#
+com.is2t.microjvm.test.MJVMPortValidation PASSED
 VM END (exit code = 0)
 ```
 
 
----  
-_Copyright 2019 MicroEJ Corp. All rights reserved._  
-_For demonstration purpose only._  
-_MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms._  
+---
+_Copyright 2019 MicroEJ Corp. All rights reserved._
+_For demonstration purpose only._
+_MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms._
