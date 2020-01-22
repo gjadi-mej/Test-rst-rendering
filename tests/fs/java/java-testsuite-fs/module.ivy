@@ -6,10 +6,11 @@
 	This Software has been designed or modified by MicroEJ Corp.
 	MicroEJ grants to Metocean the non-exclusive right to freely use, modify and distribute this Software.
 -->
-<ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/maven"> 
+<ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/maven" xmlns:ej="https://developer.microej.com" ej:version="2.0.0"> 
 
 	<info organisation="com.is2t.cc.projects.0176" module="0176_1_edgepro_fs-testsuite" status="integration" revision="1.8.0">
         <ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-testsuite" revision="[2.2.0-RC0,3.0.0-RC0["/>
+        <ea:plugin org="com.is2t.easyant.plugins" module="ivy-update" revision="1.+" />
 	</info>
     
     <configurations>
@@ -23,8 +24,8 @@
     </publications>
     
     <dependencies>
-		<dependency changing="true" org="com.is2t.libraries.fs-embedded" name="fs-embedded-testsuite" rev="2.2.2"/>
-		<dependency org="com.is2t.testsuite"              name="checkHelper-1.1.0"       rev="[2.0.0-RC0,3.0.0-RC0[" conf="test->default;provided->provided"/>
-		<dependency org="com.is2t.testsuite"              name="benchHelper-1.0.0"       rev="[1.0.0-RC0,2.0.0-RC0[" conf="test->default;provided->provided"/>
+		<dependency changing="true" org="com.microej.pack.fs" name="fs-testsuite" rev="3.0.0"/>
+		<dependency org="com.is2t.testsuite" name="checkHelper-1.1.0" rev="2.1.0" conf="test->default;provided->provided"/>
+		<dependency org="com.is2t.testsuite" name="benchHelper-1.0.0" rev="1.0.0" conf="test->default;provided->provided"/>
     </dependencies>
 </ivy-module>
