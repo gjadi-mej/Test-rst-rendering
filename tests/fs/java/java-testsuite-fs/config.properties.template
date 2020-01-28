@@ -1,0 +1,60 @@
+# Properties
+#
+# Copyright 2020 MicroEJ Corp. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be found with this software.
+
+############################################
+#       Local test
+# Uncomment and set the following properties
+##########################################
+#microej.testsuite.properties.testsuite.trace.ip=localhost
+#microej.testsuite.properties.testsuite.trace.port=6666
+
+
+############################################
+#      Tests requirements
+##########################################
+
+# This property specified the Testsuite Platform we should use
+# The value should be the path of the platform (the folder which contains the release.properties file)
+# target.platform.dir=lpcxpresso_freertos-platform/source
+
+# The path where we should copy the microejapp.o
+# deploy.dir.microejapp=lpcxpresso_freertos-bsp/Projects/platform/lib
+
+# The path where we should find the build.bat and the run;bat script
+# This property is required in order for build the testsuite.out file and running it.
+# external.scripts.dir=lpcxpresso_freertos-bsp/Projects/IAR/scripts
+
+############################################
+#      Tests to run
+##########################################
+test.run.includes.pattern=**/Test*.class
+test.run.excludes.pattern=**/*$*.class
+
+
+#####################################################
+#      Some default values for the testsuite harness
+# The config template file should only contains value used by the harness. It should not contains launch script options, for that see the validation/*.properties files.
+####################################################
+
+# The VM we should use to run the testsuite. Possible value S3 or MICROEJVM 
+target.vm.name=MICROJVM
+
+# Set the verbose or not. Possible value: true or false
+# When the verbose is set to true, we harness will output the SOAR of S3 trace.
+microej.testsuite.verbose=true
+
+# The testuite timeout
+microej.testsuite.timeout=600
+
+# The number of time we'll retry a test if it fails
+microej.testsuite.retry.count=1
+# Retry a test unless this pattern is shown
+microej.testsuite.retry.unless=VM START
+
+# A jwm args to pass to the testsuite harness
+microej.testsuite.jvmArgs=-Xmx768m
+
+# The foundation jars used for the code coverage, useful only if the target.vm.name = S3
+microej.testsuite.cc.jars.name.regex=fs-.*jar

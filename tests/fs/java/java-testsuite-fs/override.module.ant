@@ -1,9 +1,8 @@
 <!--
 	ANT
 	
-	Copyright 2019 MicroEJ Corp.
-	This Software has been designed or modified by MicroEJ Corp.
-	MicroEJ grants to Metocean the non-exclusive right to freely use, modify and distribute this Software.
+	Copyright 2020 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
 <project name="jpf.testsuite.fs.override" xmlns:ac="antlib:net.sf.antcontrib">
 	
