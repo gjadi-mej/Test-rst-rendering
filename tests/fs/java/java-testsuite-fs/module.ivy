@@ -23,6 +23,6 @@
     </publications>
     
     <dependencies>
-		<dependency changing="true" org="com.microej.pack.fs" name="fs-testsuite" rev="3.0.0"/>
+		<dependency org="com.microej.pack.fs" name="fs-testsuite" rev="3.0.0"/>
     </dependencies>
 </ivy-module>
