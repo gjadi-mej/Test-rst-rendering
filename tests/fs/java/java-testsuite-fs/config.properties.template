@@ -19,12 +19,12 @@
 # The value should be the path of the platform (the folder which contains the release.properties file)
 # target.platform.dir=lpcxpresso_freertos-platform/source
 
-# The path where we should copy the microejapp.o
-# deploy.dir.microejapp=lpcxpresso_freertos-bsp/Projects/platform/lib
+# The path where the microejapp.o should be copied
+# microej.testsuite.properties.deploy.dir.microejapp=lpcxpresso_freertos-bsp/Projects/platform/lib
 
 # The path where we should find the build.bat and the run;bat script
 # This property is required in order for build the testsuite.out file and running it.
-# external.scripts.dir=lpcxpresso_freertos-bsp/Projects/IAR/scripts
+# microej.testsuite.properties.external.scripts.dir=lpcxpresso_freertos-bsp/Projects/IAR/scripts
 
 ############################################
 #      Tests to run
@@ -34,12 +34,21 @@ test.run.excludes.pattern=**/*$*.class
 
 
 #####################################################
-#      Some default values for the testsuite harness
-# The config template file should only contains value used by the harness. It should not contains launch script options, for that see the validation/*.properties files.
+#      Some default values.
 ####################################################
+
+# The revision of the fs-testsuite dependency, see the module.ivy file
+testsuite.module.version=3.0.0
 
 # The VM we should use to run the testsuite. Possible value S3 or MICROEJVM 
 target.vm.name=MICROJVM
+
+# The deploy tool to run after the build of the microejapp.o. This deploy script can be used to build the BSP project and link the bsp + microejapp.o to produce an .out file
+microej.testsuite.properties.microejtool.deploy.name=deployToolExternalRun
+
+# The deploy script to use. When the microejapp.o is built the launch which will execute this script. 
+# The `deployInBSP.xml` script will copy the microejapp.o into the folder specified by the property `deploy.dir.microejapp`
+microej.testsuite.properties.deploy.script=deployInBSP.xml
 
 # Set the verbose or not. Possible value: true or false
 # When the verbose is set to true, we harness will output the SOAR of S3 trace.
@@ -55,6 +64,9 @@ microej.testsuite.retry.unless=VM START
 
 # A jwm args to pass to the testsuite harness
 microej.testsuite.jvmArgs=-Xmx768m
+
+# A jvm args to pass to launch scripts forked vm
+microej.testsuite.properties.launch.properties.jvm=-Xmx2048M
 
 # The foundation jars used for the code coverage, useful only if the target.vm.name = S3
 microej.testsuite.cc.jars.name.regex=fs-.*jar

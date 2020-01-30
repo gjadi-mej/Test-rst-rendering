@@ -9,26 +9,14 @@
 	<dirname file="${ant.file.jpf.testsuite.fs}" property="project"/>
 	<dirname file="${project}" property="workspace.dir"/>
 	
-	<fail unless="external.scripts.dir" message="Set the 'external.scripts.dir' property" />
-	<!-- sanity check -->
-	<fail message="Cannot find ${external.scripts.dir}/build.bat or ${external.scripts.dir}/run.bat">
-		<condition>
-			<or>
-				<not>
-					<available file="${external.scripts.dir}/build.bat" type="file" />
-				</not>
-				<not>
-					<available file="${external.scripts.dir}/run.bat" type="file" />
-				</not>
-			</or>
-		</condition>
-	</fail>
-	<property name="microej.testsuite.properties.external.scripts.dir" location="${external.scripts.dir}"/>
-	
-	<fail unless="deploy.dir.microejapp" message="Set the 'deploy.dir.microejapp' property" />
-	<property name="microej.testsuite.properties.deploy.script" value="deployInBSP.xml"/>
-	<property name="microej.testsuite.properties.deploy.dir.microejapp" location="${deploy.dir.microejapp}"/>
-		
+	<!-- Set the launch.test.trace.file when the  testsuite.trace.ip -->
+	<condition property="microej.testsuite.properties.launch.test.trace.file">
+		<not>
+			<isset property="microej.testsuite.properties.testsuite.trace.ip" />
+		</not>
+	</condition>
+
+
 	<!-- We should rename the embPartialLink launch to fullLink if a fullLink does not exist and an embPartialLink exist -->
 	<target name="jpf:rename-launch-check">
 		<condition property="should.rename.launch">
@@ -40,6 +28,7 @@
 			</and>
 		</condition>
 	</target>
+
 	<target name="jpf:rename-launch" depends="jpf:rename-launch-check" if="should.rename.launch" extensionOf="microej-testsuite:test-ready">
 		<move file="${microej-testsuite.platform.dir}/scripts/embPartialLink.microejLaunch" 
 			tofile="${microej-testsuite.platform.dir}/scripts/fullLink.microejLaunch" />
