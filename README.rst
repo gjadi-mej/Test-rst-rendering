@@ -27,6 +27,14 @@ It also provides indication about the minimum draw time allowed to display anima
 
 See `UI Readme <tests/ui/README.rst>`_
 
+FS Test Suite
+-------------
+
+The FS Test Suite is a Java Test Suite. It checks the integration of the ``LLFS*`` APIs over a C File System library.
+
+See `FS Readme <tests/fs/README.rst>`_
+
+
 Platform Qualification Tools Overview
 =====================================
 
