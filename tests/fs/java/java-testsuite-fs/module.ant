@@ -9,12 +9,14 @@
 	<dirname file="${ant.file.jpf.testsuite.fs}" property="project"/>
 	<dirname file="${project}" property="workspace.dir"/>
 	
-	<!-- Set the launch.test.trace.file when the  testsuite.trace.ip -->
-	<condition property="microej.testsuite.properties.launch.test.trace.file">
-		<not>
-			<isset property="microej.testsuite.properties.testsuite.trace.ip" />
-		</not>
-	</condition>
+	<target name="tracefile:init" extensionOf="microej-testsuite:test-ready">
+		<!-- Set the launch.test.trace.file when the testsuite.trace.ip properties is not set -->
+		<condition property="microej.testsuite.properties.launch.test.trace.file">
+			<not>
+				<isset property="microej.testsuite.properties.testsuite.trace.ip" />
+			</not>
+		</condition>
+	</target>
 
 
 	<!-- We should rename the embPartialLink launch to fullLink if a fullLink does not exist and an embPartialLink exist -->
