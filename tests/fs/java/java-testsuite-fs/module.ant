@@ -9,7 +9,7 @@
 	<dirname file="${ant.file.jpf.testsuite.fs}" property="project"/>
 	<dirname file="${project}" property="workspace.dir"/>
 	
-	<target name="tracefile:init" extensionOf="microej-testsuite:test-ready">
+	<target name="tracefile:init" extensionOf="abstract-test:test-ready">
 		<!-- Set the launch.test.trace.file when the testsuite.trace.ip properties is not set -->
 		<condition property="microej.testsuite.properties.launch.test.trace.file">
 			<not>
