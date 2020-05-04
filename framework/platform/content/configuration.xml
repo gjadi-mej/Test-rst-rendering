@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ANT
+
+	Copyright 2015-2020 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<project name="configuration" default="howto">
+
+	<!--
+		Defines some properties used in this configuration project 
+		(in ant and properties files)
+	-->
+	<dirname file="${ant.file.configuration}" property="project.dir"/>
+	<property name="workspace" location="${project.dir}/.."/>
+	<basename file="${project.dir}" suffix="-configuration" property="project.prefix"/>
+
+	<!-- =======================================================
+		Targets to customize the platform creation
+	======================================================= -->
+	
+	<!--
+		This target will be called just before the platform creation.
+		You can prepare here some temporary files and directories.
+	-->
+	<target name="platform/initialization/user" extensionOf="platform/initialization">
+		
+	</target>
+	
+	
+	<!--
+		This target will be called during platform creation.
+		You can add here some specific work to build a specific Java library,
+		to customize a BSP header file, etc.
+	-->
+	<target name="platform/customization/user" extensionOf="platform/customization">
+		
+	</target>
+	
+	<!--
+		This target will be called during platform finalization.
+		You can add here some specific work to customize your BSP.
+	-->
+	<target name="platform/finalization/user" extensionOf="platform/finalization">
+		
+	</target>
+	
+	<!-- 
+		This target will be called after the platform creation.
+		You can delete here your temporary files and directories.
+	-->
+	<target name="platform/clean/user" extensionOf="platform/clean">
+		
+	</target>
+	
+	<!-- 
+		Helpful target
+	-->
+	<target name="howto">
+		<property name="readme" location="${ant.file.configuration}/../documentation/README.txt"/>
+		<echo message="This script file is not the entry point to build the platform."/>
+		<echo message="Please follow the steps described into the file '${readme}'."/>
+	</target>
+	
+</project>

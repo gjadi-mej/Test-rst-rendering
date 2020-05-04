@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	ANT
+ 
+	Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<project name="init-bsp">
+
+	<import file="${scripts.dir}/extension-init.xml" />
+
+	<property name="deploy.bsp.properties.file" location="${scripts.dir}/deployInBSP.properties"/>
+
+	<target name="init/bsp/options" extensionOf="init/workbench" if="onBoard" depends="init/bsp/defaultRootDir">
+		<!-- Load the full BSP properties file, with property 'deploy.bsp.root.dir' resolved. -->
+		<loadproperties srcfile="${deploy.bsp.properties.file}"/>
+	</target>	
+
+	<target name="init/bsp/check" if="onBoard">
+		<!-- 
+			Load only the property 'deploy.bsp.available'
+		-->
+		<loadproperties srcfile="${deploy.bsp.properties.file}" >
+			<filterchain>
+				<linecontains>
+					<contains value="deploy.bsp.available" />
+				</linecontains>
+			</filterchain>
+		</loadproperties>
+		
+		
+		<!--
+			Connect to the legacy 'toolchain.dir' built-in option used in .jpf
+			This allow to directly pass the BSP directory from a build option (module.ivy)
+			without having to declare a module.ant.
+			
+			<target name="bsp:custom-properties" extensionOf="platform-launcher:custom-properties">
+      				<echoProperty property="deploy.bsp.root.dir" value="path_to_bsp/" file="${build-and-deploy.target.properties.file}" />
+			</target>
+		-->
+		<condition property="deploy.bsp.root.dir" value="${toolchain.dir}">
+			<isset property="toolchain.dir"/>
+		</condition>
+		
+		<!--
+			Check if the property 'deploy.bsp.root.dir' must be initialized
+			(silently do nothing if the platform has not been configured for BSP) 
+		-->
+		<condition property="deploy.bsp.root.dir.init.default" value="true">
+			<and>
+				<istrue value="${deploy.bsp.available}"/>
+				<not>
+					<isset property="deploy.bsp.root.dir"/>
+				</not>
+			</and>
+		</condition>
+	</target>
+
+	<target name="init/bsp/defaultRootDir" depends="init/bsp/check" if="deploy.bsp.root.dir.init.default">
+		<!-- 
+			Set the option 'deploy.bsp.root.dir' to the default one or ask to explicitly in case the default root dir does not exist 
+		-->
+		<!-- 
+			Load only the property 'deploy.bsp.available'
+		-->
+		<loadproperties srcfile="${deploy.bsp.properties.file}" >
+			<filterchain>
+				<linecontains>
+					<contains value="deploy.bsp.default.root.dir" />
+				</linecontains>
+			</filterchain>
+		</loadproperties>
+		<fail message="Please specify the BSP location (launch option 'deploy.bsp.root.dir', also linked from build option 'toolchain.dir').">
+			<condition>
+				<and>
+					<not>
+						<resourceexists>
+							<file file="${deploy.bsp.default.root.dir}"/>
+						</resourceexists>
+					</not>
+				</and>				
+			</condition>			
+		</fail>
+		<property name="deploy.bsp.root.dir" location="${deploy.bsp.default.root.dir}"/>
+	</target>
+
+</project>
