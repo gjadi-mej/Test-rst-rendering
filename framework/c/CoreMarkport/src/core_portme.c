@@ -32,7 +32,10 @@ void *portable_malloc(size_t size) {
 	return NULL;
 }
 void portable_free(void *p) {
-	p=NULL;
+	if ( p != NULL )
+	{
+		p= NULL;
+	}	
 }
 #endif
 
