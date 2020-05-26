@@ -1,9 +1,9 @@
 /*
- * Copyright 2015-2019 MicroEJ Corp. All rights reserved.
- * For demonstration purpose only.
- * MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * C
+ *
+ * Copyright 2015-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
-
 #include "../../../../framework/c/embunit/embUnit/embUnit.h"
 #include "../../../../framework/c/embunit/embUnit/config.h"
 #include "../../../../framework/c/utils/inc/u_time_base.h"
