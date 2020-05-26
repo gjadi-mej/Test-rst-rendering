@@ -168,7 +168,7 @@ more information about results. The Github repository containing the sources of 
 
 **Configuration**
 
-To run this test, modify, update or replace, if necessary, ``.\framework\c\CoreMarkport\src\core_portme.c`` and ``.\framework\c\CoreMarkport\inc\core_portme.h`` files.
+To run this test, create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark and insert the directive line :code:`#define main core_main` into the ``core_portme.h``.
 
 **Expected results**
 
@@ -281,8 +281,9 @@ Configuration
 
    -  ``tests/core/c/inc``
 
-3. Download and port EEMBC CoreMark
-   (http://www.eembc.org/coremark/index.php). Add it to the BSP project.
+3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
+   (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
+
 4. Implement all functions defined in these files:
 
    -  ``x_ram_checks.h``: see #RAM Tests and #RAM Benchs
