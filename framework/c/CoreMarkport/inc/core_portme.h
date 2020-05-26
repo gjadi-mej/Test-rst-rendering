@@ -3,6 +3,8 @@
 /*
 	Author : Shay Gal-On, EEMBC
 	Legal : TODO!
+ * Copyright 2019-2020 MicroEJ Corp. This file has been modified by MicroEJ Corp.
+ *
 */
 /* Topic : Description
 	This file contains configuration constants required to execute on different platforms

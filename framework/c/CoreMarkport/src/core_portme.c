@@ -2,8 +2,7 @@
 /*
  * C
  *
- * Copyright 2016 MicroEJ Corp.
- * This Software has been designed or modified by MicroEJ Corp. S.A.
+ * Copyright 2019-2020 MicroEJ Corp. This file has been modified by MicroEJ Corp.
  */
 
 
