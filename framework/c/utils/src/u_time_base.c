@@ -25,7 +25,7 @@ BSP_DECLARE_WEAK_FCNT void UTIL_TIME_BASE_initialize(void)
 	stdimpl_print("[Warning]: No implementation of UTIL_TIME_BASE_initialize found!\n");
 }	
 
-BSP_DECLARE_WEAK_FCNT uint64_t UTIL_TIME_BASE_getTime(void)
+BSP_DECLARE_WEAK_FCNT int64_t UTIL_TIME_BASE_getTime(void)
 {
 	return 0;
 }
