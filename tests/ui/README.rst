@@ -22,8 +22,8 @@ Dependencies
 Tests Description
 =================
 
-API: *t_ui_api.c*
------------------
+API: t_ui_api.c
+---------------
 
 This test checks the ``LLDisplay`` implementation API. It ensures
 invalid values are not returned and the coherence between them.
@@ -63,8 +63,8 @@ No error must be thrown when executing this test:
    Try to write and verify something in this buffer...
    .
 
-Tearing: *t_ui_tearing.c*
--------------------------
+Tearing: t_ui_tearing.c
+-----------------------
 
 When possible, the LLDisplay implementation should synchronize the
 ``flush`` with the LCD tearing signal. This signal tells to the BSP the
@@ -103,8 +103,8 @@ When the time to update frame buffer data is higher than the LCD refresh
 rate, you can see rectangles even if LCD driver is using the LCD tearing
 signal.
 
-Framerate: *t_ui_framerate.c*
------------------------------
+Framerate: t_ui_framerate.c
+---------------------------
 
 This test determinates the maximum time a drawing can take to respect a
 given LCD framerate. The LCD framerate is cadenced to the time to
@@ -173,7 +173,7 @@ Configuration
 
 3. Implement all functions defined in these files:
 
-   -  ``x_impl_config.h``: see #API
+   -  ``x_impl_config.h``: see `Tests Description`_
 
 4. Add a call to the function ``T_UI_main()`` just before the call to
    ``microjvm_main()``.

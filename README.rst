@@ -93,12 +93,12 @@ Usage
 Core
 ----
 
-See ``\tests\core\README.md``
+See `CORE Readme <tests/core/README.rst>`_
 
 UI
 --
 
-See ``\tests\ui\README.md``
+See `UI Readme <tests/ui/README.rst>`_
 
 ..
    Copyright 2019-2020 MicroEJ Corp. All rights reserved.
