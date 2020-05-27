@@ -6,7 +6,7 @@
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0"> 
-	<info organisation="com.microej" module="microej-core-validation" status="integration" revision="2.4.0">
+	<info organisation="com.microej" module="microej-core-validation" status="integration" revision="2.5.0">
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-javalib" revision="4.1.+">
 			<ea:property name="test.run.includes.pattern" value="**/_AllTests_*.class"/>
 		</ea:build>

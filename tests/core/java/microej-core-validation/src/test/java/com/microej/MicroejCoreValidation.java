@@ -7,6 +7,7 @@
  */
 package com.microej;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -48,10 +49,10 @@ import ej.bon.Util;
  */
 public class MicroejCoreValidation {
 
-	public static final String VERSION = "2.4.0";
+	public static final String VERSION = "2.5.0"; //$NON-NLS-1$
 
-	public static final String PROPERTY_SUFFIX = "MJVMPortValidation.";
-	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
+	public static final String PROPERTY_SUFFIX = "MJVMPortValidation."; //$NON-NLS-1$
+	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds"; //$NON-NLS-1$
 
 	static Class THIS_CLASS = MicroejCoreValidation.class;
 
@@ -75,17 +76,17 @@ public class MicroejCoreValidation {
 	volatile public static float float4 = 4f;
 
 	private static void printProduct() {
-		final String sep = "*****************************************************************************************************";
+		final String sep = "*****************************************************************************************************"; //$NON-NLS-1$
 		System.out.println(sep);
-		System.out.println("*                                  MicroEJ Core Validation - " + VERSION
-				+ "                                  *");
+		System.out.println("*                                  MicroEJ Core Validation - " + VERSION //$NON-NLS-1$
+				+ "                                  *"); //$NON-NLS-1$
 		System.out.println(sep);
 		System.out.println(
-				"* Copyright 2013-2020 MicroEJ Corp. All rights reserved.                                            *");
+				"* Copyright 2013-2020 MicroEJ Corp. All rights reserved.                                            *"); //$NON-NLS-1$
 		System.out.println(
-				"* This library is provided in source code for use, modification and test, subject to license terms. *");
+				"* This library is provided in source code for use, modification and test, subject to license terms. *"); //$NON-NLS-1$
 		System.out.println(
-				"* Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *");
+				"* Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *"); //$NON-NLS-1$
 		System.out.println(sep);
 		System.out.println();
 	}
@@ -96,17 +97,17 @@ public class MicroejCoreValidation {
 		int value;
 		if (valueStr == null) {
 			value = defaultValue;
-			System.out.println("Property '" + propertyName + "' is not set (default to '" + value + "' " + unit
-					+ (value > 1 ? "s" : "") + ")");
+			System.out.println("Property '" + propertyName + "' is not set (default to '" + value + "' " + unit //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					+ (value > 1 ? "s" : "") + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		} else {
 			try {
 				value = Integer.parseInt(valueStr);
 				System.out.println(
-						"Property '" + propertyName + "' is set to '" + value + "' " + unit + (value > 1 ? "s" : ""));
+						"Property '" + propertyName + "' is set to '" + value + "' " + unit + (value > 1 ? "s" : "")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 			} catch (NumberFormatException e) {
 				value = defaultValue;
-				System.out.println("Property '" + propertyName + "' is invalid (set to '" + valueStr + "', default to '"
-						+ value + "' " + unit + (value > 1 ? "s" : "") + ")");
+				System.out.println("Property '" + propertyName + "' is invalid (set to '" + valueStr + "', default to '" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						+ value + "' " + unit + (value > 1 ? "s" : "") + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			}
 		}
 		return value;
@@ -138,9 +139,9 @@ public class MicroejCoreValidation {
 			} else {
 				success = MonitorKeeper.errorCount == 0;
 			}
-			assertTrue("Too many synchronized monitors.", success);
+			assertTrue("Too many synchronized monitors.", success); //$NON-NLS-1$
 		} catch (IndexOutOfBoundsException ioobe) {
-			fail("No objects to synchronize on, aborting.");
+			fail("No objects to synchronize on, aborting."); //$NON-NLS-1$
 		}
 	}
 
@@ -182,13 +183,13 @@ public class MicroejCoreValidation {
 			for (int i = 0; i < MonitorKeeper.THREAD_COUNT; i++) {
 				Object[] objects2 = new Object[MonitorKeeper.MONITOR_PER_THREAD_COUNT];
 				for (int j = 0; j < objects2.length; j++) {
-					Object object = Immutables.get("array" + objectID++);
+					Object object = Immutables.get("array" + objectID++); //$NON-NLS-1$
 					objects2[j] = object;
 				}
 				objects.add(objects2);
 			}
 		} catch (NoSuchElementException nsee) {
-			System.out.println("Can't find the requested object in the immutables, check your launch configuration.");
+			System.out.println("Can't find the requested object in the immutables, check your launch configuration."); //$NON-NLS-1$
 		}
 
 		return objects;
@@ -197,11 +198,11 @@ public class MicroejCoreValidation {
 	private static List<Object[]> stringsFromImmutables() {
 		List<Object[]> objects = new ArrayList<>();
 
-		objects.add(new String[] { "0", "1", "2", "3", "4", "5", "6" });
-		objects.add(new String[] { "7", "8", "9", "10", "11", "12", "13" });
-		objects.add(new String[] { "14", "15", "16", "17", "18", "19", "20" });
-		objects.add(new String[] { "21", "22", "23", "24", "25", "26", "27" });
-		objects.add(new String[] { "28", "29", "30", "31", "32", "33", "34" });
+		objects.add(new String[] { "0", "1", "2", "3", "4", "5", "6" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+		objects.add(new String[] { "7", "8", "9", "10", "11", "12", "13" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+		objects.add(new String[] { "14", "15", "16", "17", "18", "19", "20" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+		objects.add(new String[] { "21", "22", "23", "24", "25", "26", "27" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+		objects.add(new String[] { "28", "29", "30", "31", "32", "33", "34" }); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 
 		return objects;
 	}
@@ -246,9 +247,9 @@ public class MicroejCoreValidation {
 
 	@Test
 	public void testVisibleClock() {
-		System.out.println("-> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...");
+		System.out.println("-> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)..."); //$NON-NLS-1$
 		int defaultNbSeconds = 10;
-		int nbSeconds = getOptionAsInt(OPTION_CLOCK_NB_SECONDS, defaultNbSeconds, "second");
+		int nbSeconds = getOptionAsInt(OPTION_CLOCK_NB_SECONDS, defaultNbSeconds, "second"); //$NON-NLS-1$
 
 		// Check if a message is printed every seconds in terminal:
 		long timeStart = System.currentTimeMillis();
@@ -272,22 +273,19 @@ public class MicroejCoreValidation {
 		long timeEnd1 = System.currentTimeMillis();
 		long timeEnd2 = Util.platformTimeMillis();
 		long delta = timeEnd2 - timeEnd1;
-		CheckHelper.check(THIS_CLASS, "Util.platformTimeMillis() != System.currentTimeMillis()" + MAX_SLEEP_DELTA,
-				delta <= MAX_SLEEP_DELTA);
+		assertTrue("Util.platformTimeMillis() != System.currentTimeMillis()", delta <= MAX_SLEEP_DELTA); //$NON-NLS-1$
 
 		// ensure nano time is valid
 		delta = (Util.platformTimeNanos() / 1000000) - Util.platformTimeMillis();
-		CheckHelper.check(THIS_CLASS, "Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()" + MAX_SLEEP_DELTA,
-				delta <= MAX_SLEEP_DELTA);
-		fail("Not yet implemented");
+		assertTrue("Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()", delta <= MAX_SLEEP_DELTA); //$NON-NLS-1$
 	}
 
 	@Test
 	public void testTime() {
 		System.out.println(
-				"-> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...");
+				"-> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)..."); //$NON-NLS-1$
 		long delay = 5 * 1000;
-		System.out.println("Waiting for " + delay / 1000 + "s...");
+		System.out.println("Waiting for " + delay / 1000 + "s..."); //$NON-NLS-1$ //$NON-NLS-2$
 		long timeBefore = System.currentTimeMillis();
 		try {
 			Thread.sleep(delay);
@@ -295,21 +293,21 @@ public class MicroejCoreValidation {
 			throw new Error();
 		}
 		long timeAfter = System.currentTimeMillis();
-		System.out.println("...done");
+		System.out.println("...done"); //$NON-NLS-1$
 		long realDelay = timeAfter - timeBefore;
-		CheckHelper.check(THIS_CLASS, "realDelay>=delay", realDelay >= delay);
+		assertTrue("realDelay>=delay", realDelay >= delay); //$NON-NLS-1$
 		long delta = realDelay - delay;
-		CheckHelper.check(THIS_CLASS, "delta(=" + delta + ")<=" + MAX_SLEEP_DELTA, delta <= MAX_SLEEP_DELTA);
+		assertTrue("delta(=" + delta + ")<=" + MAX_SLEEP_DELTA, delta <= MAX_SLEEP_DELTA); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
 	public void testMonotonicTime() {
 		System.out.println(
-				"-> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...");
+				"-> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)..."); //$NON-NLS-1$
 		long delay = 5 * 1000;
 		long elapsedTime = 100;
 		long timeOffset = 50_000;
-		System.out.println("Waiting for " + delay / 1000 + "s...");
+		System.out.println("Waiting for " + delay / 1000 + "s..."); //$NON-NLS-1$ //$NON-NLS-2$
 		long monotonicTimeBefore = Util.platformTimeMillis();
 		Util.setCurrentTimeMillis(System.currentTimeMillis() + timeOffset);
 
@@ -319,17 +317,17 @@ public class MicroejCoreValidation {
 			throw new Error();
 		}
 		long montonicTimeAfter = Util.platformTimeMillis();
-		System.out.println("...done");
-		CheckHelper.check(THIS_CLASS, "monotonic time not set", montonicTimeAfter >= monotonicTimeBefore + delay
+		System.out.println("...done"); //$NON-NLS-1$
+		assertTrue("monotonic time not set", montonicTimeAfter >= monotonicTimeBefore + delay //$NON-NLS-1$
 				&& montonicTimeAfter <= monotonicTimeBefore + delay + elapsedTime);
 	}
 
 	@Test
 	public void testJavaRoundRobin() {
-		System.out.println("-> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)...");
-		System.out.println("For a best resut, please disable all the C native tasks except the MicroEJ task.");
+		System.out.println("-> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)..."); //$NON-NLS-1$
+		System.out.println("For a best resut, please disable all the C native tasks except the MicroEJ task."); //$NON-NLS-1$
 		int nbThreads = NB_THREADS;
-		CheckHelper.check(THIS_CLASS, "nbThreads >= 2", nbThreads >= 2);
+		assertTrue("nbThreads >= 2", nbThreads >= 2); //$NON-NLS-1$
 
 		ROUND_ROBIN_TASK_COUNTERS = new long[nbThreads];
 		int priority = Thread.currentThread().getPriority() - 1;
@@ -350,7 +348,7 @@ public class MicroejCoreValidation {
 			}
 		}
 
-		System.out.println("Starting tasks and wait for " + (ROUND_ROBIN_TEST_DURATION / 1000) + " seconds...");
+		System.out.println("Starting tasks and wait for " + (ROUND_ROBIN_TEST_DURATION / 1000) + " seconds..."); //$NON-NLS-1$ //$NON-NLS-2$
 		synchronized (ROUND_ROBIN_LOCK) {
 			ROUND_ROBIN_IS_RUNNING = true;
 			ROUND_ROBIN_LOCK.notifyAll(); // start !
@@ -359,7 +357,7 @@ public class MicroejCoreValidation {
 		try {
 			Thread.sleep(ROUND_ROBIN_TEST_DURATION);
 		} catch (InterruptedException e1) {
-			CheckHelper.check(THIS_CLASS, "Unexpected InterruptedException", false);
+			assertTrue("Unexpected InterruptedException", false); //$NON-NLS-1$
 		}
 
 		// stop threads
@@ -371,7 +369,7 @@ public class MicroejCoreValidation {
 				throw new Error();
 			}
 		}
-		System.out.println("...done.");
+		System.out.println("...done."); //$NON-NLS-1$
 
 		long totalCounter = 0;
 		long minCounter = Long.MAX_VALUE;
@@ -392,44 +390,41 @@ public class MicroejCoreValidation {
 			deltaPercentage = 100;
 		}
 
-		CheckHelper.check(THIS_CLASS,
-				"counter increments < " + ROUND_ROBIN_MIN_COUNTER_REQUIRED + " (actually " + minCounter + ")",
+		assertTrue("counter increments < " + ROUND_ROBIN_MIN_COUNTER_REQUIRED + " (actually " + minCounter + ")", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				minCounter >= ROUND_ROBIN_MIN_COUNTER_REQUIRED);
 
-		CheckHelper.check(THIS_CLASS, "delta percentage > " + ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED + " (actually "
-				+ deltaPercentage + ")", deltaPercentage <= ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED);
+		assertTrue("delta percentage > " + ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED + " (actually " + deltaPercentage //$NON-NLS-1$ //$NON-NLS-2$
+				+ ")", deltaPercentage <= ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED); //$NON-NLS-1$
 
 		if (deltaPercentage > ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED) {
 			// Print some information when the test fails
-			System.out.println("Min counter = " + minCounter);
-			System.out.println("Max counter = " + maxCounter);
-			System.out.println("Average = " + averageCounter);
-			System.out.println("Delta = " + deltaCounter);
-			System.out.println("Delta Percentage = " + deltaPercentage);
+			System.out.println("Min counter = " + minCounter); //$NON-NLS-1$
+			System.out.println("Max counter = " + maxCounter); //$NON-NLS-1$
+			System.out.println("Average = " + averageCounter); //$NON-NLS-1$
+			System.out.println("Delta = " + deltaCounter); //$NON-NLS-1$
+			System.out.println("Delta Percentage = " + deltaPercentage); //$NON-NLS-1$
 		}
 	}
 
 	@Test
 	public void testIsInReadOnlyMemory() {
-		System.out.println("-> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...");
+		System.out.println("-> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)..."); //$NON-NLS-1$
 
 		try {
-			String s = "literal string";
+			String s = "literal string"; //$NON-NLS-1$
 			synchronized (s) {
-				System.out.println("Test synchronize on literal string");
+				System.out.println("Test synchronize on literal string"); //$NON-NLS-1$
 			}
 		} catch (IllegalMonitorStateException e) {
-			CheckHelper.check(THIS_CLASS,
-					"IllegalMonitorStateException during synchronization on immutable object (literal string)", false);
+			fail("IllegalMonitorStateException during synchronization on immutable object (literal string)"); //$NON-NLS-1$
 		}
 
 		try {
-			synchronized (MJVMPortValidation.class) {
-				System.out.println("Test synchronize on class");
+			synchronized (MicroejCoreValidation.class) {
+				System.out.println("Test synchronize on class"); //$NON-NLS-1$
 			}
 		} catch (IllegalMonitorStateException e) {
-			CheckHelper.check(THIS_CLASS,
-					"IllegalMonitorStateException during synchronization on immutable object (class)", false);
+			fail("IllegalMonitorStateException during synchronization on immutable object (class)"); //$NON-NLS-1$
 		}
 
 		/*
@@ -437,7 +432,7 @@ public class MicroejCoreValidation {
 		 * reached for the objects in flash but not for the objects in ram. If the LLBSP_IMPL_isInReadOnlyMemory
 		 * function is not correctly implemented this test can highlight it.
 		 */
-		System.out.println("Test multiple synchronize");
+		System.out.println("Test multiple synchronize"); //$NON-NLS-1$
 		tryToSynchronizeOn(objectsFromRam(), false);
 		tryToSynchronizeOn(stringsFromImmutables(), true);
 		tryToSynchronizeOn(classes(), true);
@@ -447,7 +442,7 @@ public class MicroejCoreValidation {
 
 	@Test
 	public void testFPU() {
-		System.out.println("-> Check FPU (soft/hard FP option)...");
+		System.out.println("-> Check FPU (soft/hard FP option)..."); //$NON-NLS-1$
 		// In BSP, write and compile the following functions:
 		// --------------------
 		// #include "sni.h"
@@ -455,38 +450,34 @@ public class MicroejCoreValidation {
 		// jdouble Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__DD (jdouble a, jdouble b) {return a * b;}
 		// --------------------
 
-		CheckHelper.check(THIS_CLASS,
-				"test 'float * float' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				(int) testFPUJava(float3, float4), 12f);
-		CheckHelper.check(THIS_CLASS,
-				"test 'double * double' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				(int) testFPUJava(double3, double4), 12);
-		CheckHelper.check(THIS_CLASS,
-				"test 'float * float' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				(int) testFPU(float3, float4), 12);
-		CheckHelper.check(THIS_CLASS,
-				"test 'double * double' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				(int) testFPU(double3, double4), 12);
+		assertEquals("test 'float * float' in Java: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
+				new Float(testFPUJava(float3, float4)), new Float(12f));
+		assertEquals("test 'double * double' in Java: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
+				new Double(testFPUJava(double3, double4)), new Double(12));
+		assertEquals("test 'float * float' in C: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
+				new Float(testFPU(float3, float4)), new Float(12f));
+		assertEquals("test 'double * double' in C: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
+				new Double(testFPU(double3, double4)), new Double(12));
 
-		float parsedFloat = Float.parseFloat("1234.5");
-		CheckHelper.check(THIS_CLASS,
-				"test 'parse float string': strtof C function not correctly implemented (check your libc configuration)",
-				parsedFloat, 1234.5f);
+		float parsedFloat = Float.parseFloat("1234.5"); //$NON-NLS-1$
+		assertEquals(
+				"test 'parse float string': strtof C function not correctly implemented (check your libc configuration)", //$NON-NLS-1$
+				new Float(parsedFloat), new Float(1234.5f));
 
-		double parsedDouble = Double.parseDouble("1234.5");
-		CheckHelper.check(THIS_CLASS,
-				"test 'parse double string': strtod C function not correctly implemented (check your libc configuration)",
-				parsedDouble, 1234.5d);
+		double parsedDouble = Double.parseDouble("1234.5"); //$NON-NLS-1$
+		assertEquals(
+				"test 'parse double string': strtod C function not correctly implemented (check your libc configuration)", //$NON-NLS-1$
+				new Double(parsedDouble), new Double(1234.5d));
 
 		String floatToString = Float.toString(1234.5f);
-		CheckHelper.check(THIS_CLASS,
-				"test 'float to string': snprintf C function not correctly implemented (check your libc configuration)",
-				floatToString, "1234.5");
+		assertEquals(
+				"test 'float to string': snprintf C function not correctly implemented (check your libc configuration)", //$NON-NLS-1$
+				floatToString, "1234.5"); //$NON-NLS-1$
 
 		String doubleToString = Double.toString(1234.5d);
-		CheckHelper.check(THIS_CLASS,
-				"test 'double to string': snprintf C function not correctly implemented (check your libc configuration)",
-				doubleToString, "1234.5");
+		assertEquals(
+				"test 'double to string': snprintf C function not correctly implemented (check your libc configuration)", //$NON-NLS-1$
+				doubleToString, "1234.5"); //$NON-NLS-1$
 	}
 
 }
@@ -526,6 +517,40 @@ class MonitorKeeper implements Runnable {
 			} catch (InterruptedException e) {
 			}
 		}
+	}
+
+}
+
+/**
+*
+*/
+class RoundRobinTestTask implements Runnable {
+
+	public static int COUNTER = 0;
+
+	private final int id;
+
+	public RoundRobinTestTask(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public void run() {
+		synchronized (MicroejCoreValidation.ROUND_ROBIN_LOCK) {
+			if (!MicroejCoreValidation.ROUND_ROBIN_IS_RUNNING) {
+				++COUNTER;
+				System.out.println("Task " + this.id + " is waiting for start..."); //$NON-NLS-1$ //$NON-NLS-2$
+				try {
+					MicroejCoreValidation.ROUND_ROBIN_LOCK.wait();
+				} catch (InterruptedException e) {
+					throw new Error();
+				}
+			}
+		}
+		while (MicroejCoreValidation.ROUND_ROBIN_IS_RUNNING) {
+			++MicroejCoreValidation.ROUND_ROBIN_TASK_COUNTERS[this.id];
+		}
+		System.out.println("Task " + this.id + " ends."); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 }
