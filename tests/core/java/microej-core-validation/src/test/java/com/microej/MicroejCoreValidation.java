@@ -7,6 +7,7 @@
  */
 package com.microej;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.InputStream;
@@ -52,7 +53,7 @@ public class MicroejCoreValidation {
 	public static final String PROPERTY_SUFFIX = "MJVMPortValidation.";
 	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
 
-	static Class THIS_CLASS = MJVMPortValidation.class;
+	static Class THIS_CLASS = MicroejCoreValidation.class;
 
 	// Time constants
 	public static final int MAX_SLEEP_DELTA = 10;
@@ -137,9 +138,9 @@ public class MicroejCoreValidation {
 			} else {
 				success = MonitorKeeper.errorCount == 0;
 			}
-			CheckHelper.check(THIS_CLASS, "too many synchronized monitors", success);
+			assertTrue("Too many synchronized monitors.", success);
 		} catch (IndexOutOfBoundsException ioobe) {
-			CheckHelper.check(THIS_CLASS, "No objects to synchronize on, aborting.", false);
+			fail("No objects to synchronize on, aborting.");
 		}
 	}
 
@@ -486,6 +487,45 @@ public class MicroejCoreValidation {
 		CheckHelper.check(THIS_CLASS,
 				"test 'double to string': snprintf C function not correctly implemented (check your libc configuration)",
 				doubleToString, "1234.5");
+	}
+
+}
+
+/**
+ * Synchronizes on a list of monitors and sleeps for a while.
+ */
+class MonitorKeeper implements Runnable {
+	static final int THREAD_COUNT = 5;
+	static final int MONITOR_PER_THREAD_COUNT = 7;
+	static final int SLEEP_TIME = 5_000;
+	public static int errorCount;
+
+	private final Object[] monitors;
+
+	public MonitorKeeper(Object[] monitors) {
+		this.monitors = monitors;
+	}
+
+	@Override
+	public void run() {
+		try {
+			synchronizeAll(0);
+		} catch (Error e) {
+			errorCount++;
+		}
+	}
+
+	private void synchronizeAll(int monitorIndex) {
+		if (monitorIndex < this.monitors.length) {
+			synchronized (this.monitors[monitorIndex]) {
+				synchronizeAll(monitorIndex + 1);
+			}
+		} else {
+			try {
+				Thread.sleep(SLEEP_TIME);
+			} catch (InterruptedException e) {
+			}
+		}
 	}
 
 }
