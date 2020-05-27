@@ -10,7 +10,10 @@
 	<import file="${scripts.dir}/extension-init.xml" />
 
 	<property name="deploy.bsp.properties.file" location="${scripts.dir}/deployInBSP.properties"/>
-
+	
+	<!-- Fix the deployment script -->
+	<property name="deploy.script" value="deployInBSP.xml"/>
+	
 	<target name="init/bsp/options" extensionOf="init/workbench" if="onBoard" depends="init/bsp/defaultRootDir">
 		<!-- Load the full BSP properties file, with property 'deploy.bsp.root.dir' resolved. -->
 		<loadproperties srcfile="${deploy.bsp.properties.file}"/>
@@ -44,11 +47,17 @@
 		
 		<!--
 			Check if the property 'deploy.bsp.root.dir' must be initialized
-			(silently do nothing if the platform has not been configured for BSP) 
+			(silently do nothing if the platform has not been configured for BSP or if none of the 4 output well known options is set) 
 		-->
 		<condition property="deploy.bsp.root.dir.init.default" value="true">
 			<and>
 				<istrue value="${deploy.bsp.available}"/>
+				<or>
+					<istrue value="${deploy.bsp.microejapp}"/>
+					<istrue value="${deploy.bsp.microejlib}"/>
+					<istrue value="${deploy.bsp.microejinc}"/>
+					<istrue value="${deploy.bsp.microejscript}"/>
+				</or>
 				<not>
 					<isset property="deploy.bsp.root.dir"/>
 				</not>
