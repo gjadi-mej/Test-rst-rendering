@@ -57,9 +57,52 @@
 		Helpful target
 	-->
 	<target name="howto">
-		<property name="readme" location="${ant.file.configuration}/../documentation/README.txt"/>
-		<echo message="This script file is not the entry point to build the platform."/>
-		<echo message="Please follow the steps described into the file '${readme}'."/>
+		<echo message="This script file is not the entry point to build the Platform."/>
+		<echo message="Please follow the steps described in the documentation."/>
 	</target>
 	
+	<!-- 
+		Update workbench extension and generate 'deployInBSP.properties' according to 'bsp/bsp.properties' configuration.
+		Overrides the default architecture script, after the dropins are copied in order to get the compatible 'workbenchExtension_launchScriptFramework.jar'
+	-->
+	<target name="bsp/workbenchExtension/augment" extensionOf="platform/finalization" depends="bsp/workbenchExtension/augment/init,bsp/workbenchExtension/augment/app,bsp/workbenchExtension/augment/lib,bsp/workbenchExtension/augment/inc,bsp/workbenchExtension/augment/script">
+		<jar destfile="${jpf.dir}/workbenchExtension_launchScriptFramework.jar" update="true">
+			<fileset file="${deploy.bsp.properties.file.location}"/>
+		</jar>
+	</target>
+	
+	<target name="bsp/workbenchExtension/augment/init">
+		<property name="deploy.bsp.properties.file.location" location="${jpf.dir}/scripts/deployInBSP.properties"/>	
+		<propertyfile file="${deploy.bsp.properties.file.location}">
+			<entry key="deploy.bsp.output.dir" operation="del"/>
+		</propertyfile>		
+	</target>
+	
+	<target name="bsp/workbenchExtension/augment/app" if="bsp.microejapp.relative.dir">
+		<propertyfile file="${deploy.bsp.properties.file.location}">
+			<entry key="deploy.bsp.available" value="true"/>
+			<entry key="deploy.bsp.microejapp.relative.dir" value="${bsp.microejapp.relative.dir}"/>
+		</propertyfile>		
+	</target>
+	
+	<target name="bsp/workbenchExtension/augment/lib" if="bsp.microejlib.relative.dir">
+		<propertyfile file="${deploy.bsp.properties.file.location}">
+			<entry key="deploy.bsp.available" value="true"/>
+			<entry key="deploy.bsp.microejlib.relative.dir" value="${bsp.microejlib.relative.dir}"/>
+		</propertyfile>		
+	</target>
+	
+	<target name="bsp/workbenchExtension/augment/inc" if="bsp.microejinc.relative.dir">
+		<propertyfile file="${deploy.bsp.properties.file.location}">
+			<entry key="deploy.bsp.available" value="true"/>
+			<entry key="deploy.bsp.microejinc.relative.dir" value="${bsp.microejinc.relative.dir}"/>
+		</propertyfile>		
+	</target>
+	
+	<target name="bsp/workbenchExtension/augment/script" if="bsp.microejscript.relative.dir">
+		<propertyfile file="${deploy.bsp.properties.file.location}">
+			<entry key="deploy.bsp.available" value="true"/>
+			<entry key="deploy.bsp.microejscript.relative.dir" value="${bsp.microejscript.relative.dir}"/>
+		</propertyfile>		
+	</target>
 </project>

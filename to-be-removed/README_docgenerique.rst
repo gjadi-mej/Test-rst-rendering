@@ -67,6 +67,13 @@ si pas de rep BSP et pas d'option de settée (.o, .a et .h) alors les outputs so
 
 generer le folder platform avec les infos du platform et de la naming convention 
 
+Documenter le 'bsp.properties'
+	- default location
+		- ${project.prefix}
+		- ${workspace}
+	
+
+
 .. ReStructuredText
 .. Copyright 2020 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
