@@ -1,38 +1,30 @@
-<!--
-	Markdown
--->
-<!--
 # Changelog
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-### Changed
- - Keep track of upcoming changes here
 
-## [M.m.p] - YYYY-mm-dd
-
-### Changed
-  - List here changes in existing functionality
+## [2.4.0] - 2019-12-18
 
 ### Added
-  - List here the new features.
-  
-### Deprecated
-  - List here soon-to-be removed features.
-  
-### Fixed
-  - List here any bug fixes
+- New floating-point related tests: parse/toString for float/double
 
-### Security
-  - List here case of vulnerabilities
--->
+### Changed
+- Review round robin check test
+- Update license
 
-## 1.0.0-RC - 2020-mm-dd
+## [2.3.0] - 2019-10-01
+
+Initial revision with Changelog.
 
 ### Added
-  - Initial revision.
+  - Property `MJVMPortValidation.clock.seconds` to configure the time in seconds of the visible clock test (default to 10s).
+  
+
+## [1.0.0] - 2017-09-29
+Features : 
+	- Initial revision
 
 ---
 
