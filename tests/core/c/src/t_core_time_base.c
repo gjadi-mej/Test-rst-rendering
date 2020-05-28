@@ -22,7 +22,7 @@ static void T_CORE_TIME_BASE_tearDown(void)
 
 static void T_CORE_TIME_BASE_check_time_evolution(void)
 {
-	uint64_t startTime = UTIL_TIME_BASE_getTime();
+	int64_t startTime = UTIL_TIME_BASE_getTime();
 	for (int32_t i = 0; i < T_CORE_TIME_BASE_MAX_WAITING; i++)
 	{
 	};
