@@ -65,13 +65,14 @@
 		Update workbench extension and generate 'deployInBSP.properties' according to 'bsp/bsp.properties' configuration.
 		Overrides the default architecture script, after the dropins are copied in order to get the compatible 'workbenchExtension_launchScriptFramework.jar'
 	-->
-	<target name="bsp/workbenchExtension/augment" extensionOf="platform/finalization" depends="bsp/workbenchExtension/augment/init,bsp/workbenchExtension/augment/app,bsp/workbenchExtension/augment/lib,bsp/workbenchExtension/augment/inc,bsp/workbenchExtension/augment/script">
+	<target name="bsp/workbenchExtension/augment" extensionOf="platform/finalization" depends="bsp/workbenchExtension/augment/init,bsp/workbenchExtension/augment/app,bsp/workbenchExtension/augment/lib,bsp/workbenchExtension/augment/inc,bsp/workbenchExtension/augment/script,bsp/workbenchExtension/augment/root">
 		<jar destfile="${jpf.dir}/workbenchExtension_launchScriptFramework.jar" update="true">
 			<fileset file="${deploy.bsp.properties.file.location}"/>
 		</jar>
 	</target>
 	
 	<target name="bsp/workbenchExtension/augment/init">
+		<!-- When using these platform additions scripts, override and remove legacy 'deploy.bsp.output.dir' generation-->
 		<property name="deploy.bsp.properties.file.location" location="${jpf.dir}/scripts/deployInBSP.properties"/>	
 		<propertyfile file="${deploy.bsp.properties.file.location}">
 			<entry key="deploy.bsp.output.dir" operation="del"/>
@@ -103,6 +104,14 @@
 		<propertyfile file="${deploy.bsp.properties.file.location}">
 			<entry key="deploy.bsp.available" value="true"/>
 			<entry key="deploy.bsp.microejscript.relative.dir" value="${bsp.microejscript.relative.dir}"/>
+		</propertyfile>		
+	</target>
+	
+	<target name="bsp/workbenchExtension/augment/root" if="bsp.root.dir">
+		<propertyfile file="${deploy.bsp.properties.file.location}">
+			<entry key="deploy.bsp.available" value="true"/>
+			<!-- Set the absolute path for local usage when the Platform does not yet include the BSP in its sub-folder -->
+			<entry key="deploy.bsp.local.root.dir" value="${bsp.root.dir}"/>
 		</propertyfile>		
 	</target>
 </project>

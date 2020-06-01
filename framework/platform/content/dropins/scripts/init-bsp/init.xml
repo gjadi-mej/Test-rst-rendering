@@ -31,25 +31,11 @@
 			</filterchain>
 		</loadproperties>
 		
-		
-		<!--
-			Connect to the legacy 'toolchain.dir' built-in option used in .jpf
-			This allow to directly pass the BSP directory from a build option (module.ivy)
-			without having to declare a module.ant.
-			
-			<target name="bsp:custom-properties" extensionOf="platform-launcher:custom-properties">
-      				<echoProperty property="deploy.bsp.root.dir" value="path_to_bsp/" file="${build-and-deploy.target.properties.file}" />
-			</target>
-		-->
-		<condition property="deploy.bsp.root.dir" value="${toolchain.dir}">
-			<isset property="toolchain.dir"/>
-		</condition>
-		
 		<!--
 			Check if the property 'deploy.bsp.root.dir' must be initialized
-			(silently do nothing if the platform has not been configured for BSP or if none of the 4 output well known options is set) 
+			(silently do nothing if the platform has not been configured to output to a BSP location or if none of the 4 output well known options is set) 
 		-->
-		<condition property="deploy.bsp.root.dir.init.default" value="true">
+		<condition property="deploy.bsp.root.dir.required" value="true">
 			<and>
 				<istrue value="${deploy.bsp.available}"/>
 				<or>
@@ -65,32 +51,57 @@
 		</condition>
 	</target>
 
-	<target name="init/bsp/defaultRootDir" depends="init/bsp/check" if="deploy.bsp.root.dir.init.default">
+	<target name="init/bsp/defaultRootDir" depends="init/bsp/check" if="deploy.bsp.root.dir.required">
 		<!-- 
-			Set the option 'deploy.bsp.root.dir' to the default one or ask to explicitly in case the default root dir does not exist 
-		-->
+			Set the option 'deploy.bsp.root.dir' to the BSP location
+		-->		
+		
 		<!-- 
-			Load only the property 'deploy.bsp.available'
+			Connect to the property 'deploy.bsp.local.root.dir', only if the directory exist (local usage)
 		-->
 		<loadproperties srcfile="${deploy.bsp.properties.file}" >
 			<filterchain>
 				<linecontains>
-					<contains value="deploy.bsp.default.root.dir" />
+					<contains value="deploy.bsp.local.root.dir" />
 				</linecontains>
 			</filterchain>
 		</loadproperties>
-		<fail message="Please specify the BSP location (launch option 'deploy.bsp.root.dir', also linked from build option 'toolchain.dir').">
+		<condition property="deploy.bsp.root.dir" value="${deploy.bsp.local.root.dir}">
+			<resourceexists>
+				<file file="${deploy.bsp.local.root.dir}"/>
+			</resourceexists>
+		</condition>
+
+		<!--
+			Connect to the Platform BSP directory, only if the platform includes the BSP
+		-->
+		<condition property="deploy.bsp.root.dir" value="${platform.dir}/bsp">
+			<resourceexists>
+				<file file="${platform.dir}/bsp"/>
+			</resourceexists>
+		</condition>
+		
+		<!--
+			Connect to the legacy 'toolchain.dir' built-in option used in .jpf and 'microej-ri' build type.
+			This allow to directly pass the BSP directory from a build option (module.ivy)
+			without having to declare a module.ant file.
+			
+			<target name="bsp:custom-properties" extensionOf="platform-launcher:custom-properties">
+      				<echoProperty property="deploy.bsp.root.dir" value="path_to_bsp/" file="${build-and-deploy.target.properties.file}" />
+			</target>
+		-->
+		<condition property="deploy.bsp.root.dir" value="${toolchain.dir}">
+			<isset property="toolchain.dir"/>
+		</condition>		
+		
+		<fail message="Please specify the BSP location (application option 'deploy.bsp.root.dir', also linked from build option 'toolchain.dir').">
 			<condition>
-				<and>
-					<not>
-						<resourceexists>
-							<file file="${deploy.bsp.default.root.dir}"/>
-						</resourceexists>
-					</not>
-				</and>				
+				<not>
+					<isset property="deploy.bsp.root.dir"/>
+				</not>		
 			</condition>			
 		</fail>
-		<property name="deploy.bsp.root.dir" location="${deploy.bsp.default.root.dir}"/>
+		<echo message="Platform connected to BSP location '${deploy.bsp.root.dir}'"></echo>
 	</target>
 
 </project>
