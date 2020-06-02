@@ -202,7 +202,7 @@ and require an human check to be sure the time is correct.
 **Configuration**
 
 In the MicroEJ SDK platform environment, import the MicroEJ project
-``microej-core-validation`` from the folder ``tests/core/java``. Follow this project `README <tests\core\java\microej-core-validation\README.rst>`_.
+``microej-core-validation`` from the folder ``tests/core/java``. Follow this project `README <java\microej-core-validation\README.rst>`_.
 
 **Expected results**
 
@@ -290,7 +290,7 @@ Configuration
 5. Add a call to the function ``T_CORE_main()`` just before the call to
    ``microjvm_main()``.
 6. In the MicroEJ SDK platform environment, import the MicroEJ project
-   ``JVM.Portage.Validation`` from the folder ``tests/core/java``
+   ``microej-core-validation`` from the folder ``tests/core/java``
 7. Build this MicroEJ application against the platform to qualify
 8. Build the BSP and link it with the MicroEJ platform runtime library
    and MicroEJ application.
