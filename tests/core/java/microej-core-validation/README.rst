@@ -32,6 +32,8 @@ Usage
 -  For a best result in the Java Round Robin test, disable all the C
    native tasks except the MicroEJ task.
 
+-  Compile the MicroEJ Application.
+
 -  Run the application on the platform.
 
 -  Once all the tests have passed successfully, MicroEJ CORE is
