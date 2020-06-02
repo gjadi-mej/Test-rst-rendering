@@ -202,9 +202,7 @@ and require an human check to be sure the time is correct.
 **Configuration**
 
 In the MicroEJ SDK platform environment, import the MicroEJ project
-``JVM.Portage.Validation`` from the folder ``tests/core/java``. Build
-this MicroEJ application against the platform to qualify. Link it with
-the BSP.
+``microej-core-validation`` from the folder ``tests/core/java``. Follow this project `README <tests\core\java\microej-core-validation\README.rst>`_.
 
 **Expected results**
 
