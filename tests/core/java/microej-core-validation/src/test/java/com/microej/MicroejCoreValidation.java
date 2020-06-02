@@ -36,7 +36,7 @@ import ej.bon.Util;
  */
 public class MicroejCoreValidation {
 
-	public static final String VERSION = "2.5.0"; //$NON-NLS-1$
+	public static final String VERSION = "3.0.0"; //$NON-NLS-1$
 
 	public static final String PROPERTY_SUFFIX = "MJVMPortValidation."; //$NON-NLS-1$
 	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds"; //$NON-NLS-1$
@@ -325,7 +325,7 @@ public class MicroejCoreValidation {
 	@Test
 	public void testJavaRoundRobin() {
 		System.out.println("-> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)..."); //$NON-NLS-1$
-		System.out.println("For a best resut, please disable all the C native tasks except the MicroEJ task."); //$NON-NLS-1$
+		System.out.println("For a best result, please disable all the C native tasks except the MicroEJ task."); //$NON-NLS-1$
 		int nbThreads = NB_THREADS;
 		assertTrue("nbThreads >= 2", nbThreads >= 2); //$NON-NLS-1$
 
