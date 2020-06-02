@@ -212,9 +212,9 @@ public class MicroejCoreValidation {
 		return objects;
 	}
 
-	static native float testFPU(float a, float b);
+	static native float testFloat(float a, float b);
 
-	static native double testFPU(double a, double b);
+	static native double testDouble(double a, double b);
 
 	static float testFPUJava(float a, float b) {
 		return a * b;
@@ -452,8 +452,8 @@ public class MicroejCoreValidation {
 		// In BSP, write and compile the following functions:
 		// --------------------
 		// #include "sni.h"
-		// jfloat Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__FF (jfloat a, jfloat b) {return a * b;}
-		// jdouble Java_com_is2t_microjvm_test_MJVMPortValidation_testFPU__DD (jdouble a, jdouble b) {return a * b;}
+		// jfloat Java_com_microej_MicroejCoreValidation_testFloat (jfloat a, jfloat b) {return a * b;}
+		// jdouble Java_com_microej_MicroejCoreValidation_testDouble (jdouble a, jdouble b) {return a * b;}
 		// --------------------
 
 		assertEquals("test 'float * float' in Java: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
@@ -461,9 +461,9 @@ public class MicroejCoreValidation {
 		assertEquals("test 'double * double' in Java: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
 				new Double(testFPUJava(double3, double4)), new Double(12));
 		assertEquals("test 'float * float' in C: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
-				new Float(testFPU(float3, float4)), new Float(12f));
+				new Float(testFloat(float3, float4)), new Float(12f));
 		assertEquals("test 'double * double' in C: FPU option is not coherent between MicroEJ Platform and BSP", //$NON-NLS-1$
-				new Double(testFPU(double3, double4)), new Double(12));
+				new Double(testDouble(double3, double4)), new Double(12));
 
 		float parsedFloat = Float.parseFloat("1234.5"); //$NON-NLS-1$
 		assertEquals(
