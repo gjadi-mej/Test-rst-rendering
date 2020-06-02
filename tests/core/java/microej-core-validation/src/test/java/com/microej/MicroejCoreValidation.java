@@ -32,20 +32,7 @@ import ej.bon.Immutables;
 import ej.bon.Util;
 
 /**
- * Tests for MicroEJ Core port. Before releasing a MicroEJ Platform, TCK should be:
- * <ul>
- * <li>caffeineMark results should be similar to caffeineMark results without RTOS</li>
- * <li>this test must pass</li>
- * </ul>
- * Test features:
- * <ul>
- * <li>FPU</li>
- * <li>Read Only Memory</li>
- * <li>Visible clock</li>
- * <li>Time</li>
- * <li>Monotonic Time</li>
- * <li>Java Round robin</li>
- * </ul>
+ * MicroEJ Core Validation tests.
  */
 public class MicroejCoreValidation {
 
@@ -54,7 +41,7 @@ public class MicroejCoreValidation {
 	public static final String PROPERTY_SUFFIX = "MJVMPortValidation."; //$NON-NLS-1$
 	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds"; //$NON-NLS-1$
 
-	static Class THIS_CLASS = MicroejCoreValidation.class;
+	static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
 
 	// Time constants
 	public static final int MAX_SLEEP_DELTA = 10;
@@ -130,6 +117,7 @@ public class MicroejCoreValidation {
 				try {
 					thread.join();
 				} catch (InterruptedException e) {
+					// Nothing to do here.
 				}
 			}
 
@@ -245,6 +233,9 @@ public class MicroejCoreValidation {
 		printProduct();
 	}
 
+	/**
+	 * Tests the LLMJVM_IMPL_getCurrentTime implementation.
+	 */
 	@Test
 	public void testVisibleClock() {
 		System.out.println("-> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)..."); //$NON-NLS-1$
@@ -280,6 +271,9 @@ public class MicroejCoreValidation {
 		assertTrue("Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()", delta <= MAX_SLEEP_DELTA); //$NON-NLS-1$
 	}
 
+	/**
+	 * Tests LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM implementations.
+	 */
 	@Test
 	public void testTime() {
 		System.out.println(
@@ -300,6 +294,9 @@ public class MicroejCoreValidation {
 		assertTrue("delta(=" + delta + ")<=" + MAX_SLEEP_DELTA, delta <= MAX_SLEEP_DELTA); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
+	/**
+	 * Tests the LLMJVM_IMPL_setApplicationTime implementation.
+	 */
 	@Test
 	public void testMonotonicTime() {
 		System.out.println(
@@ -322,6 +319,9 @@ public class MicroejCoreValidation {
 				&& montonicTimeAfter <= monotonicTimeBefore + delay + elapsedTime);
 	}
 
+	/**
+	 * Tests the LLMJVM_IMPL_scheduleRequest implementation.
+	 */
 	@Test
 	public void testJavaRoundRobin() {
 		System.out.println("-> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)..."); //$NON-NLS-1$
@@ -406,6 +406,9 @@ public class MicroejCoreValidation {
 		}
 	}
 
+	/**
+	 * Tests the LLBSP_IMPL_isInReadOnlyMemory implementation.
+	 */
 	@Test
 	public void testIsInReadOnlyMemory() {
 		System.out.println("-> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)..."); //$NON-NLS-1$
@@ -440,6 +443,9 @@ public class MicroejCoreValidation {
 		tryToSynchronizeOn(objectsFromImmutables(), true);
 	}
 
+	/**
+	 * Tests the platform FPU configuration.
+	 */
 	@Test
 	public void testFPU() {
 		System.out.println("-> Check FPU (soft/hard FP option)..."); //$NON-NLS-1$
@@ -515,6 +521,7 @@ class MonitorKeeper implements Runnable {
 			try {
 				Thread.sleep(SLEEP_TIME);
 			} catch (InterruptedException e) {
+				// Nothing to do here.
 			}
 		}
 	}
@@ -522,8 +529,8 @@ class MonitorKeeper implements Runnable {
 }
 
 /**
-*
-*/
+ * Task class for the round robin test.
+ */
 class RoundRobinTestTask implements Runnable {
 
 	public static int COUNTER = 0;
