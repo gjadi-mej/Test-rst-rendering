@@ -44,8 +44,9 @@ implemented to run UI tests.
 
 The default implementation (the one implemented in the ``weak``
 function, see ``x_impl_config.c``) returns the invalid value ``0``. If
-the weak function is not overrided, the tests which require this value
-throw an assert.
+the weak function is not overridden, the tests which require this value
+throw an assert. See ``x_ui_config.h`` for a mapping between the graphical
+engine and the value used by the BSP. 
 
 **Expected results**
 
