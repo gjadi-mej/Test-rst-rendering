@@ -42,7 +42,7 @@ Usage
 Dependencies
 ------------
 
-*All dependencies are retrieved transitively by Ivy resolver*.
+*All dependencies are retrieved transitively by MicroEJ Module Manager*.
 
 Source
 ------
