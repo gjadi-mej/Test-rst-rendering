@@ -6,6 +6,6 @@
  * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
  */
 /**
- * Contains the MicroEJ Core Validation.
+ * Contains the MicroEJ Core Validation tests.
  */
 package com.microej;
