@@ -15,7 +15,7 @@ and are run in a specific order, *next one* expects *previous one* is
 passed.
 
 For each test, its configuration and its results are described in a
-dedicated section. See #SumUp chapter which resume how to configure the
+dedicated section. See `SumUp`_ chapter which resume how to configure the
 tests, how to launch them and the expected results.
 
 Dependencies
@@ -27,8 +27,8 @@ Dependencies
 Tests Description
 =================
 
-Print: *t_core_print.c*
------------------------
+Print: t_core_print.c
+---------------------
 
 An implementation of ``print`` is required by MicroEJ platform to debug
 the Java exceptions. Furthermore this implementation is also required to
@@ -58,8 +58,8 @@ A message is just printed:
    Print test:
     if this message is displayed, the test is passed!
 
-Timer: *t_core_time_base.c*
----------------------------
+Timer: t_core_time_base.c
+-------------------------
 
 A time counter is required by MicroEJ platform. This timer must respect
 the following rules: \* during MicroEJ application, this counter must
@@ -95,8 +95,8 @@ No error must be thrown when executing this test:
    Time base check:
    .
 
-RAM Tests: *t_core_ram.c*
--------------------------
+RAM Tests: t_core_ram.c
+-----------------------
 
 This test is useful to check external RAM when it is available on the
 hardware. The test performs several read and write actions, with
@@ -125,8 +125,8 @@ No error must be thrown when executing this test:
    RAM tests:
    .....................
 
-RAM Benchs: *t_core_ram.c*
---------------------------
+RAM Benchs: t_core_ram.c
+------------------------
 
 This test is useful to bench external RAM accesses when it is available
 on the hardware. This test only performs some benches. In addition with
@@ -157,8 +157,8 @@ any other regions.
 These results can be sent to MicroEJ in order to compare the BSP
 implementation with all others MicroEJ platforms.
 
-Coremark: *t_core_core_benchmark.c*
------------------------------------
+Coremark: t_core_core_benchmark.c
+---------------------------------
 
 EEMBC Coremark allows to compare CPU and BSP configurations. Refer to
 EEMBC Coremark website (http://www.eembc.org/coremark/index.php) to have
@@ -192,8 +192,8 @@ To run this test, create ``core_portme.h`` and ``core_portme.h`` files to port E
    Correct operation validated. See readme.txt for run and reporting rules.
    CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
 
-MicroEJ Portage Validation: *JVM.Portage.Validation*
-----------------------------------------------------
+MicroEJ Portage Validation: JVM.Portage.Validation
+--------------------------------------------------
 
 This MicroEJ application validates the LLAPI ``LLMJVM_impl.h``
 implementation executing several tests. Two first tests check the time,
@@ -284,7 +284,7 @@ Configuration
 
 4. Implement all functions defined in these files:
 
-   -  ``x_ram_checks.h``: see #RAM Tests and #RAM Benchs
+   -  ``x_ram_checks.h``: see `RAM Tests: t_core_ram.c`_ and `RAM Benchs: t_core_ram.c`_
    -  ``x_core_benchmark.h``: Call EEMBC Coremark implementation.
 
 5. Add a call to the function ``T_CORE_main()`` just before the call to
