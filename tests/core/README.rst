@@ -342,58 +342,5 @@ Expected Results
    CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
 
    OK (27 tests)
-   VM START
-   *****************************************************************************************************
-   *                                  LLMJVM Port Validation - 2.4.0                                   *
-   *****************************************************************************************************
-   * Copyright 2013-2019 MicroEJ Corp. All rights reserved.                                            *
-   * This library is provided in source code for use, modification and test, subject to license terms. *
-   * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *
-   *****************************************************************************************************
-
-   -> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...
-   Property 'MJVMPortValidation.clock.seconds' is not set (default to '10' seconds)
-   1
-   2
-   3
-   4
-   5
-   6
-   7
-   8
-   9
-   10
-
-   -> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...
-   Waiting for 5s...
-   ...done
-
-   -> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
-   Waiting for 5s...
-   ...done
-
-   -> Check FPU (soft/hard FP option)...
-
-   -> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...
-   Test synchronize on literal string
-   Test synchronize on class
-   Test multiple synchronize
-
-   -> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)...
-   For a best resut, please disable all the C native tasks except the MicroEJ task.
-   Task 3 is waiting for start...
-   Task 2 is waiting for start...
-   Task 1 is waiting for start...
-   Task 0 is waiting for start...
-   Starting tasks and wait for 10 seconds...
-   Task 1 ends.
-   Task 2 ends.
-   Task 3 ends.
-   Task 0 ends.
-   ...done.
-   @ASSERTIONS_OK:21#
-   @ASSERTIONS_NOK:0#
-   com.is2t.microjvm.test.MJVMPortValidation PASSED
-   VM END (exit code = 0)
 
 

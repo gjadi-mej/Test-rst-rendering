@@ -43,6 +43,63 @@ In MicroEJ SDK,
 -  Once all the tests have passed successfully, MicroEJ Core is
    validated.
 
+- See below for an output example of a successful validation.
+
+::
+
+   VM START
+   *****************************************************************************************************
+   *                                  MicroEJ Core Validation - 3.0.0                                  *
+   *****************************************************************************************************
+   * Copyright 2013-2020 MicroEJ Corp. All rights reserved.                                            *
+   * This library is provided in source code for use, modification and test, subject to license terms. *
+   * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *
+   *****************************************************************************************************
+   
+   -> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...
+   Property 'com.microej.core.tests.clock.seconds' is not set (default to '10' seconds)
+   1
+   2
+   3
+   4
+   5
+   6
+   7
+   8
+   9
+   10
+   OK: testVisibleClock
+   -> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...
+   Waiting for 5s...
+   ...done
+   OK: testTime
+   -> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
+   Waiting for 5s...
+   ...done
+   OK: testMonotonicTime
+   -> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)...
+   For a best result, please disable all the C native tasks except the MicroEJ task.
+   Task 3 is waiting for start...
+   Task 2 is waiting for start...
+   Task 1 is waiting for start...
+   Task 0 is waiting for start...
+   Starting tasks and wait for 10 seconds...
+   Task 2 ends.
+   Task 3 ends.
+   Task 0 ends.
+   Task 1 ends.
+   ...done.
+   OK: testJavaRoundRobin
+   -> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...
+   Test synchronize on literal string
+   Test synchronize on class
+   Test multiple synchronize
+   OK: testIsInReadOnlyMemory
+   -> Check FPU (soft/hard FP option)...
+   OK: testFPU
+   PASSED: 6
+   VM END (exit code = 0)
+
 Dependencies
 ------------
 
