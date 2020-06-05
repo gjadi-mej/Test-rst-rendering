@@ -8,4 +8,4 @@
 /**
  * Contains the MicroEJ Core Validation tests.
  */
-package com.microej;
+package com.microej.core.tests;

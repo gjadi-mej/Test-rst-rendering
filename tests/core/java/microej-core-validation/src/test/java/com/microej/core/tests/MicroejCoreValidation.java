@@ -5,7 +5,7 @@
  * This library is provided in source code for use, modification and test, subject to license terms.
  * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
  */
-package com.microej;
+package com.microej.core.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -38,7 +38,7 @@ public class MicroejCoreValidation {
 
 	public static final String VERSION = "3.0.0"; //$NON-NLS-1$
 
-	public static final String PROPERTY_SUFFIX = "MJVMPortValidation."; //$NON-NLS-1$
+	public static final String PROPERTY_SUFFIX = "com.microej.core.tests."; //$NON-NLS-1$
 	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds"; //$NON-NLS-1$
 
 	static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
