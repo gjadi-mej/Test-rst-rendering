@@ -14,7 +14,7 @@ and are run in a specific order, *next one* expects *previous one* is
 passed.
 
 For each test, its configuration and its results are described in a
-dedicated section. See `SumUp`_ chapter which resume how to configure the
+dedicated section. See `Quick Start`_ section which resume how to configure the
 tests, how to launch them and the expected results.
 
 Dependencies
@@ -22,6 +22,143 @@ Dependencies
 
 -  Follow the main readme file
 -  EEMBC Coremark
+
+Quick Start
+===========
+
+Configuration
+-------------
+
+1. Add all files of these folders as source files:
+
+   - ``tests/core/c/src``
+   - ``framework/c/utils/src``
+   - ``framework/c/embunit/embUnit``
+   - ``framework/c/CoreMark/``
+
+2. Add these folders as include folders:
+
+   - ``tests/core/c/inc``
+   - ``framework/c/utils/inc``
+   - ``framework/c/embunit/embUnit``
+   - ``framework/c/CoreMark/``
+
+3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
+   (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
+
+4. Implement all functions defined in these files:
+
+   -  ``x_ram_checks.h``: see `RAM Tests: t_core_ram.c`_ and `RAM Benchs: t_core_ram.c`_
+   -  ``x_core_benchmark.h``: Call EEMBC Coremark implementation.
+
+5. Include ``t_core_main.h`` header and add a call to the function
+   ``T_CORE_main()`` just before the call to ``microjvm_main()``.
+6. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``
+7. Build this MicroEJ Application against the MicroEJ Platform to qualify
+8. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
+
+Expected Results
+----------------
+
+::
+
+   start
+   .
+   ****************************************************************************
+   **                      Platform Qualification Core                       **
+   **                              version 1.0                               **
+   ****************************************************************************
+   *           Copyright 2013-2020 MicroEJ Corp. All rights reserved.         *
+   * Use of this source code is governed by a BSD-style license               *
+   * that can be found with this software.                                    *
+   ****************************************************************************
+
+   Print test:
+    if this message is displayed, the test is passed!
+
+   Time base check:
+   .
+   RAM tests:
+   .....................
+   RAM speed benchmark:
+   .RAM speed average read access (according to your configuration file 8/16/32 bits) : 51.180522MBytes/s
+   .RAM speed average write access (according to your configuration file 8/16/32 bits) : 131.289164 MBytes/s
+   .RAM speed average transfert access (according to your configuration file 8/16/32 bits) : 86.466471MBytes/s
+
+   Core/Flash benchmark:
+   .2K performance run parameters for coremark.
+   CoreMark Size    : 666
+   Total ticks      : 12052657
+   Total time (secs): 12.052657
+   Iterations/Sec   : 497.815544
+   Iterations       : 6000
+   Compiler version : ARMCC V5.06 update 4 (build 422)
+   Compiler flags   : -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx
+   Memory location  : STATIC
+   seedcrc          : 0xe9f5
+   [0]crclist       : 0xe714
+   [0]crcmatrix     : 0x1fd7
+   [0]crcstate      : 0x8e3a
+   [0]crcfinal      : 0xa14c
+   Correct operation validated. See readme.txt for run and reporting rules.
+   CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
+
+   OK (27 tests)
+   VM START
+   *****************************************************************************************************
+   *                                  LLMJVM Port Validation - 2.4.0                                   *
+   *****************************************************************************************************
+   * Copyright 2013-2019 MicroEJ Corp. All rights reserved.                                            *
+   * This library is provided in source code for use, modification and test, subject to license terms. *
+   * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.     *
+   *****************************************************************************************************
+
+   -> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...
+   Property 'MJVMPortValidation.clock.seconds' is not set (default to '10' seconds)
+   1
+   2
+   3
+   4
+   5
+   6
+   7
+   8
+   9
+   10
+
+   -> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...
+   Waiting for 5s...
+   ...done
+
+   -> Check monotonic time (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_setApplicationTime validation)...
+   Waiting for 5s...
+   ...done
+
+   -> Check FPU (soft/hard FP option)...
+
+   -> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...
+   Test synchronize on literal string
+   Test synchronize on class
+   Test multiple synchronize
+
+   -> Check Java round robin (LLMJVM_IMPL_scheduleRequest validation)...
+   For a best resut, please disable all the C native tasks except the MicroEJ task.
+   Task 3 is waiting for start...
+   Task 2 is waiting for start...
+   Task 1 is waiting for start...
+   Task 0 is waiting for start...
+   Starting tasks and wait for 10 seconds...
+   Task 1 ends.
+   Task 2 ends.
+   Task 3 ends.
+   Task 0 ends.
+   ...done.
+   @ASSERTIONS_OK:21#
+   @ASSERTIONS_NOK:0#
+   com.is2t.microjvm.test.MJVMPortValidation PASSED
+   VM END (exit code = 0)
+
+--------------
 
 Tests Description
 =================
@@ -211,88 +348,5 @@ No error must be thrown when executing this test:
 ::
 
 Follow the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_.
-
-SumUp
-=====
-
-Configuration
--------------
-
-1. Add all files of these folders as source files:
-
-   - ``tests/core/c/src``
-   - ``framework/c/utils/src``
-   - ``framework/c/embunit/embUnit``
-   - ``framework/c/CoreMark/``
-
-2. Add these folders as include folders:
-
-   - ``tests/core/c/inc``
-   - ``framework/c/utils/inc``
-   - ``framework/c/embunit/embUnit``
-   - ``framework/c/CoreMark/``
-
-3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
-   (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
-
-4. Implement all functions defined in these files:
-
-   -  ``x_ram_checks.h``: see `RAM Tests: t_core_ram.c`_ and `RAM Benchs: t_core_ram.c`_
-   -  ``x_core_benchmark.h``: Call EEMBC Coremark implementation.
-
-5. Include ``t_core_main.h`` header and add a call to the function
-   ``T_CORE_main()`` just before the call to ``microjvm_main()``.
-6. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``
-7. Build this MicroEJ Application against the MicroEJ Platform to qualify
-8. Build the BSP and link it with the MicroEJ Platform runtime library
-   and MicroEJ Application.
-
-Expected Results
-----------------
-
-::
-
-   start
-   .
-   ****************************************************************************
-   **                      Platform Qualification Core                       **
-   **                              version 1.0                               **
-   ****************************************************************************
-   *           Copyright 2013-2020 MicroEJ Corp. All rights reserved.         *
-   * Use of this source code is governed by a BSD-style license               *
-   * that can be found with this software.                                    *
-   ****************************************************************************
-
-   Print test:
-    if this message is displayed, the test is passed!
-
-   Time base check:
-   .
-   RAM tests:
-   .....................
-   RAM speed benchmark:
-   .RAM speed average read access (according to your configuration file 8/16/32 bits) : 51.180522MBytes/s
-   .RAM speed average write access (according to your configuration file 8/16/32 bits) : 131.289164 MBytes/s
-   .RAM speed average transfert access (according to your configuration file 8/16/32 bits) : 86.466471MBytes/s
-
-   Core/Flash benchmark:
-   .2K performance run parameters for coremark.
-   CoreMark Size    : 666
-   Total ticks      : 12052657
-   Total time (secs): 12.052657
-   Iterations/Sec   : 497.815544
-   Iterations       : 6000
-   Compiler version : ARMCC V5.06 update 4 (build 422)
-   Compiler flags   : -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx
-   Memory location  : STATIC
-   seedcrc          : 0xe9f5
-   [0]crclist       : 0xe714
-   [0]crcmatrix     : 0x1fd7
-   [0]crcstate      : 0x8e3a
-   [0]crcfinal      : 0xa14c
-   Correct operation validated. See readme.txt for run and reporting rules.
-   CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
-
-   OK (27 tests)
 
 

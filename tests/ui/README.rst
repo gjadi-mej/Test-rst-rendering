@@ -9,7 +9,7 @@ and are run in a specific order, *next one* expects *previous one* is
 passed.
 
 For each test, its configuration and its results are described in a
-dedicated section. See #SumUp chapter which resume how to configure the
+dedicated section. See `Quick Start`_ section which resume how to configure the
 tests, how to launch them and the expected results.
 
 Dependencies
@@ -17,6 +17,56 @@ Dependencies
 
 -  Follow the main readme file
 -  Follow the *CORE* readme file
+
+Quick Start
+===========
+
+Configuration
+-------------
+
+1. Add all files of these folders as source files:
+
+   -  ``tests/ui/c/src``
+
+2. Add these folders as include folders:
+
+   -  ``tests/ui/c/inc``
+
+3. Implement all functions defined in these files:
+
+   -  ``x_impl_config.h``: see `Tests Description`_
+
+4. Add a call to the function ``T_UI_main()`` just before the call to
+   ``microjvm_main()``.
+5. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``.
+6. Build this MicroEJ Application against the MicroEJ Platform to qualify.
+7. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
+
+Expected Results
+----------------
+
+::
+
+   Board init finished.
+   ..LCD width = 480
+   LCD height = 272
+   .LCD BPP = 16
+   .LCD back buffer is [0xa0000000, 0xa003fc00[
+   Try to write and verify something in this buffer...
+   .LCD back buffer is [0xa003fc00, 0xa007f800[
+   Try to write and verify something in this buffer...
+   .Refresh LCD content with black and screen data. Ensures about tearing effect..Retrieve the LCD framerate...
+   Retrieve the maximal drawing time (quite long)...
+
+   LCD framerate time is 17.528000 ms (57.051579 Hz)
+   The copy time is 7.708000 ms
+   To have an animation at 57.051579 Hz, the drawing time cannot be higher than 9.820000 ms.
+   To have an animation at 28.525789 Hz, the drawing time cannot be higher than 27.348000 ms.
+   To have an animation at 19.017193 Hz, the drawing time cannot be higher than 44.875999 ms.
+
+   OK (7 tests)
+
+--------------
 
 Tests Description
 =================
@@ -156,57 +206,6 @@ and one this refresh rate divided by three.
 
 These results can be sent to MicroEJ in order to compare the BSP
 implementation with all others MicroEJ Platforms.
-
-SumUp
-=====
-
-Configuration
--------------
-
-1. Add all files of these folders as source files:
-
-   -  ``tests/ui/c/src``
-
-2. Add these folders as include folders:
-
-   -  ``tests/ui/c/inc``
-
-3. Implement all functions defined in these files:
-
-   -  ``x_impl_config.h``: see `Tests Description`_
-
-4. Add a call to the function ``T_UI_main()`` just before the call to
-   ``microjvm_main()``.
-5. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``.
-6. Build this MicroEJ Application against the MicroEJ Platform to qualify.
-7. Build the BSP and link it with the MicroEJ Platform runtime library
-   and MicroEJ Application.
-
-Expected Results
-----------------
-
-::
-
-   Board init finished.
-   ..LCD width = 480
-   LCD height = 272
-   .LCD BPP = 16
-   .LCD back buffer is [0xa0000000, 0xa003fc00[
-   Try to write and verify something in this buffer...
-   .LCD back buffer is [0xa003fc00, 0xa007f800[
-   Try to write and verify something in this buffer...
-   .Refresh LCD content with black and screen data. Ensures about tearing effect..Retrieve the LCD framerate...
-   Retrieve the maximal drawing time (quite long)...
-
-   LCD framerate time is 17.528000 ms (57.051579 Hz)
-   The copy time is 7.708000 ms
-   To have an animation at 57.051579 Hz, the drawing time cannot be higher than 9.820000 ms.
-   To have an animation at 28.525789 Hz, the drawing time cannot be higher than 27.348000 ms.
-   To have an animation at 19.017193 Hz, the drawing time cannot be higher than 44.875999 ms.
-
-   OK (7 tests)
-
---------------
 
 ..
    Copyright 2019-2020 MicroEJ Corp. All rights reserved.
