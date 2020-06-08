@@ -1,8 +1,8 @@
 Description
 ===========
 
-The Platform Qualification Tools (PQT) project provides the tools required to validate each component of a platform.
-After porting or adding a feature to a MicroEJ Platform, it is necessary to validate the platform.
+The Platform Qualification Tools (PQT) project provides the tools required to validate each component of a MicroEJ Platform.
+After porting or adding a feature to a MicroEJ Platform, it is necessary to validate its integration.
 
 Test Suites Available
 =====================
@@ -11,7 +11,7 @@ CORE Test Suite
 ---------------
 
 The CORE Test Suite is a C Test Suite. It is the most basic Test Suite to run.
-It ensures MicroEJ application will run correctly.
+It ensures MicroEJ Application will run correctly.
 
 All other Test Suites assume the CORE Test Suite is validated.
 
@@ -57,11 +57,11 @@ Test Suites
 The Platform Qualification Tools (PQT) provides two kinds of Test Suite:
 
 - C Test Suite that must be added to the BSP
-- Java Test Suite that are launched as standard MicroEJ application
+- Java Test Suite that are launched as standard MicroEJ Application
 
 A Test Suite validates a particular component of a MicroEJ Platform.
-The CORE Test Suite is applicable to every platform.
-The other Test Suites depends on the capabilities provided by the platform to validate.
+The CORE Test Suite is applicable to every MicroEJ Platform.
+The other Test Suites depends on the capabilities provided by the MicroEJ Platform to validate.
 
 A detailed explanation how to use each Test Suite is provided in the ``README.rst`` present in each sub-folder.
 For example, for the CORE Test Suite, refer to the `CORE Readme <tests/core/README.rst>`_.
@@ -72,11 +72,11 @@ C Test Suites
 The C Test Suites validate that the hardware and RTOS (if applicable) are properly integrated in the BSP.
 
 The C Test Suites uses Embunit framework. They have to be launched just
-before MicroEJ application (just before the call to ``microjvm_main()``).
+before MicroEJ Application (just before the call to ``microjvm_main()``).
 At this moment, the BSP is fully initialized and the OS is started.
 
-The C Test Suites perform some basic checks which ensures MicroEJ application
-will run. Unless specified otherwise, C Test Suites are linked with a MicroEJ application
+The C Test Suites perform some basic checks which ensures MicroEJ Application
+will run. Unless specified otherwise, C Test Suites are linked with a MicroEJ Application
 (``microejapp.o``) and a MicroEJ runtime library (``microejruntime.a``).
 
 The C Test Suites often require some additional data (some specific functions have to
@@ -87,7 +87,7 @@ Java Test Suites
 
 The Java Test Suites validate the Foundation Libraries integration.
 
-The Java Test Suites verify the integration of the MicroEJ platform over the
+The Java Test Suites verify the integration of the MicroEJ Platform over the
 BSP. No specific unit test framework is used, each test describes how it
 works.
 

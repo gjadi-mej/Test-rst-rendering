@@ -6,9 +6,8 @@
 Overview
 ========
 
-This folder is a part of a project which gathers the platform
-qualification tools. It contains sources and projects to check drivers
-and implementation of print, time base, RAM, Core, and micro JVM.
+This folder is a part of a project which gathers the Platform Qualification Tools.
+It contains sources and projects to check drivers and implementation of print, time base, RAM, Core, and micro JVM.
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
@@ -30,7 +29,7 @@ Tests Description
 Print: t_core_print.c
 ---------------------
 
-An implementation of ``print`` is required by MicroEJ platform to debug
+An implementation of ``print`` is required by MicroEJ Platform to debug
 the Java exceptions. Furthermore this implementation is also required to
 check this qualification bundle.
 
@@ -61,8 +60,8 @@ A message is just printed:
 Timer: t_core_time_base.c
 -------------------------
 
-A time counter is required by MicroEJ platform. This timer must respect
-the following rules: \* during MicroEJ application, this counter must
+A time counter is required by MicroEJ Platform. This timer must respect
+the following rules: \* during MicroEJ Application, this counter must
 not return to zero (return in the past), \* its precision must be around
 one or ten microseconds (often running at 1MHz).
 
@@ -101,7 +100,7 @@ RAM Tests: t_core_ram.c
 This test is useful to check external RAM when it is available on the
 hardware. The test performs several read and write actions, with
 different patterns. All accesses are aligned on value to write: 8, 16 or
-32 bits, like the MicroEJ platform will use the RAM.
+32 bits, like the MicroEJ Platform will use the RAM.
 
 To run, several functions must be implemented. See ``x_ram_checks.h``:
 \* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)`` \*
@@ -155,7 +154,7 @@ any other regions.
 **Notes**
 
 These results can be sent to MicroEJ in order to compare the BSP
-implementation with all others MicroEJ platforms.
+implementation with all others MicroEJ Platforms.
 
 Coremark: t_core_core_benchmark.c
 ---------------------------------
@@ -192,8 +191,24 @@ To run this test, create ``core_portme.h`` and ``core_portme.h`` files to port E
    Correct operation validated. See readme.txt for run and reporting rules.
    CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
 
-MicroEJ Core Validation
------------------------
+MicroEJ Portage Validation: JVM.Portage.Validation
+--------------------------------------------------
+
+This MicroEJ Application validates the LLAPI ``LLMJVM_impl.h``
+implementation executing several tests. Two first tests check the time,
+and require an human check to be sure the time is correct.
+
+**Configuration**
+
+In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``.
+Build this MicroEJ Application against the MicroEJ Platform to qualify.
+Link it with the BSP.
+
+**Expected results**
+
+No error must be thrown when executing this test:
+
+::
 
 Follow the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_.
 
@@ -227,11 +242,10 @@ Configuration
 
 5. Include ``t_core_main.h`` header and add a call to the function
    ``T_CORE_main()`` just before the call to ``microjvm_main()``.
-6. In the MicroEJ SDK platform environment, import the MicroEJ project
-   ``microej-core-validation`` from the folder ``tests/core/java``
-7. Build this MicroEJ application against the platform to qualify
-8. Build the BSP and link it with the MicroEJ platform runtime library
-   and MicroEJ application.
+6. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``
+7. Build this MicroEJ Application against the MicroEJ Platform to qualify
+8. Build the BSP and link it with the MicroEJ Platform runtime library
+   and MicroEJ Application.
 
 Expected Results
 ----------------

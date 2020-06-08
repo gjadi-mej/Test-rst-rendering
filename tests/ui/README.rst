@@ -1,9 +1,8 @@
 Overview
 ========
 
-This folder is a part of a project which gathers the UI qualification
-tools. It contains sources and projects to check drivers and
-implementation of LLAPI ``LLDisplay``.
+This folder is a part of a project which gathers the Platform Qualification Tools.
+It contains sources and projects to check drivers and implementation of LLAPI ``LLDisplay``.
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
@@ -17,7 +16,7 @@ Dependencies
 ============
 
 -  Follow the main readme file
--  Follow the *core* readme file
+-  Follow the *CORE* readme file
 
 Tests Description
 =================
@@ -36,8 +35,8 @@ sequence is performed in new back buffer.
 **Configuration**
 
 ``LLDisplay`` implementation is written to target a LCD with a specific
-BPP (bits-per-pixel). This value is also available in MicroEJ platform
-configuration project in order to build a platform with the corresponded
+BPP (bits-per-pixel). This value is also available in MicroEJ Platform
+Configuration project in order to build a MicroEJ Platform with the corresponded
 graphical engine (see ``display/display.properties``). The UI
 qualification bunble tests require this value. So a function must be
 implemented to run UI tests.
@@ -156,7 +155,7 @@ and one this refresh rate divided by three.
 **Notes**
 
 These results can be sent to MicroEJ in order to compare the BSP
-implementation with all others MicroEJ platforms.
+implementation with all others MicroEJ Platforms.
 
 SumUp
 =====
@@ -178,11 +177,10 @@ Configuration
 
 4. Add a call to the function ``T_UI_main()`` just before the call to
    ``microjvm_main()``.
-5. In the MicroEJ SDK platform environment, import the MicroEJ project
-   ``JVM.Portage.Validation`` from the folder ``tests/core/java``
-6. Build this MicroEJ application against the platform to qualify
-7. Build the BSP and link it with the MicroEJ platform runtime library
-   and MicroEJ application.
+5. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``.
+6. Build this MicroEJ Application against the MicroEJ Platform to qualify.
+7. Build the BSP and link it with the MicroEJ Platform runtime library
+   and MicroEJ Application.
 
 Expected Results
 ----------------
