@@ -22,7 +22,11 @@ In MicroEJ SDK,
 
 -  Select ``Run > Run Configurations...``. A launcher named
    ``microej-core-validation`` should be available under
-   ``MicroEJ Application``, run it to compile the MicroEJ Application.
+   ``MicroEJ Application``.
+   
+-  In ``Execution`` tab, select the target MicroEJ Platform.
+
+-  Click on ``Run`` button to compile the MicroEJ Application.
 
 -  Before linking the application against the MicroEJ Platform, add the
    following code in your BSP to test the FPU configuration:
@@ -36,14 +40,12 @@ In MicroEJ SDK,
 -  For a best result in the Java Round Robin test, disable all the C
    native tasks except the MicroEJ task.
 
--  Compile the MicroEJ Application.
+-  Link the BSP project with the MicroEJ Application (``microejapp.o``), 
+   the MicroEJ Platform runtime (``microejruntime.a``) and the MicroEJ Platform header files (``*.h``).
 
--  Run the application on the desired MicroEJ Platform.
+-  Once all the tests have passed successfully, MicroEJ Core is validated.
 
--  Once all the tests have passed successfully, MicroEJ Core is
-   validated.
-
-- See below for an output example of a successful validation.
+-  See below for an output example of a successful validation.
 
 ::
 
