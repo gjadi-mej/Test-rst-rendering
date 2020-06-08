@@ -36,31 +36,31 @@ import ej.bon.Util;
  */
 public class MicroejCoreValidation {
 
-	public static final String VERSION = "3.0.0";
+	private static final String VERSION = "3.0.0";
 
-	public static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
-	public static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
+	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
+	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
 
-	static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
+	private static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
 
 	// Time constants
-	public static final int MAX_SLEEP_DELTA = 10;
+	private static final int MAX_SLEEP_DELTA = 10;
 
 	// Round Robin constants
-	public static final int NB_THREADS = 4;
-	public static final int ROUND_ROBIN_TEST_DURATION = 10000;
-	public static final int ROUND_ROBIN_MIN_COUNTER_REQUIRED = 500;
-	public static final int ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED = 5;
+	private static final int NB_THREADS = 4;
+	private static final int ROUND_ROBIN_TEST_DURATION = 10000;
+	private static final int ROUND_ROBIN_MIN_COUNTER_REQUIRED = 500;
+	private static final int ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED = 5;
 
-	public static volatile boolean ROUND_ROBIN_IS_RUNNING;
-	public static Object ROUND_ROBIN_LOCK = new Object();
-	public static long[] ROUND_ROBIN_TASK_COUNTERS;
+	private static volatile boolean ROUND_ROBIN_IS_RUNNING;
+	private static Object ROUND_ROBIN_LOCK = new Object();
+	private static long[] ROUND_ROBIN_TASK_COUNTERS;
 
 	// Set this fields volatile so we are sure accesses are not optimized
-	volatile public static double double3 = 3d;
-	volatile public static double double4 = 4d;
-	volatile public static float float3 = 3f;
-	volatile public static float float4 = 4f;
+	volatile private static double double3 = 3d;
+	volatile private static double double4 = 4d;
+	volatile private static float float3 = 3f;
+	volatile private static float float4 = 4f;
 
 	private static void printProduct() {
 		final String sep = "*****************************************************************************************************";
@@ -212,15 +212,15 @@ public class MicroejCoreValidation {
 		return objects;
 	}
 
-	static native float testFloat(float a, float b);
+	private static native float testFloat(float a, float b);
 
-	static native double testDouble(double a, double b);
+	private static native double testDouble(double a, double b);
 
-	static float testFPUJava(float a, float b) {
+	private static float testFPUJava(float a, float b) {
 		return a * b;
 	}
 
-	static double testFPUJava(double a, double b) {
+	private static double testFPUJava(double a, double b) {
 		return a * b;
 	}
 
@@ -234,7 +234,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Tests the LLMJVM_IMPL_getCurrentTime implementation.
+	 * Tests the <code>LLMJVM_IMPL_getCurrentTime</code> implementation.
 	 */
 	@Test
 	public void testVisibleClock() {
@@ -272,7 +272,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Tests LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM implementations.
+	 * Tests <code>LLMJVM_IMPL_scheduleRequest</code> and <code>LLMJVM_IMPL_wakeupVM</code> implementations.
 	 */
 	@Test
 	public void testTime() {
@@ -295,7 +295,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Tests the LLMJVM_IMPL_setApplicationTime implementation.
+	 * Tests the <code>LLMJVM_IMPL_setApplicationTime</code> implementation.
 	 */
 	@Test
 	public void testMonotonicTime() {
@@ -320,7 +320,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Tests the LLMJVM_IMPL_scheduleRequest implementation.
+	 * Tests the <code>LLMJVM_IMPL_scheduleRequest</code> implementation.
 	 */
 	@Test
 	public void testJavaRoundRobin() {
@@ -407,7 +407,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Tests the LLBSP_IMPL_isInReadOnlyMemory implementation.
+	 * Tests the <code>LLBSP_IMPL_isInReadOnlyMemory</code> implementation.
 	 */
 	@Test
 	public void testIsInReadOnlyMemory() {
@@ -486,78 +486,78 @@ public class MicroejCoreValidation {
 				doubleToString, "1234.5");
 	}
 
-}
+	/**
+	 * Task class for the round robin test.
+	 */
+	private static class RoundRobinTestTask implements Runnable {
 
-/**
- * Synchronizes on a list of monitors and sleeps for a while.
- */
-class MonitorKeeper implements Runnable {
-	static final int THREAD_COUNT = 5;
-	static final int MONITOR_PER_THREAD_COUNT = 7;
-	static final int SLEEP_TIME = 5_000;
-	public static int errorCount;
+		public static int COUNTER = 0;
 
-	private final Object[] monitors;
+		private final int id;
 
-	public MonitorKeeper(Object[] monitors) {
-		this.monitors = monitors;
-	}
-
-	@Override
-	public void run() {
-		try {
-			synchronizeAll(0);
-		} catch (Error e) {
-			errorCount++;
+		public RoundRobinTestTask(int id) {
+			this.id = id;
 		}
+
+		@Override
+		public void run() {
+			synchronized (MicroejCoreValidation.ROUND_ROBIN_LOCK) {
+				if (!MicroejCoreValidation.ROUND_ROBIN_IS_RUNNING) {
+					++COUNTER;
+					System.out.println("Task " + this.id + " is waiting for start...");
+					try {
+						MicroejCoreValidation.ROUND_ROBIN_LOCK.wait();
+					} catch (InterruptedException e) {
+						throw new Error();
+					}
+				}
+			}
+			while (MicroejCoreValidation.ROUND_ROBIN_IS_RUNNING) {
+				++MicroejCoreValidation.ROUND_ROBIN_TASK_COUNTERS[this.id];
+			}
+			System.out.println("Task " + this.id + " ends.");
+		}
+
 	}
 
-	private void synchronizeAll(int monitorIndex) {
-		if (monitorIndex < this.monitors.length) {
-			synchronized (this.monitors[monitorIndex]) {
-				synchronizeAll(monitorIndex + 1);
-			}
-		} else {
+	/**
+	 * Synchronizes on a list of monitors and sleeps for a while.
+	 */
+	private static class MonitorKeeper implements Runnable {
+		static final int THREAD_COUNT = 5;
+		static final int MONITOR_PER_THREAD_COUNT = 7;
+		static final int SLEEP_TIME = 5_000;
+		public static int errorCount;
+
+		private final Object[] monitors;
+
+		public MonitorKeeper(Object[] monitors) {
+			this.monitors = monitors;
+		}
+
+		@Override
+		public void run() {
 			try {
-				Thread.sleep(SLEEP_TIME);
-			} catch (InterruptedException e) {
-				// Nothing to do here.
+				synchronizeAll(0);
+			} catch (Error e) {
+				errorCount++;
 			}
 		}
-	}
 
-}
-
-/**
- * Task class for the round robin test.
- */
-class RoundRobinTestTask implements Runnable {
-
-	public static int COUNTER = 0;
-
-	private final int id;
-
-	public RoundRobinTestTask(int id) {
-		this.id = id;
-	}
-
-	@Override
-	public void run() {
-		synchronized (MicroejCoreValidation.ROUND_ROBIN_LOCK) {
-			if (!MicroejCoreValidation.ROUND_ROBIN_IS_RUNNING) {
-				++COUNTER;
-				System.out.println("Task " + this.id + " is waiting for start...");
+		private void synchronizeAll(int monitorIndex) {
+			if (monitorIndex < this.monitors.length) {
+				synchronized (this.monitors[monitorIndex]) {
+					synchronizeAll(monitorIndex + 1);
+				}
+			} else {
 				try {
-					MicroejCoreValidation.ROUND_ROBIN_LOCK.wait();
+					Thread.sleep(SLEEP_TIME);
 				} catch (InterruptedException e) {
-					throw new Error();
+					// Nothing to do here.
 				}
 			}
 		}
-		while (MicroejCoreValidation.ROUND_ROBIN_IS_RUNNING) {
-			++MicroejCoreValidation.ROUND_ROBIN_TASK_COUNTERS[this.id];
-		}
-		System.out.println("Task " + this.id + " ends.");
+
 	}
 
 }
