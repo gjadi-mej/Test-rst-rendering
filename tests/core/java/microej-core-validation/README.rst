@@ -34,8 +34,8 @@ In MicroEJ SDK,
 .. code:: c
 
    #include "sni.h"
-   jfloat Java_com_microej_MicroejCoreValidation_testFloat (jfloat a, jfloat b) {return a * b;}
-   jdouble Java_com_microej_MicroejCoreValidation_testDouble (jdouble a, jdouble b) {return a * b;}
+   jfloat Java_com_microej_core_tests_MicroejCoreValidation_testFloat (jfloat a, jfloat b) {return a * b;}
+   jdouble Java_com_microej_core_tests_MicroejCoreValidation_testDouble (jdouble a, jdouble b) {return a * b;}
 
 -  For a best result in the Java Round Robin test, disable all the C
    native tasks except the MicroEJ task.
