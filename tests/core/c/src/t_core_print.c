@@ -30,9 +30,9 @@ static void T_CORE_PRINT_displayMessage(void)
 	UTIL_print_string(X_VERSION);
 	UTIL_print_string("                               **\n");
 	UTIL_print_string("****************************************************************************\n");
-	UTIL_print_string("*           Copyright 2013-2019 MicroEJ Corp. All rights reserved.         *\n");
-	UTIL_print_string("* Modification and distribution is permitted under certain conditions.     *\n");
-	UTIL_print_string("* MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms. *\n");
+	UTIL_print_string("*           Copyright 2013-2020 MicroEJ Corp. All rights reserved.         *\n");
+	UTIL_print_string("* Use of this source code is governed by a BSD-style license               *\n");
+	UTIL_print_string("* that can be found with this software.                                    *\n");
 	UTIL_print_string("****************************************************************************\n");
 	
 	UTIL_print_string("\nPrint test:\n if this message is displayed, the test is passed!\n");
