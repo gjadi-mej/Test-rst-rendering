@@ -205,11 +205,17 @@ Configuration
 
 1. Add all files of these folders as source files:
 
-   -  ``tests/core/c/src``
+   - ``tests/core/c/src``
+   - ``framework/c/utils/src``
+   - ``framework/c/embunit/embUnit``
+   - ``framework/c/CoreMark/``
 
 2. Add these folders as include folders:
 
-   -  ``tests/core/c/inc``
+   - ``tests/core/c/inc``
+   - ``framework/c/utils/inc``
+   - ``framework/c/embunit/embUnit``
+   - ``framework/c/CoreMark/``
 
 3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
    (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
@@ -219,8 +225,8 @@ Configuration
    -  ``x_ram_checks.h``: see `RAM Tests: t_core_ram.c`_ and `RAM Benchs: t_core_ram.c`_
    -  ``x_core_benchmark.h``: Call EEMBC Coremark implementation.
 
-5. Add a call to the function ``T_CORE_main()`` just before the call to
-   ``microjvm_main()``.
+5. Include ``t_core_main.h`` header and add a call to the function
+   ``T_CORE_main()`` just before the call to ``microjvm_main()``.
 6. In the MicroEJ SDK platform environment, import the MicroEJ project
    ``microej-core-validation`` from the folder ``tests/core/java``
 7. Build this MicroEJ application against the platform to qualify
