@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=mjvmportagevalidation&amp;ivyXmlPath=module.ivy&amp;confs=*"/>
-	<classpathentry kind="lib" path="lib/mjvmPortageValidation-2.4.0.jar"/>
-	<classpathentry kind="lib" path="lib/checkHelper-1.2.1.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
