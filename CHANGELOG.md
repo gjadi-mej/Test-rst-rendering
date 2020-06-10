@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.1.0 - 
+## 2.1.0 - 2020-06-10
 
 ### Added
 
@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
   - Fix `X_RAM_CHECKS_checkAddress16()`: test checked memory accesses outside memory range
+  - Fix `UTIL_TIME_BASE_getTime()`: fix type of returned value
+
+### Changed
+
+  - Improved documentation
+  - Provide CoreMark as git-submodule instead of a local copy
+  - Provide JVM Portage Validation as source instead of a jar
 
 ## 1.0.1 - 2019-04-25
 
