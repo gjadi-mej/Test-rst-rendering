@@ -1,23 +1,72 @@
 Overview
 ========
 
-This folder is a part of a project which gathers the UI qualification
-tools. It contains sources and projects to check drivers and
-implementation of LLAPI ``LLDisplay``.
+This folder is a part of a project which gathers the Platform Qualification Tools.
+It contains sources and projects to check drivers and implementation of LLAPI ``LLDisplay``.
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
 passed.
 
 For each test, its configuration and its results are described in a
-dedicated section. See #SumUp chapter which resume how to configure the
+dedicated section. See `Quick Start`_ section which resume how to configure the
 tests, how to launch them and the expected results.
 
 Dependencies
 ============
 
 -  Follow the main readme file
--  Follow the *core* readme file
+-  Follow the *CORE* readme file
+
+Quick Start
+===========
+
+Configuration
+-------------
+
+1. Add all files of these folders as source files:
+
+   -  ``tests/ui/c/src``
+
+2. Add these folders as include folders:
+
+   -  ``tests/ui/c/inc``
+
+3. Implement all functions defined in these files:
+
+   -  ``x_impl_config.h``: see `Tests Description`_
+
+4. Add a call to the function ``T_UI_main()`` just before the call to
+   ``microej_main()``.
+5. In the MicroEJ SDK, import the MicroEJ project ``microej-core-validation`` from the folder ``tests/core/java``.
+6. Build this MicroEJ Application against the MicroEJ Platform to qualify.
+7. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
+
+Expected Results
+----------------
+
+::
+
+   Board init finished.
+   ..LCD width = 480
+   LCD height = 272
+   .LCD BPP = 16
+   .LCD back buffer is [0xa0000000, 0xa003fc00[
+   Try to write and verify something in this buffer...
+   .LCD back buffer is [0xa003fc00, 0xa007f800[
+   Try to write and verify something in this buffer...
+   .Refresh LCD content with black and screen data. Ensures about tearing effect..Retrieve the LCD framerate...
+   Retrieve the maximal drawing time (this will take several seconds)...
+
+   LCD framerate time is 17.528000 ms (57.051579 Hz)
+   The copy time is 7.708000 ms
+   To have an animation at 57.051579 Hz, the drawing time cannot be higher than 9.820000 ms.
+   To have an animation at 28.525789 Hz, the drawing time cannot be higher than 27.348000 ms.
+   To have an animation at 19.017193 Hz, the drawing time cannot be higher than 44.875999 ms.
+
+   OK (7 tests)
+
+--------------
 
 Tests Description
 =================
@@ -36,16 +85,17 @@ sequence is performed in new back buffer.
 **Configuration**
 
 ``LLDisplay`` implementation is written to target a LCD with a specific
-BPP (bits-per-pixel). This value is also available in MicroEJ platform
-configuration project in order to build a platform with the corresponded
+BPP (bits-per-pixel). This value is also available in MicroEJ Platform
+Configuration project in order to build a MicroEJ Platform with the corresponded
 graphical engine (see ``display/display.properties``). The UI
 qualification bunble tests require this value. So a function must be
 implemented to run UI tests.
 
 The default implementation (the one implemented in the ``weak``
 function, see ``x_impl_config.c``) returns the invalid value ``0``. If
-the weak function is not overrided, the tests which require this value
-throw an assert.
+the weak function is not overridden, the tests which require this value
+throw an assert. See ``x_ui_config.h`` for a mapping between the graphical
+engine and the value used by the BSP. 
 
 **Expected results**
 
@@ -134,12 +184,12 @@ Just run the test.
 
 **Expected results**
 
-The test is quite long to determinate the drawing time.
+The test will take several seconds to determinate the drawing time.
 
 ::
 
    Retrieve the LCD framerate...
-   Retrieve the maximal drawing time (quite long)...
+   Retrieve the maximal drawing time (this will take several seconds)...
 
    LCD framerate time is 17.528000 ms (57.051579 Hz)
    The copy time is 7.708000 ms
@@ -155,59 +205,7 @@ and one this refresh rate divided by three.
 **Notes**
 
 These results can be sent to MicroEJ in order to compare the BSP
-implementation with all others MicroEJ platforms.
-
-SumUp
-=====
-
-Configuration
--------------
-
-1. Add all files of these folders as source files:
-
-   -  ``tests/ui/c/src``
-
-2. Add these folders as include folders:
-
-   -  ``tests/ui/c/inc``
-
-3. Implement all functions defined in these files:
-
-   -  ``x_impl_config.h``: see `Tests Description`_
-
-4. Add a call to the function ``T_UI_main()`` just before the call to
-   ``microjvm_main()``.
-5. In the MicroEJ SDK platform environment, import the MicroEJ project
-   ``JVM.Portage.Validation`` from the folder ``tests/core/java``
-6. Build this MicroEJ application against the platform to qualify
-7. Build the BSP and link it with the MicroEJ platform runtime library
-   and MicroEJ application.
-
-Expected Results
-----------------
-
-::
-
-   Board init finished.
-   ..LCD width = 480
-   LCD height = 272
-   .LCD BPP = 16
-   .LCD back buffer is [0xa0000000, 0xa003fc00[
-   Try to write and verify something in this buffer...
-   .LCD back buffer is [0xa003fc00, 0xa007f800[
-   Try to write and verify something in this buffer...
-   .Refresh LCD content with black and screen data. Ensures about tearing effect..Retrieve the LCD framerate...
-   Retrieve the maximal drawing time (quite long)...
-
-   LCD framerate time is 17.528000 ms (57.051579 Hz)
-   The copy time is 7.708000 ms
-   To have an animation at 57.051579 Hz, the drawing time cannot be higher than 9.820000 ms.
-   To have an animation at 28.525789 Hz, the drawing time cannot be higher than 27.348000 ms.
-   To have an animation at 19.017193 Hz, the drawing time cannot be higher than 44.875999 ms.
-
-   OK (7 tests)
-
---------------
+implementation with all others MicroEJ Platforms.
 
 ..
    Copyright 2019-2020 MicroEJ Corp. All rights reserved.

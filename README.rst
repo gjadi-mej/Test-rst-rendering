@@ -1,104 +1,97 @@
 Description
 ===========
 
-This project allows to qualify a MicroEJ platform. Some tests are
-written in C and have to be added in platform BSP project. Some tests
-are written in Java and have to be launched as a standard MicroEJ
-application.
+The Platform Qualification Tools (PQT) project provides the tools required to validate each component of a MicroEJ Platform.
+After porting or adding a feature to a MicroEJ Platform, it is necessary to validate its integration.
 
-Each feature (*core*, *ui*, *net* etc.) holds its set of tests. However,
-all features (except *core*) consider *core* feature has been fully
-tested and validated.
+Clone this repository with ``git clone --recursive https://github.com/MicroEJ/PlatformQualificationTools``.
 
-C Tests
--------
+Test Suites Available
+=====================
 
-The C tests are using Embunit framework. They have to be launched just
-before MicroEJ application (just before the call to
-``microjvm_main()``). At this moment, the BSP is fully initialized and
-the OS is started.
+CORE Test Suite
+---------------
 
-The C tests perform some basic checks which ensures MicroEJ application
-will run. However, the tests cannot be launched without a MicroEJ
-platform: C tests cannot be linked when a MicroEJ application
-(``microejapp.o``) and a MicroEJ runtime library (``microejruntime.a``)
-are not linked with the BSP.
+The CORE Test Suite contains a C Test Suite and a Java Test Suite. It is the most basic Test Suite to run.
+It ensures MicroEJ Application will run correctly.
 
-The tests require some additional data (some specific functions have to
-be implemented in addition of LLAPI implementation functions). In case
-of these additional functions are not implemented, some parts of tests
-cannot run and some asserts can be thrown.
-
-See `Usage`_ section to have more information on each C test, on
-additional functions to implement and on expected results.
-
-Java Tests
-----------
-
-The Java tests verify the integration of the MicroEJ platform over the
-BSP. No specific testuinit framework is used, each test describes how it
-works.
-
-See `Usage`_ section to have more information on each Java test, on
-additional functions to implement and on expected results.
-
-Folder Description
-------------------
-
-The folder contains C files and Java projects.
-
--  ``/framework`` (common files and third party tools)
-
-   -  ``/c`` (C language)
-
-      -  ``/embunit`` (Embedded Unit framework)
-      -  ``/utils`` (MicroEJ test common files)
-
-         -  ``/src`` (Source files)
-         -  ``/inc`` (Header files)
-
--  ``/tests`` (test source files)
-
-   -  ``/_feature_`` (core, ui, net etc.)
-
-      -  ``/c`` (C language source and header files)
-
-         -  ``/src`` (Source files)
-         -  ``/inc`` (Header files)
-
-      -  ``/java`` (MicroEJ projects)
-
-BSP Project Configuration
-=========================
-
-1. Add all files of these folders as source files:
-
-   -  ``framework/c/embunit``
-   -  ``framework/c/utils/src``
-
-2. Implement all functions defined in these files:
-
-   -  ``u_time_base.h``: Some default weak functions are already
-      implemented and throw some warnings. Without a valid
-      implementation, the *core* feature cannot be fully tested.
-
-3. Optionaly, implement all functions defined in these files:
-
-   -  ``u_print.h``: The default weak functions redirect the trace to
-      ``printf`` API.
-
-Usage
-=====
-
-Core
-----
+All other Test Suites assume the CORE Test Suite is validated.
 
 See `CORE Readme <tests/core/README.rst>`_
 
-UI
---
+UI Test Suite
+-------------
+
+The UI Test Suite is a C Test Suite. It checks the integration of the ``LLDisplay`` API and the tearing signal usage.
+It also provides indication about the minimum draw time allowed to display animations at a given framerate.
 
 See `UI Readme <tests/ui/README.rst>`_
+
+Platform Qualification Tools Overview
+=====================================
+
+The Platform Qualification Tools (PQT) contains:
+
+- a ``framework/`` folder with scripts and frameworks used by the tests
+- a ``tests/`` folder with one sub-folder per Test Suite (e.g. ``tests/core/`` for the CORE Test Suite, etc.)
+
+Each Test Suite sub-folder contains a ``README.rst`` that explain how to use the Test Suite in details.
+
+The following sections give an overview of the Platform Qualification Tools (PQT).
+
+Framework
+---------
+
+The `framework/` folder contains the infrastructure required to build and run the tests.
+
+C infrastructure
+----------------
+
+The ``framework/c/`` folders contains the following:
+
+- Embedded Unit (embUnit) is a unit testing framework used for C tests.
+- CoreMark is a processor benchmark used by the CORE Test Suite.
+- utils provides several utilities used by various C tests
+
+Test Suites
+-----------
+
+The Platform Qualification Tools (PQT) provides two kinds of Test Suite:
+
+- C Test Suite that must be added to the BSP
+- Java Test Suite that are launched as standard MicroEJ Application
+
+A Test Suite validates a particular component of a MicroEJ Platform.
+The CORE Test Suite is applicable to every MicroEJ Platform.
+The other Test Suites depends on the capabilities provided by the MicroEJ Platform to validate.
+
+A detailed explanation how to use each Test Suite is provided in the ``README.rst`` present in each sub-folder.
+For example, for the CORE Test Suite, refer to the `CORE Readme <tests/core/README.rst>`_.
+
+C Test Suites
+-------------
+
+The C Test Suites validate that the hardware and RTOS (if applicable) are properly integrated in the BSP.
+
+The C Test Suites uses Embunit framework. They have to be launched just
+before MicroEJ Application (just before the call to ``microjvm_main()``).
+At this moment, the BSP is fully initialized and the OS is started.
+
+The C Test Suites perform some basic checks which ensures MicroEJ Application
+will run. Unless specified otherwise, C Test Suites are linked with a MicroEJ Application
+(``microejapp.o``) and a MicroEJ runtime library (``microejruntime.a``).
+
+The C Test Suites often require some additional data (some specific functions have to
+be implemented in addition of LLAPI implementation functions).
+
+Java Test Suites
+----------------
+
+The Java Test Suites validate the Foundation Libraries integration.
+
+The Java Test Suites verify the integration of the MicroEJ Platform over the
+BSP. No specific unit test framework is used, each test describes how it
+works.
 
 ..
    Copyright 2019-2020 MicroEJ Corp. All rights reserved.

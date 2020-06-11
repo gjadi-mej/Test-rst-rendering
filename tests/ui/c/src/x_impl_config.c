@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "x_ram_checks.h"
+#include "x_ui_config.h"
 #include "bsp_util.h"
 
 

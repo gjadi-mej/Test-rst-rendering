@@ -67,7 +67,7 @@ static void T_UI_API_checkSize(void)
 }
 
 /*
- * Check LCD BPP (bit-per-pixel). This API is not mandatory in BSP project and required in MicroEJ platform configuration project.
+ * Check LCD BPP (bit-per-pixel). This API is not mandatory in BSP project and required in MicroEJ Platform configuration project.
  * This value is useful to perform some additional checks.
  */
 static void T_UI_API_checkBPP(void)
