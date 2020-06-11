@@ -7,7 +7,7 @@ Overview
 ========
 
 This folder is a part of a project which gathers the Platform Qualification Tools.
-It contains sources and projects to check drivers and implementation of print, time base, RAM, Core, and micro JVM.
+It contains sources and projects to check drivers and implementation of print, time base, RAM, Core, and MicroEJ Core.
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
