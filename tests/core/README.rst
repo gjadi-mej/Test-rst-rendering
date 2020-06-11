@@ -53,7 +53,7 @@ Configuration
 
 5. Include ``t_core_main.h`` header and add a call to the function
    ``T_CORE_main()`` just before the call to ``microej_main()``.
-6. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``
+6. In the MicroEJ SDK, import the MicroEJ project ``microej-core-validation`` from the folder ``tests/core/java``
 7. Build this MicroEJ Application against the MicroEJ Platform to qualify
 8. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
 
