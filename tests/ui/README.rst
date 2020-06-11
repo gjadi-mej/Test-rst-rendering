@@ -56,7 +56,7 @@ Expected Results
    .LCD back buffer is [0xa003fc00, 0xa007f800[
    Try to write and verify something in this buffer...
    .Refresh LCD content with black and screen data. Ensures about tearing effect..Retrieve the LCD framerate...
-   Retrieve the maximal drawing time (quite long)...
+   Retrieve the maximal drawing time (this will take several seconds)...
 
    LCD framerate time is 17.528000 ms (57.051579 Hz)
    The copy time is 7.708000 ms
@@ -184,12 +184,12 @@ Just run the test.
 
 **Expected results**
 
-The test is quite long to determinate the drawing time.
+The test will take several seconds to determinate the drawing time.
 
 ::
 
    Retrieve the LCD framerate...
-   Retrieve the maximal drawing time (quite long)...
+   Retrieve the maximal drawing time (this will take several seconds)...
 
    LCD framerate time is 17.528000 ms (57.051579 Hz)
    The copy time is 7.708000 ms

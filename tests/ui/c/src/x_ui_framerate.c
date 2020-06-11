@@ -110,7 +110,7 @@ void X_UI_FRAMERATE_get(uint32_t buffer_address, uint32_t* framerate_time_us, ui
 	TEST_DBG("\n");
 
 	// retrieve maximum time to perform some drawings without changing LCD minimal framerate time
-	UTIL_print_string("Retrieve the maximal drawing time (quite long)...\n");
+	UTIL_print_string("Retrieve the maximal drawing time (this will take several seconds)...\n");
 	uint32_t drawing_time_us = 0;
 	for(uint32_t drawing_time_step_us = 1000; drawing_time_step_us >= 10; drawing_time_step_us /= 10)
 	{
