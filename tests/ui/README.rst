@@ -37,7 +37,7 @@ Configuration
    -  ``x_impl_config.h``: see `Tests Description`_
 
 4. Add a call to the function ``T_UI_main()`` just before the call to
-   ``microjvm_main()``.
+   ``microej_main()``.
 5. In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``.
 6. Build this MicroEJ Application against the MicroEJ Platform to qualify.
 7. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
