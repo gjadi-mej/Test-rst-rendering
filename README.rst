@@ -12,7 +12,7 @@ Test Suites Available
 CORE Test Suite
 ---------------
 
-The CORE Test Suite is a C Test Suite. It is the most basic Test Suite to run.
+The CORE Test Suite contains a C Test Suite and a Java Test Suite. It is the most basic Test Suite to run.
 It ensures MicroEJ Application will run correctly.
 
 All other Test Suites assume the CORE Test Suite is validated.
