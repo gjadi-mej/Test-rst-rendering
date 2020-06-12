@@ -327,8 +327,8 @@ To run this test, create ``core_portme.h`` and ``core_portme.h`` files to port E
    Correct operation validated. See readme.txt for run and reporting rules.
    CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
 
-MicroEJ Portage Validation: JVM.Portage.Validation
---------------------------------------------------
+MicroEJ Core Validation
+-----------------------
 
 This MicroEJ Application validates the LLAPI ``LLMJVM_impl.h``
 implementation executing several tests. Two first tests check the time,
@@ -336,16 +336,12 @@ and require an human check to be sure the time is correct.
 
 **Configuration**
 
-In the MicroEJ SDK, import the MicroEJ project ``JVM.Portage.Validation`` from the folder ``tests/core/java``.
-Build this MicroEJ Application against the MicroEJ Platform to qualify.
-Link it with the BSP.
+In the MicroEJ SDK, import the MicroEJ project `microej-core-validation <./java/microej-core-validation/>`_ from the folder ``tests/core/java``.
+Follow the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_ to build and link this MicroEJ Application against the MicroEJ Platform to qualify.
 
 **Expected results**
 
-No error must be thrown when executing this test:
-
-::
-
-Follow the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_.
+No error must be thrown when executing this test. A typical execution trace is described in the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_
+(the visible clock accuracy must be compared manually with an external clock).
 
 
