@@ -1,7 +1,8 @@
 /*
- * Copyright 2014-2019 MicroEJ Corp. All rights reserved.
- * For demonstration purpose only.
- * MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * C
+ *
+ * Copyright 2014-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 
 #include <stdlib.h>
@@ -495,7 +496,7 @@ uint32_t X_RAM_CHECKS_checkAddress16(void)
 	
 	for (z = 0; z < X_RAM_CHECKS_get16bitZoneNumber(); z++)
 	{
-    while (p < (((zones[z].end_address - zones[z].start_address) / (sizeof(uint16_t))) * (UINT16_MAX + 1)))
+    while (p < ((zones[z].end_address - zones[z].start_address) / (sizeof(uint16_t) * (UINT16_MAX + 1))))
     {
       pointer = (uint16_t *) zones[z].start_address;  
 			for (i = 0; i < UINT16_MAX; i++)

@@ -1,7 +1,8 @@
 /*
- * Copyright 2019 MicroEJ Corp. All rights reserved.
- * For demonstration purpose only.
- * MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ * C
+ *
+ * Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 
 /* Prevent recursive inclusion */
@@ -26,12 +27,12 @@
  * @fn void UTIL_TIME_BASE_initialize(void)
  * @brief This function is called by the SetUp functions of tests wich require some time references.
  *
- * @fn uint64_t UTIL_TIME_BASE_getTime(void)
+ * @fn int64_t UTIL_TIME_BASE_getTime(void)
  * @brief This function provides a time reference for tests
  * @return a current time in microsecond (µs)
  */
 void UTIL_TIME_BASE_initialize(void);
-uint64_t UTIL_TIME_BASE_getTime(void);
+int64_t UTIL_TIME_BASE_getTime(void);
 
 #ifdef __cplusplus
 }
