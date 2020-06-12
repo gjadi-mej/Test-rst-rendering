@@ -47,8 +47,8 @@ Fixed
 1.0.0 - 2019-03-07
 ------------------
 
- Added
-=======
+Added
+=====
 
 - Initial revision with CORE tests only.
   
