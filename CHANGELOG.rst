@@ -17,7 +17,7 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 Fixed
 =====
 
-  - Fix speed value when less than 3 zones are defined 
+  - Fix speed computation when less than 3 zones are defined
 
 
 ------------------
