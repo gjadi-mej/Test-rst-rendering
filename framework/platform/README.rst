@@ -1,7 +1,7 @@
 MicroEJ Platform Configuration Additions
 ========================================
 
-This directory contains all required files to properly configure an empty MicroEJ Platform project connected to a third party C BSP (Board Support Package).
+This directory contains all required files to properly configure an empty MicroEJ Platform project connected to a third party C BSP (Board Support Package) project.
 
 - The ``content`` directory contains files that must be installed in a MicroEJ Platform configuration directory (the directory that contains the ``.platform`` file).
   It can be automatically downloaded using the following command line:
