@@ -13,7 +13,7 @@ This directory contains all required files to properly configure an empty MicroE
 - The ``scripts`` directory contains ready to use console scripts templates to invoke the build and the run of 
   a MicroEJ Firmware using a third party C toolchain or IDE (IAR Embedded Workbench, Keil MDK-ARM, Espressif ESP-IDF toolchain, ...)
 
-Please refer to `MicroEJ Platform creation documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/createNewPlatform.html>`_ for usage and options.
+Please refer to `MicroEJ Platform creation documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html>`_ for usage and options.
 
 .. ReStructuredText
 .. Copyright 2020 MicroEJ Corp. All rights reserved.
