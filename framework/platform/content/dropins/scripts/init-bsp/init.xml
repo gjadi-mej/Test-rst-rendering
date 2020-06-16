@@ -64,13 +64,33 @@
 
 	<target name="init/bsp/defaultRootDir" depends="init/bsp/check" if="deploy.bsp.root.dir.required">
 		<!-- 
-			Set the option 'deploy.bsp.root.dir' to the BSP location
+			Set the option 'deploy.bsp.root.dir.computed' to the BSP location
 		-->		
 		
 		<!-- 
-			Connect to the property 'deploy.bsp.local.root.dir', only if the directory exist (local usage)
+			Connect to application option 'deploy.bsp.root.dir' if not empty
 		-->
-		<condition property="deploy.bsp.root.dir" value="${deploy.bsp.local.root.dir}">
+		<condition property="deploy.bsp.root.dir.computed" value="${deploy.bsp.root.dir}">
+			<not>
+				<equals arg1="" arg2="${deploy.bsp.root.dir}"/>
+			</not>
+		</condition>
+		<condition property="deploy.bsp.root.dir.source" value="application option 'deploy.bsp.root.dir'">
+			<not>
+				<equals arg1="" arg2="${deploy.bsp.root.dir}"/>
+			</not>
+		</condition>
+		
+		
+		<!-- 
+			Connect to the property 'deploy.bsp.local.root.dir' defined at platform build, only if the directory exist (local usage)
+		-->
+		<condition property="deploy.bsp.root.dir.computed" value="${deploy.bsp.local.root.dir}">
+			<resourceexists>
+				<file file="${deploy.bsp.local.root.dir}"/>
+			</resourceexists>
+		</condition>
+		<condition property="deploy.bsp.root.dir.source" value="platform option 'root.dir' in 'bsp/bsp.properties'">
 			<resourceexists>
 				<file file="${deploy.bsp.local.root.dir}"/>
 			</resourceexists>
@@ -79,7 +99,12 @@
 		<!--
 			Connect to the Platform BSP directory, only if the platform includes the BSP
 		-->
-		<condition property="deploy.bsp.root.dir" value="${platform.dir}/bsp">
+		<condition property="deploy.bsp.root.dir.computed" value="${platform.dir}/bsp">
+			<resourceexists>
+				<file file="${platform.dir}/bsp"/>
+			</resourceexists>
+		</condition>
+		<condition property="deploy.bsp.root.dir.source" value="platform included 'bsp' folder">
 			<resourceexists>
 				<file file="${platform.dir}/bsp"/>
 			</resourceexists>
@@ -94,18 +119,22 @@
       				<echoProperty property="deploy.bsp.root.dir" value="path_to_bsp/" file="${build-and-deploy.target.properties.file}" />
 			</target>
 		-->
-		<condition property="deploy.bsp.root.dir" value="${toolchain.dir}">
+		<condition property="deploy.bsp.root.dir.computed" value="${toolchain.dir}">
+			<isset property="toolchain.dir"/>
+		</condition>
+		<condition property="deploy.bsp.root.dir.source" value="build option 'toolchain.dir'">
 			<isset property="toolchain.dir"/>
 		</condition>		
 		
 		<fail message="Please specify the BSP location (application option 'deploy.bsp.root.dir', also linked from build option 'toolchain.dir').">
 			<condition>
 				<not>
-					<isset property="deploy.bsp.root.dir"/>
+					<isset property="deploy.bsp.root.dir.computed"/>
 				</not>		
 			</condition>			
 		</fail>
-		<echo message="Platform connected to BSP location '${deploy.bsp.root.dir}'"></echo>
+		<echo message="Platform connected to BSP using ${deploy.bsp.root.dir.source}." level="verbose"/>
+		<echo message="Platform connected to BSP location '${deploy.bsp.root.dir.computed}'"/>
 	</target>
 
 </project>
