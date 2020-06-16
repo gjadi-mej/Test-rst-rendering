@@ -141,8 +141,7 @@
 				</not>		
 			</condition>			
 		</fail>
-		<echo message="Platform connected to BSP using ${deploy.bsp.root.dir.source}." level="verbose"/>
-		<echo message="Platform connected to BSP location '${deploy.bsp.root.dir.computed}'"/>
+		<echo message="Platform connected to BSP location '${deploy.bsp.root.dir.computed}' using ${deploy.bsp.root.dir.source}."/>
 	</target>
 
 </project>
