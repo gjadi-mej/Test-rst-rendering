@@ -15,21 +15,32 @@
 	<property name="deploy.script" value="deployInBSP.xml"/>
 	
 	<target name="init/bsp/options" extensionOf="init/workbench" if="onBoard" depends="init/bsp/defaultRootDir">
-		<!-- Load the full BSP properties file, with property 'deploy.bsp.root.dir' resolved. -->
-		<loadproperties srcfile="${deploy.bsp.properties.file}"/>
 	</target>	
 
+	<macrodef name="init.deploy.bsp.element.default.value">
+		<attribute name="type"/>
+		<sequential>
+			<condition property="deploy.bsp.microej@{type}" value="true" else="false">
+				<isset property="deploy.bsp.microej@{type}.relative.dir"/>
+			</condition>
+		</sequential>
+	</macrodef>
+	
 	<target name="init/bsp/check" if="onBoard">
+		<!-- Load the platform BSP properties file -->
+		<loadproperties srcfile="${deploy.bsp.properties.file}"/>
+
+		<!-- Initialize default values for automatic deployment properties, in case they have not been explicitely set -->
+		<!-- 'microejapp.o', 'microejruntime.a' and '.h' LL header files are automatically copied by default if the Platform defines a relative location -->
+		<init.deploy.bsp.element.default.value type="app"/>
+		<init.deploy.bsp.element.default.value type="inc"/>
+		<init.deploy.bsp.element.default.value type="lib"/>
 		<!-- 
-			Load only the property 'deploy.bsp.available'
+			Even if a relative directory has been specified by the Platform, the build script is not invoked by default.  
+			The option has to be explicitly set to 'true' by the application developer
 		-->
-		<loadproperties srcfile="${deploy.bsp.properties.file}" >
-			<filterchain>
-				<linecontains>
-					<contains value="deploy.bsp.available" />
-				</linecontains>
-			</filterchain>
-		</loadproperties>
+		<property name="deploy.bsp.microejscript" value="false"/>
+
 		
 		<!--
 			Check if the property 'deploy.bsp.root.dir' must be initialized
@@ -59,13 +70,6 @@
 		<!-- 
 			Connect to the property 'deploy.bsp.local.root.dir', only if the directory exist (local usage)
 		-->
-		<loadproperties srcfile="${deploy.bsp.properties.file}" >
-			<filterchain>
-				<linecontains>
-					<contains value="deploy.bsp.local.root.dir" />
-				</linecontains>
-			</filterchain>
-		</loadproperties>
 		<condition property="deploy.bsp.root.dir" value="${deploy.bsp.local.root.dir}">
 			<resourceexists>
 				<file file="${deploy.bsp.local.root.dir}"/>
