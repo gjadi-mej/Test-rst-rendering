@@ -220,7 +220,7 @@
 				</and>
 			</condition>	
 			
-			<fail message="Option 'deploy.bsp.microej@{type}' is enabled but this Platform does no define a well-known location. Either update the Platform configuration or disable this option and set the output directory using option 'deploy.dir.microej@{type}'">
+			<fail message="Option 'deploy.bsp.microej@{type}' is enabled but this Platform does no define a well-known location. Either update the Platform configuration (option 'deploy.bsp.microej@{type}.relative.dir' in 'bsp/bsp.properties') or disable this option.">
 				<condition>
 					<and>
 				         <istrue value="${deploy.bsp.microej@{type}}"/>
