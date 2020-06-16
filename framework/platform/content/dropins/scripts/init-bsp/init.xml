@@ -73,14 +73,20 @@
 			Connect to application option 'deploy.bsp.root.dir' if not empty
 		-->
 		<condition property="deploy.bsp.root.dir.computed" value="${deploy.bsp.root.dir}">
-			<not>
-				<equals arg1="" arg2="${deploy.bsp.root.dir}"/>
-			</not>
+			<and>
+				<isset property="deploy.bsp.root.dir"/>		
+				<not>
+					<equals arg1="" arg2="${deploy.bsp.root.dir}"/>
+				</not>
+			</and>
 		</condition>
 		<condition property="deploy.bsp.root.dir.source" value="application option 'deploy.bsp.root.dir'">
-			<not>
-				<equals arg1="" arg2="${deploy.bsp.root.dir}"/>
-			</not>
+			<and>
+				<isset property="deploy.bsp.root.dir"/>		
+				<not>
+					<equals arg1="" arg2="${deploy.bsp.root.dir}"/>
+				</not>
+			</and>
 		</condition>
 		
 		
