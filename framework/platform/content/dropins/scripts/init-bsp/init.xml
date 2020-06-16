@@ -26,6 +26,18 @@
 		</sequential>
 	</macrodef>
 	
+	<macrodef name="init.deploy.bsp.bsp.root.dir.required">
+		<attribute name="type"/>
+		<sequential>
+			<condition property="deploy.bsp.root.dir.required" value="true">
+				<istrue value="${deploy.bsp.microej@{type}}"/>
+			</condition>
+			<condition property="deploy.bsp.root.dir.required.optioncause" value="deploy.bsp.microej@{type}">
+				<istrue value="${deploy.bsp.microej@{type}}"/>
+			</condition>
+		</sequential>
+	</macrodef>
+	
 	<target name="init/bsp/check" if="onBoard">
 		<!-- Load the platform BSP properties file -->
 		<loadproperties srcfile="${deploy.bsp.properties.file}"/>
@@ -46,20 +58,10 @@
 			Check if the property 'deploy.bsp.root.dir' must be initialized
 			(silently do nothing if the platform has not been configured to output to a BSP location or if none of the 4 output well known options is set) 
 		-->
-		<condition property="deploy.bsp.root.dir.required" value="true">
-			<and>
-				<istrue value="${deploy.bsp.available}"/>
-				<or>
-					<istrue value="${deploy.bsp.microejapp}"/>
-					<istrue value="${deploy.bsp.microejlib}"/>
-					<istrue value="${deploy.bsp.microejinc}"/>
-					<istrue value="${deploy.bsp.microejscript}"/>
-				</or>
-				<not>
-					<isset property="deploy.bsp.root.dir"/>
-				</not>
-			</and>
-		</condition>
+		<init.deploy.bsp.bsp.root.dir.required type="app"/>
+		<init.deploy.bsp.bsp.root.dir.required type="lib"/>
+		<init.deploy.bsp.bsp.root.dir.required type="inc"/>
+		<init.deploy.bsp.bsp.root.dir.required type="script"/>
 	</target>
 
 	<target name="init/bsp/defaultRootDir" depends="init/bsp/check" if="deploy.bsp.root.dir.required">
@@ -126,7 +128,7 @@
 			<isset property="toolchain.dir"/>
 		</condition>		
 		
-		<fail message="Please specify the BSP location (application option 'deploy.bsp.root.dir', also linked from build option 'toolchain.dir').">
+		<fail message="Please specify the BSP project location (application option 'deploy.bsp.root.dir'), or disable option '${deploy.bsp.root.dir.required.optioncause}'.">
 			<condition>
 				<not>
 					<isset property="deploy.bsp.root.dir.computed"/>
