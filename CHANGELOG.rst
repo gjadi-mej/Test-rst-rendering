@@ -18,6 +18,7 @@ Fixed
 =====
 
 - Add missing symbol ``core_main`` and improve the documentation on how to run CoreMark benchmark.
+- Fix speed computation when less than 3 zones are defined
 
 ------------------
 2.1.0 - 2020-06-10
