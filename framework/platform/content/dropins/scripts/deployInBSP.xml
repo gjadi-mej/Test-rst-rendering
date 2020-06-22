@@ -145,11 +145,17 @@
 		Copy platform header files at location set during platform or application build.
 	-->
 	<target name="deployInBSP:copy:inc:dir" extensionOf="deployInBSP:copy:custom" if="deploy.bsp.microejinc.dir">
-		
+		<!-- 
+			Copy only header files to BSP that are not present and those which content is not the same
+			(avoid to trigger useless compilation steps) 
+		-->
 		<copy todir="${deploy.bsp.microejinc.dir}" overwrite="true">
-			<fileset dir="${jpf.dir}/include" includes="**/*"/>
+			<fileset dir="${jpf.dir}/include" includes="**/*">
+			    <different targetdir="${deploy.bsp.microejinc.dir}"
+			        ignoreFileTimes="true"/>
+			</fileset>
 		</copy>
-		
+				
 		<deploy.printReport 
 			message="The MicroEJ platform header files (*.h) have been deployed to"
 			location="${deploy.bsp.microejinc.dir}"
