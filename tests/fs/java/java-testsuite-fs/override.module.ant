@@ -10,5 +10,8 @@
 		<ac:then>
 			<property file="config.properties"/>
 		</ac:then>
+		<ac:else>
+			<fail message="Please specify a 'config.properties' file derived from 'config.properties.template' in '${basedir}' directory."/>
+		</ac:else>
 	</ac:if>
 </project>
