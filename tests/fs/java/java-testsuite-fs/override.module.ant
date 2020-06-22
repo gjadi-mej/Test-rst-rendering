@@ -5,13 +5,13 @@
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
 <project name="jpf.testsuite.fs.override" xmlns:ac="antlib:net.sf.antcontrib">
+	<!-- Load options from 'local.properties' beside this file -->
 	<ac:if>
-		<available file="config.properties" type="file"/>
+		<available file="local.properties" type="file"/>
 		<ac:then>
-			<property file="config.properties"/>
+			<property file="local.properties"/>
 		</ac:then>
-		<ac:else>
-			<fail message="Please specify a 'config.properties' file derived from 'config.properties.template' in '${basedir}' directory."/>
-		</ac:else>
 	</ac:if>
+	<!-- Load options from 'config.properties' beside this file -->
+	<property file="config.properties"/>
 </project>

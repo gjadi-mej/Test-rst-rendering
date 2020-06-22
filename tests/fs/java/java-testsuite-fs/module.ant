@@ -17,22 +17,4 @@
 			</not>
 		</condition>
 	</target>
-
-
-	<!-- We should rename the embPartialLink launch to fullLink if a fullLink does not exist and an embPartialLink exist -->
-	<target name="jpf:rename-launch-check">
-		<condition property="should.rename.launch">
-			<and>
-				<available file="${microej-testsuite.platform.dir}/scripts/embPartialLink.microejLaunch" type="file" />
-				<not>
-					<available file="${microej-testsuite.platform.dir}/scripts/fullLink.microejLaunch" type="file" />
-				</not>
-			</and>
-		</condition>
-	</target>
-
-	<target name="jpf:rename-launch" depends="jpf:rename-launch-check" if="should.rename.launch" extensionOf="microej-testsuite:test-ready">
-		<move file="${microej-testsuite.platform.dir}/scripts/embPartialLink.microejLaunch" 
-			tofile="${microej-testsuite.platform.dir}/scripts/fullLink.microejLaunch" />
-	</target>
 </project>
