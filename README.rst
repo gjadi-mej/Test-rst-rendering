@@ -56,7 +56,7 @@ The ``framework/c/`` folders contains the following:
 Platform Configuration Additions
 --------------------------------
 
-The ``framework/platform/`` folder the MicroEJ Platform Configuration Additions.
+The ``framework/platform/`` folder contains the MicroEJ Platform Configuration Additions.
 See the `Platform Configuration Additions README <framework/platform/README.rst>`_ for more information.
 
 Test Suites
