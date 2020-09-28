@@ -29,5 +29,9 @@
     		To freeze the module version, add the following attribute: ej:match="perfect"    	
     	-->
 		<dependency org="com.microej.pack.net" name="net-embedded-testsuite" rev="4.0.0"/>
+    	<!-- 
+    		Add the following dependency if running the testsuite over Wi-Fi.    	
+		<dependency org="com.microej.pack.net" name="net-embedded-testsuite-wifi" rev="2.0.0"/>
+    	-->
     </dependencies>
 </ivy-module>
