@@ -48,60 +48,12 @@
 	<property name="releasenotes.ext" value="rst" />
 
 	<!--
-		===================================================
-		Prepare wip
-		===================================================
+		Import all build/module-*.ant files
 	-->
-	
-	<target name="frontpanel:init">
-		<property file="${project.dir}/frontpanel/frontpanel.properties" prefix="fp"/>
-		<property name="fp.project.dir" location="${workspace.dir}/${fp.project.name}"/>
-
-		<!-- check if project is fp v6 project -->
-		<property name="fp.project.file" location="${fp.project.dir}/.project"/>
-		<property name="fp.project.ivy.file" location="${fp.project.dir}/module.ivy"/>
-		<condition property="fp.project.isV6">
-			<and>
-				<available file="${fp.project.dir}" type="dir"/>
-				<available file="${fp.project.file}" type="file"/>
-				<available file="${fp.project.ivy.file}" type="file"/>
-				<resourcecontains resource="${fp.project.file}" substring="&lt;nature&gt;ej.fp.v6.projectnature&lt;/nature&gt;"/>
-			</and>
-		</condition>
-	</target>
-
-	<target name="frontpanel:resolve" depends="frontpanel:init" extensionOf="abstract-compile:compile-ready" if="fp.project.isV6">
-
-		<!-- delete potential dependencies -->
-		<delete dir="${fp.project.dir}/lib"/>
-
-		<!--
-			Resolve frontpanel project dependencies in a separate Ivy context.
-			Use the project ivysettings since front panel artifacts are deployed in the central repository, not in the build types repository.
-		-->
-		<ivy:settings file="${project.ivy.settings.file}" id="fp.ivysettings"/>
-		<ivy:resolve
-			file="${fp.project.dir}/module.ivy"
-			conf="default,provided"
-			settingsref="fp.ivysettings"
-		/>
-		<ivy:retrieve
-			pattern="${fp.project.dir}/lib/[type]s/[artifact](-[classifier])-[revision].[ext]"
-			settingsref="fp.ivysettings"
-		/>
-	</target>
-
-	<!-- Copy all unzipped RIP into the dropins folder -->
-    <target name="platform:rips:install" depends="mam:init" extensionOf="abstract-compile:compile-ready">
-    	<property name="dropins.dir" location="${project.dir}/dropins"/>
-		<path id="allRips">
-		 	<fileset dir="${dependencies.output.dir}" includes="*.rip" erroronmissingdir="false"/>
-		</path>
-
-		<mam:copy destdir="${dropins.dir}">
-			<artifacts refid="allRips"/>
-		</mam:copy>
-    </target>
+	<import optional="true">
+		<fileset dir="${project.dir}/build" includes="module-*.ant" />
+		<path location="DUMMY" /> <!-- ensure the nested resources set is not empty -->
+	</import>
 	
 	<!--
 		===================================================
