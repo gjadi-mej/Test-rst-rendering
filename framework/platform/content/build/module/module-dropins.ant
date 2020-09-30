@@ -12,7 +12,7 @@
 	-->
 
     <target name="platform:rips:install" depends="mam:init" extensionOf="abstract-compile:compile-ready">
-    	<property name="dropins.dir" location="${project.dir}/dropins"/>
+    	<property name="dropins.dir" location="${module.dir}/dropins"/>
 		<path id="allRips">
 		 	<fileset dir="${dependencies.output.dir}" includes="*.rip" erroronmissingdir="false"/>
 		</path>

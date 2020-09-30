@@ -14,7 +14,7 @@
 	<dirname file="${ant.file.module-bsp}" property="module-bsp.dir"/>
 	<import file="${module-bsp.dir}/module-platform.ant"/>
 	
-	<property name="bsp.project.name" value="${project.prefix}-bsp"/>
+	<property name="bsp.project.name" value="${module.prefix}-bsp"/>
 	<property name="bsp.project.dir" location="${workspace.dir}/${bsp.project.name}"/>
 	<property name="bsp.project.microej.dir" value="${bsp.project.dir}/Projects/microej" description="Needed by mccom-install plugin"/>
 	

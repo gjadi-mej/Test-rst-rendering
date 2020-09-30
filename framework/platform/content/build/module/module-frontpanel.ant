@@ -13,7 +13,7 @@
 	-->
 
 	<target name="frontpanel:init">
-		<property file="${project.dir}/frontpanel/frontpanel.properties" prefix="fp"/>
+		<property file="${module.dir}/frontpanel/frontpanel.properties" prefix="fp"/>
 		<property name="fp.project.dir" location="${workspace.dir}/${fp.project.name}"/>
 
 		<!-- check if project is fp v6 project -->

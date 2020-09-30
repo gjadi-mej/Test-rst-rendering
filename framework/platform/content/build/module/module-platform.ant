@@ -15,7 +15,7 @@
 	
 	<property name="eclipse-antRunner.build.target" value="jpf:build"/>
 	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
-	<property name="eclipse-antRunner.build.script" location="${project.dir}/build/module/module-platform/build.ant"/>
+	<property name="eclipse-antRunner.build.script" location="${module.dir}/build/module/module-platform/build.ant"/>
 
 	<!-- Check if the MicroEJ Architecture is available --> 
 	<target name="platform:architecture:check" >
@@ -44,7 +44,7 @@
 		<runEclipseAntRunner>
 			<args.properties>
 				<jvmarg value="-Dmicroej.repository=${target}/microejRepository"/>
-				<arg value="-Djpf.configuration.file=${project.dir}/${platform.filename}"/>
+				<arg value="-Djpf.configuration.file=${module.dir}/${platform.filename}"/>
 				<arg value="-Dmicroej.architecture.dir=${microej.architecture.dir}"/>
 				<arg value="-Dant.file.com.is2t.easyant.plugins;eclipse-antRunner=${ant.file.com.is2t.easyant.plugins;eclipse-antRunner}"/>
 				<arg value="-Dplatform.project.name=${platform.project.name}"/>

@@ -19,20 +19,18 @@
 		Defines some properties used in this configuration project 
 		(in ant and properties files)
 	-->
-	<dirname file="${ant.file.module}" property="project.dir"/>
-	<dirname file="${project.dir}" property="workspace.dir"/>
+	<dirname file="${ant.file.module}" property="module.dir"/>
+	<dirname file="${module.dir}" property="workspace.dir"/>
+	<basename file="${module.dir}" suffix="-configuration" property="module.prefix"/>
 
-	<basename file="${project.dir}" suffix="-configuration" property="project.prefix"/>
-	<property name="jpf.configuration.file" value="${project.dir}/${platform.filename}"/>
-
-	<property name="platform.project.name" value="${project.prefix}-platform"/>
+	<property name="platform.project.name" value="${module.prefix}-platform"/>
 	<property name="platform.project.dir" location="${workspace.dir}/${platform.project.name}"/>
 	
 	<!--
 		Import all scripts/module/module-*.ant files
 	-->
 	<import optional="true">
-		<fileset dir="${project.dir}/build/module" includes="module-*.ant" />
+		<fileset dir="${module.dir}/build/module" includes="module-*.ant" />
 		<path location="DUMMY" /> <!-- ensure the nested resources set is not empty -->
 	</import>
 	
