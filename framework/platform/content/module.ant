@@ -4,145 +4,36 @@
 	Copyright 2020 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
-<project name="module-platform" xmlns:ea="antlib:org.apache.easyant" xmlns:mam="antlib:com.is2t.mam.ant" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="module">
 
 	<!--
-		This script is called by easyant.
+		Script called by MicroEJ Workbench when building the easyant module.
 	-->
 	
 	<!--
 		Required properties 
 	-->
-	<fail unless="eclipse.home" message="Set the MicroEJ SDK directory path in the `eclipse.home` property (If you are using easyant-build-component framework the full name of the property is `easyant.inject.eclipse.home`)."/>
 	<fail unless="platform.filename" message="Set the name of the `.platform` file in the `platform.filename` property"/>
 	
 	<!--
-		Compute properties 
+		Defines some properties used in this configuration project 
+		(in ant and properties files)
 	-->
-	<dirname file="${ant.file.module-platform}" property="project.dir"/>
+	<dirname file="${ant.file.module}" property="project.dir"/>
 	<dirname file="${project.dir}" property="workspace.dir"/>
 
-	<property name="platform.output.dir" location="${target}/platform"/>
 	<basename file="${project.dir}" suffix="-configuration" property="project.prefix"/>
 	<property name="jpf.configuration.file" value="${project.dir}/${platform.filename}"/>
 
-	<property name="eclipse-antRunner.build.target" value="jpf:build"/>
-	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
-	<property name="eclipse-antRunner.build.script" location="${project.dir}/build/build-platform.ant"/>
-
-	<property name="wip.project.name" value="${project.prefix}-platform"/>
-	<property name="wip.project.dir" location="${workspace.dir}/${wip.project.name}"/>
-	<property name="bsp.project.name" value="${project.prefix}-bsp"/>
-	<property name="bsp.project.dir" location="${workspace.dir}/${bsp.project.name}"/>
-	<property name="bsp.project.microej.dir" value="${bsp.project.dir}/Projects/microej" description="Needed by mccom-install plugin"/>
-	<condition property="include.bsp" value="true" else="false">
-		<available file="${bsp.project.dir}" type="dir"/>
-	</condition>
+	<property name="platform.project.name" value="${project.prefix}-platform"/>
+	<property name="platform.project.dir" location="${workspace.dir}/${platform.project.name}"/>
 	
-	<!-- Use the ea plugins readme and changelog with these properties -->
-	<property name="readme.dir" value="${workspace.dir}" />
-	<property name="readme.ext" value="rst" />
-	<property name="changelog.dir" value="${workspace.dir}" />
-	<property name="changelog.ext" value="rst" />
-	<property name="releasenotes.dir" value="${workspace.dir}" />
-	<property name="releasenotes.ext" value="rst" />
-
 	<!--
-		Import all build/module-*.ant files
+		Import all scripts/module/module-*.ant files
 	-->
 	<import optional="true">
-		<fileset dir="${project.dir}/build" includes="module-*.ant" />
+		<fileset dir="${project.dir}/build/module" includes="module-*.ant" />
 		<path location="DUMMY" /> <!-- ensure the nested resources set is not empty -->
 	</import>
 	
-	<!--
-		===================================================
-		Build wip 
-		===================================================
-	-->
-	
-	<!-- Check if the MicroEJ Architecture is available --> 
-	<target name="platform:architecture:check" >
-
-		<fail unless="dependencies.output.dir"/>
-		<!-- By default the MicroEJ Architecture is loaded from the ivy dependencies. --> 
-		<property name="microej.architecture.dir" location="${dependencies.output.dir}"/>
-		
-		<fail message="
-			No MicroEJ Architecture found in ${microej.architecture.dir} directory.${line.separator}
-			You can reference the MicroEJ Architecture:${line.separator}
-			- by adding a dependency in your Ivy file and so retrieve it using Ivy,${line.separator}
-			- or by setting the `microej.architecture.dir` property with the path to the directory that contains the pre-loaded MicroEJ Architecture.${line.separator}
-			(If you are using easyant-build-component framework	the full name of the property is `easyant.inject.microej.architecture.dir`.)
-			">
-			<condition>
-				<resourcecount when="equal" count="0">
-					<fileset dir="${microej.architecture.dir}" includes="*.xpf*" erroronmissingdir="false"/>
-				</resourcecount>
-			</condition>
-		</fail>
-	</target>
-	
-	<target name="wip:build" depends="-eclipse-antRunner:init,platform:architecture:check">
-		<mkdir dir="${platform.output.dir}"/>
-
-		<!-- Build the platform -->
-		<runEclipseAntRunner>
-			<args.properties>
-				<jvmarg value="-Dmicroej.repository=${target}/microejRepository"/>
-				<arg value="-Djpf.configuration.file=${project.dir}/${platform.filename}"/>
-				<arg value="-Djpf.output.dir=${target}"/>
-				<arg value="-Dmicroej.architecture.dir=${microej.architecture.dir}"/>
-				<arg value="-Dant.file.com.is2t.easyant.plugins;eclipse-antRunner=${ant.file.com.is2t.easyant.plugins;eclipse-antRunner}"/>
-				<arg value="-Dplatform.project.name=${wip.project.name}"/>
-				<arg value="-Dscripts.dir=${target}/scripts"/>
-			</args.properties>
-		</runEclipseAntRunner>
-	</target>
-	
-	<target name="wip:copy" extensionOf="abstract-compile:compile" depends="wip:build">
-		<copy todir="${platform.output.dir}/${wip.project.name}">
-			<fileset dir="${wip.project.dir}" includes="**/*"/>
-		</copy>
-	</target>
-	
-	<!-- 
-		===================================================
-		Copy the bsp
-		===================================================
-	-->
-	<target name="bsp:copy" extensionOf="abstract-compile:compile" if="${include.bsp}" unless="skip.publish-local">
-		<copy todir="${platform.output.dir}/${bsp.project.name}">
-			<fileset dir="${bsp.project.dir}" includes="**/*"/>
-		</copy>
-	</target>
-	
-	<!--
-		===================================================
-		Package the platform
-		===================================================
-	-->
-	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init" unless="skip.publish-local">
-		<copy todir="${platform.output.dir}" file="${readme.file}" />
-		<copy todir="${platform.output.dir}" file="${changelog.file}" />
-		<zip destfile="${target.main.artifact}.zip" basedir="${platform.output.dir}"/>
-		<ea:registerartifact ext="zip" type="zip" settingsRef="${project.ivy.instance}" />
-	</target>
-
-	<!--
-		===================================================
-		Package additional files
-		===================================================
-	-->
-	<target name="releasenotes:init">
-		<property name="releasenotes.name" value="RELEASE_NOTES"/>
-		<property name="releasenotes.file" location="${releasenotes.dir}/${releasenotes.name}.${releasenotes.ext}"/>
-		<available file="${releasenotes.file}" property="has.releasenotes.file" />
-	</target>
-
-	<target name="additional-files:releasenotes:package" extensionOf="package" depends="releasenotes:init" if="has.releasenotes.file">
-		<copy todir="${target.artifacts}" file="${releasenotes.file}"/>
-		<ea:registerartifact name="${releasenotes.name}" type="${releasenotes.ext}" settingsRef="${project.ivy.instance}" />
-	</target>
-
 </project>

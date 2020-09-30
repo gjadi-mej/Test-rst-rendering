@@ -16,7 +16,6 @@
 	<fail unless="microej.repository"/>
 	<fail unless="microej.architecture.dir"/>
 	<fail unless="jpf.configuration.file"/>
-	<fail unless="jpf.output.dir"/>
 	<fail unless="scripts.dir"/>
 	
 	<dirname file="${ant.file.build-platform}" property="build-platform.dir"/>
@@ -31,10 +30,10 @@
 		<!-- replace a MicroEJ Workbench script by the local one -->
 		<copy todir="${scripts.dir}" file="${build-platform.dir}/MicroEJFramework.xml" />
 		
-		<!-- invokes MicroEJ Workbench to build the platform -->
+		<!-- invokes MicroEJ Workbench to build the platform (output dir is required but useless) -->
     	<microej.exportJavaPlatformConfiguration
     		jpfconfiguration="${jpf.configuration.file}" 
-    		outputdir="${jpf.output.dir}"
+    		outputdir="." 
     	/>
     </target>
 
