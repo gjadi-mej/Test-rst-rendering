@@ -1,26 +1,37 @@
 <!--
+	ANT
+
 	Copyright 2020 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
+	
 -->
 <project name="build-platform">
 
 	<!--
-		This script is called within an Eclipse context.
-		See runEclipseAntRunner task.
+		This script is called within an Eclipse context (see "runEclipseAntRunner" task); the eclipse is 
+		a MicroEJ SDK. It invokes MicroEJ Workbench internal targets to create a MicroEJ architecture 
+		repository and to build a platform in workspace.
 	-->
 	
 	<fail unless="microej.repository"/>
 	<fail unless="microej.architecture.dir"/>
 	<fail unless="jpf.configuration.file"/>
 	<fail unless="jpf.output.dir"/>
+	<fail unless="scripts.dir"/>
+	
+	<dirname file="${ant.file.build-platform}" property="build-platform.dir"/>
 	
 	<!--
-		Build the .jpf file
+		Build the platform in workspace
 	-->
 	<target name="jpf:build" depends="jpf:repository">
     	<echo message="[LOG] Build ${jpf.configuration.file} in LOCAL"/>
 		<echo message="buildLabel=${buildLabel}"/>
-			
+
+		<!-- replace a MicroEJ Workbench script by the local one -->
+		<copy todir="${scripts.dir}" file="${build-platform.dir}/MicroEJFramework.xml" />
+		
+		<!-- invokes MicroEJ Workbench to build the platform -->
     	<microej.exportJavaPlatformConfiguration
     		jpfconfiguration="${jpf.configuration.file}" 
     		outputdir="${jpf.output.dir}"
@@ -29,7 +40,7 @@
 
 	
 	<!--
-		Create and fill the MicroEJ repository
+		Create and fill the MicroEJ architecture repository
 	-->
 	<target name="jpf:repository">
 

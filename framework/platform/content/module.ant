@@ -28,7 +28,7 @@
 
 	<property name="eclipse-antRunner.build.target" value="jpf:build"/>
 	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
-	<property name="eclipse-antRunner.build.script" location="${project.dir}/build-platform.ant"/>
+	<property name="eclipse-antRunner.build.script" location="${project.dir}/build/build-platform.ant"/>
 
 	<property name="wip.project.name" value="${project.prefix}-platform"/>
 	<property name="wip.project.dir" location="${workspace.dir}/${wip.project.name}"/>
@@ -134,15 +134,7 @@
 	<target name="wip:build" depends="-eclipse-antRunner:init,platform:architecture:check">
 	<!--target name="wip:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init,platform:architecture:check"-->
 		<mkdir dir="${platform.output.dir}"/>
-		<property name="scripts.dir" location="${target}/scripts"/>
 
-		<!-- Delete potential existing platforms -->
-		<delete>
-		  <fileset dir="${platform.output.dir}" includes="*.jpf" erroronmissingdir="false"/>
-		</delete>
-		
-		<copy todir="${scripts.dir}" file="${project.dir}/MicroEJFramework.xml" />
-		
 		<!-- Build the platform -->
 		<runEclipseAntRunner>
 			<args.properties>
@@ -152,7 +144,7 @@
 				<arg value="-Dmicroej.architecture.dir=${microej.architecture.dir}"/>
 				<arg value="-Dant.file.com.is2t.easyant.plugins;eclipse-antRunner=${ant.file.com.is2t.easyant.plugins;eclipse-antRunner}"/>
 				<arg value="-Dplatform.project.name=${wip.project.name}"/>
-				<arg value="-Dscripts.dir=${scripts.dir}"/>
+				<arg value="-Dscripts.dir=${target}/scripts"/>
 			</args.properties>
 		</runEclipseAntRunner>
 	</target>
