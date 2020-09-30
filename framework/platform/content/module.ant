@@ -1,0 +1,261 @@
+<!--
+	Copyright 2020 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<project name="module-platform" xmlns:ea="antlib:org.apache.easyant" xmlns:mam="antlib:com.is2t.mam.ant" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+	<!--
+		This script is called by easyant.
+	-->
+	
+	<!--
+		Required properties 
+	-->
+	<fail unless="eclipse.home" message="Set the MicroEJ SDK directory path in the `eclipse.home` property (If you are using easyant-build-component framework the full name of the property is `easyant.inject.eclipse.home`)."/>
+	<fail unless="platform.filename" message="Set the name of the `.platform` file in the `platform.filename` property"/>
+	
+	<!--
+		Compute properties 
+	-->
+	<dirname file="${ant.file.module-platform}" property="project.dir"/>
+	<dirname file="${project.dir}" property="workspace.dir"/>
+
+	<property name="platform.output.dir" location="${target}/platform"/>
+	<basename file="${project.dir}" suffix="-configuration" property="project.prefix"/>
+	<property name="jpf.configuration.file" value="${project.dir}/${platform.filename}"/>
+
+	<property name="eclipse-antRunner.build.target" value="jpf:build"/>
+	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
+	<property name="eclipse-antRunner.build.script" location="${project.dir}/build-platform.ant"/>
+
+	<condition property="wip.buildOnly" value="true">
+		<not><istrue value="${platform.package}"/></not>
+	</condition>
+	<property name="wip.project.name" value="${project.prefix}-platform"/>
+	<property name="wip.project.dir" location="${workspace.dir}/${wip.project.name}"/>
+	<property name="bsp.project.name" value="${project.prefix}-bsp"/>
+	<property name="bsp.project.dir" location="${workspace.dir}/${bsp.project.name}"/>
+	<property name="bsp.project.microej.dir" value="${bsp.project.dir}/MicroEJ" description="Needed by mccom-install plugin"/>
+	<condition property="include.bsp" value="true" else="false">
+		<available file="${bsp.project.dir}" type="dir"/>
+	</condition>
+
+	<!-- Use the ea plugins readme and changelog with these properties -->
+	<property name="readme.dir" value="${workspace.dir}" />
+	<property name="readme.ext" value="rst" />
+	<property name="changelog.dir" value="${workspace.dir}" />
+	<property name="changelog.ext" value="rst" />
+	<property name="releasenotes.dir" value="${workspace.dir}" />
+	<property name="releasenotes.ext" value="rst" />
+
+	<!--
+		===================================================
+		Zip GIT
+		===================================================
+	-->
+	
+	<!-- zip git before updating projects -->
+	<target name="platform:git:zip" extensionOf="abstract-compile:compile-ready" unless="wip.buildOnly">
+		<zip destfile="${target.main.artifact}-src.zip">
+			<!-- projects to build the platform -->
+			<fileset dir="${workspace.dir}" includes="${project.prefix}-configuration/**/*" excludes="${project.prefix}-configuration/target~/**/*"/>
+			<fileset dir="${workspace.dir}" includes="${project.prefix}-fp/**/*"/>
+			<fileset dir="${workspace.dir}" includes="${project.prefix}-imageGenerator/**/*"/>
+			<!-- platform empty project -->
+			<fileset dir="${workspace.dir}" includes="${project.prefix}-platform/**/*"/>
+		</zip>
+		<ea:registerartifact name="${module.name}-src" ext="zip" type="zip" settingsRef="${project.ivy.instance}" />
+	</target>
+	
+	<!--
+		===================================================
+		Prepare wip
+		===================================================
+	-->
+	
+	<target name="frontpanel:init">
+		<property file="${project.dir}/frontpanel/frontpanel.properties" prefix="fp"/>
+		<property name="fp.project.dir" location="${workspace.dir}/${fp.project.name}"/>
+
+		<!-- check if project is fp v6 project -->
+		<property name="fp.project.file" location="${fp.project.dir}/.project"/>
+		<property name="fp.project.ivy.file" location="${fp.project.dir}/module.ivy"/>
+		<condition property="fp.project.isV6">
+			<and>
+				<available file="${fp.project.dir}" type="dir"/>
+				<available file="${fp.project.file}" type="file"/>
+				<available file="${fp.project.ivy.file}" type="file"/>
+				<resourcecontains resource="${fp.project.file}" substring="&lt;nature&gt;ej.fp.v6.projectnature&lt;/nature&gt;"/>
+			</and>
+		</condition>
+	</target>
+
+	<target name="frontpanel:resolve" depends="platform:git:zip,frontpanel:init" extensionOf="abstract-compile:compile-ready" if="fp.project.isV6">
+
+		<!-- delete potential dependencies -->
+		<delete dir="${fp.project.dir}/lib"/>
+
+		<!--
+			Resolve frontpanel project dependencies in a separate Ivy context.
+			Use the project ivysettings since front panel artifacts are deployed in the central repository, not in the build types repository.
+		-->
+		<ivy:settings file="${project.ivy.settings.file}" id="fp.ivysettings"/>
+		<ivy:resolve
+			file="${fp.project.dir}/module.ivy"
+			conf="default,provided"
+			settingsref="fp.ivysettings"
+		/>
+		<ivy:retrieve
+			pattern="${fp.project.dir}/lib/[type]s/[artifact](-[classifier])-[revision].[ext]"
+			settingsref="fp.ivysettings"
+		/>
+	</target>
+
+	<!-- Copy all unzipped RIP into the dropins folder -->
+    <target name="platform:rips:install" depends="platform:git:zip,mam:init" extensionOf="abstract-compile:compile-ready">
+    	<property name="dropins.dir" location="${project.dir}/dropins"/>
+		<path id="allRips">
+		 	<fileset dir="${dependencies.output.dir}" includes="*.rip" erroronmissingdir="false"/>
+		</path>
+
+		<mam:copy destdir="${dropins.dir}">
+			<artifacts refid="allRips"/>
+		</mam:copy>
+    </target>
+	
+	<!--
+		===================================================
+		Build wip 
+		===================================================
+	-->
+	
+	<!-- Check if the MicroEJ Architecture is available --> 
+	<target name="platform:architecture:check" >
+
+		<fail unless="dependencies.output.dir"/>
+		<!-- By default the MicroEJ Architecture is loaded from the ivy dependencies. --> 
+		<property name="microej.architecture.dir" location="${dependencies.output.dir}"/>
+		
+		<fail message="
+			No MicroEJ Architecture found in ${microej.architecture.dir} directory.${line.separator}
+			You can reference the MicroEJ Architecture:${line.separator}
+			- by adding a dependency in your Ivy file and so retrieve it using Ivy,${line.separator}
+			- or by setting the `microej.architecture.dir` property with the path to the directory that contains the pre-loaded MicroEJ Architecture.${line.separator}
+			(If you are using easyant-build-component framework	the full name of the property is `easyant.inject.microej.architecture.dir`.)
+			">
+			<condition>
+				<resourcecount when="equal" count="0">
+					<fileset dir="${microej.architecture.dir}" includes="*.xpf*" erroronmissingdir="false"/>
+				</resourcecount>
+			</condition>
+		</fail>
+	</target>
+	
+	<target name="wip:build" depends="-eclipse-antRunner:init,platform:architecture:check">
+	<!--target name="wip:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init,platform:architecture:check"-->
+		<mkdir dir="${platform.output.dir}"/>
+		<property name="scripts.dir" location="${target}/scripts"/>
+
+		<!-- Delete potential existing platforms -->
+		<delete>
+		  <fileset dir="${platform.output.dir}" includes="*.jpf" erroronmissingdir="false"/>
+		</delete>
+		
+		<copy todir="${scripts.dir}" file="${project.dir}/MicroEJFramework.xml" />
+		
+		<!-- Build the platform -->
+		<runEclipseAntRunner>
+			<args.properties>
+				<jvmarg value="-Dmicroej.repository=${target}/microejRepository"/>
+				<arg value="-Djpf.configuration.file=${project.dir}/${platform.filename}"/>
+				<arg value="-Djpf.output.dir=${target}"/>
+				<arg value="-Dmicroej.architecture.dir=${microej.architecture.dir}"/>
+				<arg value="-Dant.file.com.is2t.easyant.plugins;eclipse-antRunner=${ant.file.com.is2t.easyant.plugins;eclipse-antRunner}"/>
+				<arg value="-Dplatform.project.name=${wip.project.name}"/>
+				<arg value="-Dscripts.dir=${scripts.dir}"/>
+			</args.properties>
+		</runEclipseAntRunner>
+	</target>
+	
+	<!--
+		Load BSP folder where copying platform files. This property may depend on ${workspace}. Force to use ${workspace.dir} 
+		location as workspace root folder.
+	-->
+	<target name="wip:override-bsp-property:init">
+		<local name="workspace"/>
+		<property name="workspace" location="${workspace.dir}"/>
+		<property file="${project.dir}/bsp/bsp.properties" prefix="configuration.bsp"/>
+	</target>
+	
+	<!--
+		Update optional wip file "scripts/deployInBSP.properties". This file contains the BSP output folder where copy the 
+		platform files (lib and headers). The folder path is absolute. Convert it in relative using ${workspace.dir} location 
+		as root folder. Use microej application compiletime property ${scripts.dir} which targets platform scripts folder. 
+	-->
+	<target name="wip:override-bsp-property" extensionOf="wip:post-build" depends="wip:override-bsp-property:init" if="configuration.bsp.output.dir">
+		
+		<!-- get BSP output folder relative path -->		
+		<pathconvert property="wip.deploy.bsp.output.dir" targetos="unix" >
+			<path location="${configuration.bsp.output.dir}" />
+			<map from="${workspace.dir}" to="$${scripts.dir}/../../.." />
+		</pathconvert>
+		
+		<propertyfile file="${wip.project.dir}/source/scripts/deployInBSP.properties">
+			<entry key="deploy.bsp.output.dir" value="${wip.deploy.bsp.output.dir}" />
+		</propertyfile>
+	</target>
+
+	<extension-point name="wip:post-build"/>
+	
+	<target name="wip:copy" extensionOf="abstract-compile:compile" depends="wip:build,wip:post-build">
+		<copy todir="${platform.output.dir}/${wip.project.name}">
+			<fileset dir="${wip.project.dir}" includes="**/*"/>
+		</copy>
+	</target>
+	
+	<extension-point name="bsp:removeFeature"/>
+	<!-- 
+		===================================================
+		Copy the bsp
+		===================================================
+	-->
+	<target name="bsp:copy" extensionOf="abstract-compile:compile" if="${include.bsp}" unless="wip.buildOnly">
+		<copy todir="${platform.output.dir}/${bsp.project.name}">
+			<fileset dir="${bsp.project.dir}" includes="**/*"/>
+		</copy>
+		<script language="javascript">
+			self.project.executeTarget("bsp:removeFeature");
+		</script>
+	</target>
+	
+	<!--
+		===================================================
+		Package the platform
+		===================================================
+	-->
+	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init" unless="wip.buildOnly">
+		<!--
+		<copy todir="${platform.output.dir}" file="${readme.file}" />
+		<copy todir="${platform.output.dir}" file="${changelog.file}" />
+		-->
+		<zip destfile="${target.main.artifact}.zip" basedir="${platform.output.dir}"/>
+		<ea:registerartifact ext="zip" type="zip" settingsRef="${project.ivy.instance}" />
+	</target>
+
+	<!--
+		===================================================
+		Package additional files
+		===================================================
+	-->
+	<target name="releasenotes:init">
+		<property name="releasenotes.name" value="RELEASE_NOTES"/>
+		<property name="releasenotes.file" location="${releasenotes.dir}/${releasenotes.name}.${releasenotes.ext}"/>
+		<available file="${releasenotes.file}" property="has.releasenotes.file" />
+	</target>
+
+	<target name="additional-files:releasenotes:package" extensionOf="package" depends="releasenotes:init" if="has.releasenotes.file">
+		<copy todir="${target.artifacts}" file="${releasenotes.file}"/>
+		<ea:registerartifact name="${releasenotes.name}" type="${releasenotes.ext}" settingsRef="${project.ivy.instance}" />
+	</target>
+
+</project>

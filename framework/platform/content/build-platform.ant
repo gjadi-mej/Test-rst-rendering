@@ -1,0 +1,47 @@
+<!--
+	Copyright 2020 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
+-->
+<project name="build-platform">
+
+	<!--
+		This script is called within an Eclipse context.
+		See runEclipseAntRunner task.
+	-->
+	
+	<fail unless="microej.repository"/>
+	<fail unless="microej.architecture.dir"/>
+	<fail unless="jpf.configuration.file"/>
+	<fail unless="jpf.output.dir"/>
+	
+	<!--
+		Build the .jpf file
+	-->
+	<target name="jpf:build" depends="jpf:repository">
+    	<echo message="[LOG] Build ${jpf.configuration.file} in LOCAL"/>
+		<echo message="buildLabel=${buildLabel}"/>
+			
+    	<microej.exportJavaPlatformConfiguration
+    		jpfconfiguration="${jpf.configuration.file}" 
+    		outputdir="${jpf.output.dir}"
+    	/>
+    </target>
+
+	
+	<!--
+		Create and fill the MicroEJ repository
+	-->
+	<target name="jpf:repository">
+
+		<!-- Informative status trace -->
+		<echo message="[LOG] Importing XPFs and XPFPs from ${microej.architecture.dir}"/>
+		<path id="architecture.path">
+			<fileset dir="${microej.architecture.dir}" includes="*.xpf,*.xpfp"/>
+		</path>		
+		<!-- install xpf & cie -->
+		<microej.importPlatforms overwrite="true" repository="${microej.repository}">
+			<path refid="architecture.path"/>
+		</microej.importPlatforms>
+	</target>
+
+</project>
