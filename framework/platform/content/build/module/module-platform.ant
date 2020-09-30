@@ -21,22 +21,83 @@
 	<target name="platform:architecture:check" >
 
 		<fail unless="dependencies.output.dir"/>
+		
 		<!-- By default the MicroEJ Architecture is loaded from the ivy dependencies. --> 
 		<property name="microej.architecture.dir" location="${dependencies.output.dir}"/>
 		
+		<!-- Ensure at least one architecture is available in ivy file -->
 		<fail message="
 			No MicroEJ Architecture found in ${microej.architecture.dir} directory.${line.separator}
-			You can reference the MicroEJ Architecture:${line.separator}
-			- by adding a dependency in your Ivy file and so retrieve it using Ivy,${line.separator}
-			- or by setting the `microej.architecture.dir` property with the path to the directory that contains the pre-loaded MicroEJ Architecture.${line.separator}
-			(If you are using easyant-build-component framework	the full name of the property is `easyant.inject.microej.architecture.dir`.)
+			You have to reference the MicroEJ Architecture by adding a dependency in your Ivy file (and so retrieve it using Ivy).
 			">
 			<condition>
 				<resourcecount when="equal" count="0">
-					<fileset dir="${microej.architecture.dir}" includes="*.xpf*" erroronmissingdir="false"/>
+					<fileset dir="${microej.architecture.dir}" includes="*.xpf" erroronmissingdir="false"/>
 				</resourcecount>
 			</condition>
 		</fail>
+		
+		<!-- Ensure only one architecture is available in ivy file -->
+		<fail message="
+			Several MicroEJ Architectures found in ${microej.architecture.dir} directory.${line.separator}
+			You have to reference only one MicroEJ Architecture by adding a dependency in your Ivy file (and so retrieve it using Ivy).
+			">
+			<condition>
+				<resourcecount when="greater" count="1">
+					<fileset dir="${microej.architecture.dir}" includes="*.xpf" erroronmissingdir="false"/>
+				</resourcecount>
+			</condition>
+		</fail>
+		
+		<!-- Set architecture file path -->
+		<pathconvert property="microej.architecture.file">
+			<first>
+				<fileset dir="${microej.architecture.dir}" includes="*.xpf"/>
+			</first>
+		</pathconvert>
+
+		<!-- Load architecture characteristics -->
+		<property url="jar:file:${microej.architecture.file}!/release.properties" prefix="microej.architecture"/>
+		
+	</target>
+	
+	<target name="platform:description" extensionOf="abstract-compile:compile-ready" depends="platform:architecture:check">
+		<fail unless="platform.filename" message="Set the name of the `.xml` or `.platform` file in the `platform.filename` property."/>
+		
+		<!-- Load platform configuration file -->
+		<xmlproperty 
+			file="${module.dir}/${platform.filename}"
+			collapseAttributes="false"
+			prefix="configuration"
+		/>
+
+		<!-- Replace some platform configurations -->
+		<replace file="${module.dir}/${platform.filename}">
+			
+			<!-- Replace MicroEJ Architecture -->
+			<replacefilter token="&quot;${configuration.platform.environment(architecture)}&quot;" value="&quot;${microej.architecture.architecture}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(baseline)}&quot;" value="&quot;${microej.architecture.baseline}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(hardwarePartNumber)}&quot;" value="&quot;${microej.architecture.hardwarePartNumber}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(level)}&quot;" value="&quot;${microej.architecture.level}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(licenseTag)}&quot;" value="&quot;${microej.architecture.licenseTag}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(name)}&quot;" value="&quot;${microej.architecture.name}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(provider)}&quot;" value="&quot;${microej.architecture.provider}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(techVersion)}&quot;" value="&quot;${microej.architecture.techVersion}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(toolchain)}&quot;" value="&quot;${microej.architecture.toolchain}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform.environment(version)}&quot;" value="&quot;${microej.architecture.version}&quot;"/>
+			
+			<!-- Replace platform properties -->
+			<replacefilter token="&quot;${configuration.platform(name)}&quot;" value="&quot;${module.name}&quot;"/>
+			<!--replacefilter token="&quot;${configuration.platform(version)}&quot;" value="&quot;${artifact-revision.artifact.revision}&quot;"/-->
+			<replacefilter token="&quot;${configuration.platform(version)}&quot;" value="&quot;platform&quot;"/>
+			
+		</replace>
+		
+		<!-- Use same naming convention than MicroEJ Workbench-->
+		<property name="platform.project.name" value="${configuration.platform(hardwarePartNumber)}-${module.name}-${configuration.platform.environment(toolchain)}-platform"/>
+		<!--property name="platform.project.name" value="${configuration.platform(hardwarePartNumber)}-${module.name}-${configuration.platform.environment(toolchain)}-${artifact-revision.artifact.revision}"/-->
+		<property name="platform.project.dir" location="${workspace.dir}/${platform.project.name}"/>
+		
 	</target>
 	
 	<!-- Build the platform -->

@@ -9,12 +9,7 @@
 	<!--
 		Script called by MicroEJ Workbench when building the easyant module.
 	-->
-	
-	<!--
-		Required properties 
-	-->
-	<fail unless="platform.filename" message="Set the name of the `.platform` file in the `platform.filename` property"/>
-	
+
 	<!--
 		Defines some properties used in this configuration project 
 		(in ant and properties files)
@@ -23,9 +18,6 @@
 	<dirname file="${module.dir}" property="workspace.dir"/>
 	<basename file="${module.dir}" suffix="-configuration" property="module.prefix"/>
 
-	<property name="platform.project.name" value="${module.prefix}-platform"/>
-	<property name="platform.project.dir" location="${workspace.dir}/${platform.project.name}"/>
-	
 	<!--
 		Import all scripts/module/module-*.ant files
 	-->
