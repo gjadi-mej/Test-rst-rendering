@@ -13,6 +13,10 @@
 	
 	<fail unless="eclipse.home" message="Set the MicroEJ SDK directory path in the `eclipse.home` property (If you are using easyant-build-component framework the full name of the property is `easyant.inject.eclipse.home`)."/>
 	
+	<property name="platform.name" value="${module.name}"/>
+	<property name="platform.version" value="${ivy.revision}"/>
+	<property name="platform.container.dir" value="${workspace.dir}"/>
+	
 	<property name="eclipse-antRunner.build.target" value="jpf:build"/>
 	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
 	<property name="eclipse-antRunner.build.script" location="${module.dir}/build/module/module-platform/build.ant"/>
@@ -61,6 +65,7 @@
 		
 	</target>
 	
+	<!-- Prepare platform configuration file according selected MicroEJ Architecture -->
 	<target name="platform:description" extensionOf="abstract-compile:compile-ready" depends="platform:architecture:check">
 		<fail unless="platform.filename" message="Set the name of the `.xml` or `.platform` file in the `platform.filename` property."/>
 		
@@ -87,21 +92,55 @@
 			<replacefilter token="&quot;${configuration.platform.environment(version)}&quot;" value="&quot;${microej.architecture.version}&quot;"/>
 			
 			<!-- Replace platform properties -->
-			<replacefilter token="&quot;${configuration.platform(name)}&quot;" value="&quot;${module.name}&quot;"/>
-			<!--replacefilter token="&quot;${configuration.platform(version)}&quot;" value="&quot;${artifact-revision.artifact.revision}&quot;"/-->
-			<replacefilter token="&quot;${configuration.platform(version)}&quot;" value="&quot;platform&quot;"/>
+            <replacefilter token="&quot;${configuration.platform(name)}&quot;" value="&quot;${platform.name}&quot;"/>
+			<replacefilter token="&quot;${configuration.platform(version)}&quot;" value="&quot;${platform.version}&quot;"/>
 			
 		</replace>
 		
+	</target>
+	
+	<!-- Check the platform output folder -->
+	<target name="platform:project:check" extensionOf="abstract-compile:compile-ready" depends="platform:description">
+		
 		<!-- Use same naming convention than MicroEJ Workbench-->
-		<property name="platform.project.name" value="${configuration.platform(hardwarePartNumber)}-${module.name}-${configuration.platform.environment(toolchain)}-platform"/>
-		<!--property name="platform.project.name" value="${configuration.platform(hardwarePartNumber)}-${module.name}-${configuration.platform.environment(toolchain)}-${artifact-revision.artifact.revision}"/-->
-		<property name="platform.project.dir" location="${workspace.dir}/${platform.project.name}"/>
+		<property name="platform.expected.project.name" value="${configuration.platform(hardwarePartNumber)}-${platform.name}-${configuration.platform.environment(toolchain)}-${platform.version}"/>
+		
+		<!-- Error when output folder exists and not denote a platform project -->
+		<fail message="
+			Output platform '${platform.container.dir}/${platform.expected.project.name}' already exists and is not a platform project.${line.separator}
+			Delete it or change module name and / or version.
+			">
+			<condition>
+				<and>
+					<available file="${platform.container.dir}/${platform.expected.project.name}/.project" type="file"/>
+					<or>
+						<not><resourcecontains resource="${platform.container.dir}/${platform.expected.project.name}/.project" substring="jpfNature"/></not>
+						<not><resourcecontains resource="${platform.container.dir}/${platform.expected.project.name}/.project" substring="jpfBuilder"/></not>
+					</or>
+				</and>
+			</condition>
+		</fail>
+		
+		<condition property="platform.expected.project.exist" value="true">
+			<available file="${platform.container.dir}/${platform.expected.project.name}" type="dir"/>
+		</condition>
+		
+		<!-- Output expected project does not exist: create platform is expected project -->
+		<condition property="platform.project.name" value="platformtmp" else="${platform.expected.project.name}" >
+			<istrue value="${platform.expected.project.exist}"/>
+		</condition>
 		
 	</target>
 	
+	<!-- Delete content of existing platform before building a new one -->
+	<target name="platform:project:clean" extensionOf="abstract-compile:compile-ready" depends="platform:project:check" if="${platform.expected.project.exist}">
+		<delete includeemptydirs="true">
+			<fileset dir="${platform.container.dir}/${platform.expected.project.name}" includes="**/*" excludes=".project"/>
+		</delete>
+	</target>
+	
 	<!-- Build the platform -->
-	<target name="platform:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init,platform:architecture:check">
+	<target name="platform:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init">
 		<runEclipseAntRunner>
 			<args.properties>
 				<jvmarg value="-Dmicroej.repository=${target}/microejRepository"/>
@@ -118,8 +157,24 @@
 	<target name="platform:copy" extensionOf="abstract-compile:compile" depends="platform:build" unless="skip.publish-local">
 		<property name="platform.publish.dir" location="${target}/platform"/>
 		<copy todir="${platform.publish.dir}/${platform.project.name}">
-			<fileset dir="${platform.project.dir}" includes="**/*"/>
+			<fileset dir="${platform.container.dir}/${platform.project.name}" includes="**/*"/>
 		</copy>
+	</target>
+	
+	<!-- Copy the tmp platform in expected output platform project dir (prevent eclipse compilation error during platform build) -->
+	<target name="platform:move" extensionOf="abstract-compile:compile" depends="platform:build" if="${platform.expected.project.exist}">
+		<move todir="${platform.container.dir}/${platform.expected.project.name}">
+			<fileset dir="${platform.container.dir}/${platform.project.name}" includes="**/*" excludes=".project"/>
+		</move>
+		<delete dir="${platform.container.dir}/${platform.project.name}"/>
+	</target>
+	
+	<!-- Print a report; useful when user has changed the initial platform version because project is not available in workspace. -->
+	<target name="platform:report" extensionOf="package">
+		<echo message="
+			Platform has been built in this project: '${platform.container.dir}/${platform.expected.project.name}'.${line.separator}
+			Import this project if not already available in your workspace.
+			"/>
 	</target>
 
 </project>
