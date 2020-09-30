@@ -1,4 +1,6 @@
 <!--
+	ANT
+
 	Copyright 2020 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
@@ -28,18 +30,15 @@
 	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
 	<property name="eclipse-antRunner.build.script" location="${project.dir}/build-platform.ant"/>
 
-	<condition property="wip.buildOnly" value="true">
-		<not><istrue value="${platform.package}"/></not>
-	</condition>
 	<property name="wip.project.name" value="${project.prefix}-platform"/>
 	<property name="wip.project.dir" location="${workspace.dir}/${wip.project.name}"/>
 	<property name="bsp.project.name" value="${project.prefix}-bsp"/>
 	<property name="bsp.project.dir" location="${workspace.dir}/${bsp.project.name}"/>
-	<property name="bsp.project.microej.dir" value="${bsp.project.dir}/MicroEJ" description="Needed by mccom-install plugin"/>
+	<property name="bsp.project.microej.dir" value="${bsp.project.dir}/Projects/microej" description="Needed by mccom-install plugin"/>
 	<condition property="include.bsp" value="true" else="false">
 		<available file="${bsp.project.dir}" type="dir"/>
 	</condition>
-
+	
 	<!-- Use the ea plugins readme and changelog with these properties -->
 	<property name="readme.dir" value="${workspace.dir}" />
 	<property name="readme.ext" value="rst" />
@@ -48,25 +47,6 @@
 	<property name="releasenotes.dir" value="${workspace.dir}" />
 	<property name="releasenotes.ext" value="rst" />
 
-	<!--
-		===================================================
-		Zip GIT
-		===================================================
-	-->
-	
-	<!-- zip git before updating projects -->
-	<target name="platform:git:zip" extensionOf="abstract-compile:compile-ready" unless="wip.buildOnly">
-		<zip destfile="${target.main.artifact}-src.zip">
-			<!-- projects to build the platform -->
-			<fileset dir="${workspace.dir}" includes="${project.prefix}-configuration/**/*" excludes="${project.prefix}-configuration/target~/**/*"/>
-			<fileset dir="${workspace.dir}" includes="${project.prefix}-fp/**/*"/>
-			<fileset dir="${workspace.dir}" includes="${project.prefix}-imageGenerator/**/*"/>
-			<!-- platform empty project -->
-			<fileset dir="${workspace.dir}" includes="${project.prefix}-platform/**/*"/>
-		</zip>
-		<ea:registerartifact name="${module.name}-src" ext="zip" type="zip" settingsRef="${project.ivy.instance}" />
-	</target>
-	
 	<!--
 		===================================================
 		Prepare wip
@@ -90,7 +70,7 @@
 		</condition>
 	</target>
 
-	<target name="frontpanel:resolve" depends="platform:git:zip,frontpanel:init" extensionOf="abstract-compile:compile-ready" if="fp.project.isV6">
+	<target name="frontpanel:resolve" depends="frontpanel:init" extensionOf="abstract-compile:compile-ready" if="fp.project.isV6">
 
 		<!-- delete potential dependencies -->
 		<delete dir="${fp.project.dir}/lib"/>
@@ -112,7 +92,7 @@
 	</target>
 
 	<!-- Copy all unzipped RIP into the dropins folder -->
-    <target name="platform:rips:install" depends="platform:git:zip,mam:init" extensionOf="abstract-compile:compile-ready">
+    <target name="platform:rips:install" depends="mam:init" extensionOf="abstract-compile:compile-ready">
     	<property name="dropins.dir" location="${project.dir}/dropins"/>
 		<path id="allRips">
 		 	<fileset dir="${dependencies.output.dir}" includes="*.rip" erroronmissingdir="false"/>
@@ -177,55 +157,37 @@
 		</runEclipseAntRunner>
 	</target>
 	
-	<!--
-		Load BSP folder where copying platform files. This property may depend on ${workspace}. Force to use ${workspace.dir} 
-		location as workspace root folder.
-	-->
-	<target name="wip:override-bsp-property:init">
-		<local name="workspace"/>
-		<property name="workspace" location="${workspace.dir}"/>
-		<property file="${project.dir}/bsp/bsp.properties" prefix="configuration.bsp"/>
-	</target>
-	
-	<!--
-		Update optional wip file "scripts/deployInBSP.properties". This file contains the BSP output folder where copy the 
-		platform files (lib and headers). The folder path is absolute. Convert it in relative using ${workspace.dir} location 
-		as root folder. Use microej application compiletime property ${scripts.dir} which targets platform scripts folder. 
-	-->
-	<target name="wip:override-bsp-property" extensionOf="wip:post-build" depends="wip:override-bsp-property:init" if="configuration.bsp.output.dir">
+	<target name="wip:generate-option-file" if="${include.bsp}">
+		<fail unless="bsp.external.scripts.dir" />
 		
-		<!-- get BSP output folder relative path -->		
-		<pathconvert property="wip.deploy.bsp.output.dir" targetos="unix" >
-			<path location="${configuration.bsp.output.dir}" />
-			<map from="${workspace.dir}" to="$${scripts.dir}/../../.." />
+		<pathconvert property="external.scripts.dir" targetos="unix" >
+			<path location="${bsp.project.dir}/${bsp.external.scripts.dir}" />
+			<map from="${workspace.dir}" to="$${launcher.properties.dir}/../../.." />
 		</pathconvert>
 		
-		<propertyfile file="${wip.project.dir}/source/scripts/deployInBSP.properties">
-			<entry key="deploy.bsp.output.dir" value="${wip.deploy.bsp.output.dir}" />
+		<property name="wip.options.dir" location="${wip.project.dir}/source/options"/>
+		<mkdir dir="${wip.options.dir}"/>
+		
+		<propertyfile file="${wip.options.dir}/external.properties">
+			<entry key="external.scripts.dir" value="${external.scripts.dir}" />
 		</propertyfile>
 	</target>
 
-	<extension-point name="wip:post-build"/>
-	
-	<target name="wip:copy" extensionOf="abstract-compile:compile" depends="wip:build,wip:post-build">
+	<target name="wip:copy" extensionOf="abstract-compile:compile" depends="wip:build,wip:generate-option-file">
 		<copy todir="${platform.output.dir}/${wip.project.name}">
 			<fileset dir="${wip.project.dir}" includes="**/*"/>
 		</copy>
 	</target>
 	
-	<extension-point name="bsp:removeFeature"/>
 	<!-- 
 		===================================================
 		Copy the bsp
 		===================================================
 	-->
-	<target name="bsp:copy" extensionOf="abstract-compile:compile" if="${include.bsp}" unless="wip.buildOnly">
+	<target name="bsp:copy" extensionOf="abstract-compile:compile" if="${include.bsp}">
 		<copy todir="${platform.output.dir}/${bsp.project.name}">
 			<fileset dir="${bsp.project.dir}" includes="**/*"/>
 		</copy>
-		<script language="javascript">
-			self.project.executeTarget("bsp:removeFeature");
-		</script>
 	</target>
 	
 	<!--
@@ -233,11 +195,9 @@
 		Package the platform
 		===================================================
 	-->
-	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init" unless="wip.buildOnly">
-		<!--
+	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init">
 		<copy todir="${platform.output.dir}" file="${readme.file}" />
 		<copy todir="${platform.output.dir}" file="${changelog.file}" />
-		-->
 		<zip destfile="${target.main.artifact}.zip" basedir="${platform.output.dir}"/>
 		<ea:registerartifact ext="zip" type="zip" settingsRef="${project.ivy.instance}" />
 	</target>
