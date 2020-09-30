@@ -12,21 +12,8 @@
 		Script called by MicroEJ Workbench when building the platform.
 	-->
 	
-	<!--
-		Defines some properties used in this configuration project 
-		(in ant and properties files)
-	-->
+	<!-- Import Platform Configuration Additions build file -->
 	<dirname file="${ant.file.configuration}" property="configuration.dir"/>
-	<dirname file="${configuration.dir}" property="workspace"/>
-	<basename file="${configuration.dir}" suffix="-configuration" property="project.prefix"/>
+	<import file="${configuration.dir}/build/platform/platform.ant"/>
 	
-	<!--
-		Import all build/platform/platform-*.ant files
-	-->
-	<import optional="true">
-		<fileset dir="${configuration.dir}/build/platform" includes="platform-*.ant" />
-		<path location="DUMMY" /> <!-- ensure the nested resources set is not empty -->
-	</import>
-	
-
 </project>

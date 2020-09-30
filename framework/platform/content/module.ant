@@ -7,23 +7,11 @@
 <project name="module">
 
 	<!--
-		Script called by MicroEJ Workbench when building the easyant module.
+		Script called by MicroEJ Workbench when building the MMM module.
 	-->
 
-	<!--
-		Defines some properties used in this configuration project 
-		(in ant and properties files)
-	-->
+	<!-- Import Platform Configuration Additions build file -->
 	<dirname file="${ant.file.module}" property="module.dir"/>
-	<dirname file="${module.dir}" property="workspace.dir"/>
-	<basename file="${module.dir}" suffix="-configuration" property="module.prefix"/>
-
-	<!--
-		Import all scripts/module/module-*.ant files
-	-->
-	<import optional="true">
-		<fileset dir="${module.dir}/build/module" includes="module-*.ant" />
-		<path location="DUMMY" /> <!-- ensure the nested resources set is not empty -->
-	</import>
+	<import file="${module.dir}/build/module/module.ant"/>
 	
 </project>

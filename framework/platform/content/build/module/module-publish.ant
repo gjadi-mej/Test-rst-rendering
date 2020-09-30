@@ -11,17 +11,20 @@
 		This script publishes all platform elements.
 	-->
 
-	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init" unless="skip.publish-local">
+	<!-- Publish main artifact (platform) -->
+	<target name="module-publish:platform" extensionOf="package" depends="readme:init,changelog:init" unless="${skip.publish}">
 		<zip destfile="${target.main.artifact}.zip" basedir="${platform.publish.dir}"/>
 		<ea:registerartifact ext="zip" type="zip" settingsRef="${project.ivy.instance}" />
 	</target>
 
-	<target name="additional-files:package" extensionOf="package" depends="readme:init,changelog:init" unless="skip.publish-local">
+	<!-- Publish additional files -->
+	<target name="module-publish:additional-files" extensionOf="package" depends="readme:init,changelog:init" unless="${skip.publish}">
 		<copy todir="${target.artifacts}" file="${readme.file}" />
 		<copy todir="${target.artifacts}" file="${changelog.file}" />
 	</target>
 
-	<target name="additional-files:releasenotes:package" extensionOf="package" if="has.releasenotes.file" unless="skip.publish-local">
+	<!-- Publish additional file -->
+	<target name="module-publish:additional-files:releasenotes" extensionOf="package" if="has.releasenotes.file" unless="${skip.publish}">
 		<copy todir="${target.artifacts}" file="${releasenotes.file}"/>
 		<ea:registerartifact name="${releasenotes.name}" type="${releasenotes.ext}" settingsRef="${project.ivy.instance}" />
 	</target>

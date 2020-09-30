@@ -1,4 +1,4 @@
-Platform Configuration Additions scripts (version 1.1.0).
+Scripts used by module-group.ant.
 
 ---
 _Copyright 2020 MicroEJ Corp. All rights reserved.

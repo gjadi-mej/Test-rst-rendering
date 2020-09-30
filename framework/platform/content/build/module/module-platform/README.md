@@ -1,4 +1,4 @@
-sub-scripts called during platform build during easyant build
+Scripts used by module-platform.ant.
 
 ---
 _Copyright 2020 MicroEJ Corp. All rights reserved.

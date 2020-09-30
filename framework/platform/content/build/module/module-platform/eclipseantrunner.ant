@@ -23,7 +23,7 @@
 	<!--
 		Build the platform in workspace
 	-->
-	<target name="jpf:build" depends="jpf:repository">
+	<target name="module-platform:eclipseantrunner:build" depends="module-platform:eclipseantrunner:repository">
     	<echo message="[LOG] Build ${jpf.configuration.file} in LOCAL"/>
 		<echo message="buildLabel=${buildLabel}"/>
 
@@ -41,7 +41,7 @@
 	<!--
 		Create and fill the MicroEJ architecture repository
 	-->
-	<target name="jpf:repository">
+	<target name="module-platform:eclipseantrunner:repository">
 
 		<!-- Informative status trace -->
 		<echo message="[LOG] Importing XPFs and XPFPs from ${microej.architecture.dir}"/>

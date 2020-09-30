@@ -1,4 +1,4 @@
-scripts called during easyant module build
+Platform Configuration Additions scripts called during MMM build.
 
 ---
 _Copyright 2020 MicroEJ Corp. All rights reserved.

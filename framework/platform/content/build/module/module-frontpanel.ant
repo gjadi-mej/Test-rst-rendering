@@ -12,9 +12,10 @@
 		build.
 	-->
 
-	<target name="frontpanel:init">
-		<property file="${module.dir}/frontpanel/frontpanel.properties" prefix="fp"/>
-		<property name="fp.project.dir" location="${workspace.dir}/${fp.project.name}"/>
+	<!-- Check if front panel project is in version 6.x -->
+	<target name="module-frontpanel:version:check">
+		<property file="${project.dir}/frontpanel/frontpanel.properties" prefix="fp"/>
+		<property name="fp.project.dir" location="${project.parent.dir}/${fp.project.name}"/>
 
 		<!-- check if project is fp v6 project -->
 		<property name="fp.project.file" location="${fp.project.dir}/.project"/>
@@ -29,7 +30,8 @@
 		</condition>
 	</target>
 
-	<target name="frontpanel:resolve" depends="frontpanel:init" extensionOf="abstract-compile:compile-ready" if="fp.project.isV6">
+	<!-- Resolve dependencies of front panel project -->
+	<target name="module-frontpanel:resolve" depends="module-frontpanel:version:check" extensionOf="abstract-compile:compile-ready" if="fp.project.isV6">
 
 		<!-- delete potential dependencies -->
 		<delete dir="${fp.project.dir}/lib"/>

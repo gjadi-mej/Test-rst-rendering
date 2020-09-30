@@ -12,13 +12,13 @@
 	-->
 
 	<!-- Use the ea plugins readme and changelog with these properties -->
-	<property name="readme.dir" value="${workspace.dir}" />
+	<property name="readme.dir" value="${project.parent.dir}" />
 	<property name="readme.ext" value="rst" />
-	<property name="changelog.dir" value="${workspace.dir}" />
+	<property name="changelog.dir" value="${project.parent.dir}" />
 	<property name="changelog.ext" value="rst" />
 	
 	<!-- Same behavior for releasenote.rst -->
-	<property name="releasenotes.dir" value="${workspace.dir}" />
+	<property name="releasenotes.dir" value="${project.parent.dir}" />
 	<property name="releasenotes.ext" value="rst" />
 	<property name="releasenotes.name" value="RELEASE_NOTES"/>
 	<property name="releasenotes.file" location="${releasenotes.dir}/${releasenotes.name}.${releasenotes.ext}"/>

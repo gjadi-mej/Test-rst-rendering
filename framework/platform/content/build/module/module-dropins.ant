@@ -8,11 +8,16 @@
 <project name="module-dropins" xmlns:ea="antlib:org.apache.easyant" xmlns:mam="antlib:com.is2t.mam.ant" xmlns:ivy="antlib:org.apache.ivy.ant">
 
 	<!--
-		This script unzip all RIPs and CCOs into the dropins folder.
+		This script fills the platform's dropins folder.
 	-->
 
-    <target name="platform:rips:install" depends="mam:init" extensionOf="abstract-compile:compile-ready">
-    	<property name="dropins.dir" location="${module.dir}/dropins"/>
+	<!-- Global properties -->
+	<dirname file="${ant.file.module-dropins}" property="module-dropins.dir"/>
+	<property name="dropins.dir" location="${project.dir}/dropins"/>
+	
+	<!-- Unzip RIPs -->
+    <target name="module-dropins:rips" depends="mam:init" extensionOf="abstract-compile:compile-ready">
+    	
 		<path id="allRips">
 		 	<fileset dir="${dependencies.output.dir}" includes="*.rip" erroronmissingdir="false"/>
 		</path>

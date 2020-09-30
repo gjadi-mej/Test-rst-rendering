@@ -11,22 +11,27 @@
 		This script copies the bsp into the platform (publication mode only).
 	-->
 
+	<!-- Sanity checks -->
+	<fail unless="com.microej.platformbuilder.bsp.microejcco.relative.dir" message="Needed by mccom-install plugin, this property must be set in module.ivy."/>
+	
+	<!-- Global properties -->
 	<dirname file="${ant.file.module-bsp}" property="module-bsp.dir"/>
+	<property file="${project.dir}/bsp/bsp.properties" prefix="bsp"/>
+
+	<!-- CCO installer requires an output dir: use ${bsp.root.dir} or dropins folder if not set -->
+	<condition property="bsp.project.microej.dir" value="${bsp.root.dir}/${com.microej.platformbuilder.bsp.microejcco.relative.dir}" else="${project.dir}/dropins/c" description="CCO output folder">
+		<isset property="bsp.root.dir"/>
+	</condition>
+	
+	<!-- Requires -->
 	<import file="${module-bsp.dir}/module-platform.ant"/>
 	
-	<property name="bsp.project.name" value="${module.prefix}-bsp"/>
-	<property name="bsp.project.dir" location="${workspace.dir}/${bsp.project.name}"/>
-	<property name="bsp.project.microej.dir" value="${bsp.project.dir}/Projects/microej" description="Needed by mccom-install plugin"/>
-	
-	<condition property="include.bsp" value="true" else="false">
-		<available file="${bsp.project.dir}" type="dir"/>
-	</condition>
-
-    <target name="platform:bsp" extensionOf="abstract-compile:compile" depends="platform:copy" if="${include.bsp}" unless="skip.publish-local">
+	<!-- Copy BSP into the platform -->
+    <target name="module-bsp:preparePublication" extensionOf="abstract-compile:compile" depends="module-platform:preparePublication" if="bsp.root.dir" unless="${skip.publish}">
     	
-    	<!-- Copy BSP into the platform -->
+    	<!-- Copy -->
     	<copy todir="${platform.publish.dir}/${platform.project.name}/source/bsp">
-			<fileset dir="${bsp.project.dir}" includes="**/*"/>
+			<fileset dir="${bsp.root.dir}" includes="**/*"/>
 		</copy>
     	
     	<!-- BSP root dir option becomes useless (and disturbing) -->
