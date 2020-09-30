@@ -84,7 +84,6 @@
 	</target>
 	
 	<target name="wip:build" depends="-eclipse-antRunner:init,platform:architecture:check">
-	<!--target name="wip:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init,platform:architecture:check"-->
 		<mkdir dir="${platform.output.dir}"/>
 
 		<!-- Build the platform -->
@@ -101,23 +100,7 @@
 		</runEclipseAntRunner>
 	</target>
 	
-	<target name="wip:generate-option-file" if="${include.bsp}">
-		<fail unless="bsp.external.scripts.dir" />
-		
-		<pathconvert property="external.scripts.dir" targetos="unix" >
-			<path location="${bsp.project.dir}/${bsp.external.scripts.dir}" />
-			<map from="${workspace.dir}" to="$${launcher.properties.dir}/../../.." />
-		</pathconvert>
-		
-		<property name="wip.options.dir" location="${wip.project.dir}/source/options"/>
-		<mkdir dir="${wip.options.dir}"/>
-		
-		<propertyfile file="${wip.options.dir}/external.properties">
-			<entry key="external.scripts.dir" value="${external.scripts.dir}" />
-		</propertyfile>
-	</target>
-
-	<target name="wip:copy" extensionOf="abstract-compile:compile" depends="wip:build,wip:generate-option-file">
+	<target name="wip:copy" extensionOf="abstract-compile:compile" depends="wip:build">
 		<copy todir="${platform.output.dir}/${wip.project.name}">
 			<fileset dir="${wip.project.dir}" includes="**/*"/>
 		</copy>
@@ -128,7 +111,7 @@
 		Copy the bsp
 		===================================================
 	-->
-	<target name="bsp:copy" extensionOf="abstract-compile:compile" if="${include.bsp}">
+	<target name="bsp:copy" extensionOf="abstract-compile:compile" if="${include.bsp}" unless="skip.publish-local">
 		<copy todir="${platform.output.dir}/${bsp.project.name}">
 			<fileset dir="${bsp.project.dir}" includes="**/*"/>
 		</copy>
@@ -139,7 +122,7 @@
 		Package the platform
 		===================================================
 	-->
-	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init">
+	<target name="platform:package" extensionOf="package" depends="readme:init,changelog:init" unless="skip.publish-local">
 		<copy todir="${platform.output.dir}" file="${readme.file}" />
 		<copy todir="${platform.output.dir}" file="${changelog.file}" />
 		<zip destfile="${target.main.artifact}.zip" basedir="${platform.output.dir}"/>
