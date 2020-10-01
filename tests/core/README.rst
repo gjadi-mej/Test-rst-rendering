@@ -197,9 +197,12 @@ Timer: t_core_time_base.c
 -------------------------
 
 A time counter is required by MicroEJ Platform. This timer must respect
-the following rules: \* during MicroEJ Application, this counter must
-not return to zero (return in the past), \* its precision must be around
-one or ten microseconds (often running at 1MHz).
+the following rules:
+
+* during MicroEJ Application, this counter must not return to zero
+  (return in the past),
+* its precision must be around one or ten microseconds (often running
+  at 1MHz).
 
 This timer can be the OS timer but most of time the OS timer does not
 respect the expected conditions. A hardware timer is often used instead.
@@ -239,12 +242,13 @@ different patterns. All accesses are aligned on value to write: 8, 16 or
 32 bits, like the MicroEJ Platform will use the RAM.
 
 To run, several functions must be implemented. See ``x_ram_checks.h``:
-\* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)`` \*
-``uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)`` \*
-``uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)`` \*
-``uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)``
+
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)``
+* ``uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)``
+* ``uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)``
+* ``uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)``
 
 **Configuration**
 
@@ -271,9 +275,10 @@ faster RAM accesses (and without any error!).
 **Configuration**
 
 To run, several functions must be implemented. See ``x_ram_checks.h``:
-\* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitSourceZone(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)``
+
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitSourceZone(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)``
 
 These *sources* can target a region in internal flash, internal RAM or
 any other regions.
