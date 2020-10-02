@@ -10,11 +10,11 @@
     	<ea:plugin org="com.is2t.easyant.plugins" module="ivy-retrieve" revision="1.+"/>
 		<ea:plugin org="com.is2t.easyant.plugins" module="mccom-install" revision="1.3.+"/>    	
 		
-		<ea:property name="com.microej.platformbuilder.platform.filename" value="ESP32WROVER.xml" description="platform configuration file (in this project)."/>
+		<ea:property name="com.microej.platformbuilder.platform.filename" value="xxx.xml" description="platform configuration file (in this project)."/>
     	<ea:property name="com.microej.platformbuilder.module.multi.enabled" value="false" description="true | false to enable | disable MultiApplications module (remove option to use default value)."/>
-    	<ea:property name="com.microej.platformbuilder.architecture.usage" value="dev" description="prod | eval"/>
-    	<ea:property name="com.microej.platformbuilder.bsp.microejcco.relative.dir" value="Projects/microej" description="BSP relative folder where deploying the CCOs."/>
-    	<ea:property name="com.microej.platformbuilder.bsp.build.enabled" value="false" description="true | false to check the BSP published in platform (BSP 'full' connection only)"/>
+    	<ea:property name="com.microej.platformbuilder.architecture.usage" value="eval" description="prod | eval"/>
+    	<ea:property name="com.microej.platformbuilder.bsp.microejcco.relative.dir" value="microej" description="BSP relative folder where deploying the CCOs."/>
+    	<ea:property name="com.microej.platformbuilder.bsp.build.enabled" value="true" description="true | false to check the BSP published in platform (BSP 'full' connection only)"/>
     
     	<ea:property name="skip.publish" value="true" description="set to perform only a platform local build disabling platform publication (faster build)."/>
 	
@@ -32,7 +32,7 @@
 	</publications>
     
     <dependencies>
-		<dependency org="com.microej.architecture.xxx" name="xxx" rev="7.13.0">
+		<dependency org="com.microej.architecture.xxx" name="xxx" rev="7.14.0">
             <artifact name="xxx" m:classifier="dev" ext="xpf"/>
         </dependency>
     </dependencies>
