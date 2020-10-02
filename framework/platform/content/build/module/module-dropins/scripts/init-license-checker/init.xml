@@ -16,7 +16,6 @@
 			<path location="${tools.dir}/license-checker.jar"/>
 			<fileset dir="${licenseManager.dir}" includes="licenseManager*.jar"/>
 		</path>
-		<sleep seconds="10"/>
 		<java failonerror="true" fork="true" classpathref="license-checker.classpath.id" classname="com.microej.tool.LicenceChecker">
 			<sysproperty key="licenses.working.dir" value="${licenses.working.dir}"/>
 			<sysproperty key="java.library.path" value="${java.library.path}"/>
