@@ -19,6 +19,7 @@
 	<dirname file="${ant.file.module-platform}" property="module-platform.dir"/>
 	<property name="platform.name" value="${module.name}"/>
 	<property name="platform.version" value="${ivy.revision}"/>
+	<property name="platform.architecture.repository" location="${target}/microejRepository"/>
 	<property name="eclipse-antRunner.build.target" value="module-platform:eclipseantrunner:build"/>
 	<property name="eclipse-antRunner.eclipse.home" location="${eclipse.home}"/>
 	<property name="eclipse-antRunner.build.script" location="${module-platform.dir}/module-platform/eclipseantrunner.ant"/>
@@ -143,7 +144,7 @@
 	<target name="module-platform:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init">
 		<runEclipseAntRunner>
 			<args.properties>
-				<jvmarg value="-Dmicroej.repository=${target}/microejRepository"/>
+				<jvmarg value="-Dmicroej.repository=${platform.architecture.repository}"/>
 				<arg value="-Djpf.configuration.file=${project.dir}/${com.microej.platformbuilder.platform.filename}"/>
 				<arg value="-Dmicroej.architecture.dir=${microej.architecture.dir}"/>
 				<arg value="-Dant.file.com.is2t.easyant.plugins;eclipse-antRunner=${ant.file.com.is2t.easyant.plugins;eclipse-antRunner}"/>
