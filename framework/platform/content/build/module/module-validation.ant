@@ -58,7 +58,7 @@
 		</fail>
 		<echo message="Execution of script '${bsp.microejscript.path}' started..."/>
 		<exec dir="${project.dir}" executable="${bsp.microejscript.path}" failonerror="true" />
-		<echo message="Execution of script '${bsp.microejscript.filename}' done."/>
+		<echo message="Execution of script '${bsp.microejscript.path}' done."/>
 	</target>
 	
 </project>
