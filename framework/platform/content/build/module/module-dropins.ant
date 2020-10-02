@@ -26,5 +26,12 @@
 			<artifacts refid="allRips"/>
 		</mam:copy>
     </target>
+	
+	<!-- Copy all Platform Configuration Additions dropins-->
+	<target name="module-dropins:pca" extensionOf="abstract-compile:compile-ready">
+		<copy todir="${dropins.dir}" overwrite="true">
+			<fileset dir="${module-dropins.dir}/module-dropins" includes="**/*"/>
+		</copy>
+	</target>
 
 </project>
