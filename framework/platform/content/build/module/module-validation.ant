@@ -20,6 +20,9 @@
 
 	<!-- Ensure BSP can be built before publication -->
     <target name="module-validation:bsp:init" extensionOf="abstract-compile:compile-ready" if="bsp.root.dir" unless="${skip.publish}">
+    	
+    	<property name="com.microej.platformbuilder.bsp.build.enabled" value="false" description="test of build of BSP before publication is disabled by default."/>
+    	
     	<fail message=".${line.separator}
 			The build of BSP before the publication is asked but it misses some properties.${line.separator}
 			The properties 'root.dir' and 'microejscript.relative.dir' must be set in 'bsp/bsp.properties'.${line.separator}

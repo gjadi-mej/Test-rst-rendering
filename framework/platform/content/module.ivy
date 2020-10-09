@@ -8,7 +8,8 @@
     	<ea:plugin org="com.is2t.easyant.plugins" module="eclipse-antRunner" revision="1.+"/>
     	<ea:plugin org="com.is2t.easyant.plugins" module="mam" revision="1.+"/>
     	<ea:plugin org="com.is2t.easyant.plugins" module="ivy-retrieve" revision="1.+"/>
-		<ea:plugin org="com.is2t.easyant.plugins" module="mccom-install" revision="1.3.+"/>    	
+		<ea:plugin org="com.is2t.easyant.plugins" module="mccom-install" revision="1.3.+"/>
+		<ea:property name="com.microej.platformbuilder.bsp.microejcco.relative.dir" value="MicroEJ" description="BSP relative folder where deploying the CCOs."/>
     </info>
     
     <configurations>
