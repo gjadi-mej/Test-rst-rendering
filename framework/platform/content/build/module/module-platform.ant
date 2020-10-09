@@ -105,7 +105,7 @@
 	<target name="module-platform:project:check" extensionOf="abstract-compile:compile-ready" depends="module-platform:description">
 		
 		<!-- Use same naming convention than MicroEJ Workbench-->
-		<property name="platform.project.name" value="${configuration.platform(hardwarePartNumber)}-${platform.name}-${configuration.platform.environment(toolchain)}-${platform.version}"/>
+		<property name="platform.project.name" value="${configuration.platform(hardwarePartNumber)}-${platform.name}-${microej.architecture.toolchain}-${platform.version}"/>
 		
 		<!-- Error when output folder exists and not denote a platform project -->
 		<fail message=".${line.separator}
