@@ -1,6 +1,6 @@
 ..
-    Copyright 2019 MicroEJ Corp. All rights reserved.
-    MicroEJ Corp. PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+    Copyright 2020 MicroEJ Corp. All rights reserved.
+    Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
 **********************************
@@ -24,7 +24,7 @@ Testsuite configuration
 =============
 
 - Load the ``java/java-testsuite-fs`` project in your MicroEJ SDK
-- Copy/Paste the ``config.properties.template``, rename it to ``config.properties``
+- Copy/Paste the ``config.properties.tpl``, rename it to ``config.properties``
 - Open the ``config.properties``, uncomment the following properties, and set the right value for each of them:
 
 	- target.platform.dir: This is the platform path, which is the parent folder of the release.properties file
