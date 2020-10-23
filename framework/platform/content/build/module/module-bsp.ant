@@ -10,17 +10,27 @@
 	<!--
 		This script copies the bsp into the platform (publication mode only).
 	-->
-
-	<!-- Sanity checks -->
-	<fail unless="com.microej.platformbuilder.bsp.microejcco.relative.dir" message="Needed by mccom-install plugin, this property must be set in module.ivy."/>
 	
 	<!-- Global properties -->
 	<dirname file="${ant.file.module-bsp}" property="module-bsp.dir"/>
 	<property file="${project.dir}/bsp/bsp.properties" prefix="bsp"/>
 
+	<!-- Sanity checks -->
+	<fail message="Property 'com.microej.platformbuilder.bsp.microejcco.relative.dir' required by mccom-install plugin, it must be set in module.ivy.">
+		<condition>
+			<and>
+				<isset property="ant.file.com.is2t.easyant.plugins;mccom-install"/>
+				<not><isset property="com.microej.platformbuilder.bsp.microejcco.relative.dir"/></not>
+			</and>
+		</condition>
+	</fail>
+
 	<!-- CCO installer requires an output dir: use ${bsp.root.dir} or dropins folder if not set -->
 	<condition property="bsp.project.microej.dir" value="${bsp.root.dir}/${com.microej.platformbuilder.bsp.microejcco.relative.dir}" else="${project.dir}/dropins/c" description="CCO output folder">
-		<isset property="bsp.root.dir"/>
+		<and>
+			<isset property="bsp.root.dir"/>
+			<isset property="com.microej.platformbuilder.bsp.microejcco.relative.dir"/>
+		</and>
 	</condition>
 	
 	<!-- Requires -->
