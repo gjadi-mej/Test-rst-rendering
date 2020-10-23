@@ -12,6 +12,7 @@ This folder is a part of a project which gathers the platform qualification tool
 =============
 Prerequisites
 =============
+
 Before starting the test, make sure you have the following requirements:
 
 - MicroEJ SDK version 5.1.1 or later
@@ -48,4 +49,5 @@ If your board dump it trace on a serial port, you need to run the serial to sock
 =============
 Run the testsuite
 =============
+
 Right click on the ``java-testsutie-fs`` project and click on ``Build Module``.
