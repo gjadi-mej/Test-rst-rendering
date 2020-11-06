@@ -11,7 +11,7 @@ Soluta ut aut quia laudantium dignissimos sint et soluta.
 * Ea aut assumenda qui ullam at.
 * Molestias rem iure blanditiis at velit quisquam.
 
-    * Eligendi est vero natus.
+  * Eligendi est vero natus.
     
 * Rem voluptas ipsum voluptatem voluptate pariatur possimus hic.
 
