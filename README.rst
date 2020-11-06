@@ -37,6 +37,13 @@ NOT WORKING SYNTAXES
 * See nested :ref:`readme <a_folder/README.rst>`
 * See nested readme :doc:`readme <a_folder/README.rst>`
 
+Notes?
+------
+
+.. note:: This is not working nicely (no dedicated frame for the note)
+
+.. todo:: This is not working
+
 A section
 ---------
 
