@@ -107,7 +107,8 @@ The COM port uses the following parameters:
 - Flow control: None
 
 When running a Testsuite, a secondary UART port is needed.  Please
-refers to `run_a_testsuite`_ for a detailed explanation.
+refers to `Run a Testsuite`_ for a
+detailed explanation.
 
 .. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/establish-serial-connection.html>`__ for more details.
 
@@ -499,10 +500,8 @@ The BSP project deploy is launched. Please wait for the final message:
 Congratulations, you have deployed a MicroEJ |GUIDE_INTERNAL_STANDALONE| on a |GUIDE.INTERNAL.EMB|.
 
 
-.. run_a_testsuite::
-
-Run a Testsuite on the |BOARDPRINTABLENAME| Board
-=================================================
+Run a Testsuite
+===============
 
 To run a Testsuite on the |BOARDPRINTABLENAME| board the property
 ``microej.testsuite.properties.debug.traces.uart`` must be set in the
