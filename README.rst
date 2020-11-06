@@ -433,16 +433,16 @@ BSP Manual Compilation
 
 To build the ``{PLATFORM}-bsp`` project, open a Windows command terminal and enter the following command lines:
 
-**Windows:**
+** On Windows:**
 
-::
+.. code-block:: sh
 
       $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
       $ build.bat 
 
-**Linux / Mac OS:**
+** On Linux / Mac OS:**
 
-::
+.. code-block:: sh
 
       $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
       $ build.sh 
@@ -496,16 +496,16 @@ The |BOARDPRINTABLENAME| board can be flashed using |MANUFACTURER| bootloader. F
 - Edit the ``{PLATFORM}-bsp/Projects/microej/scripts/run.xxx`` script (where ``xxx`` is ``bat`` for Windows and ``sh`` for Linux / Mac OS). Update the ``ESPPORT`` variable to put the new COM port discovered previously and uncomment the associated line if not already done.
 - Open a terminal and enter the following command lines:
 
-**Windows:**
+**On Windows:**
 
-::
+.. code-block:: sh
 
       $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
       $ run.bat 
 
-**Linux / Mac OS:**
+**On Linux / Mac OS:**
 
-::
+.. code-block:: sh
 
       $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
       $ run.sh 
