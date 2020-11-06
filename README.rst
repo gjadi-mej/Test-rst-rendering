@@ -1,64 +1,542 @@
-This is a title 1
-=================
+..
+    Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+	This library is provided in source code for use, modification and test, subject to license terms.
+	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
+
+.. |TARGET_NAME| replace:: ESP32-WROVER
+.. |BOARDPRINTABLENAME| replace:: ESP32-WROVER-KIT v4.1
+.. |BOARDREVISION| replace:: v4.1
+.. |RI_NAME| replace:: ESP32 WROVER platform reference implementation
+.. |RI_VER| replace:: v1.6.0
+
+.. |RCP| replace:: MicroEJ SDK
+.. |GUIDE.INTERNAL.EMB| replace:: MicroEJ platform
+.. |GUIDE.INTERNAL.EMB.TITLE| replace:: MicroEJ Platform
+.. |GUIDE_INTERNAL_STANDALONE| replace:: standalone application
+.. |GUIDE.INTERNAL.SIM| replace:: MicroEJ simulator
+.. |GUIDE.INTERNAL.PLATFORM| replace:: MicroEJ Platform
+.. |GUIDE.INTERNAL.XPF| replace:: MicroEJ architecture
+.. |CIDE.PRINTABLENAME| replace:: MicroEJ SDK
+.. |RTOS.PRINTABLENAME RTOS| replace:: FreeRTOS RTOS
+.. |GUIDE.INTERNAL.EMBS| replace:: MicroEJ platforms
+.. |DEPLOYTOOLPRINTABLENAME| replace:: Espressif esptool
+.. |PLATFORM.SINGLEAPP.UID| replace:: HDAHT
+.. |PLATFORM.MULTIAPP.UID| replace:: 9C5H4
+.. |MANUFACTURER| replace:: Espressif
+
+=======================================
+ Readme: MicroEJ ESP32-WROVER Platform 
+=======================================
+
+This project is used to build MicroEJ reference implementation platform for
+ESP32-WROVER-KIT development board.
+
+Requirements
+=============
+
+- PC with Windows 10
+- |RCP| environment (v20.10 or later, available `here <https://developer.microej.com/get-started/>`_)
+- A |BOARDPRINTABLENAME| board
+
+Board Technical Specifications
+==============================
+
+- Name: |BOARDPRINTABLENAME|
+- Revision: |BOARDREVISION|
+- MCU part number: ESP32-WROVER-B
+- MCU revision: -
+- MCU architecture: Xtensa LX6
+- MCU max clock frequency: 240 MHz
+- Internal flash size: 540 KB
+- Internal RAM size: 520 KB
+- External flash size: 4 MB
+- External RAM size: 8 MB 
+- Power supply: USB, External 5V
+
+.. note:: Here is a list of |BOARDPRINTABLENAME| usefull documentation links:
+
+   - Board documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1>`__
+   - |MANUFACTURER| board Getting Started available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__
+   - Board schematics available `here <https://dl.espressif.com/dl/schematics/ESP-WROVER-KIT_V4_1.pdf>`__
+   - MCU Technical Reference Manual available `here <https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf>`__
+   - MCU Datasheet available `here <https://espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`__
+   - MCU Errata available `here <https://espressif.com/sites/default/files/documentation/eco_and_workarounds_for_bugs_in_esp32_en.pdf>`__
+
+Required Tools Installation Procedure
+=====================================
+
+Please setup the |MANUFACTURER| toolchain as described `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#setup-toolchain>`__.
+
+Validate the installation of the toolchain by executing the script
+``{PLATFORM}-bsp/Projects/microej/scripts/build.bat`` on Windows
+(``{PLATFORM}-bsp/Projects/microej/scripts/build.sh`` on Linux).
+
+.. note:: The build script expects the toolchain to be installed at a known path.  If you installed it elsewhere, see :ref:`advanced_bsp_build` for how to customize its path.
 
 
-This is a title 2
------------------
+Board Usage
+===========
 
-Eum quis fugit praesentium in ut.
-Soluta ut aut quia laudantium dignissimos sint et soluta.
+Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__ for more details.
 
-* Ea aut assumenda qui ullam at.
-* Molestias rem iure blanditiis at velit quisquam.
+Powering
+--------
 
-    * Eligendi est vero natus.
-    
-* Rem voluptas ipsum voluptatem voluptate pariatur possimus hic.
+The board can be powered using USB cable or exernal 5V power supply.
 
-See `A section`_ for code in action. See `A section with: funny symbols.java`_.
-See `nicely_named_section`_ (but this doesn't work `a named section <nicely_named_section>`_).
+.. note:: Please refers to the Espressif documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__ for more details.
 
-This is a title 3
-:::::::::::::::::
+Programming
+-----------
 
-.. code:: rst
+Please refers to `Deploy the Application`_ to have more information on how to deploy on a firmware on the |BOARDPRINTABLENAME| board.
 
-   * See nested `readme <a_folder/README.rst>`_
+.. note:: |MANUFACTURER| build and flash documentation are also available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#build-and-flash>`__ for more details.
 
-* See nested `readme <a_folder/README.rst>`_
+Logs Output
+-----------
 
-NOT WORKING SYNTAXES
+MicroEJ platform uses the virtual UART from the |BOARDPRINTABLENAME| USB port. A COM port is automatically mounted when the board is plugged to a computer using USB cable. All board logs are available through this COM port.
 
-* See nested [readme](a_folder/README.rst)
-* See nested readme `a_folder/README.rst`_
-* See nested readme :ref:`a_folder/README.rst`
-* See nested readme :doc:`a_folder/README.rst`
-* See nested `readme <a_folder/README.rst>`
-* See nested :ref:`readme <a_folder/README.rst>`
-* See nested readme :doc:`readme <a_folder/README.rst>`
+The COM port uses the following parameters:
 
-A section
+- Baudrate: 115200
+- Data bits bits: 8
+- Parity bits: None
+- Stop bits: 1
+- Flow control: None
+
+When running a Testsuite, a secondary UART port is needed.  Please
+refers to `run_a_testsuite`_ for a detailed explanation.
+
+.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/establish-serial-connection.html>`__ for more details.
+
+Debugging
 ---------
 
-With some code:
+A JTAG interface is also directly available through the USB interface.
+
+.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html>`__ for more details.
+
+Board Development Environment
+=============================
+
+Windows Toolchain
+-----------------
+
+- C/C++ toolchain name: esp32_win32_msys2_environment_and_toolchain_idf3-20200714
+- C/C++ toolchain version: 20200714
+- C/C++ toolchain download link: https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain_idf3-20200714.zip
+
+.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/windows-setup.html>`__ for more details.
+
+Linux Toolchain
+---------------
+
+- C/C++ toolchain name: xtensa-esp32-elf-linux
+- C/C++ toolchain version: 1.22.0-96-g2852398-5.2.0
+- C/C++ toolchain download link for 64-bit Linux: https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-96-g2852398-5.2.0.tar.gz
+- C/C++ toolchain download link for 32-bit Linux: https://dl.espressif.com/dl/xtensa-esp32-elf-linux32-1.22.0-96-g2852398-5.2.0.tar.gz  
+
+.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/linux-setup.html>`__ for more details.
+
+Board Support Package
+---------------------
+
+- BSP provider: |MANUFACTURER| (``esp-idf``)
+- BSP version: v3.3.4
+
+.. note:: Please refers to the |MANUFACTURER| ``esp-idf`` GitHub git repository available `here <https://github.com/espressif/esp-idf/releases/tag/v3.3.4>`__.
+
+Third Party Software
+--------------------
+
+Third party softwares used in BSP can be found `here <https://github.com/espressif/esp-idf/tree/v3.3.4/components>`__. Here is a list of the most important ones:
+
+- RTOS name / version: FreeRTOS V8.2.0
+- TCP/IP stack name / version: esp_lwip 2.0.3
+- Cryptographic stack name / version: Mbed TLS 2.16.5
+- File System stack name / version: FatFS R0.13a
+- Bluetooth stack name / version: BLUEDROID
+
+Platform Memory Layout
+======================
+
+Memory Sections
+---------------
+
+Each memory section is discribed in the GCC linker file available `here <https://github.com/espressif/esp-idf/blob/v3.3.4/components/esp32/ld/esp32.ld>`__
+
+Memory Layout
+-------------
+
+- MicroEJ resident applications statics (named ``.bss.features.installed``): put in the ``.ext_ram.bss`` section (external PSRAM)
+- MicroEJ application static (named ``.bss.soar``): put in the ``.bss`` section (internal RAM)
+- MicroEJ application threads stack blocks (named ``.bss.vm.stacks.java``): put in the ``.ext_ram.bss`` section (external PSRAM)
+- MicroEJ Core Engine internal heap (named ``ICETEA_HEAP``): put in the ``.ext_ram.bss`` section (external PSRAM)
+- MicroEJ application heap (named ``_java_heap``) location: put in the ``.ext_ram.bss`` section (external PSRAM)
+- MicroEJ application immortal heap (named ``_java_immortals``) location: put in the ``.ext_ram.bss`` section (external PSRAM)
+- MicroEJ application resources (named ``.rodata.resources``) location: put in the ``.rodata`` section (external QSPI)
+- MicroEJ resident applications code and resources (named ``.rodata.soar.features``) location: put in the ``.rodata`` section (external QSPI)
+- MicroEJ shielded Plug data (named ``.shieldedplug``) location: put in the ``.rodata`` section (external QSPI)
+- MicroEJ application and library code (named ``.text.soar``) location: put in the ``.rodata`` section (external QSPI)
+- MicroEJ MicroUI display framebuffer location: put in the ``.ext_ram.bss`` section (external PSRAM)
+- C heap: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-reference/system/heap_debug.html#heap-information>`__
+
+.. note:: Information on MicroEJ memory sections can be found `here <./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/components/microej_gen/Makefile.projbuild>`__. Please also refers to the MicroEJ docs website page available `here <https://docs.microej.com/en/latest/PlatformDeveloperGuide/coreEngine.html#link>`__ for more details.
+
+
+A list of BSP linker files defining firmware memory layout is available `here <https://github.com/espressif/esp-idf/blob/v3.3.4/components/esp32/ld>`__.
+
+Platform Configurations
+=======================
+
+The |RI_NAME| |RI_VER| is declined into:
+
+- a single application platform (UID: |PLATFORM.SINGLEAPP.UID|),
+- a multi application platform (UID: |PLATFORM.MULTIAPP.UID|).
+
+Those declinations are themselves declined into:
+
+- an evaluation platform (eval):
+
+  - requires a SDK evaluation license from
+    https://license.microej.com/.
+  - When limitation is reached, the MicroEJ runtime will
+    terminate. Exit code is described in the MicroEJ Device
+    Developer's Guide provided with your SDK.
+
+- a production platform (prod):
+
+  - requires a SDK USB dongle license.
+  - Production platforms do not implement limitation. If used
+    properly, the platform can be run indifinitely or within the
+    limits of the development board.
+
+By default, the platform is configured as a Single Application
+Evaluation Platform.  See :ref:`advanced_build_options` for more
+details on how to customize the platform configuration.
+
+Single Application Platform
+---------------------------
+
+The single application platform is designed to give optimum performances and
+resources for single application firmwares.
+It embeds a specific MicroEJ virtual machine for this purpose.
+
+It also supports SEGGER SystemView and OTA (Over The Air) update management.
+
+Multi Application Platform
+--------------------------
+
+The multi application platform is designed for multiple application firmwares.
+It embeds a specific MicroEJ virtual machine for this purpose.
+
+SEGGER SystemView and OTA have been disabled in order to reduce the memory
+footprint.
+
+Platform Build
+==============
+
+The platform has to be build before using it. Please follow steps below:
+
+- Select the ``{PLATFORM}-configuration`` project in your |RCP| worksapce
+- Click on ``Build Selected Module``
+
+  The platform build is now launched. Please wait for the final message:
+
+.. code-block::
+
+                          BUILD SUCCESSFUL 
+
+.. note:: Please also refers to the MicroEJ platform creation docs website page available `here <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html>`__ for more details.
+
+.. advanced_build_options::
+
+Advanced Build Options
+----------------------
+
+Following options can be modified in your
+``{PLATFORM}-configuration/module.properties`` to build the platform
+with specific options:
+
+- ``com.microej.platformbuilder.module.multi.enabled``: set to
+  ``true`` to build a Multi application platform, ``false`` to build a
+  Single application platform (``false`` by default)
+- ``com.microej.platformbuilder.architecture.usage``: set to ``prod``
+  to build a production platform, ``eval`` to build an evaluation
+  platform (``eval`` by default)
+- ``com.microej.platformbuilder.bsp.build.enabled``: set to ``true``
+  to launch a platform BSP build during the platform build, ``false``
+  otherwise (``false`` by default)
+
+
+Create and Use Your First |GUIDE.INTERNAL.PLATFORM|
+===================================================
+
+The aim of this chapter is to create a |GUIDE.INTERNAL.EMB| from a
+|GUIDE.INTERNAL.XPF|. The platform will then be used to run a MicroEJ
+|GUIDE_INTERNAL_STANDALONE| in subsequent chapters.
+
+Although it is possible to use |RCP| to create every aspect of a
+|GUIDE.INTERNAL.EMB| in accordance with specific requirements, in this
+chapter we will use a pre-packaged example of a |GUIDE.INTERNAL.EMB|
+that is already configured for the |BOARDPRINTABLENAME|.
+
+Inside |RCP|, the selected example is imported as several projects
+prefixed by the given name:
+
+-  ``{PLATFORM}-configuration``: Contains the platform reference
+   implementation configuration description. Some modules are
+   described in a specific sub-folder / with some optional
+   configuration files (``.properties`` and / or ``.xml``).
+
+-  ``{PLATFORM}-bsp``: Contains a ready-to-use BSP software project for
+   the |BOARDPRINTABLENAME| board, including a |CIDE.PRINTABLENAME|
+   project, an implementation of MicroEJ core engine (and extensions)
+   port on |RTOS.PRINTABLENAME RTOS| and the |BOARDPRINTABLENAME| board
+   support package.
+
+-  ``{PLATFORM}-fp``: Contains the board description and images for the
+   |GUIDE.INTERNAL.SIM|. This project is updated once the platform
+   is built.
+
+Click on ``{PLATFORM}-configuration`` project and then click on the 
+``Build Selected Module`` blue button on the |RCP| tools bar.
+
+The build starts. This step may take several minutes. You can see the
+progress of the build steps in the MicroEJ console. Please wait for
+the final message:
+
+.. code-block::
+
+                          BUILD SUCCESSFUL
+
+At the end of the execution the |GUIDE.INTERNAL.EMB| is fully built
+for the |BOARDPRINTABLENAME| board and is ready to be linked into the
+|CIDE.PRINTABLENAME| project.
+
+The |GUIDE.INTERNAL.EMB| is now ready for use and available in the
+|GUIDE.INTERNAL.EMBS| list of your MicroEJ repository (``Windows
+> Preferences > MicroEJ > Platforms in workspace``).
+
+
+Run an Example on the |GUIDE.INTERNAL.SIM|
+==========================================
+
+The aim of this chapter is to create a MicroEJ |GUIDE_INTERNAL_STANDALONE|
+from a built-in example.
+
+Initially, this example will run on the |GUIDE.INTERNAL.SIM|.
+Then, in the next section, this application will be compiled and deployed
+on the |BOARDPRINTABLENAME| board using the |GUIDE.INTERNAL.EMB|.
+
+
+Create Example
+--------------
+
+-  Open |RCP|.
+
+-  Open the ``File > New > MicroEJ Standalone Application Project``
+   menu.
+
+-  Enter your project name (e.g. HelloWorld).
+
+   .. figure:: ESP32-WROVER-Xtensa-FreeRTOS-documentation/images/application/sim/HelloWorld-creation.png
+      :alt: MicroEJ |GUIDE_INTERNAL_STANDALONE| Creation
+
+      MicroEJ |GUIDE_INTERNAL_STANDALONE| Creation
+
+-  Click on Finish.
+  
+The example is created into a project with the given
+name. The main class (the class which contains the ``main()`` method)
+is automatically generated.
+
+
+Run Example
+-----------
+
+-  Select the project in the Package Explorer tree
+
+-  Right-click on this project and select
+   ``Run As > MicroEJ Application``
+
+   .. figure:: ESP32-WROVER-Xtensa-FreeRTOS-documentation/images/application/sim/HelloWorld-run.png
+      :alt: MicroEJ |GUIDE_INTERNAL_STANDALONE| Running
+      :width: 100.0%
+
+      MicroEJ |GUIDE_INTERNAL_STANDALONE| Running
+
+   The application starts. It is executed on the |GUIDE.INTERNAL.SIM|
+   of the selected |GUIDE.INTERNAL.EMB|.
+   The result of the test is printed in the console:
+
+   .. code-block::
+
+                              Hello World!
+
+
+Run the Example on the |BOARDPRINTABLENAME| Board
+=================================================
+
+Compile MicroEJ |GUIDE_INTERNAL_STANDALONE|
+-------------------------------------------
+
+-  Open the run dialog (``Run > Run configurations...``).
+
+-  Select the MicroEJ Application launcher ``EXAMPLENAME Main`` that is
+   created by the previous chapter.
+
+-  Open ``Execution`` tab.
+
+-  Select ``Execute on Device``.
+
+   .. figure:: ESP32-WROVER-Xtensa-FreeRTOS-documentation/images/application/emb/basic-launcher.png
+      :alt: Execution on Device
+      :width: 100.0%
+
+      Execution on Device
+
+-  Click ``Run``: the application is compiled, and the compilation
+   result (an ELF file) is copied into a well-known location in the
+   example project.
+
+
+Compile and Link Platform BSP
+-----------------------------
+
+BSP Manual Compilation
+~~~~~~~~~~~~~~~~~~~~~~
+
+To build the ``{PLATFORM}-bsp`` project, open a Windows command terminal and enter the following command lines:
+
+**Windows:**
 
 ::
 
-    Eum quis fugit praesentium in ut.
-    Soluta ut aut quia laudantium dignissimos sint et soluta.
-    Ea aut assumenda qui ullam at.
-    Molestias rem iure blanditiis at velit quisquam.
-    Eligendi est vero natus.
-    Rem voluptas ipsum voluptatem voluptate pariatur possimus hic.
+      $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
+      $ build.bat 
 
-.. _nicely_named_section:
+**Linux / Mac OS:**
 
-A named section
----------------
+::
 
-No content :(
+      $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
+      $ build.sh 
 
-A section with: funny symbols.java
-====================================
+The BSP project build is launched. Please wait for the final message:
 
-Stars ``*`` are not supported in link to title.
+.. code-block::
+
+      To flash all build output, run 'make flash' or:
+
+.. note::
+
+    The platform BSP project is configured to build the Mono-Sandboxed
+    Firmware by default.  To build the Multi-Sandboxed Firmware, use
+    the build script ``build_no_ota_no_systemview``.  With
+    Multi-Sandboxed Firmware configuration, SystemView and OTA
+    features are disabled and partition table layout updated
+    accordingly.
+
+BSP Compilation from |RCP|
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To build the BSP project every time the Java Application is built,
+proceed as follow:
+
+-  Open the run dialog (``Run > Run configurations...``).
+
+-  Select the MicroEJ Application launcher ``EXAMPLENAME Main`` that is
+   created by the previous chapter.
+
+-  Open ``Configuration`` tab.
+
+- Select ``Deploy``
+
+- Ensure the option ``Execute the MicroEJ Build Script (build.bat) at
+  a location known by the 3rd-party BSP project.`` is checked.
+
+|BOARDPRINTABLENAME| Elf executable firmware and associated binary files are available in ``{PLATFORM}-bsp/projects/microej/build``
+
+.. advanced_bsp_build::
+
+Advanced Customization of BSP Build
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please refers to `README
+<./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/README.rst>`__
+for details on how to customize the build process.
+
+Deploy the Application
+----------------------
+
+The |BOARDPRINTABLENAME| board can be flashed using |MANUFACTURER| bootloader. Follow steps below to do it:
+
+- Connect the USB connector of the board to your computer
+- Take a look to the new COM port available
+- Edit the ``{PLATFORM}-bsp/Projects/microej/scripts/run.xxx`` script (where ``xxx`` is ``bat`` for Windows and ``sh`` for Linux / Mac OS). Update the ``ESPPORT`` variable to put the new COM port discovered previously and uncomment the associated line if not already done.
+- Open a terminal and enter the following command lines:
+
+**Windows:**
+
+::
+
+      $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
+      $ run.bat 
+
+**Linux / Mac OS:**
+
+::
+
+      $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
+      $ run.sh 
+
+The BSP project deploy is launched. Please wait for the final message:
+
+.. code-block::
+
+      Leaving...
+      Hard resetting...
+
+Congratulations, you have deployed a MicroEJ |GUIDE_INTERNAL_STANDALONE| on a |GUIDE.INTERNAL.EMB|.
+
+
+.. run_a_testsuite::
+
+Run a Testsuite on the |BOARDPRINTABLENAME| Board
+=================================================
+
+To run a Testsuite on the |BOARDPRINTABLENAME| board the property
+``microej.testsuite.properties.debug.traces.uart`` must be set in the
+``config.properties`` of the Testsuite.
+
+This property redirect the UART onto a different GPIO port. Connect a
+FTDI USB wire to the pin D0 of the JP4 connector and ground.
+
+Testsuite FS
+~~~~~~~~~~~~
+
+A ``config.properties`` and ``microej-testsuite-common.properties`` is
+provided in ``{PLATFORM}-documentation/testsuite-fs/``.
+
+In ``config.properties``, the property ``target.platform.dir`` must be
+set to the absolute path to the platform.  For example
+``C:/P0065_ESP32-WROVER-Platform/ESP32-WROVER-Xtensa-FreeRTOS-platform/source``.
+
+Other Files to Read
+===================
+
+This directory also contains
+
+* `CHANGELOG <./CHANGELOG.rst>`_ to track the changes in the MicroEJ
+  ESP32-WROVER-KIT reference implementation
+* `RELEASE NOTES <./RELEASE_NOTES.rst>`_ to list:
+
+  - the supported hardware,
+  - the known issues and the limitations,
+  - the development environment,
+  - the list of the dependencies and their versions.
+
+* `README <./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/README.rst>`_ for MicroEJ C project developed with the |MANUFACTURER| IDF. Recommended for users familiar with |MANUFACTURER| IDF and advanced usage.
