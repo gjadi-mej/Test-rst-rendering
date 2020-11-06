@@ -53,14 +53,14 @@ Board Technical Specifications
 - External RAM size: 8 MB 
 - Power supply: USB, External 5V
 
-.. note:: Here is a list of |BOARDPRINTABLENAME| usefull documentation links:
+Here is a list of |BOARDPRINTABLENAME| usefull documentation links:
 
-   - Board documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1>`__
-   - |MANUFACTURER| board Getting Started available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__
-   - Board schematics available `here <https://dl.espressif.com/dl/schematics/ESP-WROVER-KIT_V4_1.pdf>`__
-   - MCU Technical Reference Manual available `here <https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf>`__
-   - MCU Datasheet available `here <https://espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`__
-   - MCU Errata available `here <https://espressif.com/sites/default/files/documentation/eco_and_workarounds_for_bugs_in_esp32_en.pdf>`__
+- Board documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/hw-reference/modules-and-boards.html#esp-wrover-kit-v4-1>`__
+- |MANUFACTURER| board Getting Started available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__
+- Board schematics available `here <https://dl.espressif.com/dl/schematics/ESP-WROVER-KIT_V4_1.pdf>`__
+- MCU Technical Reference Manual available `here <https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf>`__
+- MCU Datasheet available `here <https://espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`__
+- MCU Errata available `here <https://espressif.com/sites/default/files/documentation/eco_and_workarounds_for_bugs_in_esp32_en.pdf>`__
 
 Required Tools Installation Procedure
 =====================================
@@ -71,7 +71,9 @@ Validate the installation of the toolchain by executing the script
 ``{PLATFORM}-bsp/Projects/microej/scripts/build.bat`` on Windows
 (``{PLATFORM}-bsp/Projects/microej/scripts/build.sh`` on Linux).
 
-.. note:: The build script expects the toolchain to be installed at a known path.  If you installed it elsewhere, see `Advanced Customization of BSP Build`_ for how to customize its path.
+The build script expects the toolchain to be installed at a known
+path.  If you installed it elsewhere, see `Advanced Customization of
+BSP Build`_ for how to customize its path.
 
 
 Board Usage
@@ -84,14 +86,18 @@ Powering
 
 The board can be powered using USB cable or exernal 5V power supply.
 
-.. note:: Please refers to the Espressif documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__ for more details.
+Please refers to the Espressif documentation available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/get-started-wrover-kit.html>`__
+for more details.
 
 Programming
 -----------
 
 Please refers to `Deploy the Application`_ to have more information on how to deploy on a firmware on the |BOARDPRINTABLENAME| board.
 
-.. note:: |MANUFACTURER| build and flash documentation are also available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#build-and-flash>`__ for more details.
+|MANUFACTURER| build and flash documentation are also available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#build-and-flash>`__
+for more details.
 
 Logs Output
 -----------
@@ -110,14 +116,18 @@ When running a Testsuite, a secondary UART port is needed.  Please
 refers to `Run a Testsuite`_ for a
 detailed explanation.
 
-.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/establish-serial-connection.html>`__ for more details.
+Please refers to the |MANUFACTURER| documentation available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/establish-serial-connection.html>`__
+for more details.
 
 Debugging
 ---------
 
 A JTAG interface is also directly available through the USB interface.
 
-.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html>`__ for more details.
+Please refers to the |MANUFACTURER| documentation available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html>`__
+for more details.
 
 Board Development Environment
 =============================
@@ -129,7 +139,9 @@ Windows Toolchain
 - C/C++ toolchain version: 20200714
 - C/C++ toolchain download link: https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain_idf3-20200714.zip
 
-.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/windows-setup.html>`__ for more details.
+Please refers to the |MANUFACTURER| documentation available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/windows-setup.html>`__
+for more details.
 
 Linux Toolchain
 ---------------
@@ -139,7 +151,9 @@ Linux Toolchain
 - C/C++ toolchain download link for 64-bit Linux: https://dl.espressif.com/dl/xtensa-esp32-elf-linux64-1.22.0-96-g2852398-5.2.0.tar.gz
 - C/C++ toolchain download link for 32-bit Linux: https://dl.espressif.com/dl/xtensa-esp32-elf-linux32-1.22.0-96-g2852398-5.2.0.tar.gz  
 
-.. note:: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/linux-setup.html>`__ for more details.
+Please refers to the |MANUFACTURER| documentation available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/linux-setup.html>`__
+for more details.
 
 Board Support Package
 ---------------------
@@ -147,7 +161,9 @@ Board Support Package
 - BSP provider: |MANUFACTURER| (``esp-idf``)
 - BSP version: v3.3.4
 
-.. note:: Please refers to the |MANUFACTURER| ``esp-idf`` GitHub git repository available `here <https://github.com/espressif/esp-idf/releases/tag/v3.3.4>`__.
+Please refers to the |MANUFACTURER| ``esp-idf`` GitHub git repository
+available `here
+<https://github.com/espressif/esp-idf/releases/tag/v3.3.4>`__.
 
 Third Party Software
 --------------------
@@ -184,7 +200,11 @@ Memory Layout
 - MicroEJ MicroUI display framebuffer location: put in the ``.ext_ram.bss`` section (external PSRAM)
 - C heap: Please refers to the |MANUFACTURER| documentation available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-reference/system/heap_debug.html#heap-information>`__
 
-.. note:: Information on MicroEJ memory sections can be found `here <./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/components/microej_gen/Makefile.projbuild>`__. Please also refers to the MicroEJ docs website page available `here <https://docs.microej.com/en/latest/PlatformDeveloperGuide/coreEngine.html#link>`__ for more details.
+Information on MicroEJ memory sections can be found `here
+<./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/components/microej_gen/Makefile.projbuild>`__. Please
+also refers to the MicroEJ docs website page available `here
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/coreEngine.html#link>`__
+for more details.
 
 
 A list of BSP linker files defining firmware memory layout is available `here <https://github.com/espressif/esp-idf/blob/v3.3.4/components/esp32/ld>`__.
@@ -250,7 +270,10 @@ The platform has to be build before using it. Please follow steps below:
 
                           BUILD SUCCESSFUL 
 
-.. note:: Please also refers to the MicroEJ platform creation docs website page available `here <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html>`__ for more details.
+Please also refers to the MicroEJ platform creation docs website page
+available `here
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html>`__
+for more details.
 
 Advanced Build Options
 ----------------------
@@ -430,14 +453,11 @@ The BSP project build is launched. Please wait for the final message:
 
       To flash all build output, run 'make flash' or:
 
-.. note::
-
-    The platform BSP project is configured to build the Mono-Sandboxed
-    Firmware by default.  To build the Multi-Sandboxed Firmware, use
-    the build script ``build_no_ota_no_systemview``.  With
-    Multi-Sandboxed Firmware configuration, SystemView and OTA
-    features are disabled and partition table layout updated
-    accordingly.
+The platform BSP project is configured to build the Mono-Sandboxed
+Firmware by default.  To build the Multi-Sandboxed Firmware, use the
+build script ``build_no_ota_no_systemview``.  With Multi-Sandboxed
+Firmware configuration, SystemView and OTA features are disabled and
+partition table layout updated accordingly.
 
 BSP Compilation from |RCP|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
