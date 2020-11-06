@@ -511,7 +511,7 @@ This property redirect the UART onto a different GPIO port. Connect a
 FTDI USB wire to the pin D0 of the JP4 connector and ground.
 
 Testsuite FS
-~~~~~~~~~~~~
+------------
 
 A ``config.properties`` and ``microej-testsuite-common.properties`` is
 provided in ``{PLATFORM}-documentation/testsuite-fs/``.
