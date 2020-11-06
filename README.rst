@@ -20,8 +20,6 @@
 .. |RTOS.PRINTABLENAME RTOS| replace:: FreeRTOS RTOS
 .. |GUIDE.INTERNAL.EMBS| replace:: MicroEJ platforms
 .. |DEPLOYTOOLPRINTABLENAME| replace:: Espressif esptool
-.. |PLATFORM.SINGLEAPP.UID| replace:: HDAHT
-.. |PLATFORM.MULTIAPP.UID| replace:: 9C5H4
 .. |MANUFACTURER| replace:: Espressif
 
 =======================================
@@ -214,8 +212,8 @@ Platform Configurations
 
 The |RI_NAME| |RI_VER| is declined into:
 
-- a single application platform (UID: |PLATFORM.SINGLEAPP.UID|),
-- a multi application platform (UID: |PLATFORM.MULTIAPP.UID|).
+- a single application platform
+- a multi application platform
 
 Those declinations are themselves declined into:
 
