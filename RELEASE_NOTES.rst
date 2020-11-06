@@ -88,8 +88,8 @@ Known issues/limitations
 - P0065ESP32WROVER-183: Provided Filesystem pack does not support file backward
   skip,
 - P0065ESP32WROVER-188: IPV6 is not supported,
-- SystemView is enabled only on the single application platform (UID: HDAHT)
-- OTA is enabled only on the single application platform (UID: HDAHT),
+- SystemView is enabled only on the single application platform,
+- OTA is enabled only on the single application platform,
 - |TARGET_NAME| can be debugged with OpenOCD only if SD Card interface is not
   used,
 - As described in espressif documentation, LCD and microSD cannot be used at
