@@ -71,7 +71,7 @@ Validate the installation of the toolchain by executing the script
 ``{PLATFORM}-bsp/Projects/microej/scripts/build.bat`` on Windows
 (``{PLATFORM}-bsp/Projects/microej/scripts/build.sh`` on Linux).
 
-.. note:: The build script expects the toolchain to be installed at a known path.  If you installed it elsewhere, see :ref:`advanced_bsp_build` for how to customize its path.
+.. note:: The build script expects the toolchain to be installed at a known path.  If you installed it elsewhere, see `Advanced Customization of BSP Build`_ for how to customize its path.
 
 
 Board Usage
@@ -214,7 +214,7 @@ Those declinations are themselves declined into:
     limits of the development board.
 
 By default, the platform is configured as a Single Application
-Evaluation Platform.  See :ref:`advanced_build_options` for more
+Evaluation Platform.  See `Advanced Build Options`_ for more
 details on how to customize the platform configuration.
 
 Single Application Platform
@@ -250,8 +250,6 @@ The platform has to be build before using it. Please follow steps below:
                           BUILD SUCCESSFUL 
 
 .. note:: Please also refers to the MicroEJ platform creation docs website page available `here <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html>`__ for more details.
-
-.. advanced_build_options::
 
 Advanced Build Options
 ----------------------
@@ -459,8 +457,6 @@ proceed as follow:
   a location known by the 3rd-party BSP project.`` is checked.
 
 |BOARDPRINTABLENAME| Elf executable firmware and associated binary files are available in ``{PLATFORM}-bsp/projects/microej/build``
-
-.. advanced_bsp_build::
 
 Advanced Customization of BSP Build
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
