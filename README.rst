@@ -487,14 +487,16 @@ BSP Manual Compilation
 
 To build the ``{PLATFORM}-bsp`` project, open a Windows command terminal and enter the following command lines:
 
-** On Windows:**
+On Windows:
++++++++++++
 
 .. code-block:: sh
 
       $ cd "xxx/{PLATFORM}-bsp/Projects/microej/scripts"
       $ build.bat 
 
-** On Linux / Mac OS:**
+On Linux / Mac OS:
+++++++++++++++++++
 
 .. code-block:: sh
 
