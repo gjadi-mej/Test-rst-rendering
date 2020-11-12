@@ -6,20 +6,20 @@
 .. |TARGET_NAME| replace:: ESP32-WROVER
 .. |BOARDPRINTABLENAME| replace:: ESP32-WROVER-KIT v4.1
 .. |BOARDREVISION| replace:: v4.1
-.. |RI_NAME| replace:: ESP32 WROVER platform reference implementation
+.. |RI_NAME| replace:: ESP32 WROVER Platform Reference Implementation
 .. |RI_VER| replace:: v1.6.0
 
 .. |RCP| replace:: MicroEJ SDK
-.. |GUIDE.INTERNAL.EMB| replace:: MicroEJ platform
+.. |GUIDE.INTERNAL.EMB| replace:: MicroEJ Platform
 .. |GUIDE.INTERNAL.EMB.TITLE| replace:: MicroEJ Platform
-.. |GUIDE_INTERNAL_STANDALONE| replace:: standalone application
-.. |GUIDE.INTERNAL.SIM| replace:: MicroEJ simulator
+.. |GUIDE_INTERNAL_STANDALONE| replace:: Standalone Application
+.. |GUIDE.INTERNAL.SIM| replace:: MicroEJ Simulator
 .. |GUIDE.INTERNAL.PLATFORM| replace:: MicroEJ Platform
-.. |GUIDE.INTERNAL.XPF| replace:: MicroEJ architecture
+.. |GUIDE.INTERNAL.XPF| replace:: MicroEJ Architecture
 .. |CIDE.PRINTABLENAME| replace:: MicroEJ SDK
 .. |RTOS.PRINTABLENAME RTOS| replace:: FreeRTOS RTOS
-.. |GUIDE.INTERNAL.EMBS| replace:: MicroEJ platforms
-.. |DEPLOYTOOLPRINTABLENAME| replace:: Espressif esptool
+.. |GUIDE.INTERNAL.EMBS| replace:: MicroEJ Platforms
+.. |DEPLOYTOOLPRINTABLENAME| replace:: Espressif Esptool
 .. |MANUFACTURER| replace:: Espressif
 
 =======================================
@@ -28,6 +28,8 @@
 
 This project is used to build MicroEJ reference implementation platform for
 ESP32-WROVER-KIT development board.
+
+Clone the repository with ``git clone --recursive https://github.com/MicroEJ/ESP32-WROVER``.
 
 Requirements
 =============
@@ -254,6 +256,60 @@ It embeds a specific MicroEJ virtual machine for this purpose.
 SEGGER SystemView and OTA have been disabled in order to reduce the memory
 footprint.
 
+Platform Graphical User Interface
+=================================
+
+|GUIDE.INTERNAL.EMB| features a graphical user interface.  It includes
+a display, one user LED and a runtime PNG decoder.
+
+Display
+-------
+
+The display module drives a 320 x 240 LCD display.  The pixel format
+is 16 bits-per-pixel.  The display device is clocked at 60Hz and it is
+connected to the MCU via a SPI link, clocked at 80MHz for ST7789V LCP
+display and at 33MHz for ILI9341V LCD display.
+
+MicroUI requires a RAM buffer to store the dynamic images data.  A
+dynamic is an image decoded at runtime (PNG image) or an image created
+by the MicroEJ application thanks to the API ``Image.create(width, height)``.
+This buffer is located in external RAM.
+
+Inputs
+------
+
+The board provides an RGB matrix with 3 colored LEDs (red, green ,
+blue).  However, only the red LED is available for the user.  The two
+others LEDs use GPIOs multiplexed for other uses.
+
+Use API ``ej.microui.led.Leds`` from ``ej.api#microui`` to manage the
+LED.
+
+Network
+=======
+
+|GUIDE.INTERNAL.EMB| features a network interface with Wi-Fi as an
+underlying hardware media.  A limited number of 16 sockets could be
+used for TCP connections, 16 for TCP listening (server) connections
+and 16 for UDP connections. A DHCP client could be activated to
+retrieve IP address. All DNS requests could be handled by a MicroEJ
+software implementation or a native one.
+
+SSL
+===
+
+|GUIDE.INTERNAL.EMB| features a network secure interface. Available
+secured protocols are SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2. Supported
+keys and certificates formats are PKCS#5 and PKCS#12, PEM or DER
+encoded.
+
+File System
+===========
+
+|GUIDE.INTERNAL.EMB| features a file system interface. A SD card is
+used for the storage (previously formated to a FAT32 file system). Up
+to 2 files could be opened simultaneously.
+
 Platform Build
 ==============
 
@@ -457,6 +513,10 @@ build script ``build_no_ota_no_systemview``.  With Multi-Sandboxed
 Firmware configuration, SystemView and OTA features are disabled and
 partition table layout updated accordingly.
 
+If you decide to invoke ``make`` directly, make sure you use the
+correct ``sdkconfig``.  Check the build scripts in
+``{PLATFORM}-bsp/Projects/microej/scripts``.
+
 BSP Compilation from |RCP|
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -475,7 +535,7 @@ proceed as follow:
 - Ensure the option ``Execute the MicroEJ Build Script (build.bat) at
   a location known by the 3rd-party BSP project.`` is checked.
 
-|BOARDPRINTABLENAME| Elf executable firmware and associated binary files are available in ``{PLATFORM}-bsp/projects/microej/build``
+|BOARDPRINTABLENAME| Elf executable firmware and associated binary files are available in ``{PLATFORM}-bsp/Projects/microej/build``
 
 Advanced Customization of BSP Build
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

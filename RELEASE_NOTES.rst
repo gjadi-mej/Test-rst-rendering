@@ -4,7 +4,7 @@
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
 .. |TARGET_NAME| replace:: ESP32 WROVER
-.. |RI_NAME| replace:: ESP32 WROVER platform reference implementation
+.. |RI_NAME| replace:: ESP32 WROVER Platform Reference Implementation
 .. |RI_VER| replace:: v1.6.0
 
 .. _release-notes:
@@ -42,13 +42,9 @@ The |RI_NAME| |RI_VER| contains the following dependencies:
   * net: 9.2.1
   * net-addons: 2.1.6
   * hal (Hardware Abstraction Layer): 2.0.1
-  * hal-stub (stubs for Hardware Abstraction Layer): 1.1.1
   * bluetooth: 2.0.0
   * fs (File System): 4.0.2
-  * microej-util: 1.3.0
   * trace-systemview: 2.0.1
-  * wadapps (Multi Application Framework): 1.0.1
-  * wadapps.impl (extra implementation for Multi Application Framework): 1.0.2
   * device: 1.1.0
 
 - BSP specific packs:
@@ -59,10 +55,6 @@ The |RI_NAME| |RI_VER| contains the following dependencies:
   * esp_idf-mock (ESP_IDF Mock-Up): 1.0.0
   * esp-idf: 3.3.1
 
-- Third party tools
-
-  * esptool (Flashing tool): 1.2.0
-
 Environment
 ===========
 
@@ -70,13 +62,21 @@ The |RI_NAME| |RI_VER| requires the following environment:
 
 For development:
 
-- MicroEJ SDK (`<http://developer.microej.com/packages/SDK/19.05/>`_),
-- Espressif ESP32 toolchain (`<https://dl.espressif.com/dl/esp32_win32_msys2_environment_and_toolchain-20181001.zip>`_).
+- MicroEJ SDK (`<http://developer.microej.com/packages/SDK/20.10/>`_),
+- Espressif ESP32 toolchain.  Please setup the |MANUFACTURER|
+  toolchain as described `here
+  <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#setup-toolchain>`__.
 
-For debugging:
 
-- OpenOCD (Open On-Chip Debugger) (`<https://github.com/espressif/openocd-esp32/releases/download/v0.10.0-esp32-20190313/openocd-esp32-win32-0.10.0-esp32-20190313.zip>`_),
-- Zadig (generic USB driver installer) (`<https://github.com/pbatard/libwdi/releases/download/v1.3.0/zadig-2.3.exe>`_).
+   - For Windows: https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/windows-setup.html
+   - For Linux: https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/linux-setup.html
+
+
+For debugging, please refers to the |MANUFACTURER| documentation
+available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html>`__
+for more details.
+
 
 Known issues/limitations
 ========================
