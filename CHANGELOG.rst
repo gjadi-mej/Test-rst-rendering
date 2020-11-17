@@ -17,7 +17,8 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 Added
 =====
 
-- Test suite fs.
+- Test Suite for Filesystem (FS).
+- Build script for CDT.
 
 Fixed
 =====
@@ -29,7 +30,7 @@ Fixed
 Changed
 =======
 
-- Platform Configuration Additions
+- Platform Configuration Additions with module build.
 
 ------------------
 2.2.0 - 2020-06-24
