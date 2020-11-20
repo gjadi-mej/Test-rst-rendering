@@ -174,10 +174,10 @@
 	<target name="module-platform:report" extensionOf="package">
 		<echo message="
 			============================================================================================================${line.separator}
-			Platform has been built in this project: '${project.parent.dir}/${platform.project.name}'.${line.separator}
-			Import this project if not already available in your workspace:${line.separator}
-				'File' &gt; 'Import...' &gt; 'General' &gt; 'Existing Project into Workspace' &gt; 'Next'${line.separator}
-				'Select root directory: ${project.parent.dir}/${platform.project.name}' &gt; 'Finish'${line.separator}
+			Platform has been built in this directory '${project.parent.dir}/${platform.project.name}'.${line.separator}
+			To import this project in your MicroEJ SDK workspace (if not already available):${line.separator}
+				- Select 'File' &gt; 'Import...' &gt; 'General' &gt; 'Existing Projects into Workspace' &gt; 'Next'${line.separator}
+				- Check 'Select root directory' and browse '${project.parent.dir}/${platform.project.name}' &gt; 'Finish'${line.separator}
 			============================================================================================================${line.separator}
 			"/>
 	</target>
