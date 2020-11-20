@@ -83,7 +83,7 @@ microej.testsuite.properties.microejtool.deploy.name=deployToolBSPRun
 # When the verbose is set to true, we harness will output the SOAR of S3 trace.
 microej.testsuite.verbose=true
 
-# The testuite timeout (in seconds)
+# The testsuite timeout (in seconds)
 microej.testsuite.timeout=600
 
 # The number of times we'll retry a test if it fails
