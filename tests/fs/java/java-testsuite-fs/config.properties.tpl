@@ -80,7 +80,7 @@ target.vm.name=MICROJVM
 microej.testsuite.properties.microejtool.deploy.name=deployToolBSPRun
 
 # Set the verbose or not. Possible values: `true` or `false`
-# When the verbose is set to true, we harness will output the SOAR of S3 trace.
+# When this option is set to `true`, the harness will output the execution trace.
 microej.testsuite.verbose=true
 
 # The testsuite timeout (in seconds)
