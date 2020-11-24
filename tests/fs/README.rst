@@ -25,7 +25,11 @@ Testsuite configuration
 =======================
 
 - Load the ``java/java-testsuite-fs`` project in your MicroEJ SDK
-- Copy/Paste the ``config.properties.tpl``, rename it to ``config.properties``
+- Copy/Paste the ``config.properties.tpl``, rename it to
+  ``config.properties``.  The platform may provide a
+  ``config.properties`` and ``microej-testsuite-common.properties``
+  files.  Check the platform documentation and the files under
+  ``PLATFORM-configuration/testsuites/fs/``.
 - Open the ``config.properties``
 - Set ``target.platform.dir``: This is the platform path, which is the
   parent folder of the ``release.properties`` file.  This property is
