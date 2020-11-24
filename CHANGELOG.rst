@@ -17,7 +17,7 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 Added
 =====
 
-- Test Suite for Filesystem (FS).
+- Test Suite for Filesystem 3.0.3 (FS).
 - Build script for CDT.
 
 Fixed
