@@ -25,7 +25,7 @@
     
     <dependencies>
 		<dependency org="com.microej.architecture.xxx" name="xxx" rev="7.14.0">
-            <artifact name="xxx" m:classifier="dev" ext="xpf"/>
+            <artifact name="xxx" m:classifier="${com.microej.platformbuilder.architecture.usage}" ext="xpf"/>
         </dependency>
     </dependencies>
     
