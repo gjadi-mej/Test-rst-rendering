@@ -18,7 +18,7 @@ Before starting the test, make sure you have the following requirements:
 - MicroEJ SDK version 5.1.1 or later
 - A MicroEJ Platform which has been built using the `Platform Configuration Additions <framework/platform/README.rst>`_.
 
-A platform is composed of two parts: a platform project (like: lpcxpresso_freertos-platform) and bsp project (like: lpcxpresso_freertos-bsp).
+A platform is composed of two parts: a platform project (like: ``lpcxpresso_freertos-platform``) and bsp project (like: ``lpcxpresso_freertos-bsp``).
 
 =======================
 Testsuite configuration
