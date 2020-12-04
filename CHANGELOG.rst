@@ -19,6 +19,7 @@ Fixed
 
 - Use ``svn export`` instead of ``svn checkout`` to retrieve Platform Configuration Addition without creating a ``.svn`` directory.
 - Ensure MicroEJ Platform Configuration Additions scripts are properly copied into the MicroEJ Platform.
+- Use ``xxx.platform`` as default name of the Platform Configuration file.
 
 ------------------
 2.2.0 - 2020-06-24
