@@ -1,42 +1,116 @@
 .. 
-	Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+	Copyright 2019-2021 MicroEJ Corp. All rights reserved.
 	This library is provided in source code for use, modification and test, subject to license terms.
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
+.. |BOARD_NAME| replace:: ESP-WROVER-KIT V4.1
+.. |BOARD_REVISION| replace:: 4.1
+.. |PLATFORM_VER| replace:: 2.0.0
+.. |RCP| replace:: MICROEJ SDK
+.. |PLATFORM| replace:: MicroEJ Platform
+.. |PLATFORMS| replace:: MicroEJ Platforms
+.. |SIM| replace:: MicroEJ Simulator
+.. |ARCH| replace:: MicroEJ Architecture
+.. |CIDE| replace:: MICROEJ SDK
+.. |RTOS| replace:: FreeRTOS RTOS
+.. |MANUFACTURER| replace:: Espressif
+
+.. _中文版: ./docs/zn_CH/README_CN.rst
+.. _README: ./../../../README.rst
+.. _RELEASE NOTES: ./../../../RELEASE_NOTES.rst
+.. _CHANGELOG: ./../../../CHANGELOG.rst
+
 ================
-ESP32-WROVER BSP
+|BOARD_NAME| BSP
 ================
 
-This project contains the BSP sources of MicroEJ platform demo for the ESP32-WROVER-KIT 4.1.
-The BSP project is based on Espressif IoT Development Framework (ESP IDF).
+`中文版`_
 
-Getting Started
----------------
+This project contains the BSP sources of the |PLATFORM| for the
+|BOARD_NAME|.  The BSP project is based on Espressif IoT Development
+Framework (ESP-IDF).
 
-In order to be able to develop the BSP with the IDF, setup your environment accordingly to the Espressif documentation.
-Follow the section `Get Started <https://docs.espressif.com/projects/esp-idf/en/release-v3.3/get-started/index.html>`_ to do so.
+This document does not describe how to setup the |PLATFORM|.  Please
+refer to the `README`_ for that.
 
-Build & Flash
--------------
+Build & Flash Scripts
+---------------------
 
-In the folder ``scripts/`` are two sets of scripts that can be used to build and flash the BSP, each set is meant to run in a Windows (.bat) or Linux (.sh) environment.
+In the folder ``Project/microej/scripts/`` are scripts that can be
+used to build and flash the BSP.  The ``.bat`` and ``.sh`` scripts are
+meant to run in a Windows and Linux environment respectively.
 
-In order to run these scripts you will have to define four environment variables which are the following:
+- The ``build*`` scripts are used to compile and link the BSP with a
+  MicroEJ Application to produce a MicroEJ Firmware
+  (``application.out``) that can be flashed on a device.
 
-- ``MSYS_PATH``: path to the msys32 installation (Windows).
-- ``XTENSA_PATH``: path to the Xtensa toolchain installation (Linux).
-- ``IDF_PATH``: path to the esp-idf directory.
-- ``ENV_BASH_CMD``: command line to compile the BSP, for example, to build a Single App ESP32 platform it would be set to ``"./build_singleapp.sh all"``. 
-- ``ENV_FLASH_CMD``: command line to flash and execute the firmware produced by the build script, if you set the previous variable to build a Single App platform, it would be set to ``"./build_singleapp.sh flash monitor"``.
+  The ``build*`` scripts work out of the box, assuming the toolchain is
+  installed in the default path.
 
-If you have to use another serial port than the one defined in the configuration, you can append the command with the ``ESPPORT`` variable.
-For example you can set ``ENV_FLASH_CMD`` to: ``"./build_multiapp.sh monitor ESPPORT=COM1"``. See this `section of Espressif documentation <https://docs.espressif.com/projects/esp-idf/en/release-v3.3/get-started/index.html#environment-variables>`_
+- The ``run*`` scripts are used to flash a MicroEJ Firmware
+  (``application.out``) on a device.
+
+  The COM port of the device should be configured for the ``run*``
+  scripts to work.
+
+The following environment variables are customizable:  
+
+- ``MSYS_PATH``: Path to the msys32 installation (Windows).
+- ``XTENSA_PATH``: Path to the Xtensa toolchain installation (Linux).
+- ``ENV_BASH_CMD``: Command line to compile the BSP.
+- ``ENV_FLASH_CMD``: Command line to flash and execute the firmware
+  produced by the build script.
+- ``ESPPORT``: Serial port connected to the device.
+
+See the comments for each variables in the scripts for a detailed
+explanation.
+
+As documented by Espressif, the build scripts expects the toolchain to
+be installed in ``C:\msys32`` (Windows) or ``~/esp/xtensa-esp32-elf/``
+(Linux).  If the toolchain is installed elsewhere, update the
+environment variables accordingly.
+
+See this `section of Espressif documentation
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#environment-variables>`__
 for other possible variables.
+
+The environment variables can be defined globally by the user or in
+the ``set_local_env*`` scripts.  When the ``.bat`` (``.sh``) scripts
+are executed, the ``set_local_env.bat`` (``set_local_env.sh``) script
+is executed if it exists.  Create and configure these files to
+customize the environment locally.  Template files are provided as
+example, see ``set_local_env.bat.tpl`` and ``set_local_env.sh.tpl``.
+
+Customize SDKCONFIG
+-------------------
+
+To change the ESP-IDF BSP configuration, update the SDKCONFIG
+depending on the firmware build by the platform:
+
+- ``sdkconfig.default`` for a Mono-Sandbox Firmware
+- ``sdkconfig_no_ota_no_systemview`` for a Multi-Sandbox Firmware
+
+To change the SDKCONFIG, either:
+
+- edit the file with your favorite editor
+- use menuconfig by updating the ``ENV_BASH_CMD`` variable to invoke ``menuconfig`` and then run the build script.
+
+  For example on Windows for a Mono-Sandbox Firmware:
+
+  - ``SET ENV_BASH_CMD="export IDF_PATH=$(pwd)/../../Drivers/esp-idf && make menuconfig"``
+  - ``build.bat``
+
+Then copy the file ``sdkconfig`` back to ``sdkconfig.default`` for a
+Mono-Sandbox Firmware (``sdkconfig_no_ota_no_systemview`` for a
+Multi-Sandbox Firmware).
 
 Flash the board with the Espressif flash tool
 ---------------------------------------------
 
-- Start ESP32 Flash Download Tool (available `here <https://www.espressif.com/en/support/download/other-tools>`_)
+The ``run*`` scripts can also be used to flash the device with the
+MicroEJ Firmware.
+
+- Start ESP32 Flash Download Tool (available `here <https://www.espressif.com/en/support/download/other-tools>`__)
 - Click on ESP32 DownloadTool button
 - Select the tab SPI Download
 - Fill the first blank line as following:
@@ -52,52 +126,41 @@ The flashing process starts with a green progress bar. Wait until the message FI
 Debugging with a WROVER dev kit
 -------------------------------
 
-Follow `these steps <https://docs.espressif.com/projects/esp-idf/en/release-v3.3/api-guides/jtag-debugging/configure-wrover.html>`_ to configure the dev kit jumpers and USB drivers.
+**Setup and run OpenOCD GDB server**:
 
-Then `install OpenOCD <https://docs.espressif.com/projects/esp-idf/en/release-v3.3/api-guides/jtag-debugging/index.html#jtag-debugging-setup-openocd>`_.
+1. Go to Espressif esp-idf "Setup of OpenOCD" page (available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html#jtag-debugging-setup-openocd>`_)
+2. Follow Espressif esp-idf instructions to install OpenOCD software on your machine
+3. Follow Espressif esp-idf instructions to configure ESP32-WROVER Kit v4.1 board (available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/configure-wrover.html#configure-usb-drivers>`_)
+4. Follow Espressif esp-idf instructions to run OpenOCD (available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html#run-openocd>`_).  On Windows, the OpenOCD can be executed in MingGW (``mingw32.exe``) or in Windows Command Prompt (use ``.\bin\openocd ...``). The configuration file is ``esp32-wrover-kit-1.8v.cfg``.
 
-You can run OpenOCD as `explained here <https://docs.espressif.com/projects/esp-idf/en/release-v3.3/api-guides/jtag-debugging/index.html#run-openocd>`_.
+Your OpenOCD GDB server is now ready to launch a GDB client debug session.
 
-Or you can configure the launcher ``[ATTACH] Start GDB Server`` depending on your OpenOCD and msys32 installation and then run it.
+Debugging with OpenOCD works only if the SD Card interface is not
+used.  Please refer to the `RELEASE NOTES`_ limitations section for more
+details
 
-If not already done, create a ``gdbinit`` file with the following commands:
+**Launch a GDB debug session**:
 
-::
+1. Ensure that OpenOCD GDB server is running. If not, please refers to the previous paragraph to run OpenOCD GDB server.
+2. In MicroEJ SDK, go to ``Run > Debug Configurations...``. Click on the ``Filter launch configuration...`` (upper left corner icon) and uncheck ``Filter Configuration Types``. Then close the ``Debug Configurations`` window. This action will allow you to see previously filtered Eclipse Configuration Types (e.g: ``GDB Hardware Debugging``).
+3. Go to Espressif esp-idf "Launch Debugger" page (available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html#launching-debugger>`_)
+4. Follow Espressif esp-idf instructions to create an Eclipse ``GDB Hardware Debugging`` launcher and run it (available `here <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/using-debugger.html#eclipse>`_). Take into account that, when you will create the Eclipse ``GDB Hardware Debugging`` launcher, ``ESP32-WROVER-Xtensa-FreeRTOS-bsp`` project will not be listed in the projects list available when clicking on ``Project > Browse...`` button. This behavior is due to the fact that ``ESP32-WROVER-Xtensa-FreeRTOS-bsp`` is not an Eclipse CDT project. Consequently, please enter ``ESP32-WROVER-Xtensa-FreeRTOS-bsp`` in ``Project:`` text field and put the absolute path of the Elf executable to debug in ``C/C++ Application:`` text field (e.g: ``[WORKSPACE_LOCATION]/ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/build/microej.elf``).
 
-	target remote :3333
-	set remote hardware-watchpoint-limit 2
-	mon reset halt
-	flushregs
-	thb app_main
-	c
+**Compile the application with debug symbols**:
 
-Finally, you can run gdb from the microej C project:
+Edit the ``sdkconfig.default`` (``sdkconfig_no_ota_no_systemview`` for Multi-Sandbox Firmware):
 
-::
-
-	xtensa-esp32-elf-gdb -x gdbinit build/microej.elf
-	
-Debugging commands examples can be found in `this section <https://docs.espressif.com/projects/esp-idf/en/release-v3.3/api-guides/jtag-debugging/debugging-examples.html#jtag-debugging-examples-command-line>`_.
-
-Tips
-====
-
-If you encounter the following error:
-
-::
-
-	Warning:
-	Cannot insert breakpoint 2.
-	Cannot access memory at address 0x4013c808
-	
-Add your breakpoint using the command ``hb`` instead of ``b``.
+- Set ``CONFIG_OPTIMIZATION_LEVEL_DEBUG=y``
+- Set ``CONFIG_OPTIMIZATION_LEVEL_RELEASE=``
+- Set ``CONFIG_FREERTOS_TASK_FUNCTION_WRAPPER=y`` (add it if it doesn't exist).
 
 Convert a PEM private key to DER
 --------------------------------
 
-MicroEJ requires private keys in DER format. To convert your PEM private keys use the following command:
+MicroEJ requires private keys in DER format. To convert your PEM
+private keys use the following command:
 
-::
+.. code-block:: console
 
 	openssl.exe pkcs8 -inform PEM -in key1.pem -topk8 -outform DER -out key1.der -v1 PBE-SHA1-3DES -passout pass:<my_password>
 
@@ -106,14 +169,29 @@ Convert a backtrace without make monitor
 
 The following command:
 
-::
+.. code-block:: console
 
 	xtensa-esp32-elf-addr2line.exe -pfiaC -e build/microej.elf 0x400d316d
 
-Should output the corresponding instruction at the address given in the last parameter.
+Should output the corresponding instruction at the address given in
+the last parameter.
 
-If you want to decode multiple instructions, copy/paste the backtrace in a text file and run this command:
+If you want to decode multiple instructions, copy/paste the backtrace
+in a text file and run this command:
 
-::
+.. code-block:: console
 
 	cat backtrace.txt | sed 's/\ 0x/\n0x/' | sed 's/\:.*//' | grep '\ 0x' backtrace | xargs xtensa-esp32-elf-addr2line.exe -pfiaC -e build/microej.elf
+
+Dependencies
+------------
+
+The following dependencies are included as part of the BSP:
+
+- MicroEJ generic packs:
+
+  * hal-stub (stubs for Hardware Abstraction Layer): 1.1.1
+  * wadapps (Multi Application Framework): 1.0.1
+  * wadapps.impl (extra implementation for Multi Application Framework): 1.0.2
+  * microej-util: 1.3.0
+

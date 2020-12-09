@@ -1,21 +1,19 @@
 ..
-    Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+    Copyright 2019-2021 MicroEJ Corp. All rights reserved.
 	This library is provided in source code for use, modification and test, subject to license terms.
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
-.. |BOARD_NAME| replace:: ESP32-WROVER-KIT v4.1
-.. |BOARD_REVISION| replace:: v4.1
+.. |BOARD_NAME| replace:: ESP-WROVER-KIT V4.1
+.. |BOARD_REVISION| replace:: 4.1
 .. |PLATFORM_NAME| replace:: ESP32 WROVER Platform
-.. |PLATFORM_VER| replace:: v1.6.0
-
-.. |RCP| replace:: MicroEJ SDK
+.. |PLATFORM_VER| replace:: 2.0.0
+.. |RCP| replace:: MICROEJ SDK
 .. |PLATFORM| replace:: MicroEJ Platform
 .. |PLATFORMS| replace:: MicroEJ Platforms
 .. |SIM| replace:: MicroEJ Simulator
 .. |ARCH| replace:: MicroEJ Architecture
-.. |CIDE| replace:: MicroEJ SDK
+.. |CIDE| replace:: MICROEJ SDK
 .. |RTOS| replace:: FreeRTOS RTOS
-.. |DEPLOYTOOL_NAME| replace:: Espressif Esptool
 .. |MANUFACTURER| replace:: Espressif
 
 .. _README MicroEJ BSP: ./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/README.rst
@@ -24,15 +22,14 @@
 
 .. _release-notes:
 
-===============================================
-MicroEJ ESP32-WROVER-KIT Platform Release Notes
-===============================================
+========================================================
+|PLATFORM| Release Notes for |MANUFACTURER| |BOARD_NAME|
+========================================================
 
 Description
 ===========
 
-This is the release note of the |PLATFORM_NAME| |PLATFORM_VER|.  This
-platform is designed for the |BOARD_NAME|.
+This is the release notes of the |PLATFORM| for |BOARD_NAME|.
 
 Versions
 ========
@@ -40,14 +37,14 @@ Versions
 Platform
 --------
 
-|PLATFORM_NAME| |PLATFORM_VER|.
+|PLATFORM_VER|
 
 Dependencies
 ------------
 
-The |PLATFORM_NAME| |PLATFORM_VER| contains the following dependencies:
+This |PLATFORM| contains the following dependencies:
 
-.. list-table:: |PLATFORM_NAME| |PLATFORM_VER| dependencies
+.. list-table::
    :header-rows: 1
    
    * - Dependency Name
@@ -55,19 +52,58 @@ The |PLATFORM_NAME| |PLATFORM_VER| contains the following dependencies:
    * - Architecture (simikou2)
      - 7.14.0
    * - UI Pack (simikou2UI)
-     - 12.1.5
+     - 13.0.6
    * - NET Pack
-     - 9.2.1
+     - 9.2.3
    * - NET-ADDONS Pack
-     - 2.1.6
+     - 2.3.0
    * - HAL Pack
-     - 2.0.1
+     - 2.0.2
    * - BLUETOOTH Pack
-     - 2.0.0
+     - 2.1.0
    * - FS Pack
-     - 4.0.2
+     - 4.0.3
    * - DEVICE Pack
-     - 1.1.0
+     - 1.1.1
+
+Please refer to the |PLATFORM| `module description file <./ESP32-WROVER-Xtensa-FreeRTOS-configuration/module.ivy>`_ 
+for more details.
+
+Board Support Package
+---------------------
+
+- BSP provider: |MANUFACTURER| (``esp-idf``)
+- BSP version: v3.3.4
+
+Please refer to the |MANUFACTURER| ``esp-idf`` GitHub git repository
+available `here
+<https://github.com/espressif/esp-idf/releases/tag/v3.3.4>`__.
+
+Third Party Software
+--------------------
+
+Third party softwares used in BSP can be found `here
+<https://github.com/espressif/esp-idf/tree/v3.3.4/components>`__. Here
+is a list of the most important ones:
+
+.. list-table::
+   :widths: 3 3 3
+
+   * - RTOS 
+     - FreeRTOS
+     - 8.2.0
+   * - TCP/IP stack 
+     - esp_lwip
+     - 2.0.3
+   * - Cryptographic stack 
+     - Mbed TLS
+     - 2.16.5
+   * - File System stack 
+     - FatFS
+     - R0.13a
+   * - Bluetooth stack 
+     - BLUEDROID
+     - N/A
 
 Features
 ========
@@ -87,16 +123,16 @@ connected to the MCU via a SPI link, clocked at 80MHz for ST7789V LCP
 display and at 33MHz for ILI9341V LCD display.
 
 MicroUI requires a RAM buffer to store the dynamic images data.  A
-dynamic is an image decoded at runtime (PNG image) or an image created
-by the MicroEJ application thanks to the API ``Image.create(width, height)``.
+dynamic image is an image decoded at runtime (PNG image) or an image created
+by the MicroEJ application using the ``Image.create(width, height)`` API.
 This buffer is located in external RAM.
 
 Leds
 ~~~~
 
 The board provides an RGB matrix with 3 colored LEDs (red, green ,
-blue).  However, only the red LED is available for the user.  The two
-others LEDs use GPIOs multiplexed for other uses.
+blue).  However, only the red LED is available for the user.  The other
+two LEDs are using GPIOs multiplexed for other uses.
 
 Network
 -------
@@ -104,8 +140,8 @@ Network
 |PLATFORM| features a network interface with Wi-Fi as an
 underlying hardware media.  A limited number of 16 sockets could be
 used for TCP connections, 16 for TCP listening (server) connections
-and 16 for UDP connections. A DHCP client could be activated to
-retrieve IP address. All DNS requests could be handled by a MicroEJ
+and 16 for UDP connections. A DHCP client can be activated to retrieve
+a dynamic IP address. All DNS requests can be handled by a MicroEJ
 software implementation or a native one.
 
 SSL
@@ -119,9 +155,9 @@ encoded.
 File System
 -------
 
-|PLATFORM| features a file system interface. A SD card is
+|PLATFORM| features a file system interface. An SD card is
 used for the storage (previously formated to a FAT32 file system). Up
-to 2 files could be opened simultaneously.
+to 2 files can be opened simultaneously.
 
 
 Known issues/limitations
@@ -134,12 +170,17 @@ Known issues/limitations
 - FS API does not support file backward
   skip,
 - IPV6 is not supported,
-- |TARGET_NAME| JTAG interface & SD Card interface usage are mutually exclusive. 
+- |BOARD_NAME| JTAG interface & SD Card interface usage are mutually exclusive. 
   As a consequence, SystemView (which uses the JTAG interface) is enabled only on the Mono-Sandbox Platform. 
   The Multi-Sandbox Platform which requires the FS API which initializes the SDCard interface.
 - OTA is enabled only on the Mono-Sandbox Platform. It has been disabled on the Multi-Sandbox Platform in order to fit into the FLASH memory.
 - As described in espressif documentation, LCD and microSD cannot be used at
   the same time without unsoldering the resistor R167 (`https://docs.espressif.com/projects/esp-idf/en/latest/esp32/hw-reference/esp32/get-started-wrover-kit.html#allocation-of-esp32-pins`).
+- On Windows, the toolchain doesn't support long path.  The build
+  directory (named ``target~/``) can be moved closer to the root
+  filesystem with the ``target`` property.  For example, set
+  ``target=C:/tmp/`` in
+  ``ESP32-WROVER-Xtensa-FreeRTOS-configuration/module.properties``.
 
 Platform Memory Layout
 ======================
@@ -154,20 +195,13 @@ Each memory section is discribed in the GCC linker file available
 Memory Layout
 -------------
 
-- case sensitive glossary terms: MicroEJ System Application
-- order from most single to multiple???
-
-.. list-table:: |PLATFORM_NAME| |PLATFORM_VER| dependencies
+.. list-table::
    :header-rows: 1
    
    * - Section Content
      - Section Source
      - Section Destination
      - Memory Type
-   * - MicroEJ System Application statics 
-     - ``.bss.features.installed``
-     - ``.ext_ram.bss``
-     - external PSRAM
    * - MicroEJ Application static
      - ``.bss.soar``
      - ``.bss``
@@ -196,6 +230,10 @@ Memory Layout
      - ``.rodata.soar.features``
      - ``.rodata``
      - external QSPI
+   * - MicroEJ System Application statics 
+     - ``.bss.features.installed``
+     - ``.ext_ram.bss``
+     - external PSRAM
    * - MicroEJ Shielded Plug data 
      - ``.shieldedplug``
      - ``.rodata``

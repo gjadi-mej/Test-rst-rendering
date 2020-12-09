@@ -1,5 +1,5 @@
 ..
-    Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+    Copyright 2019-2021 MicroEJ Corp. All rights reserved.
     This library is provided in source code for use, modification and test, subject to license terms.
     Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
@@ -7,30 +7,140 @@
  Changelog
 ===========
 
--------------
- [Unreleased]
--------------
+---------------------
+ [2.0.0] - 2021-04-02
+---------------------
 
 Added
 =====
 
-- Scripts to build and flash
+- Added CCO:
+
+  - microui 1.0.3.
 
 Changed
 =======
 
-- New platform build type
+- Update frontpanel to framework 1.1.0.
+- Update frontpanel to widget 2.0.0.
+- Update modules:
+
+  - Pack UI 13.0.6.
+
+----------------------------------
+ [1.8.0] - 2021-04-16
+----------------------------------
+
+Added
+=====
+
+- Update PCA to 1.2.0.  See `./ESP32-WROVER-Xtensa-FreeRTOS-configuration/build/CHANGELOG.md`_ for more details.
+
+---------------------
+ [1.7.1] - 2021-03-16
+---------------------
+
+Fixed
+=====
+
+- Fix Platform project directory version.  Ensure the Platform project imported after a clone is the one being populated during the Platform build.
+- Removed old mention of esptool.  esptool is not distributed by the Platform but by ESP-IDF.
+
+---------------------
+ [1.7.0] - 2021-03-09
+---------------------
+
+Added
+=====
+
+- Added Chinese documentation
+
+Changed
+=======
+
+- Clarify message when ``ENV_SDKCONFIG`` is already installed as ``sdkconfig``.
+- Do not fetch the Platform dependency MicroEJ Pack UI ``.xpfp`` explicitly, behavior is unchanged.
+- Remove legacy ESP-IDF migration documentation.  Not needed anymore because the ESP-IDF is fetched as a submodule since 1.6.1.
+
+Fixed
+=====
+
+- Fix Platform directory name in ``README.rst``, ``README_UPDATE_ESP-IDF.rst`` and ``README_CN.rst``.
+- Fix typo and list display in ``CHANGELOG.rst``
+
+----------------------
+ [1.6.2] - 2020-12-18
+----------------------
+
+Fixed
+=====
+
+- Remove ``CONFIG_FREERTOS_TASK_FUNCTION_WRAPPER`` from the provided sdkconfig files.  This prevents the build scripts to recompile the BSP every time.
+
+----------------------
+ [1.6.1] - 2020-12-17
+----------------------
+
+Fixed
+=====
+
+- Documentation for initial public revision.
+
+----------------------
+ [1.6.0] - 2020-12-17
+----------------------
+
+Added
+=====
+
+- Scripts to build and flash.
+- Platform documentation.
+- Initial ``Hello World`` application files to compile the BSP without any platform.
+- An empty LLAPI security implementation.
+- New platform builder.
+- New platform build type.
+
+Changed
+=======
+
+- Use Espressif ESP-IDF GitHub Git repository as a submodule.
+- Replace the async_netconn with async_select MicroEJ C Component (CCO).
+- New platform builder.
+- New platform build type.
 - Increase the number of characteristics which can be registered for notifications to 31.
+- Update to Espressif ESP-IDF v3.3.4  .
+- Update modules:.
 
-----------------------
- [1.6.0] - 2020-05-26
-----------------------
+  - MicroEJ Architecture simikou2 7.14.0.
+  - Pack UI 12.1.5.
+  - pack net 9.2.3.
+  - pack net-addons 2.3.0.
+  - pack hal 2.0.2.
+  - pack bluetooth 2.0.1.
+  - device pack 1.1.1.
+  - fs 4.0.2.
+  - API esp_idf 1.0.1.
+  - esp_idf-impl 1.1.1.
+  - esp_idf-mock 1.1.2.
 
-Changed
-=======
+- Update CCOs.
 
-- Replaced the async_netconn with async_select
-- New platform builder
+  - trace-systemview 2.0.1.
+  - osal-headers 0.2.1.
+  - osal-FreeRTOS 0.2.1.
+  - async_select 2.0.2 MicroEJ C Component (CCO).
+  - bsp-microej-async-worker 0.2.1 MicroEJ C Component (CCO).
+  - esp_idf 1.1.1 MicroEJ C Component (CCO).
+
+- Move Net low level buffer in PSRAM or RAM if no PSRAM.
+- Update sdkconfig to have a running coremark.
+- Rename frontpanel and configuration project to follow MicroEJ Naming Convention.
+- Update frontpanel to framework 1.0.0.
+
+Fixed
+=====
+
+- Rename MicroEJ sections so the linker put them at the correct position.
 
 ----------------------
  [1.5.1] - 2020-05-19
@@ -47,16 +157,16 @@ Fixed
 Added
 =====
 
-- UI: Add support for LCD mode in portrait (via compile switch).
-- Core: Print reset reason at startup.
-- Device : Add device pack version 1.1.0.
+- UI: Support for LCD mode in portrait (via compile switch).
+- Core: Reset reason printed at startup.
+- Device : Device pack version 1.1.0.
 
 Changed
 =======
 
 - Update esp-idf version to 3.3.1.
-- Optimized disaply driver my moving the functions in IRAM.
-- Optimized the JVM RTOS task scheduling.
+- Optimize display driver my moving the functions in IRAM.
+- Optimize the JVM RTOS task scheduling.
 - Architecture : update architecture to version 7.12.1.
 - Net : update net pack to version 9.2.0 and addons pack to version 2.1.6.
 - Bluetooth: update bluetooth pack to version 2.0.0.
@@ -131,18 +241,22 @@ and multiapp (9C5H4) platforms.
 Added
 =====
 
-- Add Bluetooth support.
-- Add new Mock Wi-Fi.
-- Add SEGGER SytemView support for singleapp only.
-- Disable OTA for multiapp only.
-- Fix URLs to espressif.doc.
+- Bluetooth support.
+- New Mock Wi-Fi.
+- SEGGER SytemView support for singleapp only.
+
+Changed
+=======
+
 - Update OpenOCD version to win32-0.10.0-esp32-20190313,
 - Improve documentation clarity.
+- Disable OTA for multiapp only.
 
 Fixed
 =====
 
 - LwIP socket leak with esp-idf ESP_THREAD_SAFE option enabled
+- Fix URLs to espressif.doc.
 
 ----------------------
  [1.3.0] - 2018-10-08
@@ -153,8 +267,8 @@ Added
 
 - Java ``System.out.println`` trace output on a new UART (USB COM port no
   longer used).
-- Add Java ESP32 <code>esp-idf</code> foundation library.
-- Enable SNI 1.3 non immortal access feature
+- Java ESP32 <code>esp-idf</code> foundation library.
+- SNI 1.3 non immortal access feature
 
 Fixed
 =====
@@ -173,8 +287,8 @@ Added
 =====
 
 - Wi-Fi throughput enhancement.
-- Add UI MicroEJ pack and provides a device port.
-- Add FS MicroEJ pack and provides a device port on SD card.
+- UI MicroEJ pack and a device port.
+- FS MicroEJ pack and a device port on SD card.
 
 Fixed
 =====
@@ -188,8 +302,12 @@ Fixed
 Added
 =====
 
-- Add HAL MicroEJ pack and provides a stubbed implementation.
-- Add JPF MicroEJ platform.
+- HAL MicroEJ pack and a stubbed implementation.
+- JPF MicroEJ platform.
+
+Changed
+=======
+
 - Update esptool MicroEJTool error messages.
 
 Fixed
