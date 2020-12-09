@@ -3,7 +3,7 @@
 	This library is provided in source code for use, modification and test, subject to license terms.
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
-.. |BOARD_NAME| replace:: ESP32-WROVER-KIT
+.. |BOARD_NAME| replace:: ESP32-WROVER-KIT v4.1
 .. |BOARD_REVISION| replace:: v4.1
 .. |PLATFORM_NAME| replace:: ESP32 WROVER Platform
 .. |PLATFORM_VER| replace:: v1.6.0
@@ -28,6 +28,8 @@ MicroEJ ESP32-WROVER Platform
 
 This project is used to build a |PLATFORM| for |BOARD_NAME|
 development board.
+
+.. image:: ./images/esp-wrover-kit-v4.1-front.jpg
 
 Clone the repository with ``git clone --recursive https://github.com/MicroEJ/ESP32-WROVER-KIT``.
 
@@ -268,6 +270,9 @@ The COM port uses the following parameters:
 - Parity bits: None
 - Stop bits: 1
 - Flow control: None
+
+If flashed, the pre-compiled application outputs ``Hello World`` on
+the UART.
 
 When running a Testsuite, logs must be redirected to a secondary UART
 port.  Please refer to `Run a Testsuite`_ for a detailed explanation.

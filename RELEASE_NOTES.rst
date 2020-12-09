@@ -3,7 +3,7 @@
 	This library is provided in source code for use, modification and test, subject to license terms.
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
-.. |BOARD_NAME| replace:: ESP32-WROVER-KIT
+.. |BOARD_NAME| replace:: ESP32-WROVER-KIT v4.1
 .. |BOARD_REVISION| replace:: v4.1
 .. |PLATFORM_NAME| replace:: ESP32 WROVER Platform
 .. |PLATFORM_VER| replace:: v1.6.0
@@ -92,17 +92,11 @@ by the MicroEJ application thanks to the API ``Image.create(width, height)``.
 This buffer is located in external RAM.
 
 Leds
-~~~~~~
+~~~~
+
 The board provides an RGB matrix with 3 colored LEDs (red, green ,
 blue).  However, only the red LED is available for the user.  The two
 others LEDs use GPIOs multiplexed for other uses.
-
-Inputs
-~~~~~~
-
-Touch
-~~~~~~
-
 
 Network
 -------
