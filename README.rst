@@ -69,3 +69,20 @@ A section with: funny symbols.java
 ====================================
 
 Stars ``*`` are not supported in link to title.
+
+Test title
+----------
+
+.. list-table:: list table title
+   :header-rows: 1
+   
+   * - col 1
+     - col 2
+   * - asdfasdfasd asdfsadf
+     - XXXXXXXX XX
+   * - asdf;lk kljasdf
+     - asd
+   * - asdf;lk;jal;skdj
+     - qoieur a;slkd
+   * - ;alksdf qwer
+     - poiuo pouoiu
