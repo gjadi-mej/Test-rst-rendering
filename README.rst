@@ -1,3 +1,5 @@
+.. _label nested readme: a_folder/README.rst
+
 This is a title 1
 =================
 
@@ -31,7 +33,6 @@ This is a title 3
 
 * See nested `label nested readme`_
 
-.. _label nested readme: a_folder/README.rst
 
 NOT WORKING SYNTAXES
 
