@@ -29,9 +29,9 @@ This is a title 3
 
 * See nested `readme <label_nested_readme>`_
 
-* See nested `label_nested_readme`_
+* See nested `label nested readme`_
 
-.. _label_nested_readme: a_folder/README.rst
+.. _label nested readme: a_folder/README.rst
 
 NOT WORKING SYNTAXES
 
