@@ -11,7 +11,7 @@ Soluta ut aut quia laudantium dignissimos sint et soluta.
 * Ea aut assumenda qui ullam at.
 * Molestias rem iure blanditiis at velit quisquam.
 
-  * Eligendi est vero natus.
+    * Eligendi est vero natus.
     
 * Rem voluptas ipsum voluptatem voluptate pariatur possimus hic.
 
@@ -27,6 +27,12 @@ This is a title 3
 
 * See nested `readme <a_folder/README.rst>`_
 
+* See nested `readme <label_nested_readme>`_
+
+* See nested `label_nested_readme`_
+
+.. _label_nested_readme: a_folder/README.rst
+
 NOT WORKING SYNTAXES
 
 * See nested [readme](a_folder/README.rst)
@@ -36,13 +42,6 @@ NOT WORKING SYNTAXES
 * See nested `readme <a_folder/README.rst>`
 * See nested :ref:`readme <a_folder/README.rst>`
 * See nested readme :doc:`readme <a_folder/README.rst>`
-
-Notes?
-------
-
-.. note:: This is not working nicely (no dedicated frame for the note)
-
-.. todo:: This is not working
 
 A section
 ---------
