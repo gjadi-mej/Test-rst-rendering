@@ -3,21 +3,36 @@
 	This library is provided in source code for use, modification and test, subject to license terms.
 	Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
 
-.. |TARGET_NAME| replace:: ESP32 WROVER
-.. |RI_NAME| replace:: ESP32 WROVER Platform Reference Implementation
-.. |RI_VER| replace:: v1.6.0
+.. |BOARD_NAME| replace:: ESP32-WROVER-KIT
+.. |BOARD_REVISION| replace:: v4.1
+.. |PLATFORM_NAME| replace:: ESP32 WROVER Platform
+.. |PLATFORM_VER| replace:: v1.6.0
+
+.. |RCP| replace:: MicroEJ SDK
+.. |PLATFORM| replace:: MicroEJ Platform
+.. |PLATFORMS| replace:: MicroEJ Platforms
+.. |SIM| replace:: MicroEJ Simulator
+.. |ARCH| replace:: MicroEJ Architecture
+.. |CIDE| replace:: MicroEJ SDK
+.. |RTOS| replace:: FreeRTOS RTOS
+.. |DEPLOYTOOL_NAME| replace:: Espressif Esptool
+.. |MANUFACTURER| replace:: Espressif
+
+.. _README MicroEJ BSP: ./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/README.rst
+.. _RELEASE NOTES: ./RELEASE_NOTES.rst
+.. _CHANGELOG: ./CHANGELOG.rst
 
 .. _release-notes:
 
-==============================================
- Release notes: MicroEJ ESP32-WROVER Platform
-==============================================
+===============================================
+MicroEJ ESP32-WROVER-KIT Platform Release Notes
+===============================================
 
 Description
 ===========
 
-This is the release note of the |RI_NAME| |RI_VER|.
-This reference platform is designed for the ESP32-WROVER-Kit.
+This is the release note of the |PLATFORM_NAME| |PLATFORM_VER|.  This
+platform is designed for the |BOARD_NAME|.
 
 Versions
 ========
@@ -25,72 +40,189 @@ Versions
 Platform
 --------
 
-|RI_NAME| |RI_VER|.
+|PLATFORM_NAME| |PLATFORM_VER|.
 
 Dependencies
 ------------
 
-The |RI_NAME| |RI_VER| contains the following dependencies:
+The |PLATFORM_NAME| |PLATFORM_VER| contains the following dependencies:
 
-- MicroEJ ESP32 specific packs:
+.. list-table:: |PLATFORM_NAME| |PLATFORM_VER| dependencies
+   :header-rows: 1
+   
+   * - Dependency Name
+     - Version
+   * - Architecture (simikou2)
+     - 7.14.0
+   * - UI Pack (simikou2UI)
+     - 12.1.5
+   * - NET Pack
+     - 9.2.1
+   * - NET-ADDONS Pack
+     - 2.1.6
+   * - HAL Pack
+     - 2.0.1
+   * - BLUETOOTH Pack
+     - 2.0.0
+   * - FS Pack
+     - 4.0.2
+   * - DEVICE Pack
+     - 1.1.0
 
-  * simikou2 (Architecture): 7.14.0
-  * simikou2UI (User Interface): 12.1.5
+Features
+========
 
-- MicroEJ generic packs:
+Graphical User Interface
+------------------------
 
-  * net: 9.2.1
-  * net-addons: 2.1.6
-  * hal (Hardware Abstraction Layer): 2.0.1
-  * bluetooth: 2.0.0
-  * fs (File System): 4.0.2
-  * trace-systemview: 2.0.1
-  * device: 1.1.0
+|PLATFORM| features a graphical user interface.  It includes
+a display, one user LED and a runtime PNG decoder.
 
-- BSP specific packs:
+Display
+~~~~~~
 
-  * esp_idf (ESP_IDF Wrapper): 1.0.0
-  * esp_idf API (ESP_IDF Wrapper API): 1.0.1
-  * esp_idf-impl (ESP_IDF extra implementation): 1.0.0
-  * esp_idf-mock (ESP_IDF Mock-Up): 1.0.0
-  * esp-idf: 3.3.1
+The display module drives a 320 x 240 LCD display.  The pixel format
+is 16 bits-per-pixel.  The display device is clocked at 60Hz and it is
+connected to the MCU via a SPI link, clocked at 80MHz for ST7789V LCP
+display and at 33MHz for ILI9341V LCD display.
 
-Environment
-===========
+MicroUI requires a RAM buffer to store the dynamic images data.  A
+dynamic is an image decoded at runtime (PNG image) or an image created
+by the MicroEJ application thanks to the API ``Image.create(width, height)``.
+This buffer is located in external RAM.
 
-The |RI_NAME| |RI_VER| requires the following environment:
+Leds
+~~~~~~
+The board provides an RGB matrix with 3 colored LEDs (red, green ,
+blue).  However, only the red LED is available for the user.  The two
+others LEDs use GPIOs multiplexed for other uses.
 
-For development:
+Inputs
+~~~~~~
 
-- MicroEJ SDK (`<http://developer.microej.com/packages/SDK/20.10/>`_),
-- Espressif ESP32 toolchain.  Please setup the |MANUFACTURER|
-  toolchain as described `here
-  <https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/index.html#setup-toolchain>`__.
-
-
-   - For Windows: https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/windows-setup.html
-   - For Linux: https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/linux-setup.html
+Touch
+~~~~~~
 
 
-For debugging, please refers to the |MANUFACTURER| documentation
-available `here
-<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-guides/jtag-debugging/index.html>`__
-for more details.
+Network
+-------
+
+|PLATFORM| features a network interface with Wi-Fi as an
+underlying hardware media.  A limited number of 16 sockets could be
+used for TCP connections, 16 for TCP listening (server) connections
+and 16 for UDP connections. A DHCP client could be activated to
+retrieve IP address. All DNS requests could be handled by a MicroEJ
+software implementation or a native one.
+
+SSL
+-------
+
+|PLATFORM| features a network secure interface. Available
+secured protocols are SSL 3.0, TLS 1.0, TLS 1.1, TLS 1.2. Supported
+keys and certificates formats are PKCS#5 and PKCS#12, PEM or DER
+encoded.
+
+File System
+-------
+
+|PLATFORM| features a file system interface. A SD card is
+used for the storage (previously formated to a FAT32 file system). Up
+to 2 files could be opened simultaneously.
 
 
 Known issues/limitations
 ========================
 
-- P0065ESP32WROVER-192: LLNET_CHANNEL_IMPL_setOption cannot change the socket
-  send and receive buffer sizes,
-- P0065ESP32WROVER-184: Provided Filesystem pack does not support file
+- NET LL API cannot change the socket
+  send and receive buffer sizes (``LLNET_CHANNEL_IMPL_setOption`` function),
+- FS API does not support file
   write/read with offset from/to immortal arrays,
-- P0065ESP32WROVER-183: Provided Filesystem pack does not support file backward
+- FS API does not support file backward
   skip,
-- P0065ESP32WROVER-188: IPV6 is not supported,
-- SystemView is enabled only on the single application platform,
-- OTA is enabled only on the single application platform,
-- |TARGET_NAME| can be debugged with OpenOCD only if SD Card interface is not
-  used,
+- IPV6 is not supported,
+- |TARGET_NAME| JTAG interface & SD Card interface usage are mutually exclusive. 
+  As a consequence, SystemView (which uses the JTAG interface) is enabled only on the Mono-Sandbox Platform. 
+  The Multi-Sandbox Platform which requires the FS API which initializes the SDCard interface.
+- OTA is enabled only on the Mono-Sandbox Platform. It has been disabled on the Multi-Sandbox Platform in order to fit into the FLASH memory.
 - As described in espressif documentation, LCD and microSD cannot be used at
   the same time without unsoldering the resistor R167 (`https://docs.espressif.com/projects/esp-idf/en/latest/esp32/hw-reference/esp32/get-started-wrover-kit.html#allocation-of-esp32-pins`).
+
+Platform Memory Layout
+======================
+
+Memory Sections
+---------------
+
+Each memory section is discribed in the GCC linker file available
+`here
+<https://github.com/espressif/esp-idf/blob/v3.3.4/components/esp32/ld/esp32.ld>`__
+
+Memory Layout
+-------------
+
+- case sensitive glossary terms: MicroEJ System Application
+- order from most single to multiple???
+
+.. list-table:: |PLATFORM_NAME| |PLATFORM_VER| dependencies
+   :header-rows: 1
+   
+   * - Section Content
+     - Section Source
+     - Section Destination
+     - Memory Type
+   * - MicroEJ System Application statics 
+     - ``.bss.features.installed``
+     - ``.ext_ram.bss``
+     - external PSRAM
+   * - MicroEJ Application static
+     - ``.bss.soar``
+     - ``.bss``
+     - internal RAM
+   * - MicroEJ Application threads stack blocks 
+     - ``.bss.vm.stacks.java``
+     - ``.ext_ram.bss``
+     - external PSRAM
+   * - MicroEJ Core Engine internal heap 
+     - ``ICETEA_HEAP``
+     - ``.ext_ram.bss``
+     - external PSRAM
+   * - MicroEJ Application heap 
+     - ``_java_heap``
+     - ``.ext_ram.bss``
+     - external PSRAM
+   * - MicroEJ Application Immortal Heap 
+     - ``_java_immortals``
+     - ``.ext_ram.bss``
+     - external PSRAM
+   * - MicroEJ Application resources 
+     - ``.rodata.resources``
+     - ``.rodata``
+     - external QSPI
+   * - MicroEJ System Applications code and resources 
+     - ``.rodata.soar.features``
+     - ``.rodata``
+     - external QSPI
+   * - MicroEJ Shielded Plug data 
+     - ``.shieldedplug``
+     - ``.rodata``
+     - external QSPI
+   * - MicroEJ Application and Library code 
+     - ``.text.soar``
+     - ``.rodata``
+     - external QSPI
+   * - MicroUI frame buffer
+     - ``-``
+     - ``.ext_ram.bss``
+     - external PSRAM
+
+For the C heap, please refer to the |MANUFACTURER| documentation
+available `here
+<https://docs.espressif.com/projects/esp-idf/en/v3.3.4/api-reference/system/heap_debug.html#heap-information>`__
+
+Information on MicroEJ memory sections can be found `here
+<./ESP32-WROVER-Xtensa-FreeRTOS-bsp/Projects/microej/components/microej_gen/Makefile.projbuild>`__.
+
+Please also refer to the MicroEJ docs website page available `here
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/coreEngine.html#link>`__
+for more details.
+
