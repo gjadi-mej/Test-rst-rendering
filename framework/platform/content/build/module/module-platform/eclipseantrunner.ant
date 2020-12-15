@@ -28,12 +28,12 @@
 		<echo message="buildLabel=${buildLabel}"/>
 
 		<!-- replace a MicroEJ Workbench script by the local one -->
-		<copy todir="${scripts.dir}" file="${build-platform.dir}/MicroEJFramework.xml" overwrite="true" />
-		
-		<!-- invokes MicroEJ Workbench to build the platform (output dir is required but useless) -->
+		<copy todir="${scripts.dir}" file="${build-platform.dir}/MicroEJFramework.xml"/>
+
+		<!-- invokes MicroEJ Workbench to build the platform (output dir is required for very first launch of MicroEJ SDK) -->
     	<microej.exportJavaPlatformConfiguration
     		jpfconfiguration="${jpf.configuration.file}" 
-    		outputdir="." 
+    		outputdir="${platform.output.dir}" 
     	/>
     </target>
 

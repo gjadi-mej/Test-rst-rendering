@@ -8,9 +8,49 @@
 <project name="module-platform" xmlns:ea="antlib:org.apache.easyant" xmlns:mam="antlib:com.is2t.mam.ant" xmlns:ivy="antlib:org.apache.ivy.ant">
 
 	<!--
-		This script builds the platform into current workspace.
+		This script builds the platform in the current workspace (it uses an Eclipse ant runner in the current workspace).
+	
+		The MicroEJ Workbench file "MicroEJFramework.xml" has been modified to not export the platform project
+		in a ".jpf" file. Platform build stops before exporting the platform and does not delete the platform
+		project.
+	
+		However, when the MicroEJ SDK is launched for the very first time, the original MicroEJ Workbench file
+		"MicroEJFramework.xml" is *always* taken as the source script:
+			1- PQT copies its own "MicroEJFramework.xml" file into ${scripts.dir}, the date of the file is "now".
+			2- MicroEJ Workbench "unjar" its script in the MicroEJ SDK working directory (the date of the file is "now")
+			   (often in C: \ ... \.eclipse\com.is2t.microej.mpp.product.product_20.10_1000845000_win32_win32_x86_64\configuration\org.eclipse.osg\).
+			3- The MicroEJ Workbench copies the most recent files from the MicroEJ SDK working directory to ${scripts.dir}:
+			   the PQT file is overriden because it is older.
+			4- Finally, the MicroEJ Workbench uses its own script.
+	
+		On the second launch, the "unjar" step is not performed because the file in the working directory of 
+		the MicroEJ SDK already exists:
+			1- PQT copies its own "MicroEJFramework.xml" file into ${scripts.dir}, the date of the file is "now".
+			2- The MicroEJ Workbench copies the most recent files from the MicroEJ SDK working directory to ${scripts.dir}:
+			   the PQT file is not overriden because it is newer.
+			3- Finally, the MicroEJ Workbench uses the PQT script.
+	
+		Another case is: the platform project already exists or not. When it already exists, it may already be
+		imported into the current workspace. To avoid any Eclipse compilation error when building the platform, 
+		the platform build is done in a tmp folder. At the end of the build, the content of the tmp folder is
+		copied to expected output folder.
+	
+		The following targets manage the four cases (first launch of the SDK or not and existing project or not) 
+		to prevent any error. Additionally, the script is designed to prevent too much zip / unzip / move.
+	
+		|   | SDK first launch | Project exist || .jpf generated | jpf unzip | move required
+		|___| _________________|_______________||________________|___________|______________
+		| 1 |  yes             | no            || yes            | yes       | no
+		| 2 |  yes             | yes           || yes            | yes       | no
+		| 3 |  no              | no            || no             | no        | no
+		| 4 |  no              | yes           || no             | no        | yes
+	
+		- case 1: Build ".jpf", create the output folder (.project, etc.) and unzip jpf in the folder.
+		- case 2: Build ".jpf" and unzip jpf in the folder (to simplify the next targets, case 2 performs the steps of case 1)
+		- case 3: Build "wip" in the expected output folder
+		- case 4: Build "wip" in the tmp folder and copy it to the expected folder (nominal use case)
 	-->
-
+	
 	<!-- Sanity checks -->
 	<fail unless="eclipse.home" message="Set the MicroEJ SDK directory path in the `eclipse.home` property (If you are using easyant-build-component framework the full name of the property is `easyant.inject.eclipse.home`)."/>
 	<fail unless="com.microej.platformbuilder.platform.filename" message="Set the name of the `.xml` or `.platform` file in the `com.microej.platformbuilder.platform.filename` property."/>
@@ -127,7 +167,7 @@
 			<available file="${project.parent.dir}/${platform.project.name}" type="dir"/>
 		</condition>
 		
-		<condition property="platform.buildproject.name" value="platformtmp" else="${platform.project.name}" >
+		<condition property="workbench.platform.project.name" value="platformtmp" else="${platform.project.name}" >
 			<istrue value="${platform.expected.project.exist}"/>
 		</condition>
 		
@@ -142,24 +182,79 @@
 	
 	<!-- Build the platform -->
 	<target name="module-platform:build" extensionOf="abstract-compile:compile" depends="-eclipse-antRunner:init">
+	
 		<runEclipseAntRunner>
 			<args.properties>
 				<jvmarg value="-Dmicroej.repository=${platform.architecture.repository}"/>
 				<arg value="-Djpf.configuration.file=${project.dir}/${com.microej.platformbuilder.platform.filename}"/>
 				<arg value="-Dmicroej.architecture.dir=${microej.architecture.dir}"/>
 				<arg value="-Dant.file.com.is2t.easyant.plugins;eclipse-antRunner=${ant.file.com.is2t.easyant.plugins;eclipse-antRunner}"/>
-				<arg value="-Dplatform.project.name=${platform.buildproject.name}"/>
+				<arg value="-Dplatform.project.name=${workbench.platform.project.name}"/>
+				<arg value="-Dplatform.output.dir=${target}"/>
 				<arg value="-Dscripts.dir=${target}/scripts"/>
 			</args.properties>
 		</runEclipseAntRunner>
+		
+		<property name="workbench.platform.jpf" location="${target}/${platform.project.name}.jpf"/>
+		<fail message="MicroEJ Workbench has not created the expected platform">
+			<condition>
+				<and>
+					<!-- .jpf must exist when MicroEJ SDK is executed for the first time to build a platform -->
+					<not><available file="${workbench.platform.jpf}" type="file"/></not>
+					<!-- platform ouput folder must exist when MicroEJ SDK is not executed for the first time to build a platform -->
+					<not><available file="${project.parent.dir}/${workbench.platform.project.name}" type="dir"/></not>
+				</and>
+			</condition>
+		</fail>
+		
+		<condition  property="workbench.platform.jpf.unzip" value="true">
+			<available file="${workbench.platform.jpf}" type="file"/>
+		</condition>
+		
+	</target>
+	
+	<!-- MicroEJ SDK is executed for the first time to build a platform: .jpf must be unzipped -->
+	<target name="module-platform:unzip" extensionOf="abstract-compile:compile" depends="module-platform:build" if="${workbench.platform.jpf.unzip}">
+		
+		<!-- create platform/build -->
+		<mkdir dir="${project.parent.dir}/${platform.project.name}/build"/>
+		<copy todir="${project.parent.dir}/${platform.project.name}/build" flatten="true">
+			<fileset dir="${platform.architecture.repository}" includes="1.6/p*001/release.properties"/>
+		</copy>
+		
+		<!-- create/replace ".project" -->
+		<echoxml file="${project.parent.dir}/${platform.project.name}/.project" append="false">
+			<projectDescription>
+				<name>${platform.project.name}</name>
+				<comment></comment>
+				<projects>
+				</projects>
+				<buildSpec>
+					<buildCommand>
+						<name>com.is2t.microej.pro.workbench.jpfBuilder</name>
+						<arguments>
+						</arguments>
+					</buildCommand>
+				</buildSpec>
+				<natures>
+					<nature>com.is2t.microej.pro.workbench.jpfNature</nature>
+				</natures>
+			</projectDescription>
+		</echoxml>
+		
+		<!-- create platform/source -->
+		<unzip dest="${project.parent.dir}/${platform.project.name}/source" src="${workbench.platform.jpf}"/>
+		
+		<!-- delete .jpf -->
+		<delete file="${workbench.platform.jpf}"/>
 	</target>
 	
 	<!-- Copy the tmp platform in expected output platform project dir (prevent eclipse compilation error during platform build) -->
-	<target name="module-platform:move" extensionOf="abstract-compile:compile" depends="module-platform:build" if="${platform.expected.project.exist}">
+	<target name="module-platform:move" extensionOf="abstract-compile:compile" depends="module-platform:unzip" if="${platform.expected.project.exist}" unless="${workbench.platform.jpf.unzip}">
 		<move todir="${project.parent.dir}/${platform.project.name}">
-			<fileset dir="${project.parent.dir}/${platform.buildproject.name}" includes="**/*" excludes=".project"/>
+			<fileset dir="${project.parent.dir}/${workbench.platform.project.name}" includes="**/*" excludes=".project"/>
 		</move>
-		<delete dir="${project.parent.dir}/${platform.buildproject.name}"/>
+		<delete dir="${project.parent.dir}/${workbench.platform.project.name}"/>
 	</target>
 	
 	<!-- Copy the platform in target output dir -->
