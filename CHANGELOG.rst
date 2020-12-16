@@ -23,6 +23,7 @@ Added
 
 - Add Filesystem Test Suite.
 - Add Build Script example for CDT.
+- README for the Build Scripts Examples.
 
 Fixed
 =====
