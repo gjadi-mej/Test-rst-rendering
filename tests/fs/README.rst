@@ -3,63 +3,52 @@
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-**********************************
+====================
 MicroEJ FS Testsuite
-**********************************
+====================
 
-This folder is a part of a project which gathers the platform qualification tools. It contains a Java project which tests file and directory creation, access permissions, and file content read/write.
+This folder contains a ready-to-use project for testing `File System <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`_ implementations on a device.
+This testsuite will typically test file and directory creation, access permissions, and file content read/write...
 
-=============
+Specifications
+--------------
+
+- Tested Foundation Library: `FS 2.0 <https://repository.microej.com/artifacts/ej/api/fs/>`_ 
+- Testsuite Module: `com.microej.pack.fs.fs-testsuite <https://repository.microej.com/artifacts/com/microej/pack/fs/fs-testsuite/>`_
+
 Prerequisites
-=============
+-------------
 
-Before starting the test, make sure you have the following requirements:
+Before starting the testsuite, make sure you have the following requirements:
 
-- MicroEJ SDK version 5.1.1 or later
-- A MicroEJ Platform which has been built using the `Platform Configuration Additions <framework/platform/README.rst>`_.
+- MicroEJ SDK version ``5.1.1`` or higher.
+- A MicroEJ Platform imported in the workspace, which has been built using `Platform Configuration Additions <framework/platform/README.rst>`_ version ``1.0.0`` or higher.
+- A device connected to the PC both for programming and to get output traces. See Platform specific documentation for setup. 
+- If the Platform requires output traces redirection (e.g. when your device dumps the standard output on a serial port), start the
+  `Serial to Socket Transmitter <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/serialToSocketTransmitter.html>`_ tool.
 
-A platform is composed of two parts: a platform project (like: ``lpcxpresso_freertos-platform``) and bsp project (like: ``lpcxpresso_freertos-bsp``).
+Testsuite Configuration
+-----------------------
 
-=======================
-Testsuite configuration
-=======================
+- In MicroEJ SDK, import the ``java/java-testsuite-fs`` project in your workspace.
+- Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
+  ``[platform]-configuration/testsuites/fs/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
+- Open the ``config.properties`` file.
+- Fill the options marked as ``[required]``, particularly:
 
-- Load the ``java/java-testsuite-fs`` project in your MicroEJ SDK
-- Copy/Paste the ``config.properties.tpl``, rename it to
-  ``config.properties``.  The platform may provide a
-  ``config.properties`` and ``microej-testsuite-common.properties``
-  files.  Check the platform documentation and the files under
-  ``PLATFORM-configuration/testsuites/fs/``.
-- Open the ``config.properties``
-- Set ``target.platform.dir``: This is the platform path, which is the
-  parent folder of the ``release.properties`` file.  This property is
-  **mandatory**.
-- Depending on the `BSP Connection
-  <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`__
-  of the MicroEJ Platform, configure the following properties (refer
-  the comment in the configuration file):
+  - Target Platform: set the absolute path to the Platform being tested (the parent folder of the ``release.properties`` file),
+  - `BSP Connection <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`_: check the Platform specific documentation to get the kind of configured BSP connection.
+  - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
+- Check `Application Options <https://docs.microej.com/en/m0078ddg-26-fix_limitation_chapter/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
+  By default, options are initialized with suitable values to successfully execute the whole testsuite and should not be changed. 
+  However in some particular cases, you can adjust testsuite specific options or memory settings.
 
-  - ``microej.testsuite.properties.deploy.dir.microejapp``
-  - ``microej.testsuite.properties.deploy.dir.microejlib``
-  - ``microej.testsuite.properties.deploy.dir.microejinc``
-  - ``microej.testsuite.properties.deploy.bsp.microejscript``
-  
-If your board dump it trace on a serial port, you need to run the serial to socket transmitter tool.
+Testsuite Execution
+-------------------
 
-- In the MicroEJ SDK go to ``Run > Run Configurations...``
-- Right Click on ``MicroEJ Tool`` and click on ``New``
-- Select your platform in the ``Target > Platform`` option
-- Select ``Serial To Socket Transmitter`` in the ``Execution > Settings`` option
-- Go to the ``Configuration`` tab and set the ``Serial options``.
-- In the ``config.properties`` file, uncomment the following properties:
+Right-click on the ``java-testsuite-fs`` project and click on ``Build Module``.
 
-	- ``microej.testsuite.properties.testsuite.trace.ip``
-	- ``microej.testsuite.properties.testsuite.trace.port`` (use the same value you set in the Serial Options)
+Please refer to `Platform Qualification documentation <https://docs.microej.com/en/m0078ddg-26-fix_limitation_chapter/PlatformDeveloperGuide/platformQualification.html>`_ to know more about testsuites and how to get reports.
 
-- Click on ``Run``
 
-=================
-Run the testsuite
-=================
 
-Right click on the ``java-testsuite-fs`` project and click on ``Build Module``.
