@@ -3,9 +3,9 @@
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-====================
-MicroEJ FS Testsuite
-====================
+***************************
+Filesystem Test Suite 1.0.0
+***************************
 
 This folder contains a ready-to-use project for testing `File System <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`_ implementations on a device.
 This testsuite will typically test file and directory creation, access permissions, and file content read/write...
