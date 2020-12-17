@@ -42,7 +42,7 @@ Fixed
 Changed
 =======
 
-- Platform Configuration Additions with module build.
+- Platform Configuration Additions 1.1.0 with Platform module build using MMM.
 
 ------------------
 2.2.0 - 2020-06-24
