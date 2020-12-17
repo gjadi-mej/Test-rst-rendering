@@ -2,9 +2,9 @@
 .. Copyright 2019-2020 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
-*******************
-UI Test Suite 1.0.0
-*******************
+*****************************************
+Graphical User Interface Test Suite 1.0.0
+*****************************************
 
 Overview
 ========

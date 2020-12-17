@@ -21,8 +21,8 @@ Suite Filesystem for FS API and the Platform Configuration Additions
 This release contains:
 
 - Platform Configuration Additions 1.1.0
-- UI Test Suite 1.0.0
-- CORE Test Suite 3.0.0
+- Graphical User Interface Test Suite 1.0.0
+- Core Engine Test Suite 3.0.0
 - Filesystem Test Suite 1.0.0
 
 Added
