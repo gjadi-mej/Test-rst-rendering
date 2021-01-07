@@ -1,11 +1,11 @@
 ..
-    Copyright 2020 MicroEJ Corp. All rights reserved.
+    Copyright 2020-2021 MicroEJ Corp. All rights reserved.
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-***************************
-Filesystem Test Suite 1.0.0
-***************************
+*********************
+Filesystem Test Suite
+*********************
 
 This folder contains a ready-to-use project for testing `File System <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`_ implementations on a device.
 This testsuite will typically test file and directory creation, access permissions, and file content read/write...
