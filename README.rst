@@ -66,6 +66,7 @@ Platform Configuration Additions
 
 The ``framework/platform/`` folder contains the MicroEJ Platform Configuration Additions.
 See the `Platform Configuration Additions README <framework/platform/README.rst>`_ for more information.
+For licenses management, please refer to `License <https://docs.microej.com/en/latest/overview/licenses.html>`_ .
 
 Test Suites
 -----------
@@ -108,5 +109,5 @@ BSP. No specific unit test framework is used, each test describes how it
 works.
 
 ..
-   Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+   Copyright 2019-2021 MicroEJ Corp. All rights reserved.
    Use of this source code is governed by a BSD-style license that can be found with this software.
