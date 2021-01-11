@@ -1,5 +1,5 @@
 ..
-	Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+	Copyright 2019-2021 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 
 =========
@@ -14,11 +14,16 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 2.3.0 -- Unreleased
 -------------------
 
+The main changes of this release are the addition of the Java Test
+Suite Filesystem for FS API and the Platform Configuration Additions
+1.1.0.
+
 Added
 =====
 
-- Test Suite for Filesystem 3.0.3 (FS).
-- Build script for CDT.
+- Add Filesystem Test Suite.
+- Add Build Script example for CDT.
+- README for the Build Scripts Examples.
 
 Fixed
 =====
@@ -31,7 +36,7 @@ Fixed
 Changed
 =======
 
-- Platform Configuration Additions with module build.
+- Platform Configuration Additions 1.1.0 with Platform module build using MMM.
 
 ------------------
 2.2.0 - 2020-06-24
@@ -45,8 +50,8 @@ Added
 Fixed
 =====
 
-- Add missing symbol ``core_main`` and improve the documentation on how to run CoreMark benchmark.
-- Fix speed computation when less than 3 zones are defined
+- Add missing symbol ``core_main`` and improve the documentation on how to run CoreMark benchmark..
+- Fix speed computation when less than 3 zones are defined.
 
 ------------------
 2.1.0 - 2020-06-10
@@ -62,15 +67,15 @@ Added
 Fixed
 =====
 
-- Fix ``X_RAM_CHECKS_checkAddress16()``: test checked memory accesses outside memory range
-- Fix ``UTIL_TIME_BASE_getTime()``: fix type of returned value
+- Fix ``X_RAM_CHECKS_checkAddress16()``: test checked memory accesses outside memory range.
+- Fix ``UTIL_TIME_BASE_getTime()``: fix type of returned value.
 
 Changed
 =======
 
-- Improved documentation
-- Provide CoreMark as git-submodule instead of a local copy
-- Provide JVM Portage Validation as source instead of a jar
+- Improved documentation.
+- Provide CoreMark as git-submodule instead of a local copy.
+- Provide Core Engine Test Suite as source instead of a jar.
 
 ------------------
 1.0.1 - 2019-04-25
