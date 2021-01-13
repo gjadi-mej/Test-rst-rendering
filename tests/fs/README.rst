@@ -50,5 +50,82 @@ Right-click on the ``java-testsuite-fs`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/m0078ddg-26-fix_limitation_chapter/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
+Troubleshooting
+---------------
 
+No activity on input stream
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+The following error indicates that no output have been seen by the
+Serial To Socket.
+
+- Ensure that the COM port configured for the Serial To Socket is
+  correct.
+- Check the Platform documentation on how to connect to the UART
+  output for the test suites.
+
+.. code-block::
+
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] 1 : TraceAnalyzer ERROR :
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] [M3] - No activity on input stream since 75 s.
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] 
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] 2 : TraceAnalyzer ERROR :
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] [M5] - No encountered success/failure tag.
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] 
+   [testsuite:javaTestsuite] BUILD FAILED
+   [testsuite:javaTestsuite] C:\Program Files\MicroEJ\MicroEJ-SDK-20.12\rcp\configuration\org.eclipse.osgi\11\data\repositories\microej-build-repository\com\is2t\easyant\plugins\microej-testsuite\3.4.0\microej-testsuite-harness-jpf-emb-3.4.0.xml:85: TraceAnalyzer ends with errors.
+
+Could not open port 'COMxxx'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following error indicates that the COM port can not be opened.
+
+- Ensure that the COM port configured for the Serial To Socket is
+  correct.
+- Only one application may open a given COM port.  Ensure no other
+  application are using this COM port.
+- COM port may changed when the device is unplugged.  Ensure that the
+  COM port configured for the Serial To Socket is correct.
+
+.. code-block::
+
+   serial.serialutil.SerialException: could not open port 'COM7': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+
+No loaded Platform
+~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+   No loaded Platform.
+   Possible options to load a platform are: 
+   - (1) Set the property `platform-loader.target.platform.file` to a Platform file absolute path.
+   - (2) Set the property `platform-loader.target.platform.dir` to a Platform directory absolute path.
+   - (3) Declare a dependency in `module.ivy`.
+   - (4) Copy/Paste a Platform file into the folder defined by the property `platform-loader.target.platform.dropins` (by default its value is `dropins`).
+   A Platform declared using (1) or (2) is loaded prior to (3) or (4).
+
+Ensure the property ``target.platform.dir`` is set in
+``config.properties`` and points to the Platform source folder.
+
+Could not connect to localhost:5555
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block::
+
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] 1 : SocketTraceAnalyzerError ERROR :
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] [M1] - Could not connect to localhost:5555
+   [testsuite:javaTestsuite] [traceAnalyzer:socketTraceAnalyzer] 
+   [testsuite:javaTestsuite] BUILD FAILED
+
+- Ensure the Serial To Socket is started and configured to listen on
+  the port 5555.  The host and port properties used by the Test Suite
+  Engine are configured in ``config.properties``.
+
+The test suite runs but some tests are failing
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Ensure the Low Level Implementations tested by the test suite are
+  correctly implemented.
+- Check your Platform documentation on test suites.  The Platform may
+  provide specific ``config.properties`` and
+  ``microej-testsuite-common.properties``.
