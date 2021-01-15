@@ -16,6 +16,8 @@ ECHO OK
 
 @echo on
 
+CD %~dp0%
+
 %ECLIPSE_CDT_INSTALLATION_DIR%\%ECLIPSE_CDT_EXECUTABLE% --launcher.suppressErrors -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data %ECLIPSE_CDT_WORKSPACE_DIR% -import "."
 
 %ECLIPSE_CDT_INSTALLATION_DIR%\%ECLIPSE_CDT_EXECUTABLE% --launcher.suppressErrors -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data %ECLIPSE_CDT_WORKSPACE_DIR% -cleanBuild "%ECLPISE_CDT_PROJECT_NAME%/%ECLIPSE_CDT_PROJECT_CONFIGURATION%"
