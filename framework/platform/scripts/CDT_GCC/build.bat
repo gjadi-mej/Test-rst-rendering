@@ -13,9 +13,11 @@ IF %ERRORLEVEL% NEQ 0 (
 	exit /B %ERRORLEVEL%
 )
 
-@echo on
-
+REM Save application current directory and jump this script's directory
+SET CURRENT_DIRECTORY=%CD%
 CD %~dp0%
+
+@echo on
 
 %ECLIPSE_CDT_INSTALLATION_DIR%\%ECLIPSE_CDT_EXECUTABLE% --launcher.suppressErrors -nosplash -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data %ECLIPSE_CDT_WORKSPACE_DIR% -import "."
 
@@ -23,3 +25,5 @@ CD %~dp0%
 
 REM copy the generated .elf file
 COPY %ECLIPSE_CDT_PROJECT_DIR%\%ECLIPSE_CDT_PROJECT_CONFIGURATION%\%ECLIPSE_CDT_PROJECT_NAME%.elf application.out
+
+CD "%CURRENT_DIRECTORY%"
