@@ -1,6 +1,6 @@
 @echo off
 
-REM Copyright 2020 MicroEJ Corp. All rights reserved.
+REM Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 REM Use of this source code is governed by a BSD-style license that can be found with this software.
 
 REM 'build.bat' implementation for Eclipse CDT.
@@ -12,7 +12,6 @@ CALL "%~dp0\set_project_env.bat"
 IF %ERRORLEVEL% NEQ 0 (
 	exit /B %ERRORLEVEL%
 )
-ECHO OK
 
 @echo on
 
