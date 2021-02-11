@@ -11,6 +11,15 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
 -------------------
+2.3.1 -- unreleased
+-------------------
+
+Fixed
+=====
+
+- Platform Configuration Additions 1.1.1 (see `README <framework/platform/content/build/CHANGELOG.md>`_).
+
+-------------------
 2.3.0 -- 2021-01-13
 -------------------
 
