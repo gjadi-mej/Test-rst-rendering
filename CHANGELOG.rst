@@ -12,6 +12,16 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 
 
 -------------------
+2.3.2 -- 2021-02-22
+-------------------
+
+Fixed
+=====
+
+- Change directory to the current one in CDT scripts
+- Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative path
+
+-------------------
 2.3.1 -- 2021-02-12
 -------------------
 
