@@ -12,6 +12,17 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 
 
 -------------------
+2.3.2 -- 2021-02-22
+-------------------
+
+Changed
+=======
+
+- ``cd`` into the script's directory in CDT scripts because CDT needs to be called from the directory in which the project is.
+- Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative so the user can choose another Cube Programmer installation than the one installed in CDT.
+- Replace CDT ``cleanBuild`` by ``build`` as the clean is not needed and it forces to rebuild the whole project.
+
+-------------------
 2.3.1 -- 2021-02-12
 -------------------
 
