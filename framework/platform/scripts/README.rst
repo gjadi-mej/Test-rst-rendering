@@ -1,12 +1,12 @@
-Build Scripts Examples
-======================
+Build and Run Scripts Examples
+==============================
 
-This directory contains build scripts examples for several toolchains.
+This directory contains examples of build scripts for several toolchains and run scripts for several programming tools.
 
 Overview
 --------
 
-For each toolchain, the following scripts are available:
+Within each directory, the following scripts are available:
 
 - ``build.XXX`` compiles and links the BSP to produce a MicroEJ
   Firmware.
@@ -18,12 +18,16 @@ For each toolchain, the following scripts are available:
 Both ``build.XXX`` and ``run.XXX`` load the ``set_project_env.XXX``
 script to ensure the environment is properly set up.
 
-The behavior of ``build.XXX`` and ``run.XXX`` MUST follow the
-specification described in `BSP Script File
-<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection-build-script>`__.
+The behavior of ``build.XXX`` MUST follow the
+specification described in `BSP Build Script File
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#build-script-file>`_.
 
-Usage
------
+The behavior of ``run.XXX`` MUST follow the
+specification described in `BSP Run Script File
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#run-script-file>`_.
+
+Use
+---
 
 Add the build scripts to the BSP.
 
