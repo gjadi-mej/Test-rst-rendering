@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `default.platform` to allow any empty project to be converted as a Platform project (no more need to import a MicroEJ Architecture first).
+- Fix default module version to `0.1.0` as other MicroEJ SDK skeletons.
 
 ### Fixed
 
