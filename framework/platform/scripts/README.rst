@@ -27,7 +27,7 @@ specification described in `BSP Run Script File
 <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#run-script-file>`_.
 
 Usage
----
+-----
 
 Add the build scripts to the BSP.
 
