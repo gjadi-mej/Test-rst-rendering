@@ -32,6 +32,7 @@ Fixed
 =====
 
 - IAREW run script compliance (copy of the local ``application.out``).
+- Keil uVision run script compliance (copy of the local ``application.out``).
 - Documentation of ``target.platform.dir`` to setup the Test Suite FS.
 - CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
 

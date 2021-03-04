@@ -21,4 +21,4 @@ REM Print last command logs and delete associated temporary file
 type %TEMP%\%KEIL_PROJECT_NAME%_build_log.txt
 del %TEMP%\%KEIL_PROJECT_NAME%_build_log.txt
 
-copy /Y "%KEIL_PROJECT_DIR%\%KEIL_TARGETNAME%\%KEIL_TARGETNAME%.axf" application.out
+copy /Y %KEIL_PROJECT_EXECUTABLE_FILE% application.out

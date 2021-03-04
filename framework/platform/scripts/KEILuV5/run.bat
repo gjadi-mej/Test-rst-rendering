@@ -15,6 +15,7 @@ IF %ERRORLEVEL% NEQ 0 (
 
 @echo on 
 
+copy /Y application.out %KEIL_PROJECT_EXECUTABLE_FILE%
 "%KEIL_INSTALLATION_DIR%\UV4\UV4.exe" -f "%KEIL_PROJECT_DIR%\%KEIL_PROJECT_NAME%.uvprojx" -t "%KEIL_TARGETNAME%" -j0 -l %TEMP%\%KEIL_PROJECT_NAME%_build_log.txt
 
 REM Print last command logs and delete associated temporary file
