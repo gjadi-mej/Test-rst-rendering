@@ -26,7 +26,7 @@ The behavior of ``run.XXX`` MUST follow the
 specification described in `BSP Run Script File
 <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#run-script-file>`_.
 
-Use
+Usage
 ---
 
 Add the build scripts to the BSP.
