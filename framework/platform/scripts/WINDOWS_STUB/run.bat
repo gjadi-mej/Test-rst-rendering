@@ -8,8 +8,14 @@ REM 'run.bat' implementation stub.
 REM 'run.bat' is responsible for flashing the executable file on the target device 
 REM then resetting target device
 
-IF NOT EXIST application.out (
-	echo FAILED - missing 'application.out' file
+IF "%~1"=="" (
+	SET APPLICATION_FILE=%cd%\application.out
+) ELSE (
+	SET APPLICATION_FILE=%~1
+)
+
+IF NOT EXIST "%APPLICATION_FILE%" (
+	echo FAILED - file '%APPLICATION_FILE%' does not exist
 	exit /B 1
 )
 
