@@ -19,15 +19,6 @@ Added
 
 - Documentation for testing build and run scripts.
 
-Fixed
-=====
-
-- IAREW run script compliance (copy of the local ``application.out``).
-
--------------------
-2.3.2 -- 2021-02-22
--------------------
-
 Changed
 =======
 
@@ -35,13 +26,10 @@ Changed
 - Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative so the user can choose another Cube Programmer installation than the one installed in CDT.
 - Replace CDT ``cleanBuild`` by ``build`` as the clean is not needed and it forces to rebuild the whole project.
 
--------------------
-2.3.1 -- 2021-02-12
--------------------
-
 Fixed
 =====
 
+- IAREW run script compliance (copy of the local ``application.out``).
 - Fixed a comment in CORE Test Suite.  Module updated to 3.0.1.
 - Platform Configuration Additions 1.1.1 (see `README <framework/platform/content/build/CHANGELOG.md>`_).
 
