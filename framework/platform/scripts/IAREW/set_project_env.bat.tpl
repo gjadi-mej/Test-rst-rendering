@@ -10,6 +10,7 @@ REM - checking the availability of required environment variables
 REM - setting project local variables for 'build.bat' and 'run.bat' 
 
 REM Required Environment Variable
+REM IAR Embedded Workbench installation directory (e.g.: C:\Program Files (x86)\IAR Systems\Embedded Workbench VERSION)
 REM IAREW_CHANGEIT_INSTALLATION_DIR
 
 IF "%IAREW_CHANGEIT_INSTALLATION_DIR%" == "" (
@@ -17,10 +18,14 @@ IF "%IAREW_CHANGEIT_INSTALLATION_DIR%" == "" (
     exit /B -1
 )
 
-REM Set the project variables required by the build script for IAR Embedded Workbench
 SET IAREW_INSTALLATION_DIR=%IAREW_CHANGEIT_INSTALLATION_DIR%
+
+REM Set the project variables required by the build script for IAR Embedded Workbench
+REM IAREW project directory that contains the project file .ewp (e.g.: %~dp0\..\)
 SET IAREW_PROJECT_DIR=CHANGEIT
+REM IAREW project file name without the extension .ewp (e.g.: Project)
 SET IAREW_PROJECT_NAME=CHANGEIT
+REM IAREW project configuration (e.g.: Debug or Release)
 SET IAREW_PROJECT_CONFIGURATION=CHANGEIT
 
 REM Device macro file relative to IAREW_INSTALLATION_DIR (e.g.: arm\config\debugger\NXP\LPC5460x.dmac)
