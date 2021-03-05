@@ -55,7 +55,12 @@ After developing a new script or modifying existing scripts for you needs, check
 #. Initialization
    
    - Create a temporary directory which contains spaces and accented characters (e.g. ``c:\tmp\my rép``)
-   - Create a ``c:\tmp\my rép\bsp`` and ``c:\tmp\my rép\test`` directory
+   - Create the following directories:
+
+      - ``c:\tmp\my rép\bsp``
+      - ``c:\tmp\my rép\test``
+      - ``c:\tmp\my rép\test2``
+
    - Copy the BSP (including build and run scripts) into ``c:\tmp\my rép\bsp`` directory 
    - Open a terminal
    - Change current directory to ``c:\tmp\my rép\test``
@@ -74,7 +79,18 @@ After developing a new script or modifying existing scripts for you needs, check
 #. Test Run
 
    - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
-   - Check the executable has been programmed and started on device
+   - Check the executable has been programmed and started on device (e.g. it prints ``Hello World!``)
+
+#. Test Run Overwrite
+
+   - Change current directory to ``c:tmp\my rép\test2``
+   - Update the application in the bsp to change it's behavior (e.g. it prints ``Hello World #2!`` instead of ``Hello World!``)
+   - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\build.bat``
+   - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
+   - Check the executable has been programmed and started on device (e.g. it prints ``Hello World #2!``)
+   - Change current directory to ``c:tmp\my rép\test2``
+   - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
+   - Check the executable has been programmed and started on device (e.g. it prints ``Hello World!``)
 
 .. ReStructuredText
 .. Copyright 2020-2021 MicroEJ Corp. All rights reserved.
