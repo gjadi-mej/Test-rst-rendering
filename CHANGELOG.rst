@@ -43,14 +43,6 @@ Fixed
 =====
 
 - Fixed a comment in CORE Test Suite.  Module updated to 3.0.1.
-
--------------------
-2.3.1 -- unreleased
--------------------
-
-Fixed
-=====
-
 - Platform Configuration Additions 1.1.1 (see `README <framework/platform/content/build/CHANGELOG.md>`_).
 
 -------------------
