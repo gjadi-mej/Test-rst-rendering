@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] - Unreleased
+
+- Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
+
 ## [1.1.1] - 2021-02-11
+
+### Fixed
 
 - Fix execution of `run.[bat|sh]` in the directory where is defined `application.out`.
 
@@ -22,5 +28,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Initial version with scripts for BSP connection.
   
 ---
-_Copyright 2020-2021 MicroEJ Corp. All rights reserved._  
-_Use of this source code is governed by a BSD-style license that can be found with this software._  
+_Copyright 2020-2021 MicroEJ Corp. All rights reserved._
+_Use of this source code is governed by a BSD-style license that can be found with this software._
