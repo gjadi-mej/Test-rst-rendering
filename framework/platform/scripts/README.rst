@@ -92,6 +92,28 @@ After developing a new script or modifying existing scripts for you needs, check
    - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
    - Check the executable has been programmed and started on device (e.g. it prints ``Hello World!``)
 
+Troubleshooting
+---------------
+
+Issues with path length on Windows
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When copying in a bat script you can have an issue if the source path
+is too long.  For example, when copying like this:
+
+.. code-block:: bat
+
+   copy /B "%ELF_FILE%" "%output.file%"
+
+Use instead this:
+
+.. code-block:: bat
+
+   copy /B "%ELF_FILE%" "\\?\%output.file%"
+
+See https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file#maximum-path-length-limitation for more information.
+
+
 .. ReStructuredText
 .. Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
