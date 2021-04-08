@@ -22,7 +22,7 @@ Added
 Changed
 =======
 
-- Platform Configuration Additions 1.2.0 (see `README <framework/platform/content/build/CHANGELOG.md>`_).
+- Platform Configuration Additions 1.2.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
 - ``cd`` into the script's directory in CDT scripts because CDT needs to be called from the directory in which the project is.
 - Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative so the user can choose another Cube Programmer installation than the one installed in CDT.
 - Replace CDT ``cleanBuild`` by ``build`` as the clean is not needed and it forces to rebuild the whole project.
@@ -32,7 +32,6 @@ Fixed
 
 - IAREW run script compliance (copy of the local ``application.out``).
 - Fixed a comment in CORE Test Suite.  Module updated to 3.0.1.
-- Platform Configuration Additions 1.1.1 (see `README <framework/platform/content/build/CHANGELOG.md>`_).
 
 -------------------
 2.3.0 -- 2021-01-13
