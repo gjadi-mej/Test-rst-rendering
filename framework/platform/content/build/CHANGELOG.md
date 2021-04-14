@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix execution of `run.[bat|sh]` in the directory where is defined `application.out`.
+- Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
 
 ## [1.1.0] - 2021-01-08
 
