@@ -18,7 +18,7 @@
 	</target>
 
 	<!-- Publish additional files -->
-	<target name="module-publish:additional-files" extensionOf="package" depends="readme:init,changelog:init" unless="${skip.publish}">
+	<target name="module-publish:additional-files" extensionOf="package" depends="readme:init,changelog:init" if="has.readme.file" unless="${skip.publish}">
 		<copy todir="${target.artifacts}" file="${readme.file}" />
 		<copy todir="${target.artifacts}" file="${changelog.file}" />
 	</target>
