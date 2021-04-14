@@ -13,8 +13,16 @@ This test suite will typically test file and directory creation, access permissi
 Specifications
 --------------
 
-- Tested Foundation Library: `FS 2.0 <https://repository.microej.com/artifacts/ej/api/fs/>`_ 
-- Test Suite Module: `com.microej.pack.fs.fs-testsuite <https://repository.microej.com/artifacts/com/microej/pack/fs/fs-testsuite/>`_
+- Tested Foundation Library: `FS <https://repository.microej.com/modules/ej/api/fs/>`_
+- Test Suite Module: `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_
+
+Update the FS Test Suite module version in the `module.ivy
+<tests/fs/java/module.ivy>`_ to match the requirement of the platform
+tested.
+
+Please refer to `Platform Qualification Test Suite Versioning
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning`_
+to determine the FS Test Suite module version.
 
 Prerequisites
 -------------
