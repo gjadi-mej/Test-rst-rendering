@@ -31,7 +31,7 @@ Fixed
 =====
 
 - IAREW run script compliance (copy of the local ``application.out``).
-- Fixed a comment in CORE Test Suite.  Module updated to 3.0.1.
+- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
 
 -------------------
 2.3.0 -- 2021-01-13

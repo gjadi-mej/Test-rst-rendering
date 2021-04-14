@@ -6,6 +6,16 @@ Changelog <https://keepachangelog.com/en/1.0.0/>`__, and this project
 adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+.. _302--2021-04-14:
+
+[3.0.2] - 2021-04-14
+--------------------
+
+Fixed
+~~~~~
+
+- Ensure an error message is shown when the Round Robin test fails.
+
 .. _301--2021-02-12:
 
 [3.0.1] - 2021-02-12

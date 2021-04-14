@@ -36,7 +36,7 @@ import ej.bon.Util;
  */
 public class MicroejCoreValidation {
 
-	private static final String VERSION = "3.0.1";
+	private static final String VERSION = "3.0.2";
 
 	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
 	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
