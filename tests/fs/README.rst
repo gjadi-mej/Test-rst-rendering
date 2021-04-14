@@ -47,7 +47,7 @@ Test Suite Configuration
   - Target Platform: set the absolute path to the Platform being tested (the parent folder of the ``release.properties`` file),
   - `BSP Connection <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`_: check the Platform specific documentation to get the kind of configured BSP connection.
   - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
-- Check `Application Options <https://docs.microej.com/en/m0078ddg-26-fix_limitation_chapter/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
+- Check `Application Options <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
   By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
   However in some particular cases, you can adjust test suite specific options or memory settings.
 
@@ -56,7 +56,7 @@ Test Suite Execution
 
 Right-click on the ``java-testsuite-fs`` project and click on ``Build Module``.
 
-Please refer to `Platform Qualification documentation <https://docs.microej.com/en/m0078ddg-26-fix_limitation_chapter/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
+Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
 Troubleshooting
 ---------------
