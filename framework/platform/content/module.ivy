@@ -17,12 +17,12 @@
     </info>
 
     <configurations defaultconfmapping="embedded->default">
-      <conf name="default" visibility="public" description="runtime dependencies artifact can be used with this conf"/>
-      <conf name="test" visibility="private" description="this scope indicates that the dependency is not required for normal use of the application, and is only available for the test compilation and execution phases."/>
-      <conf name="provided" visibility="public" description="this is much like compile, but indicates you expect the JDK or a container to provide it. It is only available on the compilation classpath, and is not transitive."/>
-      <conf name="source" visibility="public" description="source code and architectures"/>
-	  <conf name="documentation" visibility="public" description="documentation files"/>
-      <conf name="embedded" visibility="private" description="platform dependencies.  Use only for MicroEJ Architecture and MicroEJ Packs required to build the platform."/>
+		<conf name="default" visibility="public" description="Runtime dependencies to other artifacts"/>
+		<conf name="provided" visibility="public" description="Compile-time dependencies to APIs provided by the platform"/>
+		<conf name="documentation" visibility="public" description="Documentation related to the artifact (javadoc, PDF)"/>
+		<conf name="dist" visibility="public" description="Contains extra files like README.md, licenses"/>
+		<conf name="source" visibility="public" description="Source code"/>
+		<conf name="embedded" visibility="private" description="platform dependencies.  Use only for MicroEJ Architecture and MicroEJ Packs required to build the platform."/>
     </configurations>
     
     <publications>
