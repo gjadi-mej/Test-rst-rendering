@@ -10,22 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add `default.platform` to allow any empty project to be converted as a Platform project (no longer need to import a MicroEJ Architecture first).
-- Fix default module version to `0.1.0` as other MicroEJ SDK skeletons.
-- Fix default module organization to `com.mycompany` as other MicroEJ SDK skeletons.
+- Set default module version to `0.1.0` as other MicroEJ SDK skeletons.
+- Set default module organization to `com.mycompany` as other MicroEJ SDK skeletons.
 
 ### Fixed
 
 - Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
 - Use a new private configuration ``embedded`` as the default for the platform dependencies.  This prevents an instance of "Too many loaded Platforms" error in `platform-loader`.
-
-## [1.1.1] - 2021-02-11
-
-### Fixed
-
 - Fix execution of `run.[bat|sh]` in the directory where is defined `application.out`.
-- Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
 - Fix module configurations for correct Platform module import (especially in a module repository)
-- Fix module build crash when no README file declared (optional)
+- Fix module build crash when no README file is declared (optional)
 
 ## [1.1.0] - 2021-01-08
 
