@@ -16,12 +16,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
+- Use a new private configuration ``embedded`` as the default for the platform dependencies.  This prevents an instance of "Too many loaded Platforms" error in `platform-loader`.
 
 ## [1.1.1] - 2021-02-11
 
 ### Fixed
 
 - Fix execution of `run.[bat|sh]` in the directory where is defined `application.out`.
+- Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
+- Fix module configurations for correct Platform module import (especially in a module repository)
+- Fix module build crash when no README file declared (optional)
 
 ## [1.1.0] - 2021-01-08
 
