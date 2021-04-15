@@ -26,11 +26,13 @@ Changed
 - ``cd`` into the script's directory in CDT scripts because CDT needs to be called from the directory in which the project is.
 - Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative so the user can choose another Cube Programmer installation than the one installed in CDT.
 - Replace CDT ``cleanBuild`` by ``build`` as the clean is not needed and it forces to rebuild the whole project.
+- Improve comments on how to use ``set_project_env.bat.tpl`` for Keil uVision.
 
 Fixed
 =====
 
 - IAREW run script compliance (copy of the local ``application.out``).
+- Keil uVision run script compliance (copy of the local ``application.out``).
 - Documentation of ``target.platform.dir`` to setup the Test Suite FS.
 - CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
 
