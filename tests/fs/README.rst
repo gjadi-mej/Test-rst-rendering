@@ -36,7 +36,7 @@ Test Suite Configuration
 - Open the ``config.properties`` file.
 - Fill the options marked as ``[required]``, particularly:
 
-  - Target Platform: set the absolute path to the Platform being tested (the parent folder of the ``release.properties`` file),
+  - Target Platform: set ``target.platform.dir`` to the absolute path of the Platform being tested (the parent folder of the ``release.properties`` file and the platform sources, see `Setup a Platform for Tests <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/testsuite.html#setup-a-platform-for-tests>`__),
   - `BSP Connection <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`_: check the Platform specific documentation to get the kind of configured BSP connection.
   - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
 - Check `Application Options <https://docs.microej.com/en/m0078ddg-26-fix_limitation_chapter/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
