@@ -16,7 +16,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix documentation in `bsp.properties`, the variable `${project.prefix}` is no longer supported.
+- Fix documentation in `bsp.properties`:
+
+  - The variable `${project.prefix}` is no longer supported.
+  - The variables ``*.relative.dir`` are relative to the BSP root directory.
+
 - Fix execution of `run.[bat|sh]` in the directory where is defined `application.out`.
 - Fix module configurations for correct Platform module import (especially in a module repository)
 - Fix module build crash when no README file is declared (optional)
