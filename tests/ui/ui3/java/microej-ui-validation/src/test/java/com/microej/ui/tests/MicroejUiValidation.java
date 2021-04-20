@@ -271,9 +271,11 @@ public class MicroejUiValidation {
 	}
 
 	/**
-	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: the drawing time.
+	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: the post-flush copy
 	 * <p>
-	 * Determinates the maximum drawing time to have the better framerate as possible. XXX
+	 * After the flush step, the <code>LLUI_DISPLAY_IMPL_flush</code> implementation has to restore the content of
+	 * returned backbuffer with the content of flushed back buffer (MicroUI specification). This prevent to the MicroUI
+	 * application to draw again the old content.
 	 */
 	@Test
 	public void testBackBufferRestore() {
@@ -293,7 +295,7 @@ public class MicroejUiValidation {
 		Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
 		display.flush();
 
-		// here: the post-copy after a flush has to restore the content of
+		// here: the copy after a flush has to restore the content of
 		// flushed backbuffer: a black rectangle. If the color is not black,
 		// it means the post copy has not been performed or not fully done.
 
@@ -318,7 +320,7 @@ public class MicroejUiValidation {
 		Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
 		display.flush();
 
-		// here: the post-copy after a flush has to restore the content of
+		// here: the copy after a flush has to restore the content of
 		// flushed backbuffer: a black rectangle in the middle of white background.
 
 		assertEquals("[B] testBackBufferRestore at 0,0", display.getDisplayColor(Colors.WHITE),
