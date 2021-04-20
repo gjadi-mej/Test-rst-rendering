@@ -10,7 +10,11 @@ Overview
 ========
 
 This folder is a part of a project which gathers the Platform Qualification Tools.
-It contains sources and projects to check drivers and implementation of LLAPI ``Display``.
+It contains sources and projects to check drivers and implementation of LLAPI ``LLUI_DISPLAY_IMPL``.
 
-- For the MicroEJ Platforms made against the MicroEJ UI Packs [6.0.0-13.0.0[ (13.0.0 excluded), see `UI2 Readme <ui2/README.rst>`_ . 
-- For the MicroEJ Platforms made against the MicroEJ UI Packs 13.0.0 and higher, see `UI3 Readme <ui3/README.rst>`_ . 
+.. note:: 
+
+   These tests only concern the MicroEJ Platforms made against the MicroEJ UI Packs 13.0.0 and higher.
+   For the older MicroEJ UI packs, see `UI2 Readme <../ui2/README.rst>`_ .
+
+The tests are not available yet.

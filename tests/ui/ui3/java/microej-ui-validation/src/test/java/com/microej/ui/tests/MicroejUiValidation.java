@@ -90,7 +90,7 @@ public class MicroejUiValidation {
 	/**
 	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: the LCD tearing (flickering).
 	 * <p>
-	 * Shows alternatevely black and white screens. The tearing effect is visible when the screen is cut in two or more
+	 * Shows alternately black and white screens. The tearing effect is visible when the screen is cut in two or more
 	 * parts.
 	 */
 	@Test
