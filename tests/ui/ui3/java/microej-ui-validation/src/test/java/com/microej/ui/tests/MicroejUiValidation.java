@@ -7,6 +7,8 @@
  */
 package com.microej.ui.tests;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -266,5 +268,75 @@ public class MicroejUiValidation {
 		printFramerateReport(framerateHz, 1, framerateTimeUs, flushTimeUs);
 		printFramerateReport(framerateHz, 2, framerateTimeUs, flushTimeUs);
 		printFramerateReport(framerateHz, 3, framerateTimeUs, flushTimeUs);
+	}
+
+	/**
+	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: the drawing time.
+	 * <p>
+	 * Determinates the maximum drawing time to have the better framerate as possible. XXX
+	 */
+	@Test
+	public void testBackBufferRestore() {
+
+		Display display = Display.getDisplay();
+		GraphicsContext g = display.getGraphicsContext();
+		int displayWidth = display.getWidth();
+		int displayHeight = display.getHeight();
+
+		// draw in all back buffer and flush it
+		g.setColor(Colors.WHITE);
+		Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
+		display.flush();
+
+		// draw in all back buffer and flush it
+		g.setColor(Colors.BLACK);
+		Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
+		display.flush();
+
+		// here: the post-copy after a flush has to restore the content of
+		// flushed backbuffer: a black rectangle. If the color is not black,
+		// it means the post copy has not been performed or not fully done.
+
+		assertEquals("[A] testBackBufferRestore at 0,0", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(0, 0) & 0xffffff);
+		assertEquals("[A] testBackBufferRestore at w-1,0", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(displayWidth - 1, 0) & 0xffffff);
+		assertEquals("[A] testBackBufferRestore at 0,h-1", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(0, displayHeight - 1) & 0xffffff);
+		assertEquals("[A] testBackBufferRestore at w-1,h-1", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(displayWidth - 1, displayHeight - 1) & 0xffffff);
+
+		// draw in all back buffer and flush it
+		g.setColor(Colors.WHITE);
+		Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
+		display.flush();
+
+		// draw in the middle of back buffer and flush it
+		int offset = 10;
+		g.setColor(Colors.BLACK);
+		g.setClip(offset, offset, displayWidth - 2 * offset, displayHeight - 2 * offset);
+		Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
+		display.flush();
+
+		// here: the post-copy after a flush has to restore the content of
+		// flushed backbuffer: a black rectangle in the middle of white background.
+
+		assertEquals("[B] testBackBufferRestore at 0,0", display.getDisplayColor(Colors.WHITE),
+				g.readPixel(0, 0) & 0xffffff);
+		assertEquals("[B] testBackBufferRestore at w-1,0", display.getDisplayColor(Colors.WHITE),
+				g.readPixel(displayWidth - 1, 0) & 0xffffff);
+		assertEquals("[B] testBackBufferRestore at 0,h-1", display.getDisplayColor(Colors.WHITE),
+				g.readPixel(0, displayHeight - 1) & 0xffffff);
+		assertEquals("[B] testBackBufferRestore at w-1,h-1", display.getDisplayColor(Colors.WHITE),
+				g.readPixel(displayWidth - 1, displayHeight - 1) & 0xffffff);
+
+		assertEquals("[C] testBackBufferRestore at o,o", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(offset, offset) & 0xffffff);
+		assertEquals("[C] testBackBufferRestore at w-2*o-1,0", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(displayWidth - 2 * offset - 1, offset) & 0xffffff);
+		assertEquals("[C] testBackBufferRestore at p,h-2*o-1", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(offset, displayHeight - 2 * offset - 1) & 0xffffff);
+		assertEquals("[C] testBackBufferRestore at w-2*p-1,h-2*o-1", display.getDisplayColor(Colors.BLACK),
+				g.readPixel(displayWidth - 2 * offset - 1, displayHeight - 2 * offset - 1) & 0xffffff);
 	}
 }

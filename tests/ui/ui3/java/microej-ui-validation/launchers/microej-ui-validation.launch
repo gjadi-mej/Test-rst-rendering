@@ -42,8 +42,8 @@
 <booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDcore.trace.autostart" value="true"/>
 <booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDcore.trace.enabled" value="true"/>
 <booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDdeploy.bsp.microejapp" value="true"/>
-<booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDdeploy.bsp.microejinc" value="true"/>
-<booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDdeploy.bsp.microejlib" value="true"/>
+<booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDdeploy.bsp.microejinc" value="false"/>
+<booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDdeploy.bsp.microejlib" value="false"/>
 <booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDdeploy.bsp.microejscript" value="false"/>
 <booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDej.hal.client.verboseEnabled" value="false"/>
 <booleanAttribute key="com.is2t.microej.workbench.stdMicroEJLaunchConfigurationJPFConfigurationTabCSTART_com.is2t.microej.workbench.std.launch.ext.CheckBoxOption_CENDej.microui.fontConverter.file.enabled" value="false"/>
