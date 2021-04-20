@@ -13,8 +13,8 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "x_ui_framerate.h"
-#include "../../../../framework/c/utils/inc/u_print.h"
-#include "../../../../framework/c/utils/inc/u_time_base.h"
+#include "../../../../../framework/c/utils/inc/u_print.h"
+#include "../../../../../framework/c/utils/inc/u_time_base.h"
 
 /*
  * Defines the number of loops to get an average of bench time.

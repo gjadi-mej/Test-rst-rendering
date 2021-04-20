@@ -1,7 +1,7 @@
 /*
  * C
  * 
- * Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2019-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 
@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include "x_ui_framerate.h"
 #include "LLDISPLAY.h"
-#include "../../../../framework/c/utils/inc/u_print.h"
-#include "../../../../framework/c/utils/inc/u_time_base.h"
+#include "../../../../../framework/c/utils/inc/u_print.h"
+#include "../../../../../framework/c/utils/inc/u_time_base.h"
 
 /*
  * Defines the number of loops to get an average of bench time.

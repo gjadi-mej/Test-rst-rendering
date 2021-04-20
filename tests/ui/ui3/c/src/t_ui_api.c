@@ -6,8 +6,8 @@
  */
 #include <stdio.h>
 #include <stdarg.h>
-#include "../../../../framework/c/embunit/embUnit/embUnit.h"
-#include "../../../../framework/c/utils/inc/u_print.h"
+#include "../../../../../framework/c/embunit/embUnit/embUnit.h"
+#include "../../../../../framework/c/utils/inc/u_print.h"
 #include "t_ui_api.h"
 #include "x_ui_config.h"
 #include "t_ui_main.h"

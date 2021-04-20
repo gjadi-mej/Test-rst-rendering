@@ -1,15 +1,15 @@
 /*
  * C
  *
- * Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2019-2021 MicroEJ Corp. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be found with this software.
  */
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
-#include "../../../../framework/c/embunit/embUnit/embUnit.h"
-#include "../../../../framework/c/utils/inc/u_time_base.h"
-#include "../../../../framework/c/utils/inc/u_print.h"
+#include "../../../../../framework/c/embunit/embUnit/embUnit.h"
+#include "../../../../../framework/c/utils/inc/u_time_base.h"
+#include "../../../../../framework/c/utils/inc/u_print.h"
 #include "x_version.h"
 #include "t_ui_tearing.h"
 #include "LLDISPLAY.h"

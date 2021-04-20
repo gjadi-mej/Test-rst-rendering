@@ -14,7 +14,7 @@
 extern "C" {
 #endif
 
-#include "../../../../framework/c/embunit/embunit/embUnit.h"
+#include "../../../../../framework/c/embunit/embunit/embUnit.h"
 
 /* Public function declarations */
 
