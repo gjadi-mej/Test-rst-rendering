@@ -2,7 +2,7 @@
 <!-- 
 	ANT
 	
-	Copyright 2015-2020 MicroEJ Corp. All rights reserved.
+	Copyright 2015-2021 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
 
@@ -210,13 +210,19 @@
 			</condition>
 		</fail>
 		<echo message="Execution of script '${deploy.bsp.microejscript.filename}' started..."/>
-		<exec dir="${application.output.dir}" executable="${deploy.bsp.microejscript.filename}" failonerror="true" />
+
+		<exec dir="${application.output.dir}" executable="${deploy.bsp.microejscript.filename}" failonerror="true" osfamily="windows" />
+        <!-- OS family `unix` matches on both Linux and MacOS. -->
+        <exec dir="${application.output.dir}" executable="/bin/bash" failonerror="true" osfamily="unix">
+          <arg value="${deploy.bsp.microejscript.filename}" />
+        </exec>
+
 		<echo message="Execution of script '${deploy.bsp.microejscript.filename}' done."/>
 		
 		<!-- Generate properties in application output dir to be used by other tools such as 'deployToolBSPRun.xml' -->
 		<echoproperties prefix="deploy.bsp." destfile="${application.output.dir}/deployHookBSPBuild.properties"/>
 	</target>			
-	
+
 	<macrodef name="deploy.printReport">
 		<attribute name="message"/>
 		<attribute name="location"/>
