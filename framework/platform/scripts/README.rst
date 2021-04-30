@@ -95,6 +95,23 @@ After developing a new script or modifying existing scripts for you needs, check
 Troubleshooting
 ---------------
 
+Permissions on BSP script files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The file permissions are not preserved during the build of a Platform.
+If the third-party toolchain requires specific permissions (such as
+the executable permission) during the execution of the build or the
+run scripts, they must be enforced in the scripts.  For example, in
+the build script file:
+
+.. code-block:: sh
+
+   # Add exec permission on a file
+   chmod +x ../toolchain/a_script.sh
+
+   # Add exec permission on all .sh files in a directory hierarchy
+   find ../a_module/ -type f -name \*.sh -exec chmod +x {} \;
+
 Issues with path length on Windows
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
