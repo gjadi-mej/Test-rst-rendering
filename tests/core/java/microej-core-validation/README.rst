@@ -115,7 +115,8 @@ The test suite blocks during the Java round robin test under FreeRTOS
 
 Issue: 
 
-- The test suite blocks at the following step: ``Starting tasks and wait for 10 seconds...``.
+- The test of ``LLMJVM_IMPL_scheduleRequest`` blocks at the following
+  step: ``Starting tasks and wait for 10 seconds...``.
 
 Solution: 
 
