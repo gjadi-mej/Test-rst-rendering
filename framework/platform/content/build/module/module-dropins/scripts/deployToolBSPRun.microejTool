@@ -48,9 +48,13 @@
 				</not>
 			</condition>
 		</fail>
-		<echo message="Execution of script '${deploy.bsp.runscript.filename}' started..." />
+		<!-- Give to the run script a native OS path -->
+		<pathconvert property="application.file.target.os">
+			<path location="${application.file}"/>
+		</pathconvert>
+		<echo message="Execution of script '${deploy.bsp.runscript.filename}' with executable file '${application.file.target.os}' started..." />
 		<exec dir="${application.dir}" executable="${deploy.bsp.runscript.filename}" failonerror="true">
-			<arg value="${application.file}"/>
+			<arg value="${application.file.target.os}"/>
 		</exec>
 		<echo message="Execution of script '${deploy.bsp.runscript.filename}' done." />
 	</target>
