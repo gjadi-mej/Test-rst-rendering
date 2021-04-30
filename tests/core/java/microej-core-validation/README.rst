@@ -111,7 +111,7 @@ Troubleshooting
 ---------------
 
 The test suite blocks during the Java round robin test under FreeRTOS
-#####################################################################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Issue: 
 
