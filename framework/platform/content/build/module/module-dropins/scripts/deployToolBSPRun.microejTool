@@ -53,9 +53,15 @@
 			<path location="${application.file}"/>
 		</pathconvert>
 		<echo message="Execution of script '${deploy.bsp.runscript.filename}' with executable file '${application.file.target.os}' started..." />
-		<exec dir="${application.dir}" executable="${deploy.bsp.runscript.filename}" failonerror="true">
+		<exec dir="${application.dir}" executable="${deploy.bsp.runscript.filename}" failonerror="true" osfamily="windows" >
 			<arg value="${application.file.target.os}"/>
-		</exec>
+        </exec>
+        <!-- OS family `unix` matches on both Linux and MacOS. -->
+        <exec dir="${application.dir}" executable="/bin/bash" failonerror="true" osfamily="unix">
+          <arg value="${deploy.bsp.runscript.filename}" />
+          <arg value="${application.file.target.os}"/>
+        </exec>
+
 		<echo message="Execution of script '${deploy.bsp.runscript.filename}' done." />
 	</target>
 

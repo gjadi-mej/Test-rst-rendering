@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add MicroEJ SDK tool to deploy an executable file on device using the BSP run script
 
+### Changed
+
+- Execute bash script file (`.sh`) with `/bin/bash`.  This ensure the build and run scripts are properly executed regardless of their file permissions.
 
 ## [1.2.0] - 2021-04-16
 

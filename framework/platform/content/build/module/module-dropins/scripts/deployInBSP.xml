@@ -212,10 +212,16 @@
 			</condition>
 		</fail>
 		<echo message="Execution of script '${deploy.bsp.microejscript.filename}' started..."/>
-		<exec dir="${application.output.dir}" executable="${deploy.bsp.microejscript.filename}" failonerror="true" />
+
+		<exec dir="${application.output.dir}" executable="${deploy.bsp.microejscript.filename}" failonerror="true" osfamily="windows" />
+        <!-- OS family `unix` matches on both Linux and MacOS. -->
+        <exec dir="${application.output.dir}" executable="/bin/bash" failonerror="true" osfamily="unix">
+          <arg value="${deploy.bsp.microejscript.filename}" />
+        </exec>
+
 		<echo message="Execution of script '${deploy.bsp.microejscript.filename}' done."/>
 	</target>			
-	
+
 	<macrodef name="deploy.printReport">
 		<attribute name="message"/>
 		<attribute name="location"/>
