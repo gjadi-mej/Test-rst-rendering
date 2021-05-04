@@ -11,7 +11,7 @@ REM then resetting target device
 IF "%~1"=="" (
 	SET APPLICATION_FILE=%cd%\application.out
 ) ELSE (
-	SET APPLICATION_FILE=%~1
+	SET APPLICATION_FILE=%~f1
 )
 
 IF NOT EXIST "%APPLICATION_FILE%" (
