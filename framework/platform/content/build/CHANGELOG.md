@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Add MicroEJ SDK tool to deploy an executable file on device using the BSP run script
+- Add an option to check if the platform project exists
 
 ### Changed
 
