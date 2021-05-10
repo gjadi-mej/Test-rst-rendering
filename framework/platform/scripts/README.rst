@@ -1,7 +1,7 @@
 Build and Run Scripts Examples
 ==============================
 
-This directory contains examples of build scripts for several toolchains and run scripts for several programming tools.
+This directory contains examples of build and run scripts for several toolchains and run scripts for several programming tools.
 
 Overview
 --------
@@ -29,13 +29,13 @@ specification described in `BSP Run Script File
 Usage
 -----
 
-Add the build scripts to the BSP.
+Add the build and run scripts to the BSP.
 
-General recommendation for build scripts
-----------------------------------------
+General recommendation for build and run scripts
+------------------------------------------------
 
-In addition to the specification of the build scripts, here are some
-general recommendation for the build scripts:
+In addition to the specification of the build and run scripts, here
+are some general recommendation for the scripts:
 
 - When applicable, use the following naming convention for the
   toolchain installation directory:
