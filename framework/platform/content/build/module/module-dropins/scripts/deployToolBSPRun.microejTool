@@ -18,7 +18,6 @@
 	<property name="deploy.bsp.microejscript" value="true"/>
 	
 	<import file="${scripts.dir}/init-bsp/init.xml"/>
-	<import file="${scripts.dir}/checkOS.xml"/>
 	<import file="${scripts.dir}/deployInBSPCommon.xml"/>
 
 	<target name="run" depends="check/OS,init/bsp/options">
@@ -34,7 +33,7 @@
 
 		<property name="deploy.bsp.runscript.name" value="run" />
 		<condition property="deploy.bsp.microejscript.extension" value="bat" else="sh">
-			<istrue value="${isWindows}"/>
+			<os family="windows"/>
 		</condition>
 		<deploy.getOutputDir type="script"/>
 		
