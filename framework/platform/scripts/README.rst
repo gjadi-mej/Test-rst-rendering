@@ -92,6 +92,14 @@ After developing a new script or modifying existing scripts for you needs, check
    - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
    - Check the executable has been programmed and started on device (e.g. it prints ``Hello World!``)
 
+#. Test Run From Parameter
+
+   The current directory is ``c:tmp\my rép\test`` and contains ``application.out`` file that prints ``Hello World!``.
+   This last test verifies that the executable passed as parameter is taken prior to the ``application.out`` file.
+ 
+   - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat c:tmp\my rép\test2\application.out``
+   - Check the executable has been programmed and started on device (e.g. it prints ``Hello World #2!``)
+
 Troubleshooting
 ---------------
 
