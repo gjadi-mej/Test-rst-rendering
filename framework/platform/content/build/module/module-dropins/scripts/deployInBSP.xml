@@ -199,7 +199,7 @@
 	<target name="deployInBSP:exec:script:dir" extensionOf="deployInBSP:copy:custom" depends="deployInBSP:copy:app:dir,deployInBSP:copy:lib:dir,deployInBSP:copy:inc:dir" if="deploy.bsp.microejscript.dir">
 		<property name="deploy.bsp.microejscript.name" value="build"/>
 		<condition property="deploy.bsp.microejscript.extension" value="bat" else="sh">
-			<istrue value="${isWindows}"/>
+			<os family="windows"/>
 		</condition>
 		<property name="deploy.bsp.microejscript.filename" location="${deploy.bsp.microejscript.dir}/${deploy.bsp.microejscript.name}.${deploy.bsp.microejscript.extension}"/>
 		<fail message="The BSP project build script file is undefined (${deploy.bsp.microejscript.filename})">
