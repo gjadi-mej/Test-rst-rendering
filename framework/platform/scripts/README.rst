@@ -47,6 +47,9 @@ general recommendation for the build scripts:
 
 - Document the required variables, provide examples when applicable.
 
+Stub implementations of build and run script are provided as example
+for both Windows (``WINDOWS_STUB/``) and Unix (``UNIX_STUB/``).
+
 Test Scripts
 ------------
 
