@@ -88,7 +88,7 @@ After developing a new script or modifying existing scripts for you needs, check
    - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\build.bat``
    - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
    - Check the executable has been programmed and started on device (e.g. it prints ``Hello World #2!``)
-   - Change current directory to ``c:tmp\my rép\test2``
+   - Change current directory to ``c:tmp\my rép\test``
    - Launch ``c:\tmp\my rép\bsp\[path_to_build_script]\run.bat``
    - Check the executable has been programmed and started on device (e.g. it prints ``Hello World!``)
 
