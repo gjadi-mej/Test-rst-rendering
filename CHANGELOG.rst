@@ -19,6 +19,7 @@ Changed
 
 - Platform Configuration Additions 1.3.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
 - IAREW run script compliance with latest specification (the executable file can be provided as first argument).
+- CDT_GCC run script compliance with latest specification (the executable file can be provided as first argument).
 
 -------------------
 2.4.0 -- 2021-04-16
