@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Execute bash script file (`.sh`) with `/bin/bash`.  This ensure the build and run scripts are properly executed regardless of their file permissions.
+- Use placeholders for platform name and platform version in `default.platform` to make it obvious it is generated automatically.
 
 ## [1.2.0] - 2021-04-16
 
