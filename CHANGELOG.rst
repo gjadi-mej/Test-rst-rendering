@@ -21,6 +21,11 @@ Changed
 - IAREW run script compliance with latest specification (the executable file can be provided as first argument).
 - CDT_GCC run script compliance with latest specification (the executable file can be provided as first argument).
 
+Fixed
+=====
+
+- URLs in the documentation.
+
 -------------------
 2.4.0 -- 2021-04-16
 -------------------
@@ -46,7 +51,6 @@ Fixed
 - Keil uVision run script compliance (copy of the local ``application.out``).
 - Documentation of ``target.platform.dir`` to setup the Test Suite FS.
 - CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
-- URLs in the documentation.
 
 -------------------
 2.3.0 -- 2021-01-13
