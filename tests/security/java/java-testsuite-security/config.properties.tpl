@@ -64,7 +64,7 @@
 ###############################################################################
 
 # Comma separated list of patterns of files that must be included	
-test.run.includes.pattern=**/Test*.class
+test.run.includes.pattern=**/_AllTests_*.class
 # Comma separated list of patterns of files that must be excluded (defaults to inner classes)
 test.run.excludes.pattern=**/*$*.class
 
@@ -72,6 +72,9 @@ test.run.excludes.pattern=**/*$*.class
 # Advanced Options
 # These options shall not be changed by default.
 ###############################################################################
+
+# Increase the max number of threads
+microej.testsuite.properties.core.memory.threads.size=10
 
 # The execution target (`MICROJVM` to execute on Device, `S3` to execute on Simulator)
 target.vm.name=MICROJVM
