@@ -28,17 +28,24 @@ BSP_DECLARE_WEAK_FCNT uint32_t UI_CONFIG_getBPP(void)
 
 #ifdef ENABLE_FLUSH_TESTS
 
+/**
+ *
+ * @brief Comment, rename or remove this function when ENABLE_FLUSH_TESTS is enabled.
+ *
+ * - To run the PQT UI flush tests:
+ *   1. Define ENABLE_FLUSH_TESTS
+ *   2. Change the caller of LLUI_DISPLAY_flushDone() to use T_UI_LCD_flush_done() function instead of LLUI_DISPLAY_flushDone().
+ *   3. Comment, rename or remove this function.
+ * - To run the MicroEJ VEE application, restore the use of LLUI_DISPLAY_flushDone() in the caller.
+ *
+ * Note: the function T_UI_LCD_flush_done() is calling Graphics Engine's LLUI_DISPLAY_flushDone() function
+ * when PQT UI tests are not running (MicroEJ VEE is running). However this call performs an indirection.
+ *
+ * @see ENABLE_FLUSH_TESTS in t_ui_main.h
+ */
 void LLUI_DISPLAY_flushDone(bool from_isr)
 {
-	// Overrides the Graphics Engine's function.
-	// - To run the PQT UI tests, change caller to use T_UI_LCD_flush_done() function instead.
-	// - To run the MicroEJ VEE application, restore caller.
-	// In both cases, comment, rename or remove this function.
-	// Note: the function T_UI_LCD_flush_done() is calling Graphics Engine's LLUI_DISPLAY_flushDone() function
-	// when PQT UI tests are not running (MicroEJ VEE is running). However this call performs an indirection.
-	// @see ENABLE_FLUSH_TESTS
-	
-	TEST_FAIL("Call T_UI_LCD_flush_done() instead of LLUI_DISPLAY_flushDone() to run the PQT UI tests.");
+	TEST_FAIL("Call T_UI_LCD_flush_done() instead of LLUI_DISPLAY_flushDone() and remove this function to run the PQT UI tests. (see function comment)");
 }
 
 #endif // ENABLE_FLUSH_TESTS
