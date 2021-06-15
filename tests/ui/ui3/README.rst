@@ -50,7 +50,7 @@ Configuration
 
 3. Implement all functions defined in these files:
 
-   -  ``x_impl_config.h``: see `Tests Description`_
+   -  ``x_impl_config.c``: see `Tests Description`_
 
 4. Add a call to the function ``T_UI_main()`` just before the call to
    ``microej_main()``.
