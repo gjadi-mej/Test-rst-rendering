@@ -16,7 +16,7 @@ extern "C" {
 
 #include "LLUI_DISPLAY_impl.h"
 
-/*
+/**
  * @brief The LLAPI "LLUI_DISPLAY_IMPL_flush" cannot be called from a C example: it requires an image of
  * a MicroUI GraphicsContext (MICROUI_GraphicsContext*) and the LCD driver has to call the MicroEJ Graphics
  * Engine callback "LLUI_DISPLAY_flushDone" to notify the end of flush.
@@ -34,6 +34,8 @@ extern "C" {
  *   However this indirection takes some time.
  * - A linker error is thrown when this define is enabled for the first time: it forces to remaind that
  *   the LCD driver has not to call directly "LLUI_DISPLAY_flushDone" function.
+ *
+ * @see LLUI_DISPLAY_flushDone in x_impl_config.c
  */
 //#define ENABLE_FLUSH_TESTS
 
