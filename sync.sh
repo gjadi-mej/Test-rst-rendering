@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="${HOME}/Documents/P0065_ESP32-WROVER/P0065_ESP32-WROVER-Platform/"
+DIR="${HOME}/Documents/M0018_PlatformQualificationTools/M0018_PlatformQualificationTools/"
 
 find_rst() {
     find ${DIR} -type f -name \*.rst -and -not -path \*esp\-idf\*

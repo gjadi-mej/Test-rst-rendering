@@ -1,322 +1,164 @@
 ..
-    Copyright 2019-2021 MicroEJ Corp. All rights reserved.
-    This library is provided in source code for use, modification and test, subject to license terms.
-    Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
+	Copyright 2019-2021 MicroEJ Corp. All rights reserved.
+	Use of this source code is governed by a BSD-style license that can be found with this software.
 
-===========
- Changelog
-===========
+=========
+Changelog
+=========
 
----------------------
- [2.0.0] - 2021-04-02
----------------------
+All notable changes to this project will be documented in this file.
 
-Added
-=====
+The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-- Added CCO:
-
-  - microui 1.0.3.
+2.7.0 -- 2021-07-16
+-------------------
 
 Changed
 =======
 
-- Update frontpanel to framework 1.1.0.
-- Update frontpanel to widget 2.0.0.
-- Update modules:
-
-  - Pack UI 13.0.6.
-
-----------------------------------
- [1.8.0] - 2021-04-16
-----------------------------------
-
-Added
-=====
-
-- Update PCA to 1.2.0.  See `./ESP32-WROVER-Xtensa-FreeRTOS-configuration/build/CHANGELOG.md`_ for more details.
-
----------------------
- [1.7.1] - 2021-03-16
----------------------
+- Platform Configuration Additions 1.4.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
 
 Fixed
 =====
 
-- Fix Platform project directory version.  Ensure the Platform project imported after a clone is the one being populated during the Platform build.
-- Removed old mention of esptool.  esptool is not distributed by the Platform but by ESP-IDF.
+- Fixed links and paths in Graphical User Interface Test Suite README files and Core Engine Test Suite README file.
 
----------------------
- [1.7.0] - 2021-03-09
----------------------
+2.6.0 -- 2021-06-25
+-------------------
 
 Added
 =====
 
-- Added Chinese documentation
+- Add Graphical User Interface Test Suite for MicroEJ UI Packs 13.0.0 and higher (see `README <tests/ui/ui3/README.rst>`_).
 
 Changed
 =======
 
-- Clarify message when ``ENV_SDKCONFIG`` is already installed as ``sdkconfig``.
-- Do not fetch the Platform dependency MicroEJ Pack UI ``.xpfp`` explicitly, behavior is unchanged.
-- Remove legacy ESP-IDF migration documentation.  Not needed anymore because the ESP-IDF is fetched as a submodule since 1.6.1.
+- Graphical User Interface Test Suite for MicroEJ UI Packs [6.0.0-13.0.0[ (13.0.0 excluded) has moved from ``tests/ui/`` to ``tests/ui/ui2/`` (see `README <tests/ui/ui2/README.rst>`_).
 
-Fixed
-=====
-
-- Fix Platform directory name in ``README.rst``, ``README_UPDATE_ESP-IDF.rst`` and ``README_CN.rst``.
-- Fix typo and list display in ``CHANGELOG.rst``
-
-----------------------
- [1.6.2] - 2020-12-18
-----------------------
-
-Fixed
-=====
-
-- Remove ``CONFIG_FREERTOS_TASK_FUNCTION_WRAPPER`` from the provided sdkconfig files.  This prevents the build scripts to recompile the BSP every time.
-
-----------------------
- [1.6.1] - 2020-12-17
-----------------------
-
-Fixed
-=====
-
-- Documentation for initial public revision.
-
-----------------------
- [1.6.0] - 2020-12-17
-----------------------
-
-Added
-=====
-
-- Scripts to build and flash.
-- Platform documentation.
-- Initial ``Hello World`` application files to compile the BSP without any platform.
-- An empty LLAPI security implementation.
-- New platform builder.
-- New platform build type.
+2.5.0 -- 2021-05-11
+-------------------
 
 Changed
 =======
 
-- Use Espressif ESP-IDF GitHub Git repository as a submodule.
-- Replace the async_netconn with async_select MicroEJ C Component (CCO).
-- New platform builder.
-- New platform build type.
-- Increase the number of characteristics which can be registered for notifications to 31.
-- Update to Espressif ESP-IDF v3.3.4  .
-- Update modules:.
-
-  - MicroEJ Architecture simikou2 7.14.0.
-  - Pack UI 12.1.5.
-  - pack net 9.2.3.
-  - pack net-addons 2.3.0.
-  - pack hal 2.0.2.
-  - pack bluetooth 2.0.1.
-  - device pack 1.1.1.
-  - fs 4.0.2.
-  - API esp_idf 1.0.1.
-  - esp_idf-impl 1.1.1.
-  - esp_idf-mock 1.1.2.
-
-- Update CCOs.
-
-  - trace-systemview 2.0.1.
-  - osal-headers 0.2.1.
-  - osal-FreeRTOS 0.2.1.
-  - async_select 2.0.2 MicroEJ C Component (CCO).
-  - bsp-microej-async-worker 0.2.1 MicroEJ C Component (CCO).
-  - esp_idf 1.1.1 MicroEJ C Component (CCO).
-
-- Move Net low level buffer in PSRAM or RAM if no PSRAM.
-- Update sdkconfig to have a running coremark.
-- Rename frontpanel and configuration project to follow MicroEJ Naming Convention.
-- Update frontpanel to framework 1.0.0.
+- Platform Configuration Additions 1.3.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
+- IAREW run script compliance with latest specification (the executable file can be provided as first argument).
+- CDT_GCC run script compliance with latest specification (the executable file can be provided as first argument).
 
 Fixed
 =====
 
-- Rename MicroEJ sections so the linker put them at the correct position.
+- URLs in the documentation.
 
-----------------------
- [1.5.1] - 2020-05-19
-----------------------
-
-Fixed
-=====
-- Net : update net pack to version 9.2.1. 
-
-----------------------
- [1.5.0] - 2020-05-13
-----------------------
+-------------------
+2.4.0 -- 2021-04-16
+-------------------
 
 Added
 =====
 
-- UI: Support for LCD mode in portrait (via compile switch).
-- Core: Reset reason printed at startup.
-- Device : Device pack version 1.1.0.
+- Documentation for testing build and run scripts.
 
 Changed
 =======
 
-- Update esp-idf version to 3.3.1.
-- Optimize display driver my moving the functions in IRAM.
-- Optimize the JVM RTOS task scheduling.
-- Architecture : update architecture to version 7.12.1.
-- Net : update net pack to version 9.2.0 and addons pack to version 2.1.6.
-- Bluetooth: update bluetooth pack to version 2.0.0.
-- Bluetooth: update LLBLUETOOTH implementation.
+- Platform Configuration Additions 1.2.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
+- ``cd`` into the script's directory in CDT scripts because CDT needs to be called from the directory in which the project is.
+- Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative so the user can choose another Cube Programmer installation than the one installed in CDT.
+- Replace CDT ``cleanBuild`` by ``build`` as the clean is not needed and it forces to rebuild the whole project.
+- Improve comments on how to use ``set_project_env.bat.tpl`` for Keil uVision.
 
 Fixed
 =====
 
-- Issue with some file names case on Linux 
-- Wifi Driver : allow to enable softAP in OPEN auth mode.
-- Wifi Driver : Fix SSID length too long (null terminated string).
-- Ecom-network: Fix isEnabled and isStarted natives.
-- Filesystem: Fix get free space and get total space computation.
-- Filesystem: Fix the verification of writing data to a file.
-- Net: Fix memory leak by freeing the netconn when closing a socket.
-- SSL: Reset the ssl session after closing the ssl connection.
-- Documentation: Link to Getting-Started page.
-- Documentation: Board image.
-- Documentation: Instructions to get the traces.
+- IAREW run script compliance (copy of the local ``application.out``).
+- Keil uVision run script compliance (copy of the local ``application.out``).
+- Documentation of ``target.platform.dir`` to setup the Test Suite FS.
+- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
 
-----------------------
- [1.4.5] - 2019-11-25
-----------------------
+-------------------
+2.3.0 -- 2021-01-13
+-------------------
 
-Fixed
-=====
-
-- Documentation is now compliant with MicroEJ distribution 19.05.
-- Getting Started URL in the README.rst.
-- SDK URL in the RELEASE_NOTES.rst.
-
-----------------------
- [1.4.4] - 2019-11-13
-----------------------
-
-Fixed
-=====
-
-- An issue that prevents building the platform from sources in MicroEJ SDK.
-
-----------------------
- [1.4.2] - 2019-09-12
-----------------------
-
-Fixed
-=====
-
-- An issue that prevents linking application on linux hosts.
-
-----------------------
- [1.4.1] - 2019-09-05
-----------------------
+The main changes of this release are the addition of the Java Test
+Suite Filesystem for FS API and the Platform Configuration Additions
+1.1.0.
 
 Added
 =====
 
-- Bluetooth stub mock-up
+- Add Filesystem Test Suite.
+- Add Build Script example for CDT.
+- README for the Build Scripts Examples.
 
 Fixed
 =====
 
-- An issue that sometime prevents loading application in the simulator.
-- Improve the WiFi mock-up user interface.
-
-----------------------
- [1.4.0] - 2019-07-26
-----------------------
-
-This version differentiate configuration (sdkconfig) between singleapp (HDAHT)
-and multiapp (9C5H4) platforms.
-
-Added
-=====
-
-- Bluetooth support.
-- New Mock Wi-Fi.
-- SEGGER SytemView support for singleapp only.
+- Use ``svn export`` instead of ``svn checkout`` to retrieve Platform Configuration Addition without creating a ``.svn`` directory.
+- Ensure MicroEJ Platform Configuration Additions scripts are properly copied into the MicroEJ Platform.
+- Use ``xxx.platform`` as default name of the Platform Configuration file.
+- Fix platform build when launching for the first time MicroEJ SDK.
 
 Changed
 =======
 
-- Update OpenOCD version to win32-0.10.0-esp32-20190313,
-- Improve documentation clarity.
-- Disable OTA for multiapp only.
+- Platform Configuration Additions 1.1.0 with Platform module build using MMM.
 
-Fixed
-=====
-
-- LwIP socket leak with esp-idf ESP_THREAD_SAFE option enabled
-- Fix URLs to espressif.doc.
-
-----------------------
- [1.3.0] - 2018-10-08
-----------------------
+------------------
+2.2.0 - 2020-06-24
+------------------
 
 Added
 =====
 
-- Java ``System.out.println`` trace output on a new UART (USB COM port no
-  longer used).
-- Java ESP32 <code>esp-idf</code> foundation library.
-- SNI 1.3 non immortal access feature
+- MicroEJ Platform Configuration Additions (see `README <framework/platform/README.rst>`_).
 
 Fixed
 =====
 
-- LwIP issue that leads to lockup
-- Net multi-thread access issues
-- UI low level port do not support all LCD modules that can be included in
-  ESP32-WROVER-KIT V3
-- C stack overflow during complex TLS handshake
+- Add missing symbol ``core_main`` and improve the documentation on how to run CoreMark benchmark..
+- Fix speed computation when less than 3 zones are defined.
 
-----------------------
- [1.2.0] - 2018-08-02
-----------------------
+------------------
+2.1.0 - 2020-06-10
+------------------
 
 Added
 =====
 
-- Wi-Fi throughput enhancement.
-- UI MicroEJ pack and a device port.
-- FS MicroEJ pack and a device port on SD card.
+- Add UI test ``t_ui_api.c``: test LLDisplay implementation.
+- Add UI test ``t_ui_tearing.c``: test LCD tearing synchronization.
+- Add UI test ``t_ui_framerate.c``: retrieve LCD framerate.
 
 Fixed
 =====
 
-- Failure when trying to launch a Wi-Fi scan after mount and dismount.
-
-----------------------
- [1.1.0] - 2018-05-30
-----------------------
-
-Added
-=====
-
-- HAL MicroEJ pack and a stubbed implementation.
-- JPF MicroEJ platform.
+- Fix ``X_RAM_CHECKS_checkAddress16()``: test checked memory accesses outside memory range.
+- Fix ``UTIL_TIME_BASE_getTime()``: fix type of returned value.
 
 Changed
 =======
 
-- Update esptool MicroEJTool error messages.
+- Improved documentation.
+- Provide CoreMark as git-submodule instead of a local copy.
+- Provide Core Engine Test Suite as source instead of a jar.
+
+------------------
+1.0.1 - 2019-04-25
+------------------
 
 Fixed
 =====
 
-- Failures when trying to attach a GDB debug session.
+- Delete ``t_core_lljvm.c`` (workaround before fixing).
 
-----------------------
- [1.0.0] - 2018-05-04
-----------------------
+------------------
+1.0.0 - 2019-03-07
+------------------
 
-Initial release of the platform.
+Added
+=====
+
+- Initial revision with CORE tests only.
+  
