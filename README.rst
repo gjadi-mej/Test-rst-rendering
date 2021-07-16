@@ -20,6 +20,10 @@ Soluta ut aut quia laudantium dignissimos sint et soluta.
 See `A section`_ for code in action. See `A section with: funny symbols.java`_.
 See `nicely_named_section`_ (but this doesn't work `a named section <nicely_named_section>`_).
 
+#. Item
+#. Item
+#. Item
+
 This is a title 3
 :::::::::::::::::
 
