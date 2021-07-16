@@ -18,6 +18,11 @@ Changed
 
 - Platform Configuration Additions 1.4.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
 
+Fixed
+=====
+
+- Fixed links and paths in Graphical User Interface Test Suite README files and Core Engine Test Suite README file.
+
 2.6.0 -- 2021-06-25
 -------------------
 
