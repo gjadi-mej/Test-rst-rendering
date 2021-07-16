@@ -15,7 +15,7 @@ It contains sources and projects to check drivers and implementation of LLAPI ``
 .. note:: 
 
    These tests only concern the MicroEJ Platforms made against the MicroEJ UI Packs 13.0.0 and higher.
-   For the older MicroEJ UI packs, see `UI2 Readme <../ui2/README.rst>`_ .
+   For the older MicroEJ UI packs, see `UI2 Readme <../ui2/README.rst>`_.
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
@@ -31,8 +31,8 @@ allows to test the correct behavior of MicroUI in a Java application.
 Dependencies
 ============
 
--  Follow the main readme file
--  Follow the *CORE* readme file
+- Follow the `main Readme <../../../README.rst>`_.
+- Follow the `CORE Readme <../../core/README.rst`_.
 
 Quick Start
 ===========

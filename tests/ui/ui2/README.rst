@@ -31,8 +31,8 @@ allows to test the correct behavior of MicroUI in a Java application.
 Dependencies
 ============
 
--  Follow the main readme file
--  Follow the *CORE* readme file
+- Follow the `main Readme <../../../README.rst>`_.
+- Follow the `CORE Readme <../../core/README.rst`_.
 
 Quick Start
 ===========
