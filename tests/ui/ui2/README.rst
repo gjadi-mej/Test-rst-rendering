@@ -42,11 +42,11 @@ Configuration
 
 1. Add all files of these folders as source files:
 
-   -  ``tests/ui/c/src``
+   -  ``tests/ui/ui2/c/src``
 
 2. Add these folders as include folders:
 
-   -  ``tests/ui/c/inc``
+   -  ``tests/ui/ui2/c/inc``
 
 3. Implement all functions defined in these files:
 

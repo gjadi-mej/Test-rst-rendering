@@ -42,11 +42,11 @@ Configuration
 
 1. Add all files of these folders as source files:
 
-   -  ``tests/ui/c/src``
+   -  ``tests/ui/ui3/c/src``
 
 2. Add these folders as include folders:
 
-   -  ``tests/ui/c/inc``
+   -  ``tests/ui/ui3/c/inc``
 
 3. Implement all functions defined in these files:
 
@@ -54,7 +54,7 @@ Configuration
 
 4. Add a call to the function ``T_UI_main()`` just before the call to
    ``microej_main()``.
-5. In the MicroEJ SDK, import the MicroEJ project ``microej-ui-validation`` from the folder ``tests/ui/java``.
+5. In the MicroEJ SDK, import the MicroEJ project ``microej-ui-validation`` from the folder ``tests/ui/ui3/java``.
 6. Build this MicroEJ Application against the MicroEJ Platform to qualify.
 7. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
 
