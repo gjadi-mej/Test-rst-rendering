@@ -13,6 +13,11 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 2.8.0 -- Unreleased
 -------------------
 
+Added
+=====
+
+- Add the module MicroEJ Core Test Suite 1.0.0. to run the MicroEJ Core Validation (Java).
+
 Changed
 =======
 
