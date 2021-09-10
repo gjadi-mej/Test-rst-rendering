@@ -451,33 +451,33 @@ public class MicroejCoreValidation {
 		System.out.println("-> Check FPU (soft/hard FP option)...");
 
 		assertEquals("test 'float * float' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Float(testFPUJava(float3, float4)), new Float(12f));
+				new Float(12f), new Float(testFPUJava(float3, float4)));
 		assertEquals("test 'double * double' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Double(testFPUJava(double3, double4)), new Double(12));
+				new Double(12), new Double(testFPUJava(double3, double4)));
 		assertEquals("test 'float * float' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Float(testFloat(float3, float4)), new Float(12f));
+				new Float(12f), new Float(testFloat(float3, float4)));
 		assertEquals("test 'double * double' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Double(testDouble(double3, double4)), new Double(12));
+				new Double(12), new Double(testDouble(double3, double4)));
 
 		float parsedFloat = Float.parseFloat("1234.5");
 		assertEquals(
 				"test 'parse float string': strtof C function not correctly implemented (check your libc configuration)",
-				new Float(parsedFloat), new Float(1234.5f));
+				new Float(1234.5f), new Float(parsedFloat));
 
 		double parsedDouble = Double.parseDouble("1234.5");
 		assertEquals(
 				"test 'parse double string': strtod C function not correctly implemented (check your libc configuration)",
-				new Double(parsedDouble), new Double(1234.5d));
+				new Double(1234.5d), new Double(parsedDouble));
 
 		String floatToString = Float.toString(1234.5f);
 		assertEquals(
 				"test 'float to string': snprintf C function not correctly implemented (check your libc configuration)",
-				floatToString, "1234.5");
+				"1234.5", floatToString);
 
 		String doubleToString = Double.toString(1234.5d);
 		assertEquals(
 				"test 'double to string': snprintf C function not correctly implemented (check your libc configuration)",
-				doubleToString, "1234.5");
+				"1234.5", doubleToString);
 	}
 
 	/**
