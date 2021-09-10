@@ -6,10 +6,16 @@ Changelog <https://keepachangelog.com/en/1.0.0/>`__, and this project
 adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
-.. _303--Unreleased:
+.. _310--Unreleased:
 
-[3.0.3] - Unreleased
+[3.1.0] - Unreleased
 --------------------
+
+Changed
+~~~~~~~
+
+- Split floating point tests into 3 JUnit tests (FPU, parser, formatter)
+  to allow for fine-grained ignored tests list.
 
 Fixed
 ~~~~~
