@@ -6,6 +6,16 @@ Changelog <https://keepachangelog.com/en/1.0.0/>`__, and this project
 adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
+.. _303--Unreleased:
+
+[3.0.3] - Unreleased
+--------------------
+
+Fixed
+~~~~~
+
+- Fix assertions to conform with JUnit semantic of expected/actual.
+
 .. _302--2021-04-14:
 
 [3.0.2] - 2021-04-14
