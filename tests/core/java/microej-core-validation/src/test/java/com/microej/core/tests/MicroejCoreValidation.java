@@ -36,10 +36,13 @@ import ej.bon.Util;
  */
 public class MicroejCoreValidation {
 
-	private static final String VERSION = "3.0.2";
+	private static final String VERSION = "3.1.0";
 
 	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
 	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
+
+	private static final String INVALID_C_FUNCTION_MESSAGE = "C function not correctly implemented (check your libc configuration)";
+	private static final String INCOHERENT_FPU_MESSAGE = "FPU option is not coherent between MicroEJ Platform and BSP";
 
 	private static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
 
@@ -450,34 +453,44 @@ public class MicroejCoreValidation {
 	public void testFPU() {
 		System.out.println("-> Check FPU (soft/hard FP option)...");
 
-		assertEquals("test 'float * float' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Float(12f), new Float(testFPUJava(float3, float4)));
-		assertEquals("test 'double * double' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Double(12), new Double(testFPUJava(double3, double4)));
-		assertEquals("test 'float * float' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Float(12f), new Float(testFloat(float3, float4)));
-		assertEquals("test 'double * double' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Double(12), new Double(testDouble(double3, double4)));
+		assertEquals("test 'float * float' in Java: " + INCOHERENT_FPU_MESSAGE, new Float(12f),
+				new Float(testFPUJava(float3, float4)));
+		assertEquals("test 'double * double' in Java: " + INCOHERENT_FPU_MESSAGE, new Double(12),
+				new Double(testFPUJava(double3, double4)));
+		assertEquals("test 'float * float' in C: " + INCOHERENT_FPU_MESSAGE, new Float(12f),
+				new Float(testFloat(float3, float4)));
+		assertEquals("test 'double * double' in C: " + INCOHERENT_FPU_MESSAGE, new Double(12),
+				new Double(testDouble(double3, double4)));
+	}
+
+	/**
+	 * Tests the platform FP parser.
+	 */
+	@Test
+	public void testParseFP() {
+		System.out.println("-> Check FP parser...");
 
 		float parsedFloat = Float.parseFloat("1234.5");
-		assertEquals(
-				"test 'parse float string': strtof C function not correctly implemented (check your libc configuration)",
-				new Float(1234.5f), new Float(parsedFloat));
+		assertEquals("test 'parse float string': strtof " + INVALID_C_FUNCTION_MESSAGE, new Float(1234.5f),
+				new Float(parsedFloat));
 
 		double parsedDouble = Double.parseDouble("1234.5");
-		assertEquals(
-				"test 'parse double string': strtod C function not correctly implemented (check your libc configuration)",
-				new Double(1234.5d), new Double(parsedDouble));
+		assertEquals("test 'parse double string': strtod " + INVALID_C_FUNCTION_MESSAGE, new Double(1234.5d),
+				new Double(parsedDouble));
+	}
+
+	/**
+	 * Tests the platform FP formatter.
+	 */
+	@Test
+	public void testFormatFP() {
+		System.out.println("-> Check FP formatter...");
 
 		String floatToString = Float.toString(1234.5f);
-		assertEquals(
-				"test 'float to string': snprintf C function not correctly implemented (check your libc configuration)",
-				"1234.5", floatToString);
+		assertEquals("test 'float to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", floatToString);
 
 		String doubleToString = Double.toString(1234.5d);
-		assertEquals(
-				"test 'double to string': snprintf C function not correctly implemented (check your libc configuration)",
-				"1234.5", doubleToString);
+		assertEquals("test 'double to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", doubleToString);
 	}
 
 	/**
