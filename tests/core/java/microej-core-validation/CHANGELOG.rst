@@ -11,6 +11,11 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 [3.1.0] - Unreleased
 --------------------
 
+Added
+~~~~~
+
+- Add check for `LLMJVM_IMPL_setApplicationTime`.
+
 Changed
 ~~~~~~~
 

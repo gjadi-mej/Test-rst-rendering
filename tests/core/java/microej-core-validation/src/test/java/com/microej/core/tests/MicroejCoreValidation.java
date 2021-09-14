@@ -72,7 +72,7 @@ public class MicroejCoreValidation {
 				+ "                                  *");
 		System.out.println(sep);
 		System.out.println(
-				"* Copyright 2013-2020 MicroEJ Corp. All rights reserved.                                            *");
+				"* Copyright 2013-2021 MicroEJ Corp. All rights reserved.                                            *");
 		System.out.println(
 				"* This library is provided in source code for use, modification and test, subject to license terms. *");
 		System.out.println(
@@ -309,7 +309,10 @@ public class MicroejCoreValidation {
 		long timeOffset = 50_000;
 		System.out.println("Waiting for " + delay / 1000 + "s...");
 		long monotonicTimeBefore = Util.platformTimeMillis();
-		Util.setCurrentTimeMillis(System.currentTimeMillis() + timeOffset);
+		long applicationTimeBefore = System.currentTimeMillis();
+
+		Util.setCurrentTimeMillis(applicationTimeBefore + timeOffset);
+		long applicationTimeAfter = System.currentTimeMillis();
 
 		try {
 			Thread.sleep(delay);
@@ -318,6 +321,8 @@ public class MicroejCoreValidation {
 		}
 		long montonicTimeAfter = Util.platformTimeMillis();
 		System.out.println("...done");
+		assertTrue("application time not set", applicationTimeAfter >= applicationTimeBefore + timeOffset
+				&& applicationTimeAfter <= applicationTimeBefore + timeOffset + elapsedTime);
 		assertTrue("monotonic time not set", montonicTimeAfter >= monotonicTimeBefore + delay
 				&& montonicTimeAfter <= monotonicTimeBefore + delay + elapsedTime);
 	}
