@@ -99,4 +99,4 @@ microej.testsuite.jvmArgs=-Xmx768m
 microej.testsuite.properties.launch.properties.jvm=-Xmx2048M
 
 # The foundation jars used for the code coverage, useful only if the target.vm.name = S3
-microej.testsuite.cc.jars.name.regex=fs-*.jar
+microej.testsuite.cc.jars.name.regex=fs-(.*)\.jar
