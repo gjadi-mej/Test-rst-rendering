@@ -21,6 +21,7 @@ Changed
 
 - Split floating point tests into 3 JUnit tests (FPU, parser, formatter)
   to allow for fine-grained ignored tests list.
+- Change the buildtype to ``build-microej-javaimpl``.
 
 Fixed
 ~~~~~
