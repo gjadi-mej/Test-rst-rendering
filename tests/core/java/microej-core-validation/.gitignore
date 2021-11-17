@@ -1,4 +1,4 @@
 target~/
 bin/
 src-adpgenerated/
-com.microej.core.tests._AllTestClasses/
+com.microej.core.tests.*/

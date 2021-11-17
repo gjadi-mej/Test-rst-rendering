@@ -1,7 +1,10 @@
 .. ReStructuredText
-.. Copyright 2019-2020 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
+.. Copyright 2019-2021 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
+**********************
+Core Engine Test Suite
+**********************
 
 Overview
 ========
@@ -20,7 +23,7 @@ tests, how to launch them and the expected results.
 Dependencies
 ============
 
-- Follow the main readme file
+- Follow the `main Readme <../../README.rst>`_.
 - EEMBC Coremark
 
 Quick Start
@@ -43,7 +46,7 @@ Configuration
    - ``framework/c/embunit/embUnit``
    - ``framework/c/CoreMark/``
 
-3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
+3. Create ``core_portme.c`` and ``core_portme.h`` files to port EEMBC CoreMark
    (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
 
 4. Implement all functions defined in these files:
@@ -197,9 +200,12 @@ Timer: t_core_time_base.c
 -------------------------
 
 A time counter is required by MicroEJ Platform. This timer must respect
-the following rules: \* during MicroEJ Application, this counter must
-not return to zero (return in the past), \* its precision must be around
-one or ten microseconds (often running at 1MHz).
+the following rules:
+
+* during MicroEJ Application, this counter must not return to zero
+  (return in the past),
+* its precision must be around one or ten microseconds (often running
+  at 1MHz).
 
 This timer can be the OS timer but most of time the OS timer does not
 respect the expected conditions. A hardware timer is often used instead.
@@ -239,12 +245,13 @@ different patterns. All accesses are aligned on value to write: 8, 16 or
 32 bits, like the MicroEJ Platform will use the RAM.
 
 To run, several functions must be implemented. See ``x_ram_checks.h``:
-\* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)`` \*
-``uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)`` \*
-``uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)`` \*
-``uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)``
+
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitZones(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitZones(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitZones(void)``
+* ``uint8_t X_RAM_CHECKS_get32bitZoneNumber(void)``
+* ``uint8_t X_RAM_CHECKS_get16bitZoneNumber(void)``
+* ``uint8_t X_RAM_CHECKS_get8bitZoneNumber(void)``
 
 **Configuration**
 
@@ -271,9 +278,10 @@ faster RAM accesses (and without any error!).
 **Configuration**
 
 To run, several functions must be implemented. See ``x_ram_checks.h``:
-\* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitSourceZone(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)`` \*
-``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)``
+
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get32bitSourceZone(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get16bitSourceZone(void)``
+* ``X_RAM_CHECKS_zone_t* X_RAM_CHECKS_get8bitSourceZone(void)``
 
 These *sources* can target a region in internal flash, internal RAM or
 any other regions.
