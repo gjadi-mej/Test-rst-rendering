@@ -20,14 +20,14 @@ export ENV_BASH_CMD_DEFAULT="export IDF_PATH=$(pwd)/../../Drivers/esp-idf && ech
 . "scripts/set_project_env.sh"
 
 if [ -z "$ENV_BASH_CMD" ]; then
-    export ENV_BASH_CMD=$ENV_BASH_CMD_DEFAULT
+	export ENV_BASH_CMD=$ENV_BASH_CMD_DEFAULT
     echo "Environment variable 'ENV_BASH_CMD' used to compile your IDF application is set to default value ($ENV_BASH_CMD_DEFAULT)"
 else
 	echo "Environment variable 'ENV_BASH_CMD' used to compile your IDF application is set to $ENV_BASH_CMD value"
 fi
 
-# Use sdkconfig.default
-ENV_SDKCONFIG="sdkconfig.default"
+# Use sdkconfig_no_ota_no_systemview
+ENV_SDKCONFIG="sdkconfig_no_ota_no_systemview"
 # If sdkconfig exists
 if [ -e "sdkconfig" ]; then
     cmp -s "sdkconfig" "sdkconfig.old" || (echo "Backup sdkconfig to sdkconfig.old" ; cp "sdkconfig" "sdkconfig.old")
@@ -44,7 +44,7 @@ cp build/microej.elf $CURRENT_DIRECTORY/application.out
 # Generate combined binary
 python "scripts/combine_binaries.py" "$CURRENT_DIRECTORY/combined.bin" \
 	$BOOTLOADER_BIN_OFFSET "build/bootloader/bootloader.bin" \
-	$PARTITIONS_BIN_OFFSET "build/partitions_default.bin" \
+	$PARTITIONS_BIN_OFFSET "build/partitions_no_ota_no_systemview.bin" \
 	$APPLICATION_BIN_OFFSET "build/microej.bin"
 
 # Restore application directory

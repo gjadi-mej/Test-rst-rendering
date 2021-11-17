@@ -30,13 +30,13 @@ IF [%ENV_BASH_CMD%] == [] (
     ECHO "Environment variable 'ENV_BASH_CMD' used to compile your IDF application is set to default value " %ENV_BASH_CMD_DEFAULT%
 ) ELSE ECHO Environment variable 'ENV_BASH_CMD' used to compile your IDF application is set to %ENV_BASH_CMD% value
 
-REM Use sdkconfig.default
-SET ENV_SDKCONFIG="sdkconfig.default"
+REM Use sdkconfig for no_ota_no_systemview
+SET ENV_SDKCONFIG="sdkconfig_no_ota_no_systemview"
 REM If sdkconfig exists
 IF EXIST "sdkconfig" (
    FC "sdkconfig" "sdkconfig.old" >NUL || (ECHO Backup sdkconfig to sdkconfig.old && COPY "sdkconfig" "sdkconfig.old")
    REM Then use ENV_SDKCONFIG if they differ
-   FC "sdkconfig" %ENV_SDKCONFIG% >NUL && (ECHO %ENV_SDKCONFIG% already installed as sdkconfig) || (ECHO Copy %ENV_SDKCONFIG% to sdkconfig && COPY /Y %ENV_SDKCONFIG% "sdkconfig" && COPY /B "sdkconfig" +,,)
+   FC "sdkconfig" %ENV_SDKCONFIG% >NUL && (ECHO  %ENV_SDKCONFIG% already installed as sdkconfig) || (ECHO Copy %ENV_SDKCONFIG% to sdkconfig && COPY /Y %ENV_SDKCONFIG% "sdkconfig" && COPY /B "sdkconfig" +,,)
 ) ELSE (
    REM sdkconfig doesn't exist, use ENV_SDKCONFIG
    ECHO Copy %ENV_SDKCONFIG% to sdkconfig
@@ -56,7 +56,7 @@ IF %ERRORLEVEL% NEQ 0 (
 REM Generate combined binary
 python.exe "scripts\combine_binaries.py" "%CURRENT_DIRECTORY%\combined.bin" ^
 	%BOOTLOADER_BIN_OFFSET% "build\bootloader\bootloader.bin" ^
-	%PARTITIONS_BIN_OFFSET% "build\partitions_default.bin" ^
+	%PARTITIONS_BIN_OFFSET% "build\partitions_no_ota_no_systemview.bin" ^
 	%APPLICATION_BIN_OFFSET% "build\microej.bin"
 
 REM Restore application directory

@@ -2,7 +2,7 @@
 #
 # BASH
 #
-# Copyright 2020 MicroEJ Corp. MicroEJ Corp. All rights reserved.
+# Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be found with this software.
 
 # 'set_project_env.sh' implementation for Espressif IDF.
@@ -35,3 +35,8 @@ fi
 
 # Add xtensa tool chain to path
 export PATH=$XTENSA_PATH/bin:${PATH}
+
+# Set offsets for combined binary
+BOOTLOADER_BIN_OFFSET=0x1000
+PARTITIONS_BIN_OFFSET=0x8000
+APPLICATION_BIN_OFFSET=0x10000

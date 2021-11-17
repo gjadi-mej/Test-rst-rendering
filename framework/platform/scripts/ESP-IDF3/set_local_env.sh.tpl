@@ -1,5 +1,5 @@
 # BASH
-# Copyright 2020 MicroEJ Corp. MicroEJ Corp. All rights reserved.
+# Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be found with this software.
 
 # Set the environment variable 'XTENSA_PATH' to your Espressif toolchain xtensa installation directory or install Espressif toolchain at the recommanded location ('$XTENSA_PATH_DEFAULT', see https://docs.espressif.com/projects/esp-idf/en/v3.3.4/get-started/linux-setup.html#toolchain-setup)

@@ -1,7 +1,7 @@
 @echo off
 
 REM BAT
-REM Copyright 2020 MicroEJ Corp. All rights reserved.
+REM Copyright 2020-2021 MicroEJ Corp. All rights reserved.
 REM Use of this source code is governed by a BSD-style license that can be found with this software.
 
 REM 'set_project_env.bat' implementation for Espressif IDF.
@@ -36,3 +36,7 @@ IF NOT EXIST %MSYS_PATH% (
 
 SET Path=%MSYS_PATH%\usr\bin;%MSYS_PATH%\mingw32\bin;%MSYS_PATH%\opt\xtensa-esp32-elf\bin;%Path%
 
+REM Set offsets for combined binary
+SET BOOTLOADER_BIN_OFFSET=0x1000
+SET PARTITIONS_BIN_OFFSET=0x8000
+SET APPLICATION_BIN_OFFSET=0x10000
