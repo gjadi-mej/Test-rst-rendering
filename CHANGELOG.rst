@@ -1,5 +1,5 @@
 ..
-	Copyright 2019-2020 MicroEJ Corp. All rights reserved.
+	Copyright 2019-2021 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 
 =========
@@ -10,15 +10,100 @@ All notable changes to this project will be documented in this file.
 
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
--------------------
-2.3.0 -- Unreleased
+2.8.0 -- Unreleased
 -------------------
 
 Added
 =====
 
-- Test Suite for Filesystem 3.0.3 (FS).
-- Build script for CDT.
+- Add the module MicroEJ Core Test Suite 1.0.0. to run the MicroEJ Core Validation (Java).
+
+Changed
+=======
+
+- MicroEJ Core Validation (Java) 3.1.0 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.rst>`_).
+
+2.7.0 -- 2021-07-16
+-------------------
+
+Changed
+=======
+
+- Platform Configuration Additions 1.4.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
+
+Fixed
+=====
+
+- Fixed links and paths in Graphical User Interface Test Suite README files and Core Engine Test Suite README file.
+
+2.6.0 -- 2021-06-25
+-------------------
+
+Added
+=====
+
+- Add Graphical User Interface Test Suite for MicroEJ UI Packs 13.0.0 and higher (see `README <tests/ui/ui3/README.rst>`_).
+
+Changed
+=======
+
+- Graphical User Interface Test Suite for MicroEJ UI Packs [6.0.0-13.0.0[ (13.0.0 excluded) has moved from ``tests/ui/`` to ``tests/ui/ui2/`` (see `README <tests/ui/ui2/README.rst>`_).
+
+2.5.0 -- 2021-05-11
+-------------------
+
+Changed
+=======
+
+- Platform Configuration Additions 1.3.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
+- IAREW run script compliance with latest specification (the executable file can be provided as first argument).
+- CDT_GCC run script compliance with latest specification (the executable file can be provided as first argument).
+
+Fixed
+=====
+
+- URLs in the documentation.
+
+-------------------
+2.4.0 -- 2021-04-16
+-------------------
+
+Added
+=====
+
+- Documentation for testing build and run scripts.
+
+Changed
+=======
+
+- Platform Configuration Additions 1.2.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
+- ``cd`` into the script's directory in CDT scripts because CDT needs to be called from the directory in which the project is.
+- Use CDT variable ``CUBE_PROGRAMMER_DIR`` absolute path instead of relative so the user can choose another Cube Programmer installation than the one installed in CDT.
+- Replace CDT ``cleanBuild`` by ``build`` as the clean is not needed and it forces to rebuild the whole project.
+- Improve comments on how to use ``set_project_env.bat.tpl`` for Keil uVision.
+
+Fixed
+=====
+
+- IAREW run script compliance (copy of the local ``application.out``).
+- Keil uVision run script compliance (copy of the local ``application.out``).
+- Documentation of ``target.platform.dir`` to setup the Test Suite FS.
+- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
+
+-------------------
+2.3.0 -- 2021-01-13
+-------------------
+
+The main changes of this release are the addition of the Java Test
+Suite Filesystem for FS API and the Platform Configuration Additions
+1.1.0.
+
+Added
+=====
+
+- Add Filesystem Test Suite.
+- Add Build Script example for CDT.
+- README for the Build Scripts Examples.
 
 Fixed
 =====
@@ -31,7 +116,7 @@ Fixed
 Changed
 =======
 
-- Platform Configuration Additions with module build.
+- Platform Configuration Additions 1.1.0 with Platform module build using MMM.
 
 ------------------
 2.2.0 - 2020-06-24
@@ -45,8 +130,8 @@ Added
 Fixed
 =====
 
-- Add missing symbol ``core_main`` and improve the documentation on how to run CoreMark benchmark.
-- Fix speed computation when less than 3 zones are defined
+- Add missing symbol ``core_main`` and improve the documentation on how to run CoreMark benchmark..
+- Fix speed computation when less than 3 zones are defined.
 
 ------------------
 2.1.0 - 2020-06-10
@@ -62,15 +147,15 @@ Added
 Fixed
 =====
 
-- Fix ``X_RAM_CHECKS_checkAddress16()``: test checked memory accesses outside memory range
-- Fix ``UTIL_TIME_BASE_getTime()``: fix type of returned value
+- Fix ``X_RAM_CHECKS_checkAddress16()``: test checked memory accesses outside memory range.
+- Fix ``UTIL_TIME_BASE_getTime()``: fix type of returned value.
 
 Changed
 =======
 
-- Improved documentation
-- Provide CoreMark as git-submodule instead of a local copy
-- Provide JVM Portage Validation as source instead of a jar
+- Improved documentation.
+- Provide CoreMark as git-submodule instead of a local copy.
+- Provide Core Engine Test Suite as source instead of a jar.
 
 ------------------
 1.0.1 - 2019-04-25

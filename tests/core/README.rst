@@ -1,7 +1,10 @@
 .. ReStructuredText
-.. Copyright 2019-2020 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
+.. Copyright 2019-2021 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
+**********************
+Core Engine Test Suite
+**********************
 
 Overview
 ========
@@ -20,7 +23,7 @@ tests, how to launch them and the expected results.
 Dependencies
 ============
 
-- Follow the main readme file
+- Follow the `main Readme <../../README.rst>`_.
 - EEMBC Coremark
 
 Quick Start
@@ -43,7 +46,7 @@ Configuration
    - ``framework/c/embunit/embUnit``
    - ``framework/c/CoreMark/``
 
-3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
+3. Create ``core_portme.c`` and ``core_portme.h`` files to port EEMBC CoreMark
    (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
 
 4. Implement all functions defined in these files:

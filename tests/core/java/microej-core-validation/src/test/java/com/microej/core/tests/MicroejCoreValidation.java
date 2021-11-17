@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2013-2020 MicroEJ Corp. All rights reserved.
+ * Copyright 2013-2021 MicroEJ Corp. All rights reserved.
  * This library is provided in source code for use, modification and test, subject to license terms.
  * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
  */
@@ -36,10 +36,13 @@ import ej.bon.Util;
  */
 public class MicroejCoreValidation {
 
-	private static final String VERSION = "3.0.0";
+	private static final String VERSION = "3.1.0";
 
 	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
 	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
+
+	private static final String INVALID_C_FUNCTION_MESSAGE = "C function not correctly implemented (check your libc configuration)";
+	private static final String INCOHERENT_FPU_MESSAGE = "FPU option is not coherent between MicroEJ Platform and BSP";
 
 	private static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
 
@@ -69,7 +72,7 @@ public class MicroejCoreValidation {
 				+ "                                  *");
 		System.out.println(sep);
 		System.out.println(
-				"* Copyright 2013-2020 MicroEJ Corp. All rights reserved.                                            *");
+				"* Copyright 2013-2021 MicroEJ Corp. All rights reserved.                                            *");
 		System.out.println(
 				"* This library is provided in source code for use, modification and test, subject to license terms. *");
 		System.out.println(
@@ -306,7 +309,10 @@ public class MicroejCoreValidation {
 		long timeOffset = 50_000;
 		System.out.println("Waiting for " + delay / 1000 + "s...");
 		long monotonicTimeBefore = Util.platformTimeMillis();
-		Util.setCurrentTimeMillis(System.currentTimeMillis() + timeOffset);
+		long applicationTimeBefore = System.currentTimeMillis();
+
+		Util.setCurrentTimeMillis(applicationTimeBefore + timeOffset);
+		long applicationTimeAfter = System.currentTimeMillis();
 
 		try {
 			Thread.sleep(delay);
@@ -315,6 +321,8 @@ public class MicroejCoreValidation {
 		}
 		long montonicTimeAfter = Util.platformTimeMillis();
 		System.out.println("...done");
+		assertTrue("application time not set", applicationTimeAfter >= applicationTimeBefore + timeOffset
+				&& applicationTimeAfter <= applicationTimeBefore + timeOffset + elapsedTime);
 		assertTrue("monotonic time not set", montonicTimeAfter >= monotonicTimeBefore + delay
 				&& montonicTimeAfter <= monotonicTimeBefore + delay + elapsedTime);
 	}
@@ -390,12 +398,6 @@ public class MicroejCoreValidation {
 			deltaPercentage = 100;
 		}
 
-		assertTrue("counter increments < " + ROUND_ROBIN_MIN_COUNTER_REQUIRED + " (actually " + minCounter + ")",
-				minCounter >= ROUND_ROBIN_MIN_COUNTER_REQUIRED);
-
-		assertTrue("delta percentage > " + ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED + " (actually " + deltaPercentage
-				+ ")", deltaPercentage <= ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED);
-
 		if (deltaPercentage > ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED) {
 			// Print some information when the test fails
 			System.out.println("Min counter = " + minCounter);
@@ -404,6 +406,12 @@ public class MicroejCoreValidation {
 			System.out.println("Delta = " + deltaCounter);
 			System.out.println("Delta Percentage = " + deltaPercentage);
 		}
+
+		assertTrue("counter increments < " + ROUND_ROBIN_MIN_COUNTER_REQUIRED + " (actually " + minCounter + ")",
+				minCounter >= ROUND_ROBIN_MIN_COUNTER_REQUIRED);
+
+		assertTrue("delta percentage > " + ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED + " (actually " + deltaPercentage
+				+ ")", deltaPercentage <= ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED);
 	}
 
 	/**
@@ -449,41 +457,45 @@ public class MicroejCoreValidation {
 	@Test
 	public void testFPU() {
 		System.out.println("-> Check FPU (soft/hard FP option)...");
-		// In BSP, write and compile the following functions:
-		// --------------------
-		// #include "sni.h"
-		// jfloat Java_com_microej_MicroejCoreValidation_testFloat (jfloat a, jfloat b) {return a * b;}
-		// jdouble Java_com_microej_MicroejCoreValidation_testDouble (jdouble a, jdouble b) {return a * b;}
-		// --------------------
 
-		assertEquals("test 'float * float' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Float(testFPUJava(float3, float4)), new Float(12f));
-		assertEquals("test 'double * double' in Java: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Double(testFPUJava(double3, double4)), new Double(12));
-		assertEquals("test 'float * float' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Float(testFloat(float3, float4)), new Float(12f));
-		assertEquals("test 'double * double' in C: FPU option is not coherent between MicroEJ Platform and BSP",
-				new Double(testDouble(double3, double4)), new Double(12));
+		assertEquals("test 'float * float' in Java: " + INCOHERENT_FPU_MESSAGE, new Float(12f),
+				new Float(testFPUJava(float3, float4)));
+		assertEquals("test 'double * double' in Java: " + INCOHERENT_FPU_MESSAGE, new Double(12),
+				new Double(testFPUJava(double3, double4)));
+		assertEquals("test 'float * float' in C: " + INCOHERENT_FPU_MESSAGE, new Float(12f),
+				new Float(testFloat(float3, float4)));
+		assertEquals("test 'double * double' in C: " + INCOHERENT_FPU_MESSAGE, new Double(12),
+				new Double(testDouble(double3, double4)));
+	}
+
+	/**
+	 * Tests the platform FP parser.
+	 */
+	@Test
+	public void testParseFP() {
+		System.out.println("-> Check FP parser...");
 
 		float parsedFloat = Float.parseFloat("1234.5");
-		assertEquals(
-				"test 'parse float string': strtof C function not correctly implemented (check your libc configuration)",
-				new Float(parsedFloat), new Float(1234.5f));
+		assertEquals("test 'parse float string': strtof " + INVALID_C_FUNCTION_MESSAGE, new Float(1234.5f),
+				new Float(parsedFloat));
 
 		double parsedDouble = Double.parseDouble("1234.5");
-		assertEquals(
-				"test 'parse double string': strtod C function not correctly implemented (check your libc configuration)",
-				new Double(parsedDouble), new Double(1234.5d));
+		assertEquals("test 'parse double string': strtod " + INVALID_C_FUNCTION_MESSAGE, new Double(1234.5d),
+				new Double(parsedDouble));
+	}
+
+	/**
+	 * Tests the platform FP formatter.
+	 */
+	@Test
+	public void testFormatFP() {
+		System.out.println("-> Check FP formatter...");
 
 		String floatToString = Float.toString(1234.5f);
-		assertEquals(
-				"test 'float to string': snprintf C function not correctly implemented (check your libc configuration)",
-				floatToString, "1234.5");
+		assertEquals("test 'float to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", floatToString);
 
 		String doubleToString = Double.toString(1234.5d);
-		assertEquals(
-				"test 'double to string': snprintf C function not correctly implemented (check your libc configuration)",
-				doubleToString, "1234.5");
+		assertEquals("test 'double to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", doubleToString);
 	}
 
 	/**
