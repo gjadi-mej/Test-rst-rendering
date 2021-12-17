@@ -6,10 +6,13 @@
 Graphical User Interface Test Suite
 ***********************************
 
+This folder is a part of a project which gathers the Platform Qualification Tools.
+This documentation describes the C and Java Test Suites: requirements, configuration, expected results, etc.
+Consult this `Readme <platform/README.rst>`_ to launch the Platform Test Suite.
+
 Overview
 ========
 
-This folder is a part of a project which gathers the Platform Qualification Tools.
 It contains sources and projects to check drivers and implementation of LLAPI ``LLUI_DISPLAY_IMPL``.
 
 .. note:: 
