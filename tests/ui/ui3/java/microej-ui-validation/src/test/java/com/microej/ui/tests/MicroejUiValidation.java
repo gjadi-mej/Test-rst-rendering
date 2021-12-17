@@ -8,10 +8,12 @@
 package com.microej.ui.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import ej.bon.Constants;
 import ej.bon.Util;
 import ej.microui.MicroUI;
 import ej.microui.display.Colors;
@@ -271,7 +273,11 @@ public class MicroejUiValidation {
 	}
 
 	/**
-	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: the post-flush copy
+	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: the post-flush copy.
+	 * <p>
+	 * This test is only useful when the implementation of <code>LLUI_DISPLAY_IMPL_flush</code> uses the "Switch" mode
+	 * (and not "Copy" or "Direct" modes, see Platform Development Guide). In that case, the post-flush copy restores
+	 * the "past": the previous application drawings made before the flush.
 	 * <p>
 	 * After the flush step, the <code>LLUI_DISPLAY_IMPL_flush</code> implementation has to restore the content of
 	 * returned backbuffer with the content of flushed back buffer (MicroUI specification). This prevent to the MicroUI
@@ -340,5 +346,65 @@ public class MicroejUiValidation {
 				g.readPixel(offset, displayHeight - 2 * offset - 1) & 0xffffff);
 		assertEquals("[C] testBackBufferRestore at w-2*p-1,h-2*o-1", display.getDisplayColor(Colors.BLACK),
 				g.readPixel(displayWidth - 2 * offset - 1, displayHeight - 2 * offset - 1) & 0xffffff);
+	}
+
+	/**
+	 * Tests the <code>LLUI_DISPLAY_IMPL_flush</code> implementation: this function should be as fast as possible.
+	 * <p>
+	 * The "flush" consists to update the content of the display frame buffer with the content of the application buffer
+	 * (back buffer). This update may be instantaneous ("Switch" mode) or can take some time ("Copy" mode): memory copy,
+	 * serial data sent, etc. The implementation has to delegate the "flush" to another asynchronous task (hardware or
+	 * software) in order to return as soon as possible. This allows the application to do other work during this
+	 * update.
+	 * <p>
+	 * The Graphics Engine has the responsability to wait the end of this asynchronous task before allowing a new
+	 * drawing in the application buffer. This waiting is automatic (first call to a drawing method after a flush is
+	 * blocker) or explicit (call to {@link Display#waitFlushCompleted()}).
+	 * <p>
+	 * The <code>LLUI_DISPLAY_impl.h</code> implementation must call <code>LLUI_DISPLAY_flushDone()</code> to unlock the
+	 * Graphics Engine.
+	 * <p>
+	 * This test has no meaning on the simulator. It is automatically disabled.
+	 */
+	@Test
+	public void testFlushTime() {
+
+		if (isRunningOnSimulator()) {
+			// see method comment
+			return;
+		}
+
+		Display display = Display.getDisplay();
+		GraphicsContext g = display.getGraphicsContext();
+		int displayWidth = display.getWidth();
+		int displayHeight = display.getHeight();
+
+		long tFlush = 0;
+		long tWait = 0;
+
+		// perform several tests
+		for (int i = 10; --i >= 0;) {
+
+			// draw in all back buffer
+			g.setColor(Colors.WHITE);
+			Painter.fillRectangle(g, 0, 0, displayWidth, displayHeight);
+
+			long t0 = System.currentTimeMillis();
+			display.flush();
+			long t1 = System.currentTimeMillis();
+			display.waitFlushCompleted();
+			long t2 = System.currentTimeMillis();
+
+			tFlush += (t1 - t0);
+			tWait += (t2 - t1);
+		}
+
+		System.out.println("flush time: " + tFlush);
+		System.out.println("wait flush time: " + tWait);
+		assertTrue("flush time must be smaller than waitFlush time", tFlush < tWait);
+	}
+
+	private boolean isRunningOnSimulator() {
+		return Constants.getBoolean("com.microej.library.microui.onS3");
 	}
 }
