@@ -2,13 +2,9 @@
 .. Copyright 2019-2021 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
-**********************
-Core Engine Test Suite
-**********************
-
-This folder is a part of a project which gathers the Platform Qualification Tools.
-This documentation describes the C and Java Test Suites: requirements, configuration, expected results, etc.
-Consult this `Readme <platform/README.rst>`_ to launch the Platform Test Suite.
+*******************
+Core Engine C Tests
+*******************
 
 Overview
 ========
@@ -26,7 +22,7 @@ tests, how to launch them and the expected results.
 Dependencies
 ============
 
-- Follow the `main Readme <../../README.rst>`_.
+- Follow the `main Readme <../../../README.rst>`_.
 - EEMBC Coremark
 
 Quick Start
