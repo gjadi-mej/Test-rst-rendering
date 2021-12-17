@@ -5,7 +5,7 @@
 buildWithAnt {
   MODULE_DIR = 'tests/ui/ui3/java/microej-ui-validation'
   //MODULE_FILENAME= 'module.ivy'
-  //LABEL = 'public'
+  LABEL = 'public'
 
   //ANT_VERSION = 'MMM MicroEJ 5.3.0'
   //MMM_VERSION = '5.4.1'
