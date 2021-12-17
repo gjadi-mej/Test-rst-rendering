@@ -1,2 +1,3 @@
 docs/
 **/CoreMarkport/
+tests/ui/ui3/java/microej-ui-validation/launchers/*.launch.properties
