@@ -399,8 +399,8 @@ public class MicroejUiValidation {
 			tWait += (t2 - t1);
 		}
 
-		System.out.println("flush time: " + tFlush);
-		System.out.println("wait flush time: " + tWait);
+		System.out.println("flush time (several iterations): " + tFlush);
+		System.out.println("wait flush time (several iterations): " + tWait);
 		assertTrue("flush time must be smaller than waitFlush time", tFlush < tWait);
 	}
 
