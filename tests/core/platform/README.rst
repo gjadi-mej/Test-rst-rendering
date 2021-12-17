@@ -1,40 +1,24 @@
 ..
-    Copyright 2020-2021 MicroEJ Corp. All rights reserved.
+    Copyright 2021 MicroEJ Corp. All rights reserved.
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-*********************
-Filesystem Test Suite
-*********************
+*******************
+Platform Test Suite
+*******************
 
-This folder contains a ready-to-use project for testing `File System <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`_ implementations on a device.
-This test suite will typically test file and directory creation, access permissions, and file content read/write...
-
-Specifications
---------------
-
-- Tested Foundation Library: `FS <https://repository.microej.com/modules/ej/api/fs/>`_
-- Test Suite Module: `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_
-
-Update the FS Test Suite module version in the `module.ivy
-<platform/java-testsuite-fs/module.ivy>`_ to match the requirement of the platform
-tested.
-
-Please refer to `Platform Qualification Test Suite Versioning
-<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_
-to determine the FS Test Suite module version.
+This folder contains a ready-to-use project for testing `MicroEJ Core <https://docs.microej.com/en/latest/PlatformDeveloperGuide/coreEngine.html#implementation>`_ implementations on a device.
 
 Prerequisites
 -------------
 
-Consult `main Readme <../../README.rst>`_ (chapter *Platform Test Suites*).
+Consult `main Readme <../../../README.rst>`_ (chapter *Platform Test Suites*).
 
 Configuration
 -------------
 
-- In MicroEJ SDK, import the ``platform/java-testsuite-fs`` project in your workspace.
-- Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
-  ``[platform]-configuration/testsuites/fs/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
+- In MicroEJ SDK, import the ``java-testsuite-core`` project in your workspace.
+- Create the local ``config.properties`` file. Copy the ``config.properties.tpl`` to ``config.properties``.
 - Open the ``config.properties`` file.
 - Fill the options marked as ``[required]``, particularly:
 
@@ -49,12 +33,11 @@ Configuration
 Execution
 ---------
 
-Right-click on the ``java-testsuite-fs`` project and click on ``Build Module``.
+Right-click on the ``java-testsuite-core`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
 Troubleshooting
 ---------------
 
-Consult `main Readme <../../README.rst>`_ (chapter *Platform Test Suites*).
-
+Consult `main Readme <../../../README.rst>`_ (chapter *Platform Test Suites*).
