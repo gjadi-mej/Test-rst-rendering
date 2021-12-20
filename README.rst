@@ -12,7 +12,7 @@ Test Suites Available
 Core Engine Test Suite
 ----------------------
 
-The CORE Test Suite contains a C Test Suite, a Java Test Suite and a Platform Test Suite. It is the most basic Test Suite to run.
+The CORE Test Suite contains a C Test Suite and a Java Test Suite. It is the most basic Test Suite to run.
 It ensures MicroEJ Application will run correctly.
 
 All other Test Suites assume the CORE Test Suite is validated.
@@ -22,8 +22,7 @@ See `CORE Readme <tests/core/README.rst>`_
 Graphical User Interface Test Suite
 -----------------------------------
 
-The UI Test Suite is a C Test Suite, a Java Test Suite and a Platform Test Suite. 
-It checks the integration of the ``LLUI*`` API and the tearing signal usage.
+The UI Test Suite is split into a C Test Suite and a Java Test Suite. It tests the integration of the ``LLUI*`` API and the tearing signal usage.
 It also provides indication about the minimum draw time allowed to display animations at a given framerate.
 
 See `UI Readme <tests/ui/README.rst>`_

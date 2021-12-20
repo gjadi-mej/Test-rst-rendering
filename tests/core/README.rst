@@ -7,21 +7,22 @@ Core Engine Test Suite
 **********************
 
 This folder is a part of a project which gathers the Platform Qualification Tools.
-This documentation describes the C and Java Test Suites: requirements, configuration, expected results, etc.
+This documentation describes the C and Java Test Core Suites: requirements, configuration, expected results, etc…
+
 Consult this `Readme <platform/README.rst>`_ to launch the Platform Test Suite.
 
 Overview
 ========
 
-This folder contains sources and projects to check drivers and implementation of print, time base, RAM, Core, and MicroEJ Core.
+This folder contains sources and projects to test drivers and implementation of print, time base, RAM, Core (see `Tests Description`_), and MicroEJ Core (see `MicroEJ Core Validation`_).
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
 passed.
 
-For each test, its configuration and its results are described in a
-dedicated section. See `Quick Start`_ section which resume how to configure the
-tests, how to launch them and the expected results.
+For each test, the configuration and results are described in a
+dedicated section. See `Quick Start`_ section which summarize how to configure the
+tests, how to launch them and how to analyze the report.
 
 Dependencies
 ============
