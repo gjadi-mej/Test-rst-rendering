@@ -1,5 +1,5 @@
 ..
-	Copyright 2019-2021 MicroEJ Corp. All rights reserved.
+	Copyright 2019-2022 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 
 =========
@@ -17,6 +17,7 @@ Added
 =====
 
 - Add the module MicroEJ Core Test Suite 1.0.0. to run the MicroEJ Core Validation (Java).
+- Test Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the VM due to time conversion overflow.
 
 Changed
 =======
