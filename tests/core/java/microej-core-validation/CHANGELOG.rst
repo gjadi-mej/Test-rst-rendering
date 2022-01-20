@@ -15,6 +15,7 @@ Added
 ~~~~~
 
 - Add check for `LLMJVM_IMPL_setApplicationTime`.
+- Test Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the MicroEJ Core due to time conversion overflow.
 
 Changed
 ~~~~~~~
@@ -101,6 +102,6 @@ Added
 Features : - Initial revision
 
 ..
-    Copyright 2020-2021 MicroEJ Corp. All rights reserved.
+    Copyright 2020-2022 MicroEJ Corp. All rights reserved.
     This library is provided in source code for use, modification and test, subject to license terms.
     Any modification of the source code will break MicroEJ Corp. warranties on the whole library.

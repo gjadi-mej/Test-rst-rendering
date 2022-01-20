@@ -418,18 +418,8 @@ public class MicroejCoreValidation {
 	 * Tests the <code>LLMJVM_IMPL_scheduleRequest</code> implementation with a max schedule request time
 	 * (Long.MAX_VALUE milliseconds).
 	 *
-	 * Tests Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the VM.
-	 *
-	 * When the VM calls LLMJVM_scheduleRequest() to schedule an alarm with a big number of milliseconds, an overflow
-	 * may occur if LLMJVM_scheduleRequest() tries to convert the time to microseconds or ticks. As the resulting
-	 * converted time will be negative due to the overflow, LLMJVM_scheduleRequest() may consider that the time to wait
-	 * has been reached and then will notify the VM to perform a context switch by calling LLMJVM_schedule().
-	 *
-	 * Before executing the next opcode, the VM will try to switch context, but in the switch context implementation, a
-	 * new LLMJVM_scheduleRequest() is called again with the remaining time to wait (which is also a big time that may
-	 * cause an overflow).
-	 *
-	 * So we are in a loop and the next opcode will be never executed!!!
+	 * Tests Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the
+	 * MicroEJ Core.
 	 *
 	 * This test will check if the time conversion overflow is correctly handled in the LLMJVM_scheduleRequest()
 	 * implementation. A correct implementation should saturate the time to the max value of microseconds or ticks in
@@ -458,7 +448,8 @@ public class MicroejCoreValidation {
 			System.out.println("Main thread woke up!");
 			waitMaxTimeThread.interrupt();
 			waitMaxTimeThread.join();
-			assertTrue("Main thread woke up and continued its execution: VM does not loop indefinitely", true);
+			assertTrue("Main thread woke up and continued its execution: MicroEJ Core does not loop indefinitely",
+					true);
 		} catch (InterruptedException e) {
 			throw new Error();
 		}

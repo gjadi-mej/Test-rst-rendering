@@ -17,7 +17,6 @@ Added
 =====
 
 - Add the module MicroEJ Core Test Suite 1.0.0. to run the MicroEJ Core Validation (Java).
-- Test Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the VM due to time conversion overflow.
 
 Changed
 =======
