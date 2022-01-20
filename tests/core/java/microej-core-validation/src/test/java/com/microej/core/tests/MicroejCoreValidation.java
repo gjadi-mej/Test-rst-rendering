@@ -1,7 +1,7 @@
 /*
  * Java
  *
- * Copyright 2013-2021 MicroEJ Corp. All rights reserved.
+ * Copyright 2013-2022 MicroEJ Corp. All rights reserved.
  * This library is provided in source code for use, modification and test, subject to license terms.
  * Any modification of the source code will break MicroEJ Corp. warranties on the whole library.
  */
@@ -412,6 +412,48 @@ public class MicroejCoreValidation {
 
 		assertTrue("delta percentage > " + ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED + " (actually " + deltaPercentage
 				+ ")", deltaPercentage <= ROUND_ROBIN_MAX_DELTA_PERCENTAGE_ALLOWED);
+	}
+
+	/**
+	 * Tests the <code>LLMJVM_IMPL_scheduleRequest</code> implementation with a max schedule request time
+	 * (Long.MAX_VALUE milliseconds).
+	 *
+	 * Tests Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the
+	 * MicroEJ Core.
+	 *
+	 * This test will check if the time conversion overflow is correctly handled in the LLMJVM_scheduleRequest()
+	 * implementation. A correct implementation should saturate the time to the max value of microseconds or ticks in
+	 * case of overflow.
+	 */
+	@Test
+	public void testScheduleMaxTime() {
+		Thread waitMaxTimeThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					System.out.println("WaitMaxTimeThread starts sleeping for `Long.MAX_VALUE` milliseconds");
+					Thread.sleep(Long.MAX_VALUE);
+					assertTrue("Max sleep time reached!", false);
+				} catch (InterruptedException e) {
+					// interrupted
+				}
+			}
+		});
+
+		waitMaxTimeThread.start();
+
+		System.out.println("Main thread starts sleeping for 1s..");
+		try {
+			Thread.sleep(1000);
+			System.out.println("Main thread woke up!");
+			waitMaxTimeThread.interrupt();
+			waitMaxTimeThread.join();
+			assertTrue("Main thread woke up and continued its execution: MicroEJ Core does not loop indefinitely",
+					true);
+		} catch (InterruptedException e) {
+			throw new Error();
+		}
+
 	}
 
 	/**
