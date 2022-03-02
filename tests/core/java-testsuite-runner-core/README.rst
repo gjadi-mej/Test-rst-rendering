@@ -122,15 +122,15 @@ Solution:
 - Ensure the JVM native C task has a priority lower than the FreeRTOS
   timer task defined in ``FreeRTOSConfig.h`` (``configTIMER_TASK_PRIORITY``).
 
-Test Suite
-==========
+Platform Test Suite
+===================
 
 This project is also a ready-to-use project for testing `MicroEJ Core <https://docs.microej.com/en/latest/PlatformDeveloperGuide/coreEngine.html#implementation>`_ implementations on a device.
 
 Prerequisites
 -------------
 
-Consult `main Readme <../../../README.rst>`_ (chapter *Platform Test Suites*).
+Consult `main Readme <../../README.rst>`_.
 
 Configuration
 -------------
@@ -158,7 +158,7 @@ Please refer to `Platform Qualification documentation <https://docs.microej.com/
 Troubleshooting
 ---------------
 
-Consult `main Readme <../../../README.rst>`_ (chapter *Platform Test Suites*).
+Consult `main Readme <../../README.rst>`_.
 
 
 Source

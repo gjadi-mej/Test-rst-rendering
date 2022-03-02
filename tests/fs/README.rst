@@ -1,5 +1,5 @@
 ..
-    Copyright 2020-2021 MicroEJ Corp. All rights reserved.
+    Copyright 2020-2022 MicroEJ Corp. All rights reserved.
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
@@ -27,7 +27,7 @@ to determine the FS Test Suite module version.
 Prerequisites
 -------------
 
-Consult `main Readme <../../README.rst>`_ (chapter *Platform Test Suites*).
+Consult `main Readme <../README.rst>`_.
 
 Configuration
 -------------
@@ -56,5 +56,5 @@ Please refer to `Platform Qualification documentation <https://docs.microej.com/
 Troubleshooting
 ---------------
 
-Consult `main Readme <../../README.rst>`_ (chapter *Platform Test Suites*).
+Consult `main Readme <../README.rst>`_.
 
