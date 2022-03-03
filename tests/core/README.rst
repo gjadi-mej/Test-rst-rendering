@@ -55,8 +55,8 @@ Configuration
 
 5. Include ``t_core_main.h`` header and add a call to the function
    ``T_CORE_main()`` just before the call to ``microej_main()``.
-6. In the MicroEJ SDK, import the MicroEJ project ``microej-core-validation`` from the folder ``tests/core/java``
-7. Follow `MicroEJ Core Validation Readme <java/microej-core-validation/README.rst>`_ and build this MicroEJ Application against the MicroEJ Platform to qualify.
+6. In the MicroEJ SDK, import the MicroEJ project ``java-testsuite-runner-core`` from the folder ``tests/core``
+7. Follow `MicroEJ Core Validation Readme <java-testsuite-runner-core/README.rst>`_ and build this MicroEJ Application against the MicroEJ Platform to qualify.
 8. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
 
 Expected Results
@@ -347,12 +347,12 @@ and require an human check to be sure the time is correct.
 
 **Configuration**
 
-In the MicroEJ SDK, import the MicroEJ project `microej-core-validation <./java/microej-core-validation/>`_ from the folder ``tests/core/java``.
-Follow the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_ to build and link this MicroEJ Application against the MicroEJ Platform to qualify.
+In the MicroEJ SDK, import the MicroEJ project `java-testsuite-runner-core <./java-testsuite-runner-core/>`_ from the folder ``tests/core/java``.
+Follow the MicroEJ Core Validation `README <./java-testsuite-runner-core/README.rst>`_ to build and link this MicroEJ Application against the MicroEJ Platform to qualify.
 
 **Expected results**
 
-No error must be thrown when executing this test. A typical execution trace is described in the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_
+No error must be thrown when executing this test. A typical execution trace is described in the MicroEJ Core Validation `README <./java-testsuite-runner-core/README.rst>`_
 (the visible clock accuracy must be compared manually with an external clock).
 
 
