@@ -1,3 +1,4 @@
 docs/
 **/CoreMarkport/
+tests/core/java-testsuite-runner-core/launchers/java-testsuite-runner-core.launch.properties
 tests/ui/ui3/java/microej-ui-validation/launchers/*.launch.properties
