@@ -70,11 +70,10 @@ Tearing
 The tearing effect (flickering) is visible on LCD when the flush job is not synchronized with
 the LCD tearing signal (TE). 
 
-Test "Full screen" toggles black and white screens. When flush job is synchronized and quite
+* Test "Full screen" toggles black and white screens. When flush job is synchronized and quite
 fast, the LCD is gray. When it is not synchronized, the LCD content may be cut in two or 
 several parts. 
-
-Test "Black band" moves a black band on a white background. When flush job is not synchronized, 
+* Test "Black band" moves a black band on a white background. When flush job is not synchronized, 
 the band seems cut in two or more parts.  
 
 Drawing Time
@@ -84,6 +83,25 @@ Test "Drawing time" determinates the maximum drawing time (in milliseconds) to h
 framerate. The better framerate depends on LCD framerate and on post-flush copy step. When the
 drawing time exceeds the maximum drawing time, the framerate is divided by two when the flush
 job is synchronized on LCD tearing signal.
+
+Back Buffer Restore
+-------------------
+
+This test is useful when the implementation of ``LLUI_DISPLAY_IMPL_flush`` uses the  `SWITCH mode <https://docs.microej.com/en/latest/PlatformDeveloperGuide/uiDisplay.html#switch>`_.
+In that case, after each call to ``LLUI_DISPLAY_IMPL_flush``, the implementation has to copy the content of the new frame buffer in the new back buffer before calling ``LLUI_DISPLAY_flushDone`` (post-flush-copy).
+The MicroUI Graphics Engine is automatically waits this signal before performing the next application drawing.
+This copy is often performed by a hardware DMA.
+
+If the copy is not performed or if the MicroUI Graphics Engine is notified too earlier (before or during the copy), this test fails: the new back buffer content does not contain the previous drawing.
+
+Flush Time
+----------
+
+The implementation of the function ``LLUI_DISPLAY_IMPL_flush`` must be as faster as possible: it is not a blocking function (see function specification).
+The implementation has to launch a third-party process (software task or hardware process) to perform the operation and returns.
+Once the third-party process has finished, the callback has to call the function ``LLUI_DISPLAY_flushDone``.
+
+This test checks if the implementation of ``LLUI_DISPLAY_IMPL_flush`` is not a blocking function.
 
 Dependencies
 ------------
