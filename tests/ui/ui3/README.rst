@@ -27,12 +27,6 @@ tests, how to launch them and the expected results.
 Additionally, the `Tool-Java-Touch <https://github.com/MicroEJ/Tool-Java-Touch>`_ project
 allows to test the correct behavior of MicroUI in a Java application. 
 
-Dependencies
-============
-
-- Follow the `main Readme <../../README.rst>`_.
-- Follow the `CORE Readme <../../core/README.rst>`_.
-
 Quick Start
 ===========
 
@@ -40,11 +34,5 @@ Quick Start
 #. In the MicroEJ SDK, import the MicroEJ project ``java-testsuite-runner-ui3`` from the folder ``tests/ui/ui3``.
 #. Build this MicroEJ Application against the MicroEJ Platform to qualify.
 #. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
-
-Expected results
-================
-
-No error must be thrown when executing this test. A typical execution trace is described in the MicroEJ UI Validation `README <./java-testsuite-runner-ui3/README.rst>`_.
-
 
 

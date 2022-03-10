@@ -15,7 +15,7 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 Changed
 ~~~~~~~
 
-- Rename the project to harmonize with the other testsuite projects (fs, core).
+- Rename the project to harmonize with other test suite projects (core, fs)
 - Make project "MicroEJ Platform Testsuite" compatible.
 
 .. _100---2021-04-20:
