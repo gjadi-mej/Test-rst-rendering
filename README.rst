@@ -22,7 +22,7 @@ See `CORE Readme <tests/core/README.rst>`_
 Graphical User Interface Test Suite
 -----------------------------------
 
-The UI Test Suite is split into a C Test Suite and a Java Test Suite. It tests the integration of the ``LLUI*`` API and the tearing signal usage.
+The UI Test Suite is split into a C Test Suite and a Java Test Suite. It tests the implementation of the ``LLUI*`` API and the tearing signal usage.
 It also provides indication about the minimum draw time allowed to display animations at a given framerate.
 
 See `UI Readme <tests/ui/README.rst>`_
@@ -30,7 +30,7 @@ See `UI Readme <tests/ui/README.rst>`_
 Filesystem Test Suite
 ---------------------
 
-The FS Test Suite is a Java Test Suite. It checks the integration of the ``LLFS*`` APIs over a C File System library.
+The FS Test Suite is a Java Test Suite. It checks the implementation of the ``LLFS*`` APIs over a C File System library.
 
 See `FS Readme <tests/fs/README.rst>`_
 
@@ -73,7 +73,7 @@ Build and Run Scripts Examples
 
 The ``framework/platform/scripts`` folder contains Build and Run Scripts examples for several third-party toolchains.
 
-See the `Build and Run Scripts Examples README <framework/platform/scripts/README.rst>`_ for more information.
+See the `Build and Run Scripts Examples <framework/platform/scripts/README.rst>`_ for more information.
 
 Test Suites
 -----------

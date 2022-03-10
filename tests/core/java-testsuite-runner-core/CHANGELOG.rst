@@ -23,7 +23,7 @@ Changed
 - Split floating point tests into 3 JUnit tests (FPU, parser, formatter)
   to allow for fine-grained ignored tests list.
 - Change the buildtype to ``build-microej-javaimpl``.
-- Rename the project to harmonize with the other testsuite projects (fs, ui).
+- Rename the project to harmonize with other test suite runner projects (fs, ui).
 
 Fixed
 ~~~~~
