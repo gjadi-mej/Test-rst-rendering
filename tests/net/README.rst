@@ -62,3 +62,35 @@ Test Suite Execution
 Right-click on the ``java-testsuite-net`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
+
+=====================
+Test Suite Properties
+=====================
+
+The NET test suite requires specific properties depending on the implementation and test environment.
+All the properties described in this section are defined in the file `microej-testsuite-common.properties <./java/java-testsuite-net/validation/microej-testsuite-common.properties>`_
+and prefixed by ``microej.java.property.``.
+
+- Common properties:
+
+  - ``testsuite.preferipv6`` (optional, false by default): set to true if the tests must use IPv6 by default.
+  - ``init.service`` (optional, undefined by default): Name of a class that implements com.microej.tests.util.INetInit. If defined, during initialization, an instance of this class is created and the initialize() method is called.
+
+- Properties to define if ``testsuite.preferipv6`` is ``false``:
+
+  - ``wrong.machine.ipv4``: An invalid IPv4 address on the local network
+  - ``remote.machine.ipv4``: IPv4 address of the testsuite server
+  - ``netif.ipv4.name``: network interface name with an IPv4
+
+- Properties to define if ``testsuite.preferipv6`` is ``true``:
+
+  - ``wrong.machine.ipv6``: An invalid IPv6 address on the local network
+  - ``remote.machine.ipv6``: IPv6 address of the testsuite server
+  - ``netif.ipv6.name``: network interface name with an IPv6
+
+- When testing a device with a dual-stack IPv6+IPv4, the following properties must be set:
+
+  - ``remote.machine.ipv4``: see above
+  - ``netif.ipv4.name``: see above
+  - ``remote.machine.ipv6``: see above
+  - ``netif.ipv6.name``: see above
