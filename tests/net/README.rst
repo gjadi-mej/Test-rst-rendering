@@ -1,5 +1,5 @@
 ..
-	Copyright 2020 MicroEJ Corp. All rights reserved.
+	Copyright 2020-2022 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
@@ -55,7 +55,10 @@ Test Suite Configuration
   By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
   However in some particular cases, you can adjust test suite specific options or memory settings.
 
-=================
-Run the testsuite
-=================
-Right click on the ``java-testsutie-net`` project and click on ``Build Module``.
+====================
+Test Suite Execution
+====================
+
+Right-click on the ``java-testsuite-net`` project and click on ``Build Module``.
+
+Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
