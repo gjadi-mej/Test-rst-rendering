@@ -37,33 +37,25 @@ Before starting the test suite, make sure you have the following requirements:
 - If the Platform requires output traces redirection (e.g. when your device dumps the standard output on a serial port), start the
   `Serial to Socket Transmitter <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/serialToSocketTransmitter.html>`_ tool.
 
-=============
-Testsuite configuration
-=============
+========================
+Test Suite Configuration
+========================
 
-- Load the ``java/java-testsuite-net`` project in your MicroEJ SDK
-- Copy/Paste the ``config.properties.template``, rename it to ``config.properties``
-- Open the ``config.properties``, uncomment the following properties, and set the right value for each of them:
+- In MicroEJ SDK, import the ``java/java-testsuite-net`` project in your workspace.
+- Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
+  ``[platform]-configuration/testsuites/net/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
+- Open the ``config.properties`` file.
+- Fill the options marked as ``[required]``, particularly:
 
-	- target.platform.dir: This is the platform path, which is the parent folder of the release.properties file
-	- microej.testsuite.properties.deploy.dir.microejapp: The is the folder where the microejapp.o file should be copied, it is usually a subfolder of the bsp project.
-	- microej.testsuite.properties.external.scripts.dir: The is the path where the ``build.bat`` and ``run.bat`` scripts are.
+  - Target Platform: set ``target.platform.dir`` to the absolute path of the Platform being tested (the parent folder of the ``release.properties`` file and the platform sources, see `Setup a Platform for Tests <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/testsuite.html#setup-a-platform-for-tests>`__),
+  - `BSP Connection <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`_: check the Platform specific documentation to get the kind of configured BSP connection.
+  - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
 
-If your board dump it trace on a serial port, you need to run the serial to socket transmitter tool.
+- Check `Application Options <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
+  By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
+  However in some particular cases, you can adjust test suite specific options or memory settings.
 
-- In the McioEJ SDK go to ``Run > Run Configurations...``
-- Right Click on ``MicroEJ Tool`` and click on ``New``
-- Select your platform in the ``Target > Platform`` option
-- Select ``Serial To Socket Transmitter`` in the ``Execution > Settings`` option
-- Go to the ``Configuration`` tab and set the ``Serial options``.
-- In the ``config.properties`` file, uncomment the following properties:
-
-	- microej.testsuite.properties.testsuite.trace.ip
-	- microej.testsuite.properties.testsuite.trace.port (use the same value you set in the Serial Options)
-
-- Click on ``Run``
-
-=============
+=================
 Run the testsuite
-=============
+=================
 Right click on the ``java-testsutie-net`` project and click on ``Build Module``.
