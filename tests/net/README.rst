@@ -7,7 +7,23 @@
 MicroEJ NET Testsuite
 **********************************
 
-This folder is a part of a project which gathers the platform qualification tools. It contains a Java project which tests file and directory creation, access permissions, and file content read/write.
+This folder contains a ready-to-use project for testing the `Network Core Engine <https://docs.microej.com/en/latest/PlatformDeveloperGuide/networkCoreEngine.html>`_ implementation on a device.
+This test suite will typically create TCP sockets, UDP sockets, test client side and server side...
+
+==============
+Specifications
+==============
+
+- Tested Foundation Library: `NET <https://repository.microej.com/modules/ej/api/net/>`_
+- Test Suite Module:  `com.microej.pack.net#net-testsuite <https://repository.microej.com/modules/com/microej/pack/net/net-testsuite/>`_
+
+Update the NET Test Suite module version in the `module.ivy
+<java/java-testsuite-net/module.ivy>`_ to match the requirement of the platform
+tested.
+
+Please refer to `Platform Qualification Test Suite Versioning
+<https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_
+to determine the NET Test Suite module version.
 
 =============
 Prerequisites
