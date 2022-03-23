@@ -29,6 +29,7 @@
     		To freeze the module version, add the following attribute: ej:match="perfect"    	
     	-->
 		<dependency org="com.microej.pack.net" name="net-1_1-testsuite" rev="4.0.0"/>
+		<dependency org="com.microej.pack.net" name="net-1_1-testsuite-openjdk" rev="1.0.0"/>
     	<!-- 
     		Add the following dependency if running the testsuite over Wi-Fi.    	
 		<dependency org="com.microej.pack.net" name="net-1_1-testsuite-wifi" rev="2.0.1"/>
