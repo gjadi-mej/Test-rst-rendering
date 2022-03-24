@@ -186,3 +186,13 @@ The test suite runs but some tests are failing
 - Check your Platform documentation on test suites.  The Platform may
   provide specific ``config.properties`` and
   ``microej-testsuite-common.properties``.
+
+Debug Test Suite Server Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The test suite runs a server application for which logs are only accessible via a TCP socket.
+In order to display the logs, the following steps are required:
+
+- Specify the log server address with the property `remoteapp.logging.host` (by default `localhost`) in ``config.properties`` file.
+- Specify the log server port with the property `remoteapp.logging.port` (set it to `0` to disable the remote log feature ; this is the default value) in ``config.properties`` file.
+- Start a log server. You can use netcat: `nc -l <port>` (where `<port>` is the port specified in the previous property).
