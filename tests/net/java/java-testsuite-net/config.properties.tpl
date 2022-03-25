@@ -64,7 +64,7 @@
 ###############################################################################
 
 # Comma separated list of patterns of files that must be included	
-test.run.includes.pattern=**/Test*.class
+test.run.includes.pattern=**/Test*.class, **/openjdk/**/TestNetOpenjdk*.class
 # Comma separated list of patterns of files that must be excluded (defaults to inner classes)
 # Generic exclusions:
 # - **/*$*.class: do not embed inner classes as test classes
