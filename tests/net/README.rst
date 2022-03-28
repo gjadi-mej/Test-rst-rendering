@@ -76,7 +76,7 @@ and prefixed by ``microej.java.property.``.
   - ``testsuite.preferipv6`` (optional, false by default): set to true if the tests must use IPv6 by default.
   - ``init.service`` (optional, undefined by default): Name of a class that implements com.microej.tests.util.INetInit. If defined, during initialization, an instance of this class is created and the initialize() method is called.
 
-    - To use the service for the WiFi initialization, set this property to ``com.microej.tests.util.WifiNetInit`` and add the following dependency in your ``module.ivy``: ``<dependency org="com.microej.pack.net" name="net-1_1-testsuite-wifi" rev="2.0.1"/>``.
+    - To use the service for the WiFi initialization add the following dependency in your ``module.ivy``: ``<dependency org="com.microej.pack.net" name="net-1_1-testsuite-wifi" rev="2.0.1"/>``.
     - WiFi SSID and passphrase are set with respectively with the properties ``wifi.ssid`` and ``wifi.passphrase``.
 
 - Properties to define if ``testsuite.preferipv6`` is ``false``:
