@@ -52,11 +52,11 @@ Test Suite Configuration
   By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
   However in some particular cases, you can adjust test suite specific options or memory settings.
 
-MbedTLS Stack
--------------
+- Application options specific to SSL:
 
-When running tests on a platform which uses the mbedTLS library, an additional option need to be specified.
-To do so add the following property and value ``microej.java.property.microej.ssl.testsuite.ssl.stack=mbedtls`` to the file ``microej-testsuite-common.properties``.
+   - ``remote.machine.ip``: Set this property with the value of the IP address of the machine that runs the tests.
+   - ``remoteapp.timeout``: Amount of time (in milliseconds) that the remote test will wait before interrupting its execution.
+   - ``microej.ssl.testsuite.ssl.stack``: Property to set to ``mbedtls`` when running tests on platforms with a mbedTLS backend.
 
 Test Suite Execution
 --------------------
