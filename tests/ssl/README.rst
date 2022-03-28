@@ -52,6 +52,12 @@ Test Suite Configuration
   By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
   However in some particular cases, you can adjust test suite specific options or memory settings.
 
+MbedTLS Stack
+-------------
+
+When running tests on a platform which uses the mbedTLS library, an additional option need to be specified.
+To do so add the following property and value ``microej.java.property.microej.ssl.testsuite.ssl.stack=mbedtls`` to the file ``microej-testsuite-common.properties``.
+
 Test Suite Execution
 --------------------
 
