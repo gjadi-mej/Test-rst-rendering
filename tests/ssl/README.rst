@@ -52,6 +52,11 @@ Test Suite Configuration
   By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
   However in some particular cases, you can adjust test suite specific options or memory settings.
 
+  - Application options for Wi-Fi networks:
+
+    - To use the service for the WiFi initialization add the following dependency in your ``module.ivy``: ``<dependency org="com.microej.pack.net" name="net-1_1-testsuite-wifi" rev="2.0.1"/>``.
+    - WiFi SSID and passphrase are set with respectively with the properties ``wifi.ssid`` and ``wifi.passphrase``.
+
 - Application options specific to SSL:
 
    - ``remote.machine.ip``: Set this property with the value of the IP address of the machine that runs the tests.
