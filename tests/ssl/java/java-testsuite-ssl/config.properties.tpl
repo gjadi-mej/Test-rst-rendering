@@ -66,7 +66,8 @@
 # Comma separated list of patterns of files that must be included	
 test.run.includes.pattern=**/Test*.class
 # Comma separated list of patterns of files that must be excluded (defaults to inner classes)
-test.run.excludes.pattern=**/*$*.class
+# **/TestHandshakePki*.class: PKI tests are used to check certificate chain validation policies.
+test.run.excludes.pattern=**/*$*.class, **/TestHandshakePki*.class
 
 #######################################################################
 # Advanced Options
