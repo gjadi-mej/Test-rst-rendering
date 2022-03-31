@@ -17,6 +17,7 @@ Added
 =====
 
 - Add the module MicroEJ Core Test Suite 1.0.0. to run the MicroEJ Core Validation (Java).
+- Add NET Testsuite project
 
 Changed
 =======
