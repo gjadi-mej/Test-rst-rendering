@@ -15,7 +15,7 @@ Specifications
 ==============
 
 - Tested Foundation Library: `NET <https://repository.microej.com/modules/ej/api/net/>`_
-- Test Suite Module:  `com.microej.pack.net#net-testsuite <https://repository.microej.com/modules/com/microej/pack/net/net-testsuite/>`_
+- Test Suite Module:  `com.microej.pack.net#net-1_1-testsuite <https://repository.microej.com/modules/com/microej/pack/net/net-1_1-testsuite/>`_
 
 Update the NET Test Suite module version in the `module.ivy
 <java/java-testsuite-net/module.ivy>`_ to match the requirement of the platform
@@ -74,7 +74,7 @@ and prefixed by ``microej.java.property.``.
 - Common properties:
 
   - ``testsuite.preferipv6`` (optional, false by default): set to true if the tests must use IPv6 by default.
-  - To use the service for the WiFi initialization add the following dependency in your ``module.ivy``: ``<dependency org="com.microej.pack.net" name="net-1_1-testsuite-wifi" rev="2.0.1"/>``.
+  - To use the service for the WiFi initialization add the following dependency in your ``module.ivy``: ``<dependency org="com.microej.pack.net" name="net-1_1-testsuite-wifi" rev="2.1.0"/>``.
     - WiFi SSID and passphrase are set with respectively with the properties ``wifi.ssid`` and ``wifi.passphrase``.
 
 - Properties to define if ``testsuite.preferipv6`` is ``false``:
