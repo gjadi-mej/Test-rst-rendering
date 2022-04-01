@@ -22,7 +22,7 @@ See `CORE Readme <tests/core/README.rst>`_
 Graphical User Interface Test Suite
 -----------------------------------
 
-The UI Test Suite is split into a C Test Suite and a Java Test Suite. It tests the implementation of the ``LLUI*`` API and the tearing signal usage.
+The UI Test Suite is a Java Test Suite. It tests the implementation of the ``LLUI*`` API and the tearing signal usage.
 It also provides indication about the minimum draw time allowed to display animations at a given framerate.
 
 See `UI Readme <tests/ui/README.rst>`_
