@@ -17,7 +17,7 @@ Added
 =====
 
 - Add the module MicroEJ Core Test Suite 1.0.0. to run the MicroEJ Core Validation (Java).
-- Add NET Testsuite project
+- Add NET Test Suite for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/net/README.rst>`_).
 
 Changed
 =======
