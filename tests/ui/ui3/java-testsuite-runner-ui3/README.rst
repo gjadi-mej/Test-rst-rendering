@@ -40,8 +40,6 @@ In MicroEJ SDK,
 -  Link the BSP project with the MicroEJ Application (``microejapp.o``), 
    the MicroEJ Platform runtime (``microejruntime.a``) and the MicroEJ Platform header files (``*.h``).
 
--  The tests don't use assertions and prints only some reports. 
- 
 -  See below for an output example
 
 ::
