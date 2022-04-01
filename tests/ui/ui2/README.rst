@@ -1,5 +1,5 @@
 .. ReStructuredText
-.. Copyright 2019-2021 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
+.. Copyright 2019-2022 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
 ***********************************
@@ -28,7 +28,7 @@ tests, how to launch them and the expected results.
 Additionally, the `Tool-Java-Touch <https://github.com/MicroEJ/Tool-Java-Touch>`_ project
 allows to test the correct behavior of MicroUI in a Java application. 
 
-Dependencies
+Requirements
 ============
 
 - Follow the `main Readme <../../../README.rst>`_.

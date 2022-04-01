@@ -19,7 +19,7 @@ For each test, the configuration and results are described in a
 dedicated section. See `Quick Start`_ section which summarize how to configure the
 tests, how to launch them and how to analyze the report.
 
-Dependencies
+Requirements
 ============
 
 - Follow the `main Readme <../../README.rst>`_.
