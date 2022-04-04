@@ -3,9 +3,9 @@
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-**********************************
+*********************
 MicroEJ NET Testsuite
-**********************************
+*********************
 
 This folder contains a ready-to-use project for testing the `Network Core Engine <https://docs.microej.com/en/latest/PlatformDeveloperGuide/networkCoreEngine.html>`_ implementation on a device.
 This test suite will typically create TCP sockets, UDP sockets, test client side and server side...
@@ -18,7 +18,7 @@ Specifications
 - Test Suite Module:  `com.microej.pack.net#net-1_1-testsuite <https://repository.microej.com/modules/com/microej/pack/net/net-1_1-testsuite/>`_
 
 Update the NET Test Suite module version in the `module.ivy
-<java/java-testsuite-net/module.ivy>`_ to match the requirement of the platform
+<java/java-testsuite-runner-net/module.ivy>`_ to match the requirement of the platform
 tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
@@ -41,7 +41,7 @@ Before starting the test suite, make sure you have the following requirements:
 Test Suite Configuration
 ========================
 
-- In MicroEJ SDK, import the ``java/java-testsuite-net`` project in your workspace.
+- In MicroEJ SDK, import the ``java/java-testsuite-runner-net`` project in your workspace.
 - Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
   ``[platform]-configuration/testsuites/net/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
 - Open the ``config.properties`` file.
@@ -68,7 +68,7 @@ Test Suite Properties
 =====================
 
 The NET test suite requires specific properties depending on the implementation and test environment.
-All the properties described in this section are defined in the file `microej-testsuite-common.properties <./java/java-testsuite-net/validation/microej-testsuite-common.properties>`_
+All the properties described in this section are defined in the file `microej-testsuite-common.properties <./java/java-testsuite-runner-net/validation/microej-testsuite-common.properties>`_
 and prefixed by ``microej.java.property.``.
 
 - Common properties:
@@ -100,7 +100,7 @@ and prefixed by ``microej.java.property.``.
 Test Suite Execution
 ====================
 
-Right-click on the ``java-testsuite-net`` project and click on ``Build Module``.
+Right-click on the ``java-testsuite-runner-net`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
