@@ -16,13 +16,19 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 Added
 =====
 
-- Add the module MicroEJ Core Test Suite 1.0.0 to run the MicroEJ Core Validation (Java).
 - Add NET Test Suite for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/net/README.rst>`_).
 
 Changed
 =======
 
-- MicroEJ Core Validation (Java) 3.1.0 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.rst>`_).
+- MicroEJ Core Validation (Java) 3.1.0 (see `CHANGELOG <tests/core/java-testsuite-runner-core/CHANGELOG.rst>`_).
+- MicroEJ UI Validation (Java) 1.1.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
+- Reformat MicroEJ Core Validation and MicroEJ UI Validation to use standard MicroEJ Test Suite flow.
+
+Remove
+======
+
+- MicroEJ UI Validation: remove the C project.
 
 2.7.0 -- 2021-07-16
 -------------------
@@ -89,7 +95,7 @@ Fixed
 - IAREW run script compliance (copy of the local ``application.out``).
 - Keil uVision run script compliance (copy of the local ``application.out``).
 - Documentation of ``target.platform.dir`` to setup the Test Suite FS.
-- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
+- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java-testsuite-runner-core/CHANGELOG.rst`_).
 
 -------------------
 2.3.0 -- 2021-01-13

@@ -12,11 +12,15 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 [1.1.0] - Unreleased
 --------------------
 
+Added
+~~~~~
+
+- Add test `testFlushTime`.
+
 Changed
 ~~~~~~~
 
-- Rename the project to harmonize with other test suite projects (core, fs)
-- Make project "MicroEJ Platform Testsuite" compatible.
+- Reformat to use standard MicroEJ Test Suite flow.
 
 .. _100---2021-04-20:
 
