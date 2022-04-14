@@ -68,12 +68,9 @@ test.run.includes.pattern=**/Test*.class, **/openjdk/**/TestNetOpenjdk*.class
 # Comma separated list of patterns of files that must be excluded (defaults to inner classes)
 # Generic exclusions:
 # - **/*$*.class: do not embed inner classes as test classes
-# - **/remoteapp/**/*.class: do not embed classes related to remote application
-# - **/tests/util/*.class: do not embed testsuite util classes
-# - **/TestHarness.class, **/TestNetTools.class: do not embed testsuite util classes
 # - **/standalone/**/*.class: do not pass standalone tests, only group tests
 # - **/openjdk/**/*.class: some openjdk tests require a localhost network interface, add this pattern if this is not the case
-test.run.excludes.pattern=**/*$*.class, **/remoteapp/**/*.class, **/tests/util/*.class, **/windows/**/*.class, **/TestHarness.class, **/TestNetTools.class, **/standalone/**/*.class
+test.run.excludes.pattern=**/*$*.class, **/windows/**/*.class, **/standalone/**/*.class
 
 #######################################################################
 # Advanced Options
