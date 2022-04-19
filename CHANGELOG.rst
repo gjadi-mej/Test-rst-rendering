@@ -1,5 +1,5 @@
 ..
-	Copyright 2019-2021 MicroEJ Corp. All rights reserved.
+	Copyright 2019-2022 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 
 =========
@@ -10,7 +10,52 @@ All notable changes to this project will be documented in this file.
 
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
+2.8.0 -- Unreleased
 -------------------
+
+Added
+=====
+
+- Add NET Test Suite for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/net/README.rst>`_).
+
+Changed
+=======
+
+- MicroEJ Core Validation (Java) 3.1.0 (see `CHANGELOG <tests/core/java-testsuite-runner-core/CHANGELOG.rst>`_).
+- MicroEJ UI Validation (Java) 1.1.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
+- Reformat MicroEJ Core Validation and MicroEJ UI Validation to use standard MicroEJ Test Suite flow.
+
+Remove
+======
+
+- MicroEJ UI Validation: remove the C project.
+
+2.7.0 -- 2021-07-16
+-------------------
+
+Changed
+=======
+
+- Platform Configuration Additions 1.4.0 (see `CHANGELOG <framework/platform/content/build/CHANGELOG.md>`_).
+
+Fixed
+=====
+
+- Fixed links and paths in Graphical User Interface Test Suite README files and Core Engine Test Suite README file.
+
+2.6.0 -- 2021-06-25
+-------------------
+
+Added
+=====
+
+- Add Graphical User Interface Test Suite for MicroEJ UI Packs 13.0.0 and higher (see `README <tests/ui/ui3/README.rst>`_).
+
+Changed
+=======
+
+- Graphical User Interface Test Suite for MicroEJ UI Packs [6.0.0-13.0.0[ (13.0.0 excluded) has moved from ``tests/ui/`` to ``tests/ui/ui2/`` (see `README <tests/ui/ui2/README.rst>`_).
+
 2.5.0 -- 2021-05-11
 -------------------
 
@@ -50,7 +95,7 @@ Fixed
 - IAREW run script compliance (copy of the local ``application.out``).
 - Keil uVision run script compliance (copy of the local ``application.out``).
 - Documentation of ``target.platform.dir`` to setup the Test Suite FS.
-- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java/microej-core-validation/CHANGELOG.md`_).
+- CORE Test Suite updated to 3.0.2 (see `CHANGELOG <tests/core/java-testsuite-runner-core/CHANGELOG.rst`_).
 
 -------------------
 2.3.0 -- 2021-01-13

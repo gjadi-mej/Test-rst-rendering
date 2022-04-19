@@ -1,5 +1,5 @@
 .. ReStructuredText
-.. Copyright 2019-2021 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
+.. Copyright 2019-2022 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
 **********************
@@ -9,21 +9,20 @@ Core Engine Test Suite
 Overview
 ========
 
-This folder is a part of a project which gathers the Platform Qualification Tools.
-It contains sources and projects to check drivers and implementation of print, time base, RAM, Core, and MicroEJ Core.
+This folder contains sources and projects to test drivers and implementation of print, time base, RAM, Core (see `Tests Description`_), and MicroEJ Core (see `MicroEJ Core Validation`_).
 
 All tests can be run in one step: all tests will be executed one by one
 and are run in a specific order, *next one* expects *previous one* is
 passed.
 
-For each test, its configuration and its results are described in a
-dedicated section. See `Quick Start`_ section which resume how to configure the
-tests, how to launch them and the expected results.
+For each test, the configuration and results are described in a
+dedicated section. See `Quick Start`_ section which summarize how to configure the
+tests, how to launch them and how to analyze the report.
 
-Dependencies
+Requirements
 ============
 
-- Follow the main readme file
+- Follow the `main Readme <../../README.rst>`_.
 - EEMBC Coremark
 
 Quick Start
@@ -46,8 +45,8 @@ Configuration
    - ``framework/c/embunit/embUnit``
    - ``framework/c/CoreMark/``
 
-3. Create ``core_portme.h`` and ``core_portme.h`` files to port EEMBC CoreMark
-   (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``.
+3. Create ``core_portme.c`` and ``core_portme.h`` files to port EEMBC CoreMark
+   (http://www.eembc.org/coremark/index.php). Insert the directive line :code:`#define main core_main` in the ``core_portme.h``. Add CoreMark files to the BSP project.
 
 4. Implement all functions defined in these files:
 
@@ -56,8 +55,8 @@ Configuration
 
 5. Include ``t_core_main.h`` header and add a call to the function
    ``T_CORE_main()`` just before the call to ``microej_main()``.
-6. In the MicroEJ SDK, import the MicroEJ project ``microej-core-validation`` from the folder ``tests/core/java``
-7. Follow `MicroEJ Core Validation Readme <java/microej-core-validation/README.rst>`_ and build this MicroEJ Application against the MicroEJ Platform to qualify.
+6. In the MicroEJ SDK, import the MicroEJ project ``java-testsuite-runner-core`` from the folder ``tests/core``
+7. Follow `MicroEJ Core Validation Readme <java-testsuite-runner-core/README.rst>`_ and build this MicroEJ Application against the MicroEJ Platform to qualify.
 8. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
 
 Expected Results
@@ -348,12 +347,12 @@ and require an human check to be sure the time is correct.
 
 **Configuration**
 
-In the MicroEJ SDK, import the MicroEJ project `microej-core-validation <./java/microej-core-validation/>`_ from the folder ``tests/core/java``.
-Follow the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_ to build and link this MicroEJ Application against the MicroEJ Platform to qualify.
+In the MicroEJ SDK, import the MicroEJ project `java-testsuite-runner-core <./java-testsuite-runner-core/>`_ from the folder ``tests/core``.
+Follow the MicroEJ Core Validation `README <./java-testsuite-runner-core/README.rst>`_ to build and link this MicroEJ Application against the MicroEJ Platform to qualify.
 
 **Expected results**
 
-No error must be thrown when executing this test. A typical execution trace is described in the MicroEJ Core Validation `README <./java/microej-core-validation/README.rst>`_
+No error must be thrown when executing this test. A typical execution trace is described in the MicroEJ Core Validation `README <./java-testsuite-runner-core/README.rst>`_
 (the visible clock accuracy must be compared manually with an external clock).
 
 
