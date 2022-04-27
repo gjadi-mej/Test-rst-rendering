@@ -17,7 +17,7 @@ Specifications
 - Test Suite Module: `com.microej.pack.security#security-1_4-testsuite <https://repository.microej.com/modules/com/microej/pack/security/security-1_4-testsuite>`_
 
 Update the Security Test Suite module version in the `module.ivy
-<java/java-testsuite-security/module.ivy>`_ to match the requirement of the platform
+<java/java-testsuite-runner-security/module.ivy>`_ to match the requirement of the platform
 tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
