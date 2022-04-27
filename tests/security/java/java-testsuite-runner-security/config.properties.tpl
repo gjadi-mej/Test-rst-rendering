@@ -73,9 +73,6 @@ test.run.excludes.pattern=**/*$*.class
 # These options shall not be changed by default.
 ###############################################################################
 
-# Increase the max number of threads
-microej.testsuite.properties.core.memory.threads.size=10
-
 # The execution target (`MICROJVM` to execute on Device, `S3` to execute on Simulator)
 target.vm.name=MICROJVM
 
