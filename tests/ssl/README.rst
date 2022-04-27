@@ -17,7 +17,7 @@ Specifications
 - Test Suite Module: `com.microej.pack.ssl#ssl-2_2-testsuite <https://repository.microej.com/modules/com/microej/pack/ssl/ssl-2_2-testsuite/>`_
 
 Update the SSL Test Suite module version in the `module.ivy
-<java/java-testsuite-ssl/module.ivy>`_ to match the requirement of the platform
+<java/java-testsuite-runner-ssl/module.ivy>`_ to match the requirement of the platform
 tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
@@ -38,7 +38,7 @@ Before starting the test suite, make sure you have the following requirements:
 Test Suite Configuration
 ------------------------
 
-- In MicroEJ SDK, import the ``java/java-testsuite-ssl`` project in your workspace.
+- In MicroEJ SDK, import the ``java/java-testsuite-runner-ssl`` project in your workspace.
 - Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
   ``[platform]-configuration/testsuites/ssl/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
 - Open the ``config.properties`` file.
@@ -66,7 +66,7 @@ Test Suite Configuration
 Test Suite Execution
 --------------------
 
-Right-click on the ``java-testsuite-ssl`` project and click on ``Build Module``.
+Right-click on the ``java-testsuite-runner-ssl`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
