@@ -1,5 +1,5 @@
 ..
-    Copyright 2021 MicroEJ Corp. All rights reserved.
+    Copyright 2021-2022 MicroEJ Corp. All rights reserved.
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
@@ -8,13 +8,13 @@ Security Test Suite
 *******************
 
 This folder contains a ready-to-use project for testing Security implementations on a device.
-This test suite will typically test file and directory creation, access permissions, and file content read/write...
+This test suite will typically test signature algorithms implementation, certificate creation, random data generation...
 
 Specifications
 --------------
 
-- Tested Foundation Library: Security
-- Test Suite Module: com.is2t.libraries.security#security-testsuite
+- Tested Foundation Library: `Security <https://repository.microej.com/modules/ej/api/security/>`_
+- Test Suite Module: `com.microej.pack.security#security-1_4-testsuite <https://repository.microej.com/modules/com/microej/pack/security/security-1_4-testsuite>`_
 
 Update the Security Test Suite module version in the `module.ivy
 <java/java-testsuite-security/module.ivy>`_ to match the requirement of the platform
