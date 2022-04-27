@@ -3,9 +3,9 @@
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-*********************
+*******************
 Security Test Suite
-*********************
+*******************
 
 This folder contains a ready-to-use project for testing Security implementations on a device.
 This test suite will typically test file and directory creation, access permissions, and file content read/write...
@@ -38,7 +38,7 @@ Before starting the test suite, make sure you have the following requirements:
 Test Suite Configuration
 ------------------------
 
-- In MicroEJ SDK, import the ``java/java-testsuite-security`` project in your workspace.
+- In MicroEJ SDK, import the ``java/java-testsuite-runner-security`` project in your workspace.
 - Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
   ``[platform]-configuration/testsuites/security/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
 - Open the ``config.properties`` file.
@@ -55,7 +55,7 @@ Test Suite Configuration
 Test Suite Execution
 --------------------
 
-Right-click on the ``java-testsuite-security`` project and click on ``Build Module``.
+Right-click on the ``java-testsuite-runner-security`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
