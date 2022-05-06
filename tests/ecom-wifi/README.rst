@@ -3,26 +3,26 @@
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-*******************
-Security Test Suite
-*******************
+********************
+ECOM-WIFI Test Suite
+********************
 
-This folder contains a ready-to-use project for testing Security implementations on a device.
-This test suite will typically test signature algorithms implementation, certificate creation, random data generation...
+This folder contains a ready-to-use project for testing ECOM-WIFI implementations on a device.
+This test suite will create a soft AP, test the client methods such as scanning, joining,...
 
 Specifications
 --------------
 
-- Tested Foundation Library: `Security <https://repository.microej.com/modules/ej/api/security/>`_
-- Test Suite Module: `com.microej.pack.security#security-1_4-testsuite <https://repository.microej.com/modules/com/microej/pack/security/security-1_4-testsuite>`_
+- Tested Foundation Library: `ECOM-WIFI <https://repository.microej.com/modules/ej/api/ecom-wifi/>`_
+- Test Suite Module: `com.microej.pack.ecom-wifi#ecom-wifi-2_1-testsuite <https://repository.microej.com/modules/com/microej/pack/ecom-wifi/ecom-wifi-2_1-testsuite>`_
 
-Update the Security Test Suite module version in the `module.ivy
-<java/java-testsuite-runner-security/module.ivy>`_ to match the requirement of the platform
+Update the ECOM-WIFI Test Suite module version in the `module.ivy
+<java/java-testsuite-runner-ecom-wifi/module.ivy>`_ to match the requirement of the platform
 tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
 <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_
-to determine the Security Test Suite module version.
+to determine the ECOM-WIFI Test Suite module version.
 
 Prerequisites
 -------------
@@ -38,9 +38,9 @@ Before starting the test suite, make sure you have the following requirements:
 Test Suite Configuration
 ------------------------
 
-- In MicroEJ SDK, import the ``java/java-testsuite-runner-security`` project in your workspace.
+- In MicroEJ SDK, import the ``java/java-testsuite-runner-ecom-wifi`` project in your workspace.
 - Create the local ``config.properties`` file. The Platform may provide a pre-configured ``config.properties`` file under
-  ``[platform]-configuration/testsuites/security/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
+  ``[platform]-configuration/testsuites/ecom-wifi/`` folder. By default, copy the ``config.properties.tpl`` to ``config.properties``.
 - Open the ``config.properties`` file.
 - Fill the options marked as ``[required]``, particularly:
 
@@ -55,7 +55,7 @@ Test Suite Configuration
 Test Suite Execution
 --------------------
 
-Right-click on the ``java-testsuite-runner-security`` project and click on ``Build Module``.
+Right-click on the ``java-testsuite-runner-ecom-wifi`` project and click on ``Build Module``.
 
 Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
 
