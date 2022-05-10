@@ -39,6 +39,7 @@ public class MicroejCoreValidation {
 
 	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
 	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
+	private static final String OPTION_MONOTONIC_CHECK_NB_SECONDS = "monotonic.time.check.seconds";
 
 	private static final String INVALID_C_FUNCTION_MESSAGE = "C function not correctly implemented (check your libc configuration)";
 	private static final String INCOHERENT_FPU_MESSAGE = "FPU option is not coherent between MicroEJ Platform and BSP";
@@ -512,7 +513,7 @@ public class MicroejCoreValidation {
 	 */
 	@Test
 	public void testParseFP() {
-		System.out.println("-> Check FP parser...");
+		System.out.println("-> Check floating-point parser...");
 
 		float parsedFloat = Float.parseFloat("1234.5");
 		assertEquals("test 'parse float string': strtof " + INVALID_C_FUNCTION_MESSAGE, new Float(1234.5f),
@@ -528,13 +529,46 @@ public class MicroejCoreValidation {
 	 */
 	@Test
 	public void testFormatFP() {
-		System.out.println("-> Check FP formatter...");
+		System.out.println("-> Check floating-point formatter...");
 
 		String floatToString = Float.toString(1234.5f);
 		assertEquals("test 'float to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", floatToString);
 
 		String doubleToString = Double.toString(1234.5d);
 		assertEquals("test 'double to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", doubleToString);
+	}
+
+	/**
+	 * Tests that the <code>LLMJVM_IMPL_getCurrentTime</code> implementation always increases.
+	 */
+	@Test
+	public void testMonotonicTimeIncreases() {
+		final long testDurationS = getOptionAsInt(OPTION_MONOTONIC_CHECK_NB_SECONDS, 60, "second");
+		System.out.println("-> Check monotonic time consistency for " + testDurationS
+				+ " seconds (LLMJVM_IMPL_getCurrentTime)...");
+
+		final long printDotPeriodMs = 2000;
+		long startTime = Util.platformTimeMillis();
+		long endTime = startTime + (testDurationS * 1000);
+		long printDotTime = startTime + printDotPeriodMs;
+		long previousTime = startTime;
+		long currentTime;
+		while (endTime > (currentTime = Util.platformTimeMillis())) {
+			if (printDotTime < currentTime) {
+				System.out.print('.');
+				printDotTime = currentTime + printDotPeriodMs;
+			}
+			if (currentTime < previousTime) {
+				System.out.println();
+				assertTrue("Monotonic time goes back in time (currentTime = " + currentTime + " previousTime="
+						+ previousTime + ").\nThis issue is usually caused by a non-atomic calculation of the time.",
+						false);
+				return;
+			}
+			previousTime = currentTime;
+		}
+		System.out.println();
+
 	}
 
 	/**
