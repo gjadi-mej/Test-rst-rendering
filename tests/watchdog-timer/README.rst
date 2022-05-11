@@ -13,7 +13,7 @@ This test suite will typically test Watchdog Timer .
 Specifications
 --------------
 
-- Tested Foundation Library: `SSL <https://repository.microej.com/modules/ej/api/ssl/>`_
+- Tested Foundation Library: `Watchdog Timer <https://repository.microej.com/modules/ej/api/watchdog-timer/>`_
 - Test Suite Module: `com.microej.pack.watchdog-timer#watchdog-timer-testsuite#3.0.0 <https://repository.microej.com/modules/com/microej/pack/watchdog-timer/watchdog-timer-testsuite/3.0.0/>`_
 
 Update the Watchdog Timer Test Suite module version in the `module.ivy
@@ -22,7 +22,7 @@ tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
 <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_
-to determine the SSL Test Suite module version.
+to determine the Watchdog Timer Test Suite module version.
 
 Prerequisites
 -------------
