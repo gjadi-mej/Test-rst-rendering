@@ -18,6 +18,7 @@ Added
 
 - Add NET Test Suite for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/net/README.rst>`_).
 - Add Watchdog Timer Test Suite for MicroEJ Watchdog Timer Packs 2.0.1 and higher (see `README <tests/watchdog-timer/README.rst>`_).
+- Add ECOM-WIFI Test Suite for ECOM-WIFI 2.1 and higher (see `README <tests/ecom-wifi/README.rst>`_).
 
 Changed
 =======
