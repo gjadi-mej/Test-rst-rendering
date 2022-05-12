@@ -246,6 +246,40 @@ No error must be thrown when executing this test:
    Time base check:
    .
 
+**Code Review**
+
+In addition to this automatic test, a code review must be done to spot potential 
+race conditions that are diffcult to check automatically.
+
+In some implementations, the current time is calculated by adding 2 values:
+
+* a high-precision time with a quick overflow: ``hp_time``
+* a low-precision time without any overflow risk: ``lp_time``
+
+Low-precision time is incremented when high-precision time overflows. 
+It is done usually in an interrupt or directly by the hardware.
+Computing time with an expression similar to ``time = lp_time + hp_time`` can lead 
+to a wrong result because this operation is not done atomically.
+Moreover, the compiler may reorder the accesses to ``hp_time`` and ``lp_time``.
+
+The right pattern to use is the following one, where ``hp_time`` and ``lp_time``
+are both declared **volatile**:
+
+::
+
+   // An interrupt may occur between read of lp_time and hp_time,
+   // this interrupt may modify lp_time,
+   // so, after accessing hp_time, we must check if lp_time has not been modified.
+   do {
+       lp_time_local = lp_time;        
+       hp_time_local = hp_time;
+   } while (lp_time_local != lp_time);
+   
+   time = lp_time_local + hp_time_local;
+
+The code review consists in verifying the implementations of ``LLMJVM_IMPL_getCurrentTime`` 
+and ``LLMJVM_IMPL_getTimeNanos`` to see if they follow the above recommendation.
+
 RAM Tests: t_core_ram.c
 -----------------------
 
