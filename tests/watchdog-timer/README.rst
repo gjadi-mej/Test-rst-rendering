@@ -52,9 +52,6 @@ Test Suite Configuration
   By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
   However in some particular cases, you can adjust test suite specific options or memory settings.
 
-- Application options specific to Watchdog Timer:
-
-   - ``watchdog.timer.testsuite.is.mode.interrupt``: Set this property to true if the watchdog launches an interrupt instead of a reset when watchdog triggers. (default: false)
 
 Test Suite Execution
 --------------------
