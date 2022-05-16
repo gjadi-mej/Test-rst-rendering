@@ -60,7 +60,7 @@ In MicroEJ SDK,
 
    VM START
    *****************************************************************************************************
-   *                                  MicroEJ Core Validation - 3.0.0                                  *
+   *                                  MicroEJ Core Validation - 3.1.0                                  *
    *****************************************************************************************************
    * Copyright 2013-2022 MicroEJ Corp. All rights reserved.                                            *
    * Use of this source code is governed by a BSD-style license that can be found with this software.  *
@@ -100,6 +100,10 @@ In MicroEJ SDK,
    Task 1 ends.
    ...done.
    OK: testJavaRoundRobin
+   Main thread starts sleeping for 1s..
+   WaitMaxTimeThread starts sleeping for `Long.MAX_VALUE` milliseconds
+   Main thread woke up!
+   OK: testScheduleMaxTime
    -> Check isInReadOnlyMemory (LLBSP_IMPL_isInReadOnlyMemory validation)...
    Test synchronize on literal string
    Test synchronize on class
@@ -107,7 +111,15 @@ In MicroEJ SDK,
    OK: testIsInReadOnlyMemory
    -> Check FPU (soft/hard FP option)...
    OK: testFPU
-   PASSED: 6
+   -> Check floating-point parser...
+   OK: testParseFP
+   -> Check floating-point formatter...
+   OK: testFormatFP
+   Property 'com.microej.core.tests.monotonic.time.check.seconds' is not set (default to '60' seconds)
+   -> Check monotonic time consistency for 60 seconds (LLMJVM_IMPL_getCurrentTime)...
+   .............................
+   OK: testMonotonicTimeIncreases
+   PASSED: 10
    VM END (exit code = 0)
 
 
