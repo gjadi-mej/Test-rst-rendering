@@ -539,6 +539,49 @@ public class MicroejCoreValidation {
 	}
 
 	/**
+	 * Tests parse double/float with potential dynamic allocation.
+	 */
+	@Test
+	public void testParseDoubleStringHeap() {
+		System.out.println(
+				"-> Check parsing a string as a double ; in some systems such operations may allocate memory in the C heap (strtod, strtof, malloc implementation)...");
+
+		double parsedDouble;
+		float parsedFloat;
+		parsedDouble = Double.parseDouble("1.7976931348623157E308");
+		assertEquals("test 'parse float/double string (1/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
+				new Double(1.7976931348623157E308), new Double(parsedDouble));
+		parsedDouble = Double.parseDouble("4.9E-324");
+		assertEquals("test 'parse float/double string (2/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
+				new Double(4.9E-324), new Double(parsedDouble));
+		parsedDouble = Double.parseDouble(
+				"8456452315484210000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009999999999999999999999999999999999999999999999999999999999999999040.005460000000000E-512");
+		assertEquals("test 'parse float/double string (3/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
+				new Double(8.4E-323d), new Double(parsedDouble));
+		parsedFloat = Float.parseFloat("7.56042114E-33");
+		assertEquals("test 'parse float/double string (4/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
+				new Float(7.56042114E-33f), new Float(parsedFloat));
+		parsedFloat = Float.parseFloat("3.71806751E-19");
+		assertEquals("test 'parse float/double string (5/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
+				new Float(3.71806751E-19f), new Float(parsedFloat));
+		parsedFloat = Float.parseFloat("7.99279006E37");
+		assertEquals("test 'parse float/double string (6/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
+				new Float(7.99279006E37f), new Float(parsedFloat));
+		parsedFloat = Float.parseFloat("2.27187279E-38");
+		assertEquals("test 'parse float/double string (7/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
+				new Float(2.27187279E-38f), new Float(parsedFloat));
+		parsedDouble = Double.parseDouble("1.7976931348623157E308");
+		assertEquals("test 'parse float/double string (8/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
+				new Double(1.7976931348623157E308), new Double(parsedDouble));
+		String strDouble = Double.toString(2.4375d);
+		assertEquals("test 'double to string (9/10)': sprintf " + INVALID_C_FUNCTION_MESSAGE, "2.4375", strDouble);
+		parsedDouble = Double.parseDouble("4.9E-324");
+		assertEquals("test 'parse float/double string (10/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
+				new Double(4.9E-324), new Double(parsedDouble));
+
+	}
+
+	/**
 	 * Tests that the <code>LLMJVM_IMPL_getCurrentTime</code> implementation always increases.
 	 */
 	@Test
