@@ -40,6 +40,11 @@ public class MicroejCoreValidation {
 	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
 	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
 	private static final String OPTION_MONOTONIC_CHECK_NB_SECONDS = "monotonic.time.check.seconds";
+	/**
+	 * Option that specifies the maximum allowed value for the duration of a clock tick. The higher this value is the
+	 * lower the allowed clock resolution will be.
+	 */
+	private static final String OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS = "max.allowed.clock.tick.duration.milliseconds";
 
 	private static final String INVALID_C_FUNCTION_MESSAGE = "C function not correctly implemented (check your libc configuration)";
 	private static final String INCOHERENT_FPU_MESSAGE = "FPU option is not coherent between MicroEJ Platform and BSP";
@@ -612,6 +617,77 @@ public class MicroejCoreValidation {
 		}
 		System.out.println();
 
+	}
+
+	/**
+	 * Checks LLMJVM_IMPL_getCurrentTime() clock tick duration.
+	 */
+	@Test
+	public void testSystemCurrentTimeClockTick() {
+		System.out.println(
+				"-> Check current time clock tick duration (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_getTimeNanos)...");
+		final long precisionLimitMs = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, 20, "milliseconds");
+
+		long t0;
+		long t1;
+		long precision;
+
+		// Check LLMJVM_IMPL_getCurrentTime
+		t0 = System.currentTimeMillis();
+		while ((t1 = System.currentTimeMillis()) == t0) {
+		}
+		precision = t1 - t0;
+		System.out.println("Estimated LLMJVM_IMPL_getCurrentTime clock tick is " + precision + " ms.");
+		assertTrue("LLMJVM_IMPL_getCurrentTime timer precision (" + precision
+				+ " ms) is lower than the expected limit (" + precisionLimitMs + " ms)", precision <= precisionLimitMs);
+
+		// Check LLMJVM_IMPL_getTimeNanos
+		t0 = System.nanoTime();
+		t1 = System.nanoTime();
+		if (t0 != t1) {
+			// Time to call nanoTime is longer than the clock tick.
+			// Cannot compute exact precision, just print this result
+			System.out.println("Estimated LLMJVM_IMPL_getTimeNanos clock tick is lower than " + (t1 - t0) + " ns.");
+		} else {
+			t0 = System.nanoTime();
+			while ((t1 = System.nanoTime()) == t0) {
+
+			}
+			precision = t1 - t0;
+			long precisionLimitNs = precisionLimitMs * 1000000l;
+			System.out.println("Estimated LLMJVM_IMPL_getTimeNanos clock tick is " + precision + " ns.");
+			assertTrue("LLMJVM_IMPL_getTimeNanos timer precision (" + precision
+					+ " ns) is lower than the expected limit (" + precisionLimitMs + " ns)",
+					precision <= precisionLimitNs);
+		}
+
+	}
+
+	/**
+	 * Checks LLMJVM_IMPL_scheduleRequest() clock tick duration.
+	 */
+	@Test
+	public void testScheduleRequestClockTick() {
+		System.out.println("-> Check schedule request clock tick duration (LLMJVM_IMPL_scheduleRequest)...");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, 20, "milliseconds");
+		try {
+			// Execute a first sleep just to end the current clock cycle.
+			// Following operations will start at the beginning of the next clock cycle.
+			Thread.sleep(1);
+			long t0 = System.currentTimeMillis();
+			Thread.sleep(1);
+			long t1 = System.currentTimeMillis();
+
+			long precision = t1 - t0;
+			System.out.println("Estimated LLMJVM_IMPL_scheduleRequest clock tick is " + precision + " ms.");
+			assertTrue(
+					"LLMJVM_IMPL_scheduleRequest timer precision (" + precision
+							+ " ms) is lower than the expected limit (" + precisionLimit + " ms)",
+					precision <= precisionLimit);
+
+		} catch (InterruptedException e) {
+			throw new Error();
+		}
 	}
 
 	/**

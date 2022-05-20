@@ -18,6 +18,7 @@ Added
 - Test Thread.sleep() with max number of milliseconds (Long.MAX_VALUE) does not cause an infinite loop in the MicroEJ Core due to time conversion overflow.
 - Add check for ``LLMJVM_IMPL_getCurrentTime``, which should not go back in time.
 - Add check for C malloc heap configuration which can be used when parsing float.
+- Add check of ``LLMJVM_IMPL_scheduleRequest``, ``LLMJVM_IMPL_getCurrentTime``, and ``LLMJVM_IMPL_getTimeNanos`` precision
 
 Changed
 ~~~~~~~
