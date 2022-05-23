@@ -8,7 +8,7 @@ Filesystem Test Suite
 *********************
 
 This folder contains a ready-to-use project for testing `File System <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`_ implementations on a device.
-This test suite will typically test file and directory creation, access permissions, and file content read/write...
+This Test Suite will typically test file and directory creation, access permissions, and file content read/write...
 
 Specifications
 --------------
