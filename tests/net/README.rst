@@ -3,9 +3,9 @@
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-*********************
-MicroEJ NET Testsuite
-*********************
+******************************
+Network Core Engine Test Suite
+******************************
 
 This folder contains a ready-to-use project for testing the `Network Core Engine <https://docs.microej.com/en/latest/PlatformDeveloperGuide/networkCoreEngine.html>`_ implementation on a device.
 This Test Suite will typically create TCP sockets, UDP sockets, test client side and server side...
