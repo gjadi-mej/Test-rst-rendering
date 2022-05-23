@@ -32,6 +32,7 @@ A Test Suite Project requires configurations:
 - Check `Application Options <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
   By default, options are initialized with suitable values to successfully execute the whole Test Suite and should not be changed.
   However in some particular cases, you can adjust Test Suite specific options or memory settings.
+  Please refer to the section named ``Test Suite Properties`` in the ``README`` of the specific Test Suite.
   
 Execution
 ---------
