@@ -27,18 +27,18 @@ to determine the FS Test Suite module version.
 Requirements
 -------------
 
--  See Platform Test Suites `documentation <../../README.rst>`_.
+-  See Platform Test Suites `documentation <../README.rst>`_.
 
 Usage
 -----
 
 -  In MicroEJ SDK, import the ``java-testsuite-runner-fs`` project in your workspace.
--  Follow the configuration and execution steps described in Platform Test Suites `documentation <../../README.rst>`_.
+-  Follow the configuration and execution steps described in Platform Test Suites `documentation <../README.rst>`_.
 
 Troubleshooting
 ---------------
 
-See Platform Test Suites `documentation <../../README.rst>`_.
+See Platform Test Suites `documentation <../README.rst>`_.
 
 Source Code
 -----------
