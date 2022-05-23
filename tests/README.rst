@@ -22,10 +22,10 @@ A Test Suite Project requires configurations:
 
 - In MicroEJ SDK, import the Test Suite Project in your workspace.
 - Create the local ``config.properties`` file. Copy the ``config.properties.tpl`` to ``config.properties``.
--  Open the ``config.properties`` file.
--  Fill the options marked as ``[required]``, particularly:
+- Open the ``config.properties`` file.
+- Fill the options marked as ``[required]``, particularly:
 
-  -   Target Platform: set ``target.platform.dir`` to the absolute path of the Platform being tested (the parent folder of the ``release.properties`` file and the platform sources, see `Setup a Platform for Tests <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/testsuite.html#setup-a-platform-for-tests>`__),
+  - Target Platform: set ``target.platform.dir`` to the absolute path of the Platform being tested (the parent folder of the ``release.properties`` file and the platform sources, see `Setup a Platform for Tests <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/testsuite.html#setup-a-platform-for-tests>`__),
   - `BSP Connection <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`_: check the Platform specific documentation to get the kind of configured BSP connection.
   - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
 
