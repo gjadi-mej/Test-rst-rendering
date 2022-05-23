@@ -30,14 +30,14 @@ A Test Suite Project requires configurations:
   - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
 
 - Check `Application Options <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
-  By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
-  However in some particular cases, you can adjust test suite specific options or memory settings.
+  By default, options are initialized with suitable values to successfully execute the whole Test Suite and should not be changed.
+  However in some particular cases, you can adjust Test Suite specific options or memory settings.
   
 Execution
 ---------
   
 - Right-click on the Test Suite Project and click on ``Build Module``.
-- Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
+- Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about Test Suites and how to get reports.
 
 Troubleshooting
 ---------------
@@ -52,7 +52,7 @@ The following error indicates that no output have been seen by the
 
 - Ensure that the COM port configured for the ``Serial To Socket`` tool is
   correct.
-- Refers to the documentation of your Platform for how to connect the output traces to the test suite engine.
+- Refers to the documentation of your Platform for how to connect the output traces to the Test Suite engine.
 
 .. code-block::
 
@@ -111,12 +111,12 @@ Could not connect to localhost:5555
   the port 5555.  The host and port properties used by the Test Suite
   Engine are configured in ``config.properties``.
 
-The test suite runs but some tests are failing
+The Test Suite runs but some tests are failing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Ensure the Low Level Implementations tested by the test suite are
+- Ensure the Low Level Implementations tested by the Test Suite are
   correctly implemented.
-- Check your Platform documentation on test suites. The Platform may already
+- Check your Platform documentation on Test Suites. The Platform may already
   provide specific configuration (``config.properties`` and
   ``microej-testsuite-common.properties``) with some test filters (limitations or known issues).
 
