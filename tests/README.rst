@@ -40,6 +40,16 @@ Execution
 - Right-click on the Test Suite Project and click on ``Build Module``.
 - Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about Test Suites and how to get reports.
 
+Source Code Navigation
+----------------------
+
+The source code of tests is searchable:
+
+1. Download a Test Suite Module: For example `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the Test Suite module version).
+2. Unzip the Test Suite ``RIP``: For example ``fs-testsuite-[version].rip`` (it is a standard zip file).
+3. Open the Java archive (JAR): For example ``/content/javaLibs/fs-testsuite-[version].jar/``.
+4. Open expected test: For example ``/com/microej/fs/tests/constructors/TestFileInputStream.java``.
+
 Troubleshooting
 ---------------
 
