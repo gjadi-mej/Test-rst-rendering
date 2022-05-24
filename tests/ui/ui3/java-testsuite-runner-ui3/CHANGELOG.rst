@@ -21,6 +21,7 @@ Changed
 ~~~~~~~
 
 - Reformat to use standard MicroEJ Test Suite flow.
+- Update the test ``testBackBufferRestore`` to be compliant with round displays and displays with specific pixels on corners.
 
 .. _100---2021-04-20:
 
