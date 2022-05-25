@@ -109,7 +109,7 @@ This copy is often performed by a hardware DMA.
 
 If the copy is not performed or if the MicroUI Graphics Engine is notified too early (before or during the copy), this test fails: the new back buffer content does not contain the previous drawing.
 
-This test can fail because the display is round or has specific pixels at corners. In this case, please set the property ``area.offset`` to avoid unwanted areas of the frame buffer.
+This test may fail because the display is round or has irrelevant pixels in the corners. In this case, please set the ``area.offset`` property to avoid unwanted areas of the frame buffer.
 This property can be set in a file `System.properties.list` with the prefix ``com.microej.ui.tests.``. For example ``com.microej.ui.tests.area.offset=30``.
 
 Flush Time

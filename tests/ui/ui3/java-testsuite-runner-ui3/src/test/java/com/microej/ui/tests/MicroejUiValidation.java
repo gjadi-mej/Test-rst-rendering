@@ -39,8 +39,10 @@ public class MicroejUiValidation {
 	private static final int DEFAULT_TIME_TEST_SECONDS = 10;
 
 	/**
-	 * Property to set a smaller area of test than the screen's size. Relevant if the display is round or if pixels at
-	 * corners got a specific treatment; default value is 0.
+	 * Property to define a test area smaller than the size of the display. Relevant if it is a round display or if the
+	 * pixels at the corners have been given special treatment. The default value is 0.
+	 *
+	 * @see testBackBufferRestore
 	 */
 	private static final String OPTION_TEST_AREA_OFFSET = "area.offset";
 	private static final int DEFAULT_TEST_AREA_OFFSET = 0;
@@ -311,8 +313,8 @@ public class MicroejUiValidation {
 		// flushed backbuffer: a black rectangle. If the color is not black,
 		// it means the post copy has not been performed or not fully done.
 
-		checkSquarePixels(g, "[A] testBackBufferRestore at ", areaOffset, areaOffset, displayWidth - areaOffset - 1,
-				displayHeight - areaOffset - 1, display.getDisplayColor(Colors.BLACK));
+		checkAreaCorners(g, "[A] testBackBufferRestore at ", areaOffset, areaOffset, displayWidth - areaOffset - 1,
+				displayHeight - areaOffset - 1, Colors.BLACK);
 
 		// draw in all back buffer and flush it
 		g.setColor(Colors.WHITE);
@@ -330,39 +332,41 @@ public class MicroejUiValidation {
 		// here: the copy after a flush has to restore the content of
 		// flushed backbuffer: a black rectangle in the middle of white background.
 
-		checkSquarePixels(g, "[B] testBackBufferRestore at ", areaOffset, areaOffset, displayWidth - areaOffset - 1,
-				displayHeight - areaOffset - 1, display.getDisplayColor(Colors.WHITE));
+		checkAreaCorners(g, "[B] testBackBufferRestore at ", areaOffset, areaOffset, displayWidth - areaOffset - 1,
+				displayHeight - areaOffset - 1, Colors.WHITE);
 
-		checkSquarePixels(g, "[C] testBackBufferRestore at ", areaOffset + offset, areaOffset + offset,
-				displayWidth - areaOffset - offset - 1, displayHeight - areaOffset - offset - 1,
-				display.getDisplayColor(Colors.BLACK));
+		checkAreaCorners(g, "[C] testBackBufferRestore at ", areaOffset + offset, areaOffset + offset,
+				displayWidth - areaOffset - offset - 1, displayHeight - areaOffset - offset - 1, Colors.BLACK);
 
 	}
 
 	/**
 	 * Compares the color of pixels at each corner of a rectangle with coordinates given in parameters.
 	 */
-	void checkSquarePixels(GraphicsContext g, String msgTest, int recStartX, int recStartY, int recEndX, int recEndY,
-			int color) {
+	private void checkAreaCorners(GraphicsContext g, String msgTest, int recStartX, int recStartY, int recEndX,
+			int recEndY, int expectedColor) {
+
+		Display display = Display.getDisplay();
+		int displayColor = display.getDisplayColor(expectedColor);
 
 		boolean successful = false;
 		try {
 			String assertMessage = msgTest + String.valueOf(recStartX) + "," + String.valueOf(recStartY);
-			assertEquals(assertMessage, color, g.readPixel(recStartX, recStartY) & 0xffffff);
+			assertEquals(assertMessage, displayColor, g.readPixel(recStartX, recStartY) & 0xffffff);
 
 			assertMessage = msgTest + String.valueOf(recEndX) + "," + String.valueOf(recStartY);
-			assertEquals(assertMessage, color, g.readPixel(recEndX, recStartY) & 0xffffff);
+			assertEquals(assertMessage, displayColor, g.readPixel(recEndX, recStartY) & 0xffffff);
 
 			assertMessage = msgTest + String.valueOf(recStartX) + "," + String.valueOf(recEndY);
-			assertEquals(assertMessage, color, g.readPixel(recStartX, recEndY) & 0xffffff);
+			assertEquals(assertMessage, displayColor, g.readPixel(recStartX, recEndY) & 0xffffff);
 
 			assertMessage = msgTest + String.valueOf(recEndX) + "," + String.valueOf(recEndY);
-			assertEquals(assertMessage, color, g.readPixel(recEndX, recEndY) & 0xffffff);
+			assertEquals(assertMessage, displayColor, g.readPixel(recEndX, recEndY) & 0xffffff);
 			successful = true;
 		} finally {
 			if (!successful) {
 				System.out.println(
-						"If an exception occurs here, it's because you may have a round screen or specific corners on your display. \nPlease, configure the property \""
+						"If an exception occurs here, it is because you may have a round display or irrelevant corners on your display. \nPlease, configure the property \""
 								+ PROPERTY_SUFFIX + OPTION_TEST_AREA_OFFSET + "\".");
 			}
 		}
