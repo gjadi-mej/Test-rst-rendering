@@ -163,11 +163,13 @@ Expected Results
    OK: testParseFP
    -> Check floating-point formatter...
    OK: testFormatFP
+   -> Check parsing a string as a double ; in some systems such operations may allocate memory in the C heap (strtod, strtof, malloc implementation)...
+   OK: testParseDoubleStringHeap
    Property 'com.microej.core.tests.monotonic.time.check.seconds' is not set (default to '60' seconds)
    -> Check monotonic time consistency for 60 seconds (LLMJVM_IMPL_getCurrentTime)...
    .............................
    OK: testMonotonicTimeIncreases
-   PASSED: 10   
+   PASSED: 11   
    VM END (exit code = 0)
 
 --------------
