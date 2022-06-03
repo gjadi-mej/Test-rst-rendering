@@ -37,35 +37,35 @@ See `FS Readme <tests/fs/README.rst>`_
 Network Core Engine Test Suite
 ------------------------------
 
-The NET Test Suite is a Java Suite. It checks the implementation of the ``LLNET`` APIs.
+The NET Test Suite is a Java Test Suite. It checks the implementation of the ``LLNET`` APIs.
 
 See `Network Core Engine Readme <tests/net/README.rst>`_
 
 SSL Test Suite
 --------------
 
-The SSL Test Suite is a Java Suite. It checks the implementation of the ``LLNET_SSL`` APIs.
+The SSL Test Suite is a Java Test Suite. It checks the implementation of the ``LLNET_SSL`` APIs.
 
 See `SSL Readme <tests/ssl/README.rst>`_
 
 SECURITY Test Suite
 --------------
 
-The SECURITY Test Suite is a Java Suite.
+The SECURITY Test Suite is a Java Test Suite.
 
 See `SECURITY Readme <tests/security/README.rst>`_
 
 WatchdogTimer Test Suite
 -------------------------
 
-The WatchdogTimer Test Suite is a Java Suite. It checks the implementation of the ``LLWATCHDOG_TIMER`` APIs.
+The WatchdogTimer Test Suite is a Java Test Suite. It checks the implementation of the ``LLWATCHDOG_TIMER`` APIs.
 
 See `WatchdogTimer Readme <tests/watchdog-timer/README.rst>`_
 
 ECOM-WIFI Test Suite
 --------------------
 
-The ECOM-WIFI Test Suite is a Java Suite.
+The ECOM-WIFI Test Suite is a Java Test Suite.
 
 See `ECOM-WIFI Readme <tests/ecom-wifi/README.rst>`_
 
