@@ -39,3 +39,13 @@ Troubleshooting
 ---------------
 
 See Platform Test Suites `documentation <../README.rst>`_.
+
+Source Code
+-----------
+
+The source code of the tests is available in the module.
+
+1. Download the Test Suite Module `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the FS Test Suite module version).
+2. Unzip the ``RIP`` (it is zip file) of the Test Suite ``fs-testsuite-[version].rip``.
+3. Open the Java archive ``JAR`` (it is a zip file) ``/content/javaLibs/fs-testsuite-[version].jar/``.
+4. Open the desired test, for instance : ``/com/microej/fs/tests/constructors/TestFileInputStream.java``.

@@ -40,15 +40,15 @@ Execution
 - Right-click on the Test Suite Project and click on ``Build Module``.
 - Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about Test Suites and how to get reports.
 
-Test Suite Navigation
----------------------
+Test Suite Source Code Navigation
+---------------------------------
 
 The README, CHANGELOG and source code of each Test Suite is available online:
 
-1. Find a Test Suite Module: For example `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the Test Suite module version).
-2. Unzip the Test Suite ``RIP``: For example ``fs-testsuite-[version].rip`` (it is a standard zip file).
-3. Open the Java archive (JAR): For example ``/content/javaLibs/fs-testsuite-[version].jar/``.
-4. Open expected test: For example ``/com/microej/fs/tests/constructors/TestFileInputStream.java``.
+1. Download the desired Test Suite Module: For example `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the Test Suite module version).
+2. Unzip the Test Suite ``RIP`` (it is a zip file): For example ``fs-testsuite-[version].rip``.
+3. Open the Java archive ``JAR`` (it is a zip file): For example ``/content/javaLibs/fs-testsuite-[version].jar/``.
+4. Open the desired test: For example ``/com/microej/fs/tests/constructors/TestFileInputStream.java``.
 
 Troubleshooting
 ---------------
