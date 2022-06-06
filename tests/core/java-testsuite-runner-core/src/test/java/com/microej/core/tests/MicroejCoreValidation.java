@@ -526,12 +526,14 @@ public class MicroejCoreValidation {
 		System.out.println("-> Check floating-point parser...");
 
 		float parsedFloat = Float.parseFloat("1234.5");
-		assertEquals("test 'parse float string': strtof " + INVALID_C_FUNCTION_MESSAGE, new Float(1234.5f),
-				new Float(parsedFloat));
+		float expectedFloat = 1234.5f;
+		assertEquals("test 'parse float string': strtof " + INVALID_C_FUNCTION_MESSAGE, expectedFloat, parsedFloat,
+				getAssertFloatDelta(expectedFloat));
 
 		double parsedDouble = Double.parseDouble("1234.5");
-		assertEquals("test 'parse double string': strtod " + INVALID_C_FUNCTION_MESSAGE, new Double(1234.5d),
-				new Double(parsedDouble));
+		double expectedDouble = 1234.5;
+		assertEquals("test 'parse double string': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble, parsedDouble,
+				getAssertDoubleDelta(expectedDouble));
 	}
 
 	/**
@@ -557,56 +559,72 @@ public class MicroejCoreValidation {
 				"-> Check parsing a string as a double ; in some systems such operations may allocate memory in the C heap (strtod, strtof, malloc implementation)...");
 
 		double parsedDouble;
+		double expectedDouble;
 		float parsedFloat;
+		float expectedFloat;
 		parsedDouble = Double.parseDouble("1.7976931348623157E308");
-		double delta = 1.7976931348623157E308 * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (1/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
-				new Double(1.7976931348623157E308).doubleValue(), new Double(parsedDouble).doubleValue(), delta);
+		expectedDouble = 1.7976931348623157E308;
+		assertEquals("test 'parse float/double string (1/10)': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble,
+				parsedDouble, getAssertDoubleDelta(expectedDouble));
 
 		parsedDouble = Double.parseDouble("4.9E-324");
-		delta = 4.9E-324 * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (2/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
-				new Double(4.9E-324).doubleValue(), new Double(parsedDouble).doubleValue(), delta);
+		expectedDouble = 4.9E-324;
+		assertEquals("test 'parse float/double string (2/10)': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble,
+				parsedDouble, getAssertDoubleDelta(expectedDouble));
 
 		parsedDouble = Double.parseDouble(
 				"8456452315484210000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009999999999999999999999999999999999999999999999999999999999999999040.005460000000000E-512");
-		delta = 8.4E-323d * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (3/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
-				new Double(8.4E-323d).doubleValue(), new Double(parsedDouble).doubleValue(), delta);
+		expectedDouble = 8.4E-323d;
+		assertEquals("test 'parse float/double string (3/10)': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble,
+				parsedDouble, getAssertDoubleDelta(expectedDouble));
 
 		parsedFloat = Float.parseFloat("7.56042114E-33");
-		delta = 7.56042114E-33f * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (4/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
-				new Float(7.56042114E-33f).floatValue(), new Float(parsedFloat).floatValue(), (float) delta);
+		expectedFloat = 7.56042114E-33f;
+		assertEquals("test 'parse float/double string (4/10)': strtof " + INVALID_C_FUNCTION_MESSAGE, expectedFloat,
+				parsedFloat, getAssertFloatDelta(expectedFloat));
 
 		parsedFloat = Float.parseFloat("3.71806751E-19");
-		delta = 3.71806751E-19f * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (5/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
-				new Float(3.71806751E-19f).floatValue(), new Float(parsedFloat).floatValue(), (float) delta);
+		expectedFloat = 3.71806751E-19f;
+		assertEquals("test 'parse float/double string (5/10)': strtof " + INVALID_C_FUNCTION_MESSAGE, expectedFloat,
+				parsedFloat, getAssertFloatDelta(expectedFloat));
 
 		parsedFloat = Float.parseFloat("7.99279006E37");
-		delta = 7.99279006E37f * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (6/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
-				new Float(7.99279006E37f).floatValue(), new Float(parsedFloat).floatValue(), (float) delta);
+		expectedFloat = 7.99279006E37f;
+		assertEquals("test 'parse float/double string (6/10)': strtof " + INVALID_C_FUNCTION_MESSAGE, expectedFloat,
+				parsedFloat, getAssertFloatDelta(expectedFloat));
 
 		parsedFloat = Float.parseFloat("2.27187279E-38");
-		delta = 2.27187279E-38f * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (7/10)': strtof " + INVALID_C_FUNCTION_MESSAGE,
-				new Float(2.27187279E-38f).floatValue(), new Float(parsedFloat).floatValue(), (float) delta);
+		expectedFloat = 2.27187279E-38f;
+		assertEquals("test 'parse float/double string (7/10)': strtof " + INVALID_C_FUNCTION_MESSAGE, expectedFloat,
+				parsedFloat, getAssertFloatDelta(expectedFloat));
 
 		parsedDouble = Double.parseDouble("1.7976931348623157E308");
-		delta = 1.7976931348623157E308 * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (8/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
-				new Double(1.7976931348623157E308).doubleValue(), new Double(parsedDouble).doubleValue(), delta);
+		expectedDouble = 1.7976931348623157E308;
+		assertEquals("test 'parse float/double string (8/10)': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble,
+				parsedDouble, getAssertDoubleDelta(expectedDouble));
 
 		String strDouble = Double.toString(2.4375d);
 		assertEquals("test 'double to string (9/10)': sprintf " + INVALID_C_FUNCTION_MESSAGE, "2.4375", strDouble);
 
 		parsedDouble = Double.parseDouble("4.9E-324");
-		delta = 4.9E-324 * FLOAT_COMPARISON_TOLERANCE_PERCENT;
-		assertEquals("test 'parse float/double string (10/10)': strtod " + INVALID_C_FUNCTION_MESSAGE,
-				new Double(4.9E-324).doubleValue(), new Double(parsedDouble).doubleValue(), delta);
+		expectedDouble = 4.9E-324;
+		assertEquals("test 'parse float/double string (10/10)': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble,
+				parsedDouble, getAssertDoubleDelta(expectedDouble));
 
+	}
+
+	/**
+	 * From expected double value, returns the delta value to use when comparing two doubles.
+	 */
+	private static double getAssertDoubleDelta(double expectedResult) {
+		return expectedResult * FLOAT_COMPARISON_TOLERANCE_PERCENT;
+	}
+
+	/**
+	 * From expected float value, returns the delta value to use when comparing two floats.
+	 */
+	private static float getAssertFloatDelta(float expectedResult) {
+		return expectedResult * FLOAT_COMPARISON_TOLERANCE_PERCENT;
 	}
 
 	/**
