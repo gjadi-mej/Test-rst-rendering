@@ -45,14 +45,12 @@ public class MicroejCoreValidation {
 	 * lower the allowed clock resolution will be.
 	 */
 	private static final String OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS = "max.allowed.clock.tick.duration.milliseconds";
+	private static final int DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS = 20;
 
 	private static final String INVALID_C_FUNCTION_MESSAGE = "C function not correctly implemented (check your libc configuration)";
 	private static final String INCOHERENT_FPU_MESSAGE = "FPU option is not coherent between MicroEJ Platform and BSP";
 
 	private static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
-
-	// Time constants
-	private static final int MAX_SLEEP_DELTA = 10;
 
 	// Round Robin constants
 	private static final int NB_THREADS = 4;
@@ -245,6 +243,8 @@ public class MicroejCoreValidation {
 	@Test
 	public void testVisibleClock() {
 		System.out.println("-> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
 		int defaultNbSeconds = 10;
 		int nbSeconds = getOptionAsInt(OPTION_CLOCK_NB_SECONDS, defaultNbSeconds, "second");
 
@@ -270,11 +270,11 @@ public class MicroejCoreValidation {
 		long timeEnd1 = System.currentTimeMillis();
 		long timeEnd2 = Util.platformTimeMillis();
 		long delta = timeEnd2 - timeEnd1;
-		assertTrue("Util.platformTimeMillis() != System.currentTimeMillis()", delta <= MAX_SLEEP_DELTA);
+		assertTrue("Util.platformTimeMillis() != System.currentTimeMillis()", delta <= precisionLimit);
 
 		// ensure nano time is valid
 		delta = (Util.platformTimeNanos() / 1000000) - Util.platformTimeMillis();
-		assertTrue("Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()", delta <= MAX_SLEEP_DELTA);
+		assertTrue("Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()", delta <= precisionLimit);
 	}
 
 	/**
@@ -284,6 +284,8 @@ public class MicroejCoreValidation {
 	public void testTime() {
 		System.out.println(
 				"-> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
 		long delay = 5 * 1000;
 		System.out.println("Waiting for " + delay / 1000 + "s...");
 		long timeBefore = System.currentTimeMillis();
@@ -297,7 +299,7 @@ public class MicroejCoreValidation {
 		long realDelay = timeAfter - timeBefore;
 		assertTrue("realDelay>=delay", realDelay >= delay);
 		long delta = realDelay - delay;
-		assertTrue("delta(=" + delta + ")<=" + MAX_SLEEP_DELTA, delta <= MAX_SLEEP_DELTA);
+		assertTrue("delta(=" + delta + ")<=" + precisionLimit, delta <= precisionLimit);
 	}
 
 	/**
@@ -626,7 +628,8 @@ public class MicroejCoreValidation {
 	public void testSystemCurrentTimeClockTick() {
 		System.out.println(
 				"-> Check current time clock tick duration (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_getTimeNanos)...");
-		final long precisionLimitMs = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, 20, "milliseconds");
+		final long precisionLimitMs = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
 
 		long t0;
 		long t1;
@@ -669,7 +672,8 @@ public class MicroejCoreValidation {
 	@Test
 	public void testScheduleRequestClockTick() {
 		System.out.println("-> Check schedule request clock tick duration (LLMJVM_IMPL_scheduleRequest)...");
-		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, 20, "milliseconds");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
 		try {
 			// Execute a first sleep just to end the current clock cycle.
 			// Following operations will start at the beginning of the next clock cycle.
