@@ -622,7 +622,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Checks LLMJVM_IMPL_getCurrentTime() clock tick duration.
+	 * Checks {@code LLMJVM_IMPL_getCurrentTime()} and {@code LLMJVM_IMPL_getTimeNanos()} clock tick duration.
 	 */
 	@Test
 	public void testSystemCurrentTimeClockTick() {
@@ -667,7 +667,7 @@ public class MicroejCoreValidation {
 	}
 
 	/**
-	 * Checks LLMJVM_IMPL_scheduleRequest() clock tick duration.
+	 * Checks {@code LLMJVM_IMPL_scheduleRequest()} clock tick duration.
 	 */
 	@Test
 	public void testScheduleRequestClockTick() {
