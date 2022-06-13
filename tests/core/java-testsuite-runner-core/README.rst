@@ -121,7 +121,16 @@ In MicroEJ SDK,
    -> Check monotonic time consistency for 60 seconds (LLMJVM_IMPL_getCurrentTime)...
    .............................
    OK: testMonotonicTimeIncreases
-   PASSED: 11
+   -> Check current time clock tick duration (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_getTimeNanos)...
+   Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
+   Estimated LLMJVM_IMPL_getCurrentTime clock tick is 1 ms.
+   Estimated LLMJVM_IMPL_getTimeNanos clock tick is lower than 30518 ns.
+   OK: testSystemCurrentTimeClockTick
+   -> Check schedule request clock tick duration (LLMJVM_IMPL_scheduleRequest)...
+   Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
+   Estimated LLMJVM_IMPL_scheduleRequest clock tick is 1 ms.
+   OK: testScheduleRequestClockTick
+   PASSED: 13
    VM END (exit code = 0)
 
 

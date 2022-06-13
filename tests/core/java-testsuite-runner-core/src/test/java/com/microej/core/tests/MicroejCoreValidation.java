@@ -40,14 +40,17 @@ public class MicroejCoreValidation {
 	private static final String PROPERTY_SUFFIX = "com.microej.core.tests.";
 	private static final String OPTION_CLOCK_NB_SECONDS = "clock.seconds";
 	private static final String OPTION_MONOTONIC_CHECK_NB_SECONDS = "monotonic.time.check.seconds";
+	/**
+	 * Option that specifies the maximum allowed value for the duration of a clock tick. The higher this value is the
+	 * lower the allowed clock resolution will be.
+	 */
+	private static final String OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS = "max.allowed.clock.tick.duration.milliseconds";
+	private static final int DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS = 20;
 
 	private static final String INVALID_C_FUNCTION_MESSAGE = "C function not correctly implemented (check your libc configuration)";
 	private static final String INCOHERENT_FPU_MESSAGE = "FPU option is not coherent between MicroEJ Platform and BSP";
 
 	private static Class<MicroejCoreValidation> THIS_CLASS = MicroejCoreValidation.class;
-
-	// Time constants
-	private static final int MAX_SLEEP_DELTA = 10;
 
 	// Round Robin constants
 	private static final int NB_THREADS = 4;
@@ -240,6 +243,8 @@ public class MicroejCoreValidation {
 	@Test
 	public void testVisibleClock() {
 		System.out.println("-> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
 		int defaultNbSeconds = 10;
 		int nbSeconds = getOptionAsInt(OPTION_CLOCK_NB_SECONDS, defaultNbSeconds, "second");
 
@@ -265,11 +270,11 @@ public class MicroejCoreValidation {
 		long timeEnd1 = System.currentTimeMillis();
 		long timeEnd2 = Util.platformTimeMillis();
 		long delta = timeEnd2 - timeEnd1;
-		assertTrue("Util.platformTimeMillis() != System.currentTimeMillis()", delta <= MAX_SLEEP_DELTA);
+		assertTrue("Util.platformTimeMillis() != System.currentTimeMillis()", delta <= precisionLimit);
 
 		// ensure nano time is valid
 		delta = (Util.platformTimeNanos() / 1000000) - Util.platformTimeMillis();
-		assertTrue("Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()", delta <= MAX_SLEEP_DELTA);
+		assertTrue("Util.platformTimeNanos()/1000000 != Util.platformTimeMillis()", delta <= precisionLimit);
 	}
 
 	/**
@@ -279,6 +284,8 @@ public class MicroejCoreValidation {
 	public void testTime() {
 		System.out.println(
 				"-> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
 		long delay = 5 * 1000;
 		System.out.println("Waiting for " + delay / 1000 + "s...");
 		long timeBefore = System.currentTimeMillis();
@@ -292,7 +299,7 @@ public class MicroejCoreValidation {
 		long realDelay = timeAfter - timeBefore;
 		assertTrue("realDelay>=delay", realDelay >= delay);
 		long delta = realDelay - delay;
-		assertTrue("delta(=" + delta + ")<=" + MAX_SLEEP_DELTA, delta <= MAX_SLEEP_DELTA);
+		assertTrue("delta(=" + delta + ")<=" + precisionLimit, delta <= precisionLimit);
 	}
 
 	/**
@@ -612,6 +619,79 @@ public class MicroejCoreValidation {
 		}
 		System.out.println();
 
+	}
+
+	/**
+	 * Checks {@code LLMJVM_IMPL_getCurrentTime()} and {@code LLMJVM_IMPL_getTimeNanos()} clock tick duration.
+	 */
+	@Test
+	public void testSystemCurrentTimeClockTick() {
+		System.out.println(
+				"-> Check current time clock tick duration (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_getTimeNanos)...");
+		final long precisionLimitMs = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
+
+		long t0;
+		long t1;
+		long precision;
+
+		// Check LLMJVM_IMPL_getCurrentTime
+		t0 = System.currentTimeMillis();
+		while ((t1 = System.currentTimeMillis()) == t0) {
+		}
+		precision = t1 - t0;
+		System.out.println("Estimated LLMJVM_IMPL_getCurrentTime clock tick is " + precision + " ms.");
+		assertTrue("LLMJVM_IMPL_getCurrentTime timer precision (" + precision
+				+ " ms) is lower than the expected limit (" + precisionLimitMs + " ms)", precision <= precisionLimitMs);
+
+		// Check LLMJVM_IMPL_getTimeNanos
+		t0 = System.nanoTime();
+		t1 = System.nanoTime();
+		if (t0 != t1) {
+			// Time to call nanoTime is longer than the clock tick.
+			// Cannot compute exact precision, just print this result
+			System.out.println("Estimated LLMJVM_IMPL_getTimeNanos clock tick is lower than " + (t1 - t0) + " ns.");
+		} else {
+			t0 = System.nanoTime();
+			while ((t1 = System.nanoTime()) == t0) {
+
+			}
+			precision = t1 - t0;
+			long precisionLimitNs = precisionLimitMs * 1000000l;
+			System.out.println("Estimated LLMJVM_IMPL_getTimeNanos clock tick is " + precision + " ns.");
+			assertTrue("LLMJVM_IMPL_getTimeNanos timer precision (" + precision
+					+ " ns) is lower than the expected limit (" + precisionLimitMs + " ns)",
+					precision <= precisionLimitNs);
+		}
+
+	}
+
+	/**
+	 * Checks {@code LLMJVM_IMPL_scheduleRequest()} clock tick duration.
+	 */
+	@Test
+	public void testScheduleRequestClockTick() {
+		System.out.println("-> Check schedule request clock tick duration (LLMJVM_IMPL_scheduleRequest)...");
+		final long precisionLimit = getOptionAsInt(OPTION_MAX_ALLOWED_CLOCK_TICK_DURATION_MS,
+				DEFAULT_MAX_ALLOWED_CLOCK_TICK_DURATION_MS, "milliseconds");
+		try {
+			// Execute a first sleep just to end the current clock cycle.
+			// Following operations will start at the beginning of the next clock cycle.
+			Thread.sleep(1);
+			long t0 = System.currentTimeMillis();
+			Thread.sleep(1);
+			long t1 = System.currentTimeMillis();
+
+			long precision = t1 - t0;
+			System.out.println("Estimated LLMJVM_IMPL_scheduleRequest clock tick is " + precision + " ms.");
+			assertTrue(
+					"LLMJVM_IMPL_scheduleRequest timer precision (" + precision
+							+ " ms) is lower than the expected limit (" + precisionLimit + " ms)",
+					precision <= precisionLimit);
+
+		} catch (InterruptedException e) {
+			throw new Error();
+		}
 	}
 
 	/**
