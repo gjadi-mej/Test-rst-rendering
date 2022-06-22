@@ -32,6 +32,11 @@ Remove
 
 - MicroEJ UI Validation: remove the C project.
 
+Fixed
+=====
+
+- SSL test suite dependency name.
+
 2.7.0 -- 2021-07-16
 -------------------
 
