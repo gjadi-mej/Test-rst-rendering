@@ -6,33 +6,25 @@
 Graphical User Interface Test Suite
 ***********************************
 
-Overview
-========
-
 This folder contains sources and projects to check drivers and implementation of LLAPI ``LLUI_DISPLAY_IMPL``.
 
-.. note:: 
-
-   These tests only concern the MicroEJ Platforms made against the MicroEJ UI Packs 13.0.0 and higher.
-   For the older MicroEJ UI packs, see `UI2 Readme <../ui2/README.rst>`_.
-
-All tests can be run in one step: all tests will be executed one by one
-and are run in a specific order, *next one* expects *previous one* is
-passed.
-
-For each test, its configuration and its results are described in a
-dedicated section. See `Quick Start`_ section which resume how to configure the
-tests, how to launch them and the expected results.
+**Note**: These tests only concern the MicroEJ Platforms made against the MicroEJ UI Packs 13.0.0 and higher. For the older MicroEJ UI packs, see `UI2 Readme <../ui2/README.rst>`_.
 
 Additionally, the `Tool-Java-Touch <https://github.com/MicroEJ/Tool-Java-Touch>`_ project
 allows to test the correct behavior of MicroUI in a Java application. 
 
-Quick Start
-===========
+Requirements
+------------
 
-#. Follow the configuration of the `CORE Test Suite <../../core/README.rst>`_.
-#. In the MicroEJ SDK, import the MicroEJ project ``java-testsuite-runner-ui3`` from the folder ``tests/ui/ui3``.
-#. Build this MicroEJ Application against the MicroEJ Platform to qualify.
-#. Build the BSP and link it with the MicroEJ Platform runtime library and MicroEJ Application.
+- See Platform Test Suites `documentation <../../README.rst>`_.
 
+Usage
+-----
+
+Follow `this README.rst<java-testsuite-runner-ui3/README.rst>`_.
+
+Troubleshooting
+---------------
+
+See Platform Test Suites `documentation <../../README.rst>`_.
 

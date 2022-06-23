@@ -11,8 +11,8 @@ Tests are written as JUnit test cases, thus the main entry point is automaticall
 
 Tests can be launched:
 
--  as a standard Application by using a local launcher.
--  as a Platform Test Suite by building the module.
+-  as a standard Application by using a `local launcher<Launcher Mode>`_.
+-  as a Platform Test Suite by `building the module<Platform Test Suite Mode>`_.
 
 Requirements
 ------------
@@ -78,8 +78,12 @@ Platform Test Suite Mode
 
 -  Follow the configuration and execution steps described in Platform Test Suites `documentation <../../README.rst>`_.
 
-Tests Description
------------------
+Tests Suite Description
+-----------------------
+
+All tests can be run in one step: all tests will be executed one by one
+and are run in a specific order, *next one* expects *previous one* is
+passed.
 
 Tearing
 ~~~~~~~
