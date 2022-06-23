@@ -9,10 +9,7 @@ Graphical User Interface Test Suite
 This folder contains a ready-to-use project for testing the `Graphical User Interface<https://docs.microej.com/en/latest/PlatformDeveloperGuide/ui.html>`_ implementation on a device.
 This Test Suite will check the drivers and implementation of LLAPI ``LLDisplay``.
 
-.. note:: 
-
-   These tests only concern the MicroEJ Platforms made against the MicroEJ UI Packs [6.0.0-13.0.0[ (13.0.0 excluded).
-   For the newer MicroEJ UI packs, see `UI3 Readme <../ui3/README.rst>`_ .
+**Note**: These tests only concern the MicroEJ Platforms made against the MicroEJ UI Packs [6.0.0-13.0.0[ (13.0.0 excluded). For the newer MicroEJ UI packs, see `UI3 Readme <../ui3/README.rst>`_ .
 
 Additionally, the `Tool-Java-Touch <https://github.com/MicroEJ/Tool-Java-Touch>`_ project
 allows to test the correct behavior of MicroUI in a Java application. 
