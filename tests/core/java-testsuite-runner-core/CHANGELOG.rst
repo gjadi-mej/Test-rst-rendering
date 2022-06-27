@@ -23,9 +23,10 @@ Added
 Changed
 ~~~~~~~
 
-- Split floating point tests into 3 JUnit tests (FPU, parser, formatter)
+- Split floating-point tests into 3 JUnit tests (FPU, parser, formatter)
   to allow for fine-grained ignored tests list.
 - Reformat to use standard MicroEJ Test Suite flow.
+- Add tolerance on floating-point parsing.
 
 Fixed
 ~~~~~
