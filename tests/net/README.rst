@@ -23,7 +23,7 @@ tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
 <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_
-to determine the NET Test Suite module version.
+to determine the Network Core Engine Test Suite module version.
 
 Requirements
 ------------
