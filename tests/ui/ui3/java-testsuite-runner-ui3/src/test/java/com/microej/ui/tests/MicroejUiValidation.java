@@ -96,7 +96,6 @@ public class MicroejUiValidation {
 	public static void setUpBeforeClass() throws Exception {
 		MicroUI.start();
 		printProduct();
-		// Assert.assertFalse(true);
 	}
 
 	/**

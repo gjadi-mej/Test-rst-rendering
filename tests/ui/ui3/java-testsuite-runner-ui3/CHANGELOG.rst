@@ -16,6 +16,7 @@ Added
 ~~~~~
 
 - Add test `testFlushTime`.
+- Add UI Test Suite dependency.
 
 Changed
 ~~~~~~~
