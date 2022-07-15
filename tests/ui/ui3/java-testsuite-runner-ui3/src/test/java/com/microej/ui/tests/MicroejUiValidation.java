@@ -9,6 +9,7 @@ package com.microej.ui.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -95,6 +96,15 @@ public class MicroejUiValidation {
 	public static void setUpBeforeClass() throws Exception {
 		MicroUI.start();
 		printProduct();
+		// Assert.assertFalse(true);
+	}
+
+	/**
+	 * Stops MicroUI.
+	 */
+	@AfterClass
+	public static void afterClass() {
+		MicroUI.stop();
 	}
 
 	/**
