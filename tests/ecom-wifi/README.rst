@@ -35,6 +35,11 @@ Usage
 - In MicroEJ SDK, import the ``java-testsuite-runner-ecom-wifi`` project in your workspace.
 - Follow the configuration and execution steps described in Platform Test Suites `documentation <../README.rst>`_.
 
+Test Suite Source Code Navigation
+---------------------------------
+
+See Platform Test Suites `documentation <../README.rst>`_.
+
 Troubleshooting
 ---------------
 

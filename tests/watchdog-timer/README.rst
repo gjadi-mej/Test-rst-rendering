@@ -40,6 +40,10 @@ Test Suite Properties
 
 - ``watchdog.timer.testsuite.is.mode.interrupt``: Set this property to true if the watchdog launches an interrupt instead of a reset when watchdog triggers. (default: false)
 
+Test Suite Source Code Navigation
+---------------------------------
+
+See Platform Test Suites `documentation <../README.rst>`_.
 
 Troubleshooting
 ---------------

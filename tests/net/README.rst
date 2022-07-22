@@ -75,6 +75,18 @@ This Test Suite runs network tests from the OpenJDK project. However some of the
 If you platform or implementation does not provide this interface you can skip the OpenJDK tests.
 To do so, add the pattern ``**/openjdk/**/*.class`` to the property ``test.run.excludes.pattern`` in your file ``config.properties``.
 
+Test Suite Source Code Navigation
+---------------------------------
+
+See Platform Test Suites `documentation <../README.rst>`_.
+
+Source code of Test Suite server application is available online: 
+
+1. Download the desired Test Suite Module: For example `com.microej.pack.net#net-1_1-testsuite <https://repository.microej.com/modules/com/microej/pack/net/net-1_1-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the Test Suite module version).
+2. Unzip the Test Suite ``RIP`` (it is a zip file): For example ``net-1_1-testsuite-[version].rip``.
+3. Open the Java archive ``JAR`` (it is a zip file): For example ``/content/resources/net-tests/net-1_1-testsuite-remote.jar/``.
+4. Open the desired test: For example ``/com/microej/net/test/integration/remoteapp/TestServerSocketAccept.java``.
+
 Troubleshooting
 ---------------
 

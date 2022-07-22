@@ -50,6 +50,18 @@ and prefixed by ``microej.java.property.``.
    - ``remoteapp.timeout``: Amount of time (in milliseconds) that the remote test will wait before interrupting its execution.
    - ``microej.ssl.testsuite.ssl.stack``: Property to set to ``mbedtls`` when running tests on platforms with a mbedTLS backend.
 
+Test Suite Source Code Navigation
+---------------------------------
+
+See Platform Test Suites `documentation <../README.rst>`_.
+
+Source code of Test Suite server application is available online: 
+
+1. Download the desired Test Suite Module: For example `com.microej.pack.net#net-ssl-2_2-testsuite <https://repository.microej.com/modules/com/microej/pack/net/net-ssl-2_2-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the Test Suite module version).
+2. Unzip the Test Suite ``RIP`` (it is a zip file): For example ``net-ssl-2_2-testsuite-[version].rip``.
+3. Open the Java archive ``JAR`` (it is a zip file): For example ``/content/resources/ssl-tests/net-ssl-2_2-testsuite-remote.jar/``.
+4. Open the desired test: For example ``/com/microej/ssl/test/remote/TestClientAuthentication_1.java``.
+
 Troubleshooting
 ---------------
 
