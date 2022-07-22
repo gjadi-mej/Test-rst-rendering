@@ -8,7 +8,7 @@ Filesystem Test Suite
 *********************
 
 This folder contains a ready-to-use project for testing `File System <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`_ implementations on a device.
-This test suite will typically test file and directory creation, access permissions, and file content read/write...
+This Test Suite will typically test file and directory creation, access permissions, and file content read/write...
 
 Specifications
 --------------
@@ -27,26 +27,20 @@ to determine the FS Test Suite module version.
 Requirements
 -------------
 
--  See Platform Test Suites `documentation <../../README.rst>`_.
+- See Platform Test Suites `documentation <../README.rst>`_.
 
 Usage
 -----
 
--  In MicroEJ SDK, import the ``java-testsuite-runner-fs`` project in your workspace.
--  Follow the configuration and execution steps described in Platform Test Suites `documentation <../../README.rst>`_.
+- In MicroEJ SDK, import the ``java-testsuite-runner-fs`` project in your workspace.
+- Follow the configuration and execution steps described in Platform Test Suites `documentation <../README.rst>`_.
+
+Test Suite Source Code Navigation
+---------------------------------
+
+- See Platform Test Suites `documentation <../README.rst>`_.
 
 Troubleshooting
 ---------------
 
-See Platform Test Suites `documentation <../../README.rst>`_.
-
-Source Code
------------
-
-The source code of tests is searchable:
-
-1. Download a Test Suite Module: `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the FS Test Suite module version).
-2. Unzip the ``fs-testsuite-[version].rip`` (it is a standard zip file).
-3. Open the Java archive (JAR) ``/content/javaLibs/fs-testsuite-[version].jar/``.
-4. Open expected test, for instance : ``/com/microej/fs/tests/constructors/TestFileInputStream.java``.
-
+See Platform Test Suites `documentation <../README.rst>`_.

@@ -22,22 +22,33 @@ A Test Suite Project requires configurations:
 
 - In MicroEJ SDK, import the Test Suite Project in your workspace.
 - Create the local ``config.properties`` file. Copy the ``config.properties.tpl`` to ``config.properties``.
--  Open the ``config.properties`` file.
--  Fill the options marked as ``[required]``, particularly:
+- Open the ``config.properties`` file.
+- Fill the options marked as ``[required]``, particularly:
 
-  -   Target Platform: set ``target.platform.dir`` to the absolute path of the Platform being tested (the parent folder of the ``release.properties`` file and the platform sources, see `Setup a Platform for Tests <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/testsuite.html#setup-a-platform-for-tests>`__),
+  - Target Platform: set ``target.platform.dir`` to the absolute path of the Platform being tested (the parent folder of the ``release.properties`` file and the platform sources, see `Setup a Platform for Tests <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/testsuite.html#setup-a-platform-for-tests>`__),
   - `BSP Connection <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformCreation.html#bsp-connection>`_: check the Platform specific documentation to get the kind of configured BSP connection.
   - Trace Redirection (if the Platform requires output traces redirection): set options in sync with the Serial to Socket Transmitter options.
 
 - Check `Application Options <https://docs.microej.com/en/latest/ApplicationDeveloperGuide/applicationOptions.html>`_ declared in ``validation/microej-testsuite-common.properties``. 
-  By default, options are initialized with suitable values to successfully execute the whole test suite and should not be changed. 
-  However in some particular cases, you can adjust test suite specific options or memory settings.
+  By default, options are initialized with suitable values to successfully execute the whole Test Suite and should not be changed.
+  However in some particular cases, you can adjust Test Suite specific options or memory settings.
+  Please refer to the section named ``Test Suite Properties`` in the ``README`` of the specific Test Suite.
   
 Execution
 ---------
   
 - Right-click on the Test Suite Project and click on ``Build Module``.
-- Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about test suites and how to get reports.
+- Please refer to `Platform Qualification documentation <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html>`_ to know more about Test Suites and how to get reports.
+
+Test Suite Source Code Navigation
+---------------------------------
+
+The README, CHANGELOG and source code of each Test Suite is available online:
+
+1. Download the desired Test Suite Module: For example `com.microej.pack.fs#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/>`_ (refer to `Platform Qualification Test Suite Versioning <https://docs.microej.com/en/latest/PlatformDeveloperGuide/platformQualification.html#test-suite-versioning>`_ to determine the Test Suite module version).
+2. Unzip the Test Suite ``RIP`` (it is a zip file): For example ``fs-testsuite-[version].rip``.
+3. Open the Java archive ``JAR`` (it is a zip file): For example ``/content/javaLibs/fs-testsuite-[version].jar/``.
+4. Open the desired test: For example ``/com/microej/fs/tests/constructors/TestFileInputStream.java``.
 
 Troubleshooting
 ---------------
@@ -52,7 +63,7 @@ The following error indicates that no output have been seen by the
 
 - Ensure that the COM port configured for the ``Serial To Socket`` tool is
   correct.
-- Refers to the documentation of your Platform for how to connect the output traces to the test suite engine.
+- Refers to the documentation of your Platform for how to connect the output traces to the Test Suite engine.
 
 .. code-block::
 
@@ -111,12 +122,12 @@ Could not connect to localhost:5555
   the port 5555.  The host and port properties used by the Test Suite
   Engine are configured in ``config.properties``.
 
-The test suite runs but some tests are failing
+The Test Suite runs but some tests are failing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Ensure the Low Level Implementations tested by the test suite are
+- Ensure the Low Level Implementations tested by the Test Suite are
   correctly implemented.
-- Check your Platform documentation on test suites. The Platform may already
+- Check your Platform documentation on Test Suites. The Platform may already
   provide specific configuration (``config.properties`` and
   ``microej-testsuite-common.properties``) with some test filters (limitations or known issues).
 
