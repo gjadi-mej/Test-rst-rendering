@@ -8,7 +8,7 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 .. _310--Unreleased:
 
-[3.1.0] - Unreleased
+[3.1.0] - 2022-07-23
 --------------------
 
 Added
