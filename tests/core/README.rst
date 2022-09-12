@@ -47,7 +47,7 @@ Configuration
 
 #. Port EEMBC CoreMark (http://www.eembc.org/coremark/index.php) to your platform:
 
-   * Pick one of the provided skeleton configuration folders (*barebones* is a good choice, but one of the other folders may match your project better). Copy its source files into your BSP project and make sure they will be compiled/included.
+   * Pick one of the provided skeleton configuration folders located in ``framework/c/CoreMark/`` (*barebones* is a good choice, but one of the other folders may match your project better). Copy its source files into your BSP project and make sure they will be compiled/included.
    * Define the constants and functions required by CoreMark. What needs to be defined will depend on the configuration skeleton you picked, but CoreMark will at least require a clock and a text output. If you chose the *barebones* skeleton configuration, you will need to define the following:
 
       * In ``core_portme.h``:
