@@ -14,6 +14,12 @@ The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`
 2.9.0 - Unreleased
 ------------------
 
+Changed
+=======
+
+- Platform Configuration Additions 2.0.0 (see `CHANGELOG <framework/platform/content-sdk-5/build/CHANGELOG.md>`_).
+
+
 Added 
 =====
 
