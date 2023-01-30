@@ -21,7 +21,7 @@ Fixed
 Added 
 =====
 
-- Add a changelog in WatchdogTimer java test suite runner project.
+- MicroEJ WatchdogTimer Validation (Java) 1.0.1 (see `CHANGELOG <tests/watchdog-timer/java-testsuite-runner-watchdog-timer/CHANGELOG.rst>`_).
 
 
 2.8.0 -- 2022-07-23

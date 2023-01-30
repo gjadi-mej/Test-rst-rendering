@@ -15,7 +15,7 @@ Fixed
 
 - Fix default WatchdogTimer test suite runner include pattern.
 
-[1.0.0] - 2023-01-30
+[1.0.0] - 2022-06-23
 --------------------
 
 Added
