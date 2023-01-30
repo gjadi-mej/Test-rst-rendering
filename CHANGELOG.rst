@@ -17,7 +17,6 @@ Fixed
 =====
 
 - Fix broken links. 
-- Fix default WatchdogTimer test suite runner include pattern.
 
 2.8.0 -- 2022-07-23
 -------------------
