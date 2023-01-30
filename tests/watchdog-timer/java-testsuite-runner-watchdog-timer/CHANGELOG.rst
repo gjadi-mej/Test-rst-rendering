@@ -7,13 +7,21 @@ adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 
-[1.0.0] - 2023-01-30
+[1.0.1] - 2023-01-30
 --------------------
 
 Fixed
 ~~~~~
 
 - Fix default WatchdogTimer test suite runner include pattern.
+
+[1.0.0] - 2023-01-30
+--------------------
+
+Added
+~~~~~
+
+- Add the Java Test suite runner in this VPQT repository.
 
 ..
     Copyright 2023 MicroEJ Corp. All rights reserved.
