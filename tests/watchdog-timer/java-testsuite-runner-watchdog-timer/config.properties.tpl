@@ -1,6 +1,6 @@
 # Properties
 #
-# Copyright 2021-2022 MicroEJ Corp. All rights reserved.
+# Copyright 2021-2023 MicroEJ Corp. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be found with this software.
 
 ###############################################################################
@@ -64,9 +64,11 @@
 ###############################################################################
 
 # Comma separated list of patterns of files that must be included	
-test.run.includes.pattern=**/Test*.class
+test.run.includes.pattern=**/_SingleTest*.class
+
 # Comma separated list of patterns of files that must be excluded (defaults to inner classes)
-test.run.excludes.pattern=**/*$*.class
+# **/*testSimpleUseCaseWatchdogTimer*.class This test does not work in pqt mode.
+test.run.excludes.pattern=**/*$*.class, **/tests/util/*.class, **/*testSimpleUseCaseWatchdogTimer*.class
 
 #######################################################################
 # Advanced Options
