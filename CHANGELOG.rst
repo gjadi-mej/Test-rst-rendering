@@ -18,6 +18,12 @@ Fixed
 
 - Fix broken links. 
 
+Added 
+=====
+
+- Add a changelog in WatchdogTimer java test suite runner project.
+
+
 2.8.0 -- 2022-07-23
 -------------------
 
