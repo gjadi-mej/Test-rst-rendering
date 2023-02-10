@@ -15,6 +15,7 @@ Added
 ~~~~~
 
 - Add check for floating-point arithmetic.
+- Add check for floating-point parse and toString with scientific notation.
 
 .. _310--2022-07-23:
 

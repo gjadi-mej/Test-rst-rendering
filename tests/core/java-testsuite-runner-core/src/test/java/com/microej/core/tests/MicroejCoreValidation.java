@@ -539,116 +539,151 @@ public class MicroejCoreValidation {
 	public void testFloatingPointArithmetic() {
 		System.out.println("-> Check floating-point arithmetic with NaN...");
 
-		assertTrue("test 'NaN + float' returns NaN", Float.isNaN(floatNaN + float3));
-		assertTrue("test 'NaN - float' returns NaN", Float.isNaN(floatNaN - float3));
-		assertTrue("test 'NaN / float' returns NaN", Float.isNaN(floatNaN / float3));
-		assertTrue("test 'NaN * float' returns NaN", Float.isNaN(floatNaN * float3));
-		assertTrue("test 'NaN % float' returns NaN", Float.isNaN(floatNaN % float3));
-		assertTrue("test '(double)Float.NaN' returns NaN", Double.isNaN(floatNaN));
-		assertEquals("test '(int)Float.NaN' returns 0", 0, (int) floatNaN);
-		assertEquals("test '(long)Float.NaN' returns 0", 0, (long) floatNaN);
+		boolean allOk = true;
 
-		assertTrue("test 'NaN + double' returns NaN", Double.isNaN(doubleNaN + double3));
-		assertTrue("test 'NaN - double' returns NaN", Double.isNaN(doubleNaN - double3));
-		assertTrue("test 'NaN / double' returns NaN", Double.isNaN(doubleNaN / double3));
-		assertTrue("test 'NaN * double' returns NaN", Double.isNaN(doubleNaN * double3));
-		assertTrue("test 'NaN % double' returns NaN", Double.isNaN(doubleNaN % double3));
-		assertTrue("test '(float)Double.NaN' returns NaN", Float.isNaN((float) doubleNaN));
-		assertEquals("test '(int)Double.NaN' returns 0", 0, (int) doubleNaN);
-		assertEquals("test '(long)Double.NaN' returns 0", 0, (long) doubleNaN);
+		allOk &= checkTrue("test 'NaN + float' returns NaN", Float.isNaN(floatNaN + float3));
+		allOk &= checkTrue("test 'NaN - float' returns NaN", Float.isNaN(floatNaN - float3));
+		allOk &= checkTrue("test 'NaN / float' returns NaN", Float.isNaN(floatNaN / float3));
+		allOk &= checkTrue("test 'NaN * float' returns NaN", Float.isNaN(floatNaN * float3));
+		allOk &= checkTrue("test 'NaN % float' returns NaN", Float.isNaN(floatNaN % float3));
+		allOk &= checkTrue("test '(double)Float.NaN' returns NaN", Double.isNaN(floatNaN));
+		allOk &= checkEquals("test '(int)Float.NaN' returns 0", 0, (int) floatNaN);
+		allOk &= checkEquals("test '(long)Float.NaN' returns 0", 0, (long) floatNaN);
+
+		allOk &= checkTrue("test 'NaN + double' returns NaN", Double.isNaN(doubleNaN + double3));
+		allOk &= checkTrue("test 'NaN - double' returns NaN", Double.isNaN(doubleNaN - double3));
+		allOk &= checkTrue("test 'NaN / double' returns NaN", Double.isNaN(doubleNaN / double3));
+		allOk &= checkTrue("test 'NaN * double' returns NaN", Double.isNaN(doubleNaN * double3));
+		allOk &= checkTrue("test 'NaN % double' returns NaN", Double.isNaN(doubleNaN % double3));
+		allOk &= checkTrue("test '(float)Double.NaN' returns NaN", Float.isNaN((float) doubleNaN));
+		allOk &= checkEquals("test '(int)Double.NaN' returns 0", 0, (int) doubleNaN);
+		allOk &= checkEquals("test '(long)Double.NaN' returns 0", 0, (long) doubleNaN);
 
 		System.out.println("-> Check floating-point arithmetic with 0.0 and -0.0...");
-		assertTrue("test 'float % 0.0' returns NaN", Float.isNaN(float3 % floatZero));
-		assertTrue("test 'float % -0.0' returns NaN", Float.isNaN(float3 % floatNegativeZero));
-		assertTrue("test 'double % 0.0' returns NaN", Double.isNaN(double3 % doubleZero));
-		assertTrue("test 'double % -0.0' returns NaN", Double.isNaN(double3 % doubleNegativeZero));
+		allOk &= checkTrue("test 'float % 0.0' returns NaN", Float.isNaN(float3 % floatZero));
+		allOk &= checkTrue("test 'float % -0.0' returns NaN", Float.isNaN(float3 % floatNegativeZero));
+		allOk &= checkTrue("test 'double % 0.0' returns NaN", Double.isNaN(double3 % doubleZero));
+		allOk &= checkTrue("test 'double % -0.0' returns NaN", Double.isNaN(double3 % doubleNegativeZero));
 
-		assertTrue("test 'inf * 0.0f' returns NaN", Float.isNaN(floatPositiveInfinity * floatZero));
-		assertEquals("test 'float * -0.0' returns -0.0", 0, Float.compare(-0.0f, (float3 * floatNegativeZero)));
-		assertEquals("test 'float * 0.0' returns 0.0", 0, Float.compare(0.0f, (float3 * floatZero)));
-		assertEquals("test '-float * -0.0' returns 0.0", 0, Float.compare(0.0f, (-float3 * floatNegativeZero)));
-		assertEquals("test '-float * 0.0' returns -0.0", 0, Float.compare(-0.0f, (-float3 * floatZero)));
-		assertTrue("test 'inf * 0.0d' returns NaN", Double.isNaN(doublePositiveInfinity * doubleZero));
-		assertEquals("test 'double * -0.0' returns -0.0", 0, Double.compare(-0.0, (double3 * doubleNegativeZero)));
-		assertEquals("test 'double * 0.0' returns 0.0", 0, Double.compare(0.0, (double3 * doubleZero)));
-		assertEquals("test '-double * -0.0' returns 0.0", 0, Double.compare(0.0, (-double3 * doubleNegativeZero)));
-		assertEquals("test '-double * 0.0' returns -0.0", 0, Double.compare(-0.0, (-double3 * doubleZero)));
+		allOk &= checkTrue("test 'inf * 0.0f' returns NaN", Float.isNaN(floatPositiveInfinity * floatZero));
+		allOk &= checkEquals("test 'float * -0.0' returns -0.0", 0, Float.compare(-0.0f, (float3 * floatNegativeZero)));
+		allOk &= checkEquals("test 'float * 0.0' returns 0.0", 0, Float.compare(0.0f, (float3 * floatZero)));
+		allOk &= checkEquals("test '-float * -0.0' returns 0.0", 0, Float.compare(0.0f, (-float3 * floatNegativeZero)));
+		allOk &= checkEquals("test '-float * 0.0' returns -0.0", 0, Float.compare(-0.0f, (-float3 * floatZero)));
+		allOk &= checkTrue("test 'inf * 0.0d' returns NaN", Double.isNaN(doublePositiveInfinity * doubleZero));
+		allOk &= checkEquals("test 'double * -0.0' returns -0.0", 0,
+				Double.compare(-0.0, (double3 * doubleNegativeZero)));
+		allOk &= checkEquals("test 'double * 0.0' returns 0.0", 0, Double.compare(0.0, (double3 * doubleZero)));
+		allOk &= checkEquals("test '-double * -0.0' returns 0.0", 0,
+				Double.compare(0.0, (-double3 * doubleNegativeZero)));
+		allOk &= checkEquals("test '-double * 0.0' returns -0.0", 0, Double.compare(-0.0, (-double3 * doubleZero)));
 
-		assertEquals("test '-0.0f + 0.0f' returns 0.0f", 0, Float.compare(0.0f, floatNegativeZero + floatZero));
-		assertEquals("test '-0.0f - -0.0f' returns 0.0f", 0,
+		allOk &= checkEquals("test '-0.0f + 0.0f' returns 0.0f", 0, Float.compare(0.0f, floatNegativeZero + floatZero));
+		allOk &= checkEquals("test '-0.0f - -0.0f' returns 0.0f", 0,
 				Float.compare(0.0f, floatNegativeZero - floatNegativeZero));
-		assertEquals("test '-0.0d + 0.0d' returns 0.0d", 0, Double.compare(0.0d, doubleNegativeZero + doubleZero));
-		assertEquals("test '-0.0d - -0.0d' returns 0.0d", 0,
+		allOk &= checkEquals("test '-0.0d + 0.0d' returns 0.0d", 0,
+				Double.compare(0.0d, doubleNegativeZero + doubleZero));
+		allOk &= checkEquals("test '-0.0d - -0.0d' returns 0.0d", 0,
 				Double.compare(0.0d, doubleNegativeZero - doubleNegativeZero));
 
-		assertEquals("test '(float)-0.0d' returns -0.0f", 0, Float.compare(-0.0f, (float) doubleNegativeZero));
-		assertEquals("test '(double)-0.0f' returns -0.0d", 0, Double.compare(-0.0, floatNegativeZero));
+		allOk &= checkEquals("test '(float)-0.0d' returns -0.0f", 0, Float.compare(-0.0f, (float) doubleNegativeZero));
+		allOk &= checkEquals("test '(double)-0.0f' returns -0.0d", 0, Double.compare(-0.0, floatNegativeZero));
 
 		System.out.println("-> Check floating-point arithmetic with infinity...");
-		assertTrue("test '+inf % float' returns NaN", Float.isNaN(floatPositiveInfinity % float3));
-		assertTrue("test '-inf % float' returns NaN", Float.isNaN(floatNegativeInfinity % float3));
-		assertTrue("test '-inf + float' returns -inf", (floatNegativeInfinity + float3) == Float.NEGATIVE_INFINITY);
-		assertTrue("test '+inf + -float' returns +inf", (floatPositiveInfinity + -float3) == Float.POSITIVE_INFINITY);
-		assertTrue("test '(double)+inf' returns +inf", floatPositiveInfinity == Double.POSITIVE_INFINITY);
-		assertTrue("test '(double)-inf' returns -inf", floatNegativeInfinity == Double.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '+inf % float' returns NaN", Float.isNaN(floatPositiveInfinity % float3));
+		allOk &= checkTrue("test '-inf % float' returns NaN", Float.isNaN(floatNegativeInfinity % float3));
+		allOk &= checkTrue("test '-inf + float' returns -inf",
+				(floatNegativeInfinity + float3) == Float.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '+inf + -float' returns +inf",
+				(floatPositiveInfinity + -float3) == Float.POSITIVE_INFINITY);
+		allOk &= checkTrue("test '(double)+inf' returns +inf", floatPositiveInfinity == Double.POSITIVE_INFINITY);
+		allOk &= checkTrue("test '(double)-inf' returns -inf", floatNegativeInfinity == Double.NEGATIVE_INFINITY);
 
-		assertTrue("test '+inf % double' returns NaN", Double.isNaN(doublePositiveInfinity % double3));
-		assertTrue("test '-inf % double' returns NaN", Double.isNaN(doubleNegativeInfinity % double3));
-		assertTrue("test '-inf + double' returns -inf", (doubleNegativeInfinity + double3) == Double.NEGATIVE_INFINITY);
-		assertTrue("test '+inf + -double' returns +inf",
+		allOk &= checkTrue("test '+inf % double' returns NaN", Double.isNaN(doublePositiveInfinity % double3));
+		allOk &= checkTrue("test '-inf % double' returns NaN", Double.isNaN(doubleNegativeInfinity % double3));
+		allOk &= checkTrue("test '-inf + double' returns -inf",
+				(doubleNegativeInfinity + double3) == Double.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '+inf + -double' returns +inf",
 				(doublePositiveInfinity + -double3) == Double.POSITIVE_INFINITY);
-		assertTrue("test '(float)+inf' returns +inf", (float) doublePositiveInfinity == Float.POSITIVE_INFINITY);
-		assertTrue("test '(float)-inf' returns -inf", (float) doubleNegativeInfinity == Float.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '(float)+inf' returns +inf",
+				(float) doublePositiveInfinity == Float.POSITIVE_INFINITY);
+		allOk &= checkTrue("test '(float)-inf' returns -inf",
+				(float) doubleNegativeInfinity == Float.NEGATIVE_INFINITY);
 
 		System.out.println("-> Check floating-point arithmetic with min values...");
-		assertTrue("test 'min % float' returns min", (Float.MIN_VALUE % float3) == Float.MIN_VALUE);
-		assertTrue("test 'min % double' returns min", (Double.MIN_VALUE % float3) == Double.MIN_VALUE);
+		allOk &= checkTrue("test 'min % float' returns min", (Float.MIN_VALUE % float3) == Float.MIN_VALUE);
+		allOk &= checkTrue("test 'min % double' returns min", (Double.MIN_VALUE % float3) == Double.MIN_VALUE);
 
 		System.out.println("-> Check floating-point division by 0.0...");
-		assertTrue("test '0.0f / 0.0f' returns NaN", Float.isNaN(floatZero / floatZero));
-		assertTrue("test 'float / 0.0' returns +inf", (float3 / floatZero) == Float.POSITIVE_INFINITY);
-		assertTrue("test 'float / -0.0' returns -inf", (float3 / floatNegativeZero) == Float.NEGATIVE_INFINITY);
-		assertTrue("test '-float / 0.0' returns -inf", (-float3 / floatZero) == Float.NEGATIVE_INFINITY);
-		assertTrue("test '-float / -0.0' returns +inf", (-float3 / floatNegativeZero) == Float.POSITIVE_INFINITY);
+		allOk &= checkTrue("test '0.0f / 0.0f' returns NaN", Float.isNaN(floatZero / floatZero));
+		allOk &= checkTrue("test 'float / 0.0' returns +inf", (float3 / floatZero) == Float.POSITIVE_INFINITY);
+		allOk &= checkTrue("test 'float / -0.0' returns -inf", (float3 / floatNegativeZero) == Float.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '-float / 0.0' returns -inf", (-float3 / floatZero) == Float.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '-float / -0.0' returns +inf",
+				(-float3 / floatNegativeZero) == Float.POSITIVE_INFINITY);
 
-		assertTrue("test '0.0d / 0.0d' returns NaN", Double.isNaN(doubleZero / doubleZero));
-		assertTrue("test 'double / 0.0' returns +inf", (double3 / doubleZero) == Double.POSITIVE_INFINITY);
-		assertTrue("test 'double / -0.0' returns -inf", (double3 / doubleNegativeZero) == Double.NEGATIVE_INFINITY);
-		assertTrue("test '-double / 0.0' returns -inf", (-double3 / doubleZero) == Double.NEGATIVE_INFINITY);
-		assertTrue("test '-double / -0.0' returns +inf", (-double3 / doubleNegativeZero) == Double.POSITIVE_INFINITY);
+		allOk &= checkTrue("test '0.0d / 0.0d' returns NaN", Double.isNaN(doubleZero / doubleZero));
+		allOk &= checkTrue("test 'double / 0.0' returns +inf", (double3 / doubleZero) == Double.POSITIVE_INFINITY);
+		allOk &= checkTrue("test 'double / -0.0' returns -inf",
+				(double3 / doubleNegativeZero) == Double.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '-double / 0.0' returns -inf", (-double3 / doubleZero) == Double.NEGATIVE_INFINITY);
+		allOk &= checkTrue("test '-double / -0.0' returns +inf",
+				(-double3 / doubleNegativeZero) == Double.POSITIVE_INFINITY);
 
 		System.out.println("-> Check floating-point Math functions...");
-		assertTrue("test 'log1p(-3)' returns NaN", Double.isNaN(Math.log1p(-double3)));
-		assertTrue("test 'sqrt(neg)' returns NaN", Double.isNaN(Math.sqrt(-double3)));
-		assertTrue("test 'IEEEremainder(double, 0.0)' returns NaN",
+		allOk &= checkTrue("test 'log1p(-3)' returns NaN", Double.isNaN(Math.log1p(-double3)));
+		allOk &= checkTrue("test 'sqrt(neg)' returns NaN", Double.isNaN(Math.sqrt(-double3)));
+		allOk &= checkTrue("test 'IEEEremainder(double, 0.0)' returns NaN",
 				Double.isNaN(Math.IEEEremainder(double3, doubleZero)));
-		assertTrue("test 'IEEEremainder(double, -0.0)' returns NaN",
+		allOk &= checkTrue("test 'IEEEremainder(double, -0.0)' returns NaN",
 				Double.isNaN(Math.IEEEremainder(double3, doubleNegativeZero)));
-		assertTrue("test 'cos(NaN)' returns NaN", Double.isNaN(Math.cos(doubleNaN)));
-		assertTrue("test 'cos(+inf)' returns NaN", Double.isNaN(Math.cos(doublePositiveInfinity)));
-		assertTrue("test 'cos(-inf)' returns NaN", Double.isNaN(Math.cos(doubleNegativeInfinity)));
-		assertTrue("test 'sin(NaN)' returns NaN", Double.isNaN(Math.sin(doubleNaN)));
-		assertTrue("test 'sin(+inf)' returns NaN", Double.isNaN(Math.sin(doublePositiveInfinity)));
-		assertTrue("test 'sin(-inf)' returns NaN", Double.isNaN(Math.sin(doubleNegativeInfinity)));
-		assertTrue("test 'tan(NaN)' returns NaN", Double.isNaN(Math.tan(doubleNaN)));
-		assertTrue("test 'tan(+inf)' returns NaN", Double.isNaN(Math.tan(doublePositiveInfinity)));
-		assertTrue("test 'tan(-inf)' returns NaN", Double.isNaN(Math.tan(doubleNegativeInfinity)));
-		assertTrue("test 'acos(NaN)' returns NaN", Double.isNaN(Math.acos(doubleNaN)));
-		assertTrue("test 'asin(NaN)' returns NaN", Double.isNaN(Math.asin(doubleNaN)));
-		assertTrue("test 'atan(NaN)' returns NaN", Double.isNaN(Math.atan(doubleNaN)));
+		allOk &= checkTrue("test 'cos(NaN)' returns NaN", Double.isNaN(Math.cos(doubleNaN)));
+		allOk &= checkTrue("test 'cos(+inf)' returns NaN", Double.isNaN(Math.cos(doublePositiveInfinity)));
+		allOk &= checkTrue("test 'cos(-inf)' returns NaN", Double.isNaN(Math.cos(doubleNegativeInfinity)));
+		allOk &= checkTrue("test 'sin(NaN)' returns NaN", Double.isNaN(Math.sin(doubleNaN)));
+		allOk &= checkTrue("test 'sin(+inf)' returns NaN", Double.isNaN(Math.sin(doublePositiveInfinity)));
+		allOk &= checkTrue("test 'sin(-inf)' returns NaN", Double.isNaN(Math.sin(doubleNegativeInfinity)));
+		allOk &= checkTrue("test 'tan(NaN)' returns NaN", Double.isNaN(Math.tan(doubleNaN)));
+		allOk &= checkTrue("test 'tan(+inf)' returns NaN", Double.isNaN(Math.tan(doublePositiveInfinity)));
+		allOk &= checkTrue("test 'tan(-inf)' returns NaN", Double.isNaN(Math.tan(doubleNegativeInfinity)));
+		allOk &= checkTrue("test 'acos(NaN)' returns NaN", Double.isNaN(Math.acos(doubleNaN)));
+		allOk &= checkTrue("test 'asin(NaN)' returns NaN", Double.isNaN(Math.asin(doubleNaN)));
+		allOk &= checkTrue("test 'atan(NaN)' returns NaN", Double.isNaN(Math.atan(doubleNaN)));
 
 		System.out.println("-> Check integer arithmetic...");
-		assertEquals("test 'INT_MIN / -1' returns INT_MIN", Integer.MIN_VALUE, intMin / intNegativeOne);
-		assertEquals("test 'INT_MIN % -1' returns INT_MIN", 0, intMin % intNegativeOne);
-		assertEquals("test 'LONG_MIN / -1' returns LONG_MIN", Long.MIN_VALUE, longMin / longNegativeOne);
-		assertEquals("test 'LONG_MIN % -1' returns LONG_MIN", 0, longMin % longNegativeOne);
+		allOk &= checkEquals("test 'INT_MIN / -1' returns INT_MIN", Integer.MIN_VALUE, intMin / intNegativeOne);
+		allOk &= checkEquals("test 'INT_MIN % -1' returns INT_MIN", 0, intMin % intNegativeOne);
+		allOk &= checkEquals("test 'LONG_MIN / -1' returns LONG_MIN", Long.MIN_VALUE, longMin / longNegativeOne);
+		allOk &= checkEquals("test 'LONG_MIN % -1' returns LONG_MIN", 0, longMin % longNegativeOne);
+
+		assertTrue(allOk);
+	}
+
+	private static boolean checkTrue(String message, boolean condition) {
+		try {
+			assertTrue(message, condition);
+			return true;
+		} catch (AssertionError error) {
+			System.out.println("Assertion failed: " + error.getMessage());
+			return false;
+		}
+	}
+
+	private static boolean checkEquals(String message, long expected, long actual) {
+		try {
+			assertEquals(message, expected, actual);
+			return true;
+		} catch (AssertionError error) {
+			System.out.println("Assertion failed: " + error.getMessage());
+			return false;
+		}
 	}
 
 	/**
 	 * Tests the VEE Port floating-point parser.
 	 */
 	@Test
-	public void testParseFP() {
+	public void testParseFloatingPoint() {
 		System.out.println("-> Check floating-point parser...");
 
 		float parsedFloat = Float.parseFloat("1234.5");
@@ -660,13 +695,23 @@ public class MicroejCoreValidation {
 		double expectedDouble = 1234.5;
 		assertEquals("test 'parse double string': strtod " + INVALID_C_FUNCTION_MESSAGE, expectedDouble, parsedDouble,
 				getAssertDoubleDelta(expectedDouble));
+
+		float parsedFloatScientific = Float.parseFloat("9.82E-22");
+		float expectedFloatScientific = 9.82E-22f;
+		assertEquals("test 'parse float string scientific notation': strtof " + INVALID_C_FUNCTION_MESSAGE,
+				expectedFloatScientific, parsedFloatScientific, getAssertFloatDelta(expectedFloatScientific));
+
+		double parsedDoubleScientific = Double.parseDouble("1.25E128");
+		double expectedDoubleScientific = 1.25E128;
+		assertEquals("test 'parse double string scientific notation': strtod " + INVALID_C_FUNCTION_MESSAGE,
+				expectedDoubleScientific, parsedDoubleScientific, getAssertDoubleDelta(expectedDoubleScientific));
 	}
 
 	/**
 	 * Tests the VEE Port floating-point formatter.
 	 */
 	@Test
-	public void testFormatFP() {
+	public void testFormatFloatingPoint() {
 		System.out.println("-> Check floating-point formatter...");
 
 		String floatToString = Float.toString(1234.5f);
@@ -674,6 +719,18 @@ public class MicroejCoreValidation {
 
 		String doubleToString = Double.toString(1234.5d);
 		assertEquals("test 'double to string': snprintf " + INVALID_C_FUNCTION_MESSAGE, "1234.5", doubleToString);
+
+		String floatScientificToString = Float.toString(1.11E-22f);
+		assertTrue(
+				"test 'float to string scientific notation (parse(1.11E-22f) is '" + floatScientificToString
+						+ "')': snprintf " + INVALID_C_FUNCTION_MESSAGE,
+				floatScientificToString.startsWith("1.1") && floatScientificToString.endsWith("E-22"));
+
+		String doubleScientificToString = Double.toString(1.11E128d);
+		assertTrue(
+				"test 'double to string scientific notation (parse(1.11E128d) is '" + doubleScientificToString
+						+ "')': snprintf " + INVALID_C_FUNCTION_MESSAGE,
+				doubleScientificToString.startsWith("1.1") && doubleScientificToString.endsWith("E128"));
 	}
 
 	/**
