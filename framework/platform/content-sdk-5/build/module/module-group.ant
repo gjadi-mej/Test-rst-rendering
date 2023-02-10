@@ -52,6 +52,7 @@
 				out="${platform.filename.tmp}"
 				force="true"
 			/>
+			<!-- XLST generates a useless empty line that makes a useless change in the VCS => remove it -->
 			<replace file="${platform.filename.tmp}" token="${line.separator}${line.separator}" value="${line.separator}"/>
 			<copy file="${platform.filename.tmp}" tofile="@{platform.filename}"/>
 			<echo message="module-group-update[@{name}]"/>
