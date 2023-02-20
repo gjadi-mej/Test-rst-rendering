@@ -10,19 +10,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_, and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-2.8.1 -- Unrelease
-------------------
-
-Fixed
-=====
-
-- Fix broken links. 
+2.9.0 -- Unreleased
+-------------------
 
 Added 
 =====
 
 - MicroEJ WatchdogTimer Validation (Java) 1.0.1 (see `CHANGELOG <tests/watchdog-timer/java-testsuite-runner-watchdog-timer/CHANGELOG.rst>`_).
 
+Changed
+=======
+
+- MicroEJ UI Validation (Java) 1.2.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
+
+Fixed
+=====
+
+- Fix broken links. 
 
 2.8.0 -- 2022-07-23
 -------------------
