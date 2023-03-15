@@ -38,7 +38,7 @@
 #microej.testsuite.properties.deploy.dir.microejapp=[absolute_path]
 #microej.testsuite.properties.deploy.dir.microejlib=[absolute_path]
 #microej.testsuite.properties.deploy.dir.microejinc=[absolute_path]
-#microej.testsuite.properties.deploy.bsp.microejscript=[absolute_path]
+#microej.testsuite.properties.deploy.dir.microejscript=[absolute_path]
 
 # Partial BSP Connection
 #microej.testsuite.properties.deploy.bsp.root.dir=[absolute_path]
