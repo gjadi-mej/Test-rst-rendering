@@ -27,6 +27,7 @@ Fixed
 =====
 
 - Fix broken links. 
+- Fix option name in ``config.properties.tpl`` files (No BSP Connection: use ``deploy.dir.microejscript`` instead of ``deploy.bsp.microejscript``). 
 
 2.8.0 -- 2022-07-23
 -------------------
