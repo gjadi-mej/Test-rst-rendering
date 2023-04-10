@@ -133,9 +133,9 @@ Expected Results
    OK (27 tests)
    VM START
    *****************************************************************************************************
-   *                                  MicroEJ Core Validation - 3.1.0                                  *
+   *                                  MicroEJ Core Validation - 3.2.0                                  *
    *****************************************************************************************************
-   * Copyright 2013-2022 MicroEJ Corp. All rights reserved.                                            *
+   * Copyright 2013-2023 MicroEJ Corp. All rights reserved.                                            *
    * Use of this source code is governed by a BSD-style license that can be found with this software.  *
    *****************************************************************************************************
    
@@ -184,6 +184,14 @@ Expected Results
    OK: testIsInReadOnlyMemory
    -> Check FPU (soft/hard FP option)...
    OK: testFPU
+   -> Check floating-point arithmetic with NaN...
+   -> Check floating-point arithmetic with 0.0 and -0.0...
+   -> Check floating-point arithmetic with infinity...
+   -> Check floating-point arithmetic with min values...
+   -> Check floating-point division by 0.0...
+   -> Check floating-point Math functions...
+   -> Check integer arithmetic...
+   OK: testFloatingPointArithmetic
    -> Check floating-point parser...
    OK: testParseFP
    -> Check floating-point formatter...
@@ -203,7 +211,7 @@ Expected Results
    Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
    Estimated LLMJVM_IMPL_scheduleRequest clock tick is 1 ms.
    OK: testScheduleRequestClockTick
-   PASSED: 13  
+   PASSED: 14  
    VM END (exit code = 0)
 
 --------------
