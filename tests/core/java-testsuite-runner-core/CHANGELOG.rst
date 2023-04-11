@@ -16,6 +16,7 @@ Added
 
 - Add check for floating-point arithmetic.
 - Add check for floating-point parse and toString with scientific notation.
+- Add check for SNI native calling convention (ABI).
 
 .. _310--2022-07-23:
 
