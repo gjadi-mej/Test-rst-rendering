@@ -16,7 +16,7 @@ If you want to try some tests with the simulator, please set the property `ej.ex
 If your implementation has not an available implementation of `ExternalResourceWriter`, please create it and update this testsuite with this additional support.
 
 
-Below is the javadoc of the interface `ExternalResourceWriter` with its methods to override.
+Below is the Javadoc of the interface `ExternalResourceWriter` with its methods to override.
 
 ### `public interface ExternalResourceWriter`
 
