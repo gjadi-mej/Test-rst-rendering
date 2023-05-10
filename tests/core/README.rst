@@ -1,5 +1,5 @@
 .. ReStructuredText
-.. Copyright 2019-2022 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
+.. Copyright 2019-2023 MicroEJ Corp.  MicroEJ Corp. All rights reserved.
 .. Use of this source code is governed by a BSD-style license that can be found with this software.
 
 **********************
@@ -131,7 +131,7 @@ Expected Results
    CoreMark 1.0 : 497.815544 / ARMCC V5.06 update 4 (build 422) -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -D__UVISION_VERSION="523" -D_RTE_ -DSTM32L496xx -DUSE_HAL_DRIVER -DSTM32L496xx / STATIC
 
    OK (27 tests)
-   VM START
+   MicroEJ START
    *****************************************************************************************************
    *                                  MicroEJ Core Validation - 3.2.0                                  *
    *****************************************************************************************************
@@ -140,6 +140,7 @@ Expected Results
    *****************************************************************************************************
    
    -> Check visible clock (LLMJVM_IMPL_getCurrentTime validation)...
+   Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
    Property 'com.microej.core.tests.clock.seconds' is not set (default to '10' seconds)
    1
    2
@@ -153,6 +154,7 @@ Expected Results
    10
    OK: testVisibleClock
    -> Check schedule request and wakeup (LLMJVM_IMPL_scheduleRequest and LLMJVM_IMPL_wakeupVM validation)...
+   Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
    Waiting for 5s...
    ...done
    OK: testTime
@@ -193,9 +195,9 @@ Expected Results
    -> Check integer arithmetic...
    OK: testFloatingPointArithmetic
    -> Check floating-point parser...
-   OK: testParseFP
+   OK: testParseFloatingPoint
    -> Check floating-point formatter...
-   OK: testFormatFP
+   OK: testFormatFloatingPoint
    -> Check parsing a string as a double ; in some systems such operations may allocate memory in the C heap (strtod, strtof, malloc implementation)...
    OK: testParseDoubleStringHeap
    Property 'com.microej.core.tests.monotonic.time.check.seconds' is not set (default to '60' seconds)
@@ -205,14 +207,16 @@ Expected Results
    -> Check current time clock tick duration (LLMJVM_IMPL_getCurrentTime, LLMJVM_IMPL_getTimeNanos)...
    Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
    Estimated LLMJVM_IMPL_getCurrentTime clock tick is 1 ms.
-   Estimated LLMJVM_IMPL_getTimeNanos clock tick is lower than 30518 ns.
+   Estimated LLMJVM_IMPL_getTimeNanos clock tick is lower than 4000 ns.
    OK: testSystemCurrentTimeClockTick
    -> Check schedule request clock tick duration (LLMJVM_IMPL_scheduleRequest)...
    Property 'com.microej.core.tests.max.allowed.clock.tick.duration.milliseconds' is not set (default to '20' millisecondss)
    Estimated LLMJVM_IMPL_scheduleRequest clock tick is 1 ms.
    OK: testScheduleRequestClockTick
-   PASSED: 14  
-   VM END (exit code = 0)
+   -> Check SNI native calling convention (ABI)...
+   OK: testSniAbi
+   PASSED: 15
+   MicroEJ END (exit code = 0)
 
 --------------
 

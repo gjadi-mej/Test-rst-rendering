@@ -233,10 +233,6 @@ public class MicroejCoreValidation {
 		return objects;
 	}
 
-	private static native float testFloat(float a, float b);
-
-	private static native double testDouble(double a, double b);
-
 	private static float testFPUJava(float a, float b) {
 		return a * b;
 	}
@@ -722,13 +718,13 @@ public class MicroejCoreValidation {
 
 		String floatScientificToString = Float.toString(1.11E-22f);
 		assertTrue(
-				"test 'float to string scientific notation (parse(1.11E-22f) is '" + floatScientificToString
+				"test 'float to string scientific notation (toString(1.11E-22f) is '" + floatScientificToString
 						+ "')': snprintf " + INVALID_C_FUNCTION_MESSAGE,
 				floatScientificToString.startsWith("1.1") && floatScientificToString.endsWith("E-22"));
 
 		String doubleScientificToString = Double.toString(1.11E128d);
 		assertTrue(
-				"test 'double to string scientific notation (parse(1.11E128d) is '" + doubleScientificToString
+				"test 'double to string scientific notation (toString(1.11E128d) is '" + doubleScientificToString
 						+ "')': snprintf " + INVALID_C_FUNCTION_MESSAGE,
 				doubleScientificToString.startsWith("1.1") && doubleScientificToString.endsWith("E128"));
 	}
@@ -860,6 +856,7 @@ public class MicroejCoreValidation {
 		// Check LLMJVM_IMPL_getCurrentTime
 		t0 = System.currentTimeMillis();
 		while ((t1 = System.currentTimeMillis()) == t0) {
+			// Nothing to do
 		}
 		precision = t1 - t0;
 		System.out.println("Estimated LLMJVM_IMPL_getCurrentTime clock tick is " + precision + " ms.");
@@ -876,7 +873,7 @@ public class MicroejCoreValidation {
 		} else {
 			t0 = System.nanoTime();
 			while ((t1 = System.nanoTime()) == t0) {
-
+				// Nothing to do
 			}
 			precision = t1 - t0;
 			long precisionLimitNs = precisionLimitMs * 1000000l;
@@ -914,6 +911,40 @@ public class MicroejCoreValidation {
 		} catch (InterruptedException e) {
 			throw new Error();
 		}
+	}
+
+	/**
+	 * Checks SNI calling convention ABI.
+	 */
+	@Test
+	public void testSniAbi() {
+		System.out.println("-> Check SNI native calling convention (ABI)...");
+
+		boolean allOk = true;
+
+		int res01 = testNativeArguments01(0x01020304, 0x05060708, 0x090A0B0C, 0x0D0E0F10, 0x11121314, 0x15161718,
+				0x191A1B1C, 0x1D1E1F20, 0x21222324, 0x25262728);
+		allOk &= checkTrue("test int32_t SNI arguments", res01 == 0x292A2B2C);
+
+		long res02 = testNativeArguments02(0x2D2E2F3031323334l, 0x35363738393A3B3Cl, 0x3D3E3F4041424344l,
+				0x45464748494A4B4Cl, 0x4D4E4F5051525354l, 0x55565758595A5B5Cl, 0x5D5E5F6061626364l, 0x65666768696A6B6Cl,
+				0x6D6E6F7071727374l, 0x75767778797A7B7Cl);
+		allOk &= checkTrue("test int64_t SNI arguments", res02 == 0x7D7E7F8081828384l);
+
+		long res03 = testNativeArguments03(0x85868788, 0x898A8B8C8D8E8F90l, 0x91929394, 0x95969798999A9B9Cl, 0x9D9E9FA0,
+				0xA1A2A3A4A5A6A7A8l, 0xA9AAABAC, 0xADAEAFB0B1B2B3B4l, 0xB5B6B7B8, 0xB9BABBBCBDBEBFC0l);
+		allOk &= checkTrue("test int32_t/int64_t SNI arguments", res03 == 0xC1C2C3C4C5C6C7C8l);
+
+		float res04 = testNativeArguments04(1.0f, 1.1f, 1.2f, 1.3f, 1.4f, 1.5f, 1.6f, 1.7f, 1.8f, 1.9f);
+		allOk &= checkTrue("test float SNI arguments", res04 == 2.0f);
+
+		double res05 = testNativeArguments05(2.0d, 2.1d, 2.2d, 2.3d, 2.4d, 2.5d, 2.6d, 2.7d, 2.8d, 2.9d);
+		allOk &= checkTrue("test double SNI arguments", res05 == 3.0d);
+
+		double res06 = testNativeArguments06(3.0f, 3.1d, 3.2f, 3.3d, 3.4f, 3.5d, 3.6f, 3.7d, 3.8f, 3.9d);
+		allOk &= checkTrue("test float/double SNI arguments", res06 == 4.0d);
+
+		assertTrue(allOk);
 	}
 
 	/**
@@ -989,5 +1020,29 @@ public class MicroejCoreValidation {
 		}
 
 	}
+
+	// See instructions in README.rst for the implementation of the following native methods.
+
+	private static native float testFloat(float a, float b);
+
+	private static native double testDouble(double a, double b);
+
+	private static native int testNativeArguments01(int i1, int i2, int i3, int i4, int i5, int i6, int i7, int i8,
+			int i9, int i10);
+
+	private static native long testNativeArguments02(long l1, long l2, long l3, long l4, long l5, long l6, long l7,
+			long l8, long l9, long l10);
+
+	private static native long testNativeArguments03(int i1, long l2, int i3, long l4, int i5, long l6, int i7, long l8,
+			int i9, long l10);
+
+	private static native float testNativeArguments04(float f1, float f2, float f3, float f4, float f5, float f6,
+			float f7, float f8, float f9, float f10);
+
+	private static native double testNativeArguments05(double d1, double d2, double d3, double d4, double d5, double d6,
+			double d7, double d8, double d9, double d10);
+
+	private static native double testNativeArguments06(float f1, double d2, float f3, double d4, float f5, double d6,
+			float f7, double d8, float f9, double d10);
 
 }
