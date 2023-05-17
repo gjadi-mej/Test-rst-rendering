@@ -85,6 +85,13 @@ The ECOM-WIFI Test Suite is a Java Test Suite.
 
 See `ECOM-WIFI Readme <tests/ecom-wifi/README.rst>`_
 
+Event Queue Test Suite
+--------------------
+
+The Event Queue Test Suite is a Java Test Suite.
+
+See `Event Queue Readme <tests/event-queue/README.rst>`_
+
 Platform Qualification Tools Overview
 =====================================
 
