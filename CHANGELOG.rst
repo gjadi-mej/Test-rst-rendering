@@ -30,6 +30,11 @@ Changed
 
 - MicroEJ UI Validation (Java) 1.2.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
 - MicroEJ Core Validation (Java) 3.2.0 (see `CHANGELOG <tests/core/java-testsuite-runner-core/CHANGELOG.rst>`_).
+- MicroEJ ECOM-WIFI Validation (Java) 1.0.1 (see `CHANGELOG <tests/ecom-wifi/java-testsuite-runner-ecom-wifi/CHANGELOG.rst>`_).
+- MicroEJ FS Validation (Java) 1.0.1 (see `CHANGELOG <tests/fs/java-testsuite-runner-fs/CHANGELOG.rst>`_).
+- MicroEJ NET Validation (Java) 1.0.1 (see `CHANGELOG <tests/net/java-testsuite-runner-net/CHANGELOG.rst>`_).
+- MicroEJ SECURITY Validation (Java) 1.0.1 (see `CHANGELOG <tests/security/java-testsuite-runner-security/CHANGELOG.rst>`_).
+- MicroEJ SSL Validation (Java) 1.0.1 (see `CHANGELOG <tests/ssl/java-testsuite-runner-ssl/CHANGELOG.rst>`_).
 - MicroEJ WatchdogTimer Validation (Java) 1.0.1 (see `CHANGELOG <tests/watchdog-timer/java-testsuite-runner-watchdog-timer/CHANGELOG.rst>`_).
 
 Fixed
