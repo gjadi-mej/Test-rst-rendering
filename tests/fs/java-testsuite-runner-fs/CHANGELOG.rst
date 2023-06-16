@@ -7,13 +7,14 @@ adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 
-[1.0.1] - 2023-06-14
+[1.0.1] - 2023-06-16
 --------------------
 
 Fixed
 ~~~~~
 
 - Use ``deploy.dir.microejscript`` instead of ``deploy.bsp.microejscript`` in ``config.properties.tpl`` file.
+- Module ``com.microej.pack.fs.fs-testsuite`` new version v3.0.7 used (see `CHANGELOG <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/3.0.7/CHANGELOG-3.0.7.md>`_).
 
 [1.0.0] - 2022-03-02
 --------------------
