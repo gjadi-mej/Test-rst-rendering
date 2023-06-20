@@ -36,7 +36,7 @@ Changed
 - MicroEJ NET Validation (Java) 1.0.1 (see `CHANGELOG <tests/net/java-testsuite-runner-net/CHANGELOG.rst>`_).
 - MicroEJ SECURITY Validation (Java) 1.0.1 (see `CHANGELOG <tests/security/java-testsuite-runner-security/CHANGELOG.rst>`_).
 - MicroEJ SSL Validation (Java) 1.0.1 (see `CHANGELOG <tests/ssl/java-testsuite-runner-ssl/CHANGELOG.rst>`_).
-- MicroEJ WatchdogTimer Validation (Java) 1.0.1 (see `CHANGELOG <tests/watchdog-timer/java-testsuite-runner-watchdog-timer/CHANGELOG.rst>`_).
+- MicroEJ WATCHDOG-TIMER Validation (Java) 1.0.1 (see `CHANGELOG <tests/watchdog-timer/java-testsuite-runner-watchdog-timer/CHANGELOG.rst>`_).
 
 Fixed
 =====
@@ -51,9 +51,11 @@ Fixed
 Added
 =====
 
-- Add NET Test Suite for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/net/README.rst>`_).
-- Add Watchdog Timer Test Suite for MicroEJ Watchdog Timer Packs 2.0.1 and higher (see `README <tests/watchdog-timer/README.rst>`_).
-- Add ECOM-WIFI Test Suite for ECOM-WIFI 2.1 and higher (see `README <tests/ecom-wifi/README.rst>`_).
+- MicroEJ NET Validation (Java) 1.0.0 for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/net/README.rst>`_).
+- MicroEJ SSL Validation (Java) 1.0.0 for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/ssl/README.rst>`_).
+- MicroEJ SECURITY Validation (Java) 1.0.0 for MicroEJ NET Packs 10.0.0 and higher (see `README <tests/security/README.rst>`_).
+- MicroEJ WATCHDOG-TIMER Validation (Java) 1.0.0 for MicroEJ WATCHDOG-TIMER Packs 2.0.1 and higher (see `README <tests/watchdog-timer/README.rst>`_).
+- MicroEJ ECOM-WIFI Validation (Java) 1.0.0 for MicroEJ ECOM-WIFI 2.1 and higher (see `README <tests/ecom-wifi/README.rst>`_).
 
 Changed
 =======
