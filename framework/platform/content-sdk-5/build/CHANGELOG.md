@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.0] - [unreleased]
 
+### Added
+
+- Add support to execute the optional RIP scripts that configure the RIP's module during the build of the VEE Port (`build/autoConfigurationXXX.xml` or `build/platform-XXX.ant`).
+
 ### Changed
 
 - Separate files required for SDK version ``5.x`` from files required for Architecture version ``7.x``.
