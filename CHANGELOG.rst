@@ -24,6 +24,7 @@ Added
 =====
 
 - MicroEJ External Resource Loader Validation (Java) 1.0.0 (see `CHANGELOG <tests/ext-res-loader/java-testsuite-runner-ext-res-loader/CHANGELOG.rst>`_).
+- MicroEJ MicroVG Validation (Java) 1.0.0 (see `CHANGELOG <tests/microvg/java-testsuite-runner-microvg/CHANGELOG.rst>`_).
 
 Changed
 =======
