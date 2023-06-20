@@ -25,6 +25,7 @@ Added
 
 - MicroEJ WatchdogTimer Validation (Java) 1.0.1 (see `CHANGELOG <tests/watchdog-timer/java-testsuite-runner-watchdog-timer/CHANGELOG.rst>`_).
 - MicroEJ External Resource Loader Validation (Java) 1.0.0 (see `CHANGELOG <tests/ext-res-loader/java-testsuite-runner-ext-res-loader>`_).
+- MicroEJ MicroVG Validation (Java) 1.0.0 (see `CHANGELOG <tests/microvg/java-testsuite-runner-microvg/CHANGELOG.rst>`_).
 
 Changed
 =======
