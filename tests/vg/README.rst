@@ -3,21 +3,21 @@
     Use of this source code is governed by a BSD-style license that can be found with this software.
 ..
 
-******************
-MicroVG Test Suite
-******************
+*************
+VG Test Suite
+*************
 
-This folder contains a ready-to-use project for testing `MicroVG <https://docs.microej.com/en/latest/PlatformDeveloperGuide/fs.html>`__ implementations on a device.
+This folder contains a ready-to-use project for testing `MicroVG <https://docs.microej.com/en/latest/VEEPortingGuide/vg.html>`__ implementations on a device.
 This test suite will test vector drawing capabilites.
 
 Specifications
 --------------
 
 - Tested Foundation Library: `MicroVG <https://repository.microej.com/modules/ej/api/microvg/>`__
-- Test Suite Module: `com.microej.pack.microvg#fs-testsuite <https://repository.microej.com/modules/com/microej/pack/vg/>`__
+- Test Suite Module: `com.microej.pack.vg#vg-testsuite <https://repository.microej.com/modules/com/microej/pack/vg/>`__
 
-Set the MicroVG Test Suite module version in the `module.ivy
-<java-testsuite-runner-microvg/module.ivy>`__ to match the pack version of the platform
+Set the VG Test Suite module version in the `module.ivy
+<java-testsuite-runner-vg/module.ivy>`__ to match the pack version of the platform
 tested.
 
 Please refer to `Platform Qualification Test Suite Versioning
@@ -32,7 +32,7 @@ Requirements
 Usage
 -----
 
-- In MicroEJ SDK, import the ``java-testsuite-runner-microvg`` project in your workspace.
+- In MicroEJ SDK, import the ``java-testsuite-runner-vg`` project in your workspace.
 - Follow the configuration and execution steps described in Platform Test Suites `documentation <../README.rst>`__.
 
 Test Suite Source Code Navigation
