@@ -8,7 +8,7 @@ VG Test Suite
 *************
 
 This folder contains a ready-to-use project for testing `MicroVG <https://docs.microej.com/en/latest/VEEPortingGuide/vg.html>`__ implementations on a device.
-This test suite will test vector drawing capabilites.
+This Test Suite will test vector drawing capabilites.
 
 Specifications
 --------------

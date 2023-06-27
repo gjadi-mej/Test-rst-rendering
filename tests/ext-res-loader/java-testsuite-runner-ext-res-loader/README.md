@@ -20,11 +20,11 @@ Below is the Javadoc of the interface `ExternalResourceWriter` with its methods 
 
 ### `public interface ExternalResourceWriter`
 
-Interface that allows the external test suite to create required external resources according its implementation. Since it is possible to implement external resource loader in many ways, this interface is required for a generic set of tests.
+Interface that allows the external Test Suite to create required external resources according its implementation. Since it is possible to implement external resource loader in many ways, this interface is required for a generic set of tests.
 
-The test suite provides a default implementation of this interface with the class FileResourceWriter. This class can be used if the external resource implementation is based on a file system.
+The Test Suite provides a default implementation of this interface with the class FileResourceWriter. This class can be used if the external resource implementation is based on a file system.
 
-If your implementation of the external resource does not have its implementation of the interface ExternalResourceWriter, please update this test suite with the required implementation of this interface.
+If your implementation of the external resource does not have its implementation of the interface ExternalResourceWriter, please update this Test Suite with the required implementation of this interface.
 
 ### `OutputStream setResourceAsStream(String name) throws IOException`
 
