@@ -13,7 +13,7 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 Added
 ~~~~~
 
-- Add the Java Test suite runner in this VPQT repository.
+- Add the Java Test suite runner in this PQT repository.
 
 ..
     Copyright 2023 MicroEJ Corp. All rights reserved.
