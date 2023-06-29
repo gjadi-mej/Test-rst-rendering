@@ -1,5 +1,9 @@
-.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_5.7.json
-   :alt: sdk_5.7 badge
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_5.4.json
+   :alt: sdk_5.4 badge
+   :align: left
+
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_7.14.json
+   :alt: arch_7.14 badge
    :align: left
 
 .. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_8.0.json
