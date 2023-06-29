@@ -1,3 +1,15 @@
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/sdk_5.7.json
+   :alt: sdk_5.7 badge
+   :align: left
+
+.. image:: https://shields.microej.com/endpoint?url=https://repository.microej.com/packages/badges/arch_8.0.json
+   :alt: arch_8.0 badge
+   :align: left
+..
+   Copyright 2019-2023 MicroEJ Corp. All rights reserved.
+   Use of this source code is governed by a BSD-style license that can be found with this software.
+
+
 Description
 ===========
 
@@ -148,7 +160,3 @@ The Java Test Suites validate the Foundation Libraries integration.
 The Java Test Suites verify the integration of the MicroEJ Platform over the
 BSP. No specific unit test framework is used, each test describes how it
 works.
-
-..
-   Copyright 2019-2022 MicroEJ Corp. All rights reserved.
-   Use of this source code is governed by a BSD-style license that can be found with this software.
