@@ -7,7 +7,15 @@ adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 
-[1.0.0] - 2023-06-19
+[1.0.1] - 2023-06-14
+--------------------
+
+Fixed
+~~~~~
+
+- Use ``deploy.dir.microejscript`` instead of ``deploy.bsp.microejscript`` in ``config.properties.tpl`` file.
+
+[1.0.0] - 2022-07-23
 --------------------
 
 Added

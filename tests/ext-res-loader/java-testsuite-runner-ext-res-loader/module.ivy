@@ -29,6 +29,6 @@
     		The last module version is automatically fetched by default.
     		To freeze the module version, add the following attribute: ej:match="perfect"    	
     	-->
-		<dependency org="com.microej.pack.external-resource" name="external-resource-testsuite" rev="1.0.0" conf="default->default;provided->provided;test->default"/>
+		<dependency org="com.microej.pack.external-resource" name="external-resource-testsuite" rev="1.0.2" conf="default->default;provided->provided;test->default"/>
     </dependencies>
 </ivy-module>
