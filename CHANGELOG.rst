@@ -18,6 +18,7 @@ Added
 =====
 
 - MicroEJ FS Validation (Java) 1.1.0 (see `CHANGELOG <tests/fs/java-testsuite-runner-fs/CHANGELOG.rst>`_).
+- Use include/exclude pattern when copying the bsp project.
 
 ------------------
 2.9.0 - 2023-06-29
