@@ -7,6 +7,16 @@ adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 
+.. _130---Unreleased:
+
+[1.3.0] - Unreleased
+--------------------
+
+Changed
+~~~~~~~
+
+- UI Test Suite 1.3.0.
+
 .. _120---2023-02-08:
 
 [1.2.0] - 2023-02-08
