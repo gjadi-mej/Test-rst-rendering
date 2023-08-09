@@ -15,6 +15,11 @@ Added
 
 - Add Openjdk Filesystem Test Suite.
 
+Changed
+~~~~~~~
+
+- Update fs-testsuite to 3.0.8.
+
 
 [1.0.1] - 2023-06-16
 --------------------
