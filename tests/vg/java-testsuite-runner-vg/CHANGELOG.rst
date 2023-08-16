@@ -7,6 +7,14 @@ adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 
+[1.1.0] - Unreleased
+--------------------
+
+Changed
+~~~~~~~
+
+- Set the VG testsuite version to 2.3.0.
+
 [1.0.0] - 2023-06-19
 --------------------
 

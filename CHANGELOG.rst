@@ -24,6 +24,7 @@ Changed
 =======
 
 - MicroEJ UI Validation (Java) 1.3.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
+- MicroEJ VG Validation (Java) 2.3.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-vg/CHANGELOG.rst>`_).
 
 Fixed
 =====
