@@ -18,7 +18,7 @@ Added
 Changed
 ~~~~~~~
 
-- Update fs-testsuite to 3.0.8.
+- Update module ``com.microej.pack.fs.fs-testsuite`` to v3.0.8 (see `CHANGELOG <https://repository.microej.com/modules/com/microej/pack/fs/fs-testsuite/3.0.8/CHANGELOG-3.0.8.md>`_).
 
 
 [1.0.1] - 2023-06-16
