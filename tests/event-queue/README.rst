@@ -46,4 +46,5 @@ Test Suite Source Code Navigation
 Troubleshooting
 ===============
 
-See Vee Port Test Suites `documentation <../README.rst>`_.
+- This testsuite does not work automatically in Simulation. You have to manually stop the MicroEJ application by closing the Front panel.
+- See Vee Port Test Suites `documentation <../README.rst>`_.
