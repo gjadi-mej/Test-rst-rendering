@@ -35,9 +35,14 @@ Relationship
 The test suite evolves as the VG Pack evolves: bug fixes, new features, etc. 
 A test suite is, therefore, compatible with a given range of VG Packs (cf VG Pack changelog: https://docs.microej.com/en/latest/VEEPortingGuide/vgChangeLog.html). 
 The following table shows the relationship between the different versions of the test suite and the associated VG Packs. 
+(note: Each VG Pack implements a version of MicroVG; cf VG Pack release notes: https://docs.microej.com/en/latest/VEEPortingGuide/vgReleaseNotes.html). 
 
-Each VG Pack implements a version of MicroVG (cf VG Pack release notes: https://docs.microej.com/en/latest/VEEPortingGuide/vgReleaseNotes.html). 
-The table also indicates the minimum version of MicroVG required by the test suite. 
+The table indicates:
+
+* the version of the project ``java-testsuite-runner-vg``,
+* the version of the test suite library fetched by the project ``java-testsuite-runner-vg``,
+* the compatible VG Packs to run the tests of the test suite,
+* the minimum version of the MicroVG API required by the test suite. 
 
 +-----------------+-------------------+---------------+-------------------+
 | Project version | TestSuite version | VG Pack Range | MicroVG API Range |

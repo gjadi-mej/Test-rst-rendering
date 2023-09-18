@@ -27,9 +27,14 @@ Relationship
 The test suite evolves as the UI Pack evolves: bug fixes, new features, etc. 
 A test suite is, therefore, compatible with a given range of UI Packs (cf UI Pack changelog: https://docs.microej.com/en/latest/VEEPortingGuide/uiChangeLog.html). 
 The following table shows the relationship between the different versions of the test suite and the associated UI Packs. 
+(note: Each UI Pack implements a version of MicroUI; cf UI Pack release notes: https://docs.microej.com/en/latest/VEEPortingGuide/uiReleaseNotes.html). 
 
-Each UI Pack implements a version of MicroUI (cf UI Pack release notes: https://docs.microej.com/en/latest/VEEPortingGuide/uiReleaseNotes.html). 
-The table also indicates the minimum version of MicroUI required by the test suite. 
+The table indicates:
+
+* the version of the project ``java-testsuite-runner-ui3``,
+* the version of the test suite library fetched by the project ``java-testsuite-runner-ui3``,
+* the compatible UI Packs to run the tests of the test suite,
+* the minimum version of the MicroUI API required by the test suite. 
 
 +-----------------+-------------------+-----------------+-------------------+
 | Project version | TestSuite version | UI Pack Range   | MicroUI API Range |
