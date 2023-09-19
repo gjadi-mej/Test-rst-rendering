@@ -53,7 +53,7 @@ See `UI Readme <tests/ui/README.rst>`_
 Vector Graphics Test Suite
 --------------------------
 
-The VG Test Suite is a Java Test Suite. It checks the implementation of the ``LLVG*`` API over a vectorial GPU.
+The VG Test Suite is a Java Test Suite. It checks the implementation of the ``LLVG*`` API over a vector GPU.
 
 See `VG Readme <tests/vg/README.rst>`_
 
