@@ -22,7 +22,7 @@ Added
 Changed
 ~~~~~~~
 
-- Set the VG testsuite version to 2.3.0.
+- Set the VG testsuite version to 2.4.0.
 
 [1.0.0] - 2023-06-19
 --------------------
