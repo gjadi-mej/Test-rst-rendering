@@ -29,26 +29,23 @@
  */
 #define LLKERNEL_ERROR (-1)
 
-#define COUNTOF(__BUFFER__)        (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
-
 #define NUMBER_OF_FEATURES  6
-#define FLASH_PAGE_SIZE                   0x100     /* 65536 pages of 256 bytes */
+#define FEATURE_DATA_BUFFER_SIZE                   0x100     /* 256 bytes */
 
 
 extern int32_t LLKERNEL_IMPL_allocateFeature__II(int32_t size_ROM, int32_t size_RAM);
-extern int32_t LLKERNEL_IMPL_getFeatureAddressROM__I(int32_t handle);
-extern int32_t LLKERNEL_IMPL_getFeatureAddressRAM__I(int32_t handle);
+extern void *LLKERNEL_IMPL_getFeatureAddressROM__I(int32_t handle);
+extern void *LLKERNEL_IMPL_getFeatureAddressRAM__I(int32_t handle);
 extern int32_t LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(void *dest_address_ROM, void *src_address, int32_t size);
 extern int32_t LLKERNEL_IMPL_flushCopyToROM(void);
 extern int32_t LLKERNEL_IMPL_getAllocatedFeaturesCount(void);
 extern int32_t LLKERNEL_IMPL_getFeatureHandle__I(int32_t index);
 extern void LLKERNEL_IMPL_freeFeature__I(int32_t handle);
 
-
-extern void _java_max_nb_dynamic_features;
-static uint32_t kernel_max_nb_dynamic_features = (uint32_t)(& _java_max_nb_dynamic_features);
-
 static int32_t featureHandles[NUMBER_OF_FEATURES] = {0};
+
+/* @brief Buffer used to store feature data content */
+static uint8_t featureDataBuffer[FEATURE_DATA_BUFFER_SIZE] = {0};
 
 static void cleanup_installed_features() {
 	// Free installed features
@@ -72,6 +69,8 @@ static void T_LLKERNEL_setUp(void)
 {
 	UTIL_print_string("\nT_LLKERNEL_setUp\n");
 	cleanup_installed_features();
+	// featureDataBuffer zero init
+	memset(featureDataBuffer, 0, FEATURE_DATA_BUFFER_SIZE);
 }
 
 /** @brief Function call before running test. */
@@ -81,57 +80,67 @@ static void T_LLKERNEL_tearDown(void)
 	cleanup_installed_features();
 }
 
-/** @brief 	Allocate and install 6 features (more than the default 4 features available)
- *  		test should fail after installing 4 features.
+/** @brief 	Allocate and install max number of features.
+ * 		Test should fail after installing the max number of features (max number depending on the implementation).
  */
 static void T_LLKERNEL_CHECK_resource_allocate(void) {
 	UTIL_print_string("LLKERNEL resource allocate\n");
         
-    uint8_t resourceBuffer[FLASH_PAGE_SIZE] = {0};
-    uint8_t testBuffer[FLASH_PAGE_SIZE] = {0};
-    uint32_t resourceSize = 0;
+    uint8_t tmpBuffer[FEATURE_DATA_BUFFER_SIZE] = {0};
     int32_t installed_features = 0;
+    int32_t featureHandle = 0;
 
-    for(int32_t i = 0; i < NUMBER_OF_FEATURES; i++) {
-        sprintf((char*)resourceBuffer, "********llkernel %d llkernel*******", i);
-        resourceSize = COUNTOF(resourceBuffer);
+    do {
+        sprintf((char*)featureDataBuffer, "********llkernel %d llkernel*******", installed_features);
+
+        // Save content of featureDataBuffer in a temporary buffer
+        memcpy(tmpBuffer, featureDataBuffer, FEATURE_DATA_BUFFER_SIZE);
 
         int32_t nbAllocatedFeatures = LLKERNEL_IMPL_getAllocatedFeaturesCount();
-        TEST_ASSERT_EQUAL_INT(i, nbAllocatedFeatures);
+        TEST_ASSERT_EQUAL_INT(installed_features, nbAllocatedFeatures);
 
         // Allocate new feature
-        featureHandles[i] = LLKERNEL_IMPL_allocateFeature__II(resourceSize, resourceSize);
-        if(0 == featureHandles[i]){
+        featureHandle = LLKERNEL_IMPL_allocateFeature__II(FEATURE_DATA_BUFFER_SIZE, FEATURE_DATA_BUFFER_SIZE);
+        if(0 == featureHandle){
         	break;// no more space to allocate new feature
         }
 
-        void *romAddr = (void*)LLKERNEL_IMPL_getFeatureAddressROM__I(featureHandles[i]);
+        void *romAddr = LLKERNEL_IMPL_getFeatureAddressROM__I(featureHandle);
         TEST_ASSERT_NOT_NULL(romAddr);
 
-        void *ramAddr = (void*)LLKERNEL_IMPL_getFeatureAddressRAM__I(featureHandles[i]);
+        void *ramAddr = LLKERNEL_IMPL_getFeatureAddressRAM__I(featureHandle);
         TEST_ASSERT_NOT_NULL(ramAddr);
 
+        // Check memory block overlap between RAM and ROM
+        if(((((int32_t)romAddr) <= (int32_t)(ramAddr)) && (((int32_t)romAddr + FEATURE_DATA_BUFFER_SIZE) > (int32_t)(ramAddr))) ||
+        		((((int32_t)ramAddr) <= (int32_t)(romAddr)) && (((int32_t)ramAddr + FEATURE_DATA_BUFFER_SIZE) > (int32_t)(romAddr)))){
+        	TEST_ASSERT_MESSAGE(false, "Feature RAM and ROM area overlaped");
+        }
+
         // Install feature
-        int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(romAddr, resourceBuffer, resourceSize);
+        int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(romAddr, featureDataBuffer, FEATURE_DATA_BUFFER_SIZE);
         TEST_ASSERT_MESSAGE(LLKERNEL_OK == result, "LLKERNEL_IMPL_copyToROM() returned an error");
+
+        // Ensure that featureDataBuffer content has not been altered here
+        if(0 != memcmp(featureDataBuffer, tmpBuffer, FEATURE_DATA_BUFFER_SIZE)){
+        	TEST_ASSERT_MESSAGE(false, "Corrupted feature data passed");
+        }
 
         result = LLKERNEL_IMPL_flushCopyToROM();
         TEST_ASSERT_MESSAGE(LLKERNEL_OK == result, "LLKERNEL_IMPL_flushCopyToROM() returned an error");
 
+        // Ensure that featureDataBuffer content has not been altered after flush
+		if(0 != memcmp(featureDataBuffer, tmpBuffer, FEATURE_DATA_BUFFER_SIZE)){
+			TEST_ASSERT_MESSAGE(false, "Corrupted feature data passed after LLKERNEL_IMPL_flushCopyToROM()");
+		}
+
         // Check feature installation consitency
-        memcpy((void*)testBuffer, romAddr, resourceSize);
-        if(0 != memcmp(testBuffer, resourceBuffer, resourceSize)){
+        if(0 != memcmp(romAddr, featureDataBuffer, FEATURE_DATA_BUFFER_SIZE)){
         	TEST_ASSERT_MESSAGE(false, "Corrupted feature content");
         }
 
         installed_features++;
-    }
-
-    if(NUMBER_OF_FEATURES < kernel_max_nb_dynamic_features){
-    	TEST_ASSERT_EQUAL_INT(NUMBER_OF_FEATURES, installed_features);
-    } else {
-    	TEST_ASSERT_EQUAL_INT(kernel_max_nb_dynamic_features, installed_features);
-    }
+    } while(1);
 }
 
 /** @brief Allocate, install and free #NUMBER_OF_FEATURES features. */
@@ -139,15 +148,11 @@ static void T_LLKERNEL_CHECK_resource_allocate_and_free(void)
 {
 	UTIL_print_string("LLKERNEL resource allocate and free\n");
 
-    uint8_t resourceBuffer[FLASH_PAGE_SIZE] = {0};
-    uint32_t resourceSize = 0;
-
     for(int32_t i = 0; i < NUMBER_OF_FEATURES; i++) {
-        sprintf((char*)resourceBuffer, "********llkernel %d llkernel*******", i);
-        resourceSize = COUNTOF(resourceBuffer);
+        sprintf((char*)featureDataBuffer, "********llkernel %d llkernel*******", i);
 
         // Allocate new feature
-        featureHandles[i] = LLKERNEL_IMPL_allocateFeature__II(resourceSize, resourceSize);
+        featureHandles[i] = LLKERNEL_IMPL_allocateFeature__II(FEATURE_DATA_BUFFER_SIZE, FEATURE_DATA_BUFFER_SIZE);
         if (0 == featureHandles[i]) {
             TEST_ASSERT_MESSAGE(false, "LLKERNEL_IMPL_allocateFeature() returned an error");
         }
@@ -162,19 +167,28 @@ static void T_LLKERNEL_CHECK_resource_allocate_and_free(void)
         TEST_ASSERT_NOT_NULL(featureRamAddr);
 
         // Install feature
-        int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(featureRomAddr, resourceBuffer, resourceSize);
+        int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(featureRomAddr, featureDataBuffer, FEATURE_DATA_BUFFER_SIZE);
         TEST_ASSERT_MESSAGE(LLKERNEL_OK == result, "LLKERNEL_IMPL_copyToROM() returned an error");
 
         result = LLKERNEL_IMPL_flushCopyToROM();
         TEST_ASSERT_MESSAGE(LLKERNEL_OK == result, "LLKERNEL_IMPL_flushCopyToROM() returned an error");
 
         // Check feature installation consistency
-        if(0 != memcmp(featureRomAddr, resourceBuffer, resourceSize)){
+        if(0 != memcmp(featureRomAddr, featureDataBuffer, FEATURE_DATA_BUFFER_SIZE)){
         	TEST_ASSERT_MESSAGE(false, "Corrupted feature content");
         }
 
         // Free installed feature
         LLKERNEL_IMPL_freeFeature__I(featureHandles[i]);
+
+        // Check that feature handle is useless since feature free called
+        void *tmpFeatureRomAddr = LLKERNEL_IMPL_getFeatureAddressROM__I(featureHandles[i]);
+        TEST_ASSERT_MESSAGE(tmpFeatureRomAddr != featureRomAddr, "Feature free not working as expected (valid ROM address returned)");
+
+        void *tmpFeatureRamAddr = LLKERNEL_IMPL_getFeatureAddressRAM__I(featureHandles[i]);
+        TEST_ASSERT_MESSAGE(tmpFeatureRamAddr != featureRamAddr, "Feature free not working as expected (valid RAM address returned)");
+
+        // Reset feature handle array
         featureHandles[i] = 0;
     }
 }
@@ -199,13 +213,9 @@ static void T_LLKERNEL_CHECK_resource_install_overflow(void)
 {
 	UTIL_print_string("LLKERNEL resource install overflow\n");
 
-    uint8_t resourceBuffer[FLASH_PAGE_SIZE] = {0};
-    uint32_t resourceSize = 0;
+	sprintf((char*)featureDataBuffer, "********llkernel 0 llkernel*******");
 
-	sprintf((char*)resourceBuffer, "********llkernel 0 llkernel*******");
-	resourceSize = COUNTOF(resourceBuffer);
-
-	featureHandles[0] = LLKERNEL_IMPL_allocateFeature__II(resourceSize, resourceSize);
+	featureHandles[0] = LLKERNEL_IMPL_allocateFeature__II(FEATURE_DATA_BUFFER_SIZE, FEATURE_DATA_BUFFER_SIZE);
 	if (0 == featureHandles[0]) {
 		// Allocate new feature failed (no more space ?)
 		TEST_ASSERT_MESSAGE(false, "LLKERNEL_IMPL_allocateFeature() returned an error");
@@ -214,8 +224,12 @@ static void T_LLKERNEL_CHECK_resource_install_overflow(void)
     void *featureRomAddr = (void*)LLKERNEL_IMPL_getFeatureAddressROM__I(featureHandles[0]);
     TEST_ASSERT_NOT_NULL(featureRomAddr);
 
-    int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(featureRomAddr, resourceBuffer, INT_MAX);
-    TEST_ASSERT_EQUAL_INT(LLKERNEL_ERROR, result);
+    int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(featureRomAddr, featureDataBuffer, INT_MAX);
+    if(LLKERNEL_ERROR != result){
+    	// Failure expected here but call to LLKERNEL_IMPL_copyToROM() function succeed. Try to call LLKERNEL_IMPL_flushCopyToROM() => fail expected.
+    	result = LLKERNEL_IMPL_flushCopyToROM();
+    	TEST_ASSERT_EQUAL_INT(LLKERNEL_ERROR, result);
+    }
 
     LLKERNEL_IMPL_freeFeature__I(featureHandles[0]);
     featureHandles[0] = 0;
@@ -230,15 +244,12 @@ static void T_LLKERNEL_CHECK_resource_install_out_of_bounds(void)
 {
 	UTIL_print_string("LLKERNEL resource install out of bounds\n");
 
-	uint8_t resourceBuffer[FLASH_PAGE_SIZE] = {0};
-	uint32_t resourceSize = 256;
-
 	// Prerequisite is to start with no feature already allocated
     int32_t nbAllocatedFeatures = LLKERNEL_IMPL_getAllocatedFeaturesCount();
 	TEST_ASSERT_EQUAL_INT(0, nbAllocatedFeatures);
 
 	// Allocate the first feature
-	featureHandles[0] = LLKERNEL_IMPL_allocateFeature__II(resourceSize, resourceSize);
+	featureHandles[0] = LLKERNEL_IMPL_allocateFeature__II(FEATURE_DATA_BUFFER_SIZE, FEATURE_DATA_BUFFER_SIZE);
 	if (0 == featureHandles[0]) {
 		// Allocate new feature failed (no more space ?)
 		TEST_ASSERT_MESSAGE(false, "LLKERNEL_IMPL_allocateFeature() returned an error");
@@ -253,19 +264,19 @@ static void T_LLKERNEL_CHECK_resource_install_out_of_bounds(void)
 	TEST_ASSERT_NOT_NULL(featureRomAddr);
 
     // Try to copy a sequence of bytes outside ROM area (lower bounds)
-    int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I((void*)((uint32_t)featureRomAddr - 0x1000), resourceBuffer, FLASH_PAGE_SIZE);
-    if(-1 != result){
+    int32_t result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I((void*)((uint32_t)featureRomAddr - 0x1000), featureDataBuffer, FEATURE_DATA_BUFFER_SIZE);
+    if(LLKERNEL_ERROR != result){
     	// Failure expected here but call to LLKERNEL_IMPL_copyToROM() function succeed. Try to call LLKERNEL_IMPL_flushCopyToROM() => fail expected.
     	result = LLKERNEL_IMPL_flushCopyToROM();
-    	TEST_ASSERT_EQUAL_INT(-1, result);
+    	TEST_ASSERT_EQUAL_INT(LLKERNEL_ERROR, result);
     }
 
     // Try to copy a sequence of bytes outside ROM area (upper bounds)
-    result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(featureRomAddr, resourceBuffer, INT_MAX);
-    if(-1 != result){
+    result = LLKERNEL_IMPL_copyToROM__LiceTea_lang_Ram_2LiceTea_lang_Ram_2I(featureRomAddr, featureDataBuffer, INT_MAX);
+    if(LLKERNEL_ERROR != result){
     	// Failure expected here but call to LLKERNEL_IMPL_copyToROM() function succeed. Try to call LLKERNEL_IMPL_flushCopyToROM() => fail expected.
     	result = LLKERNEL_IMPL_flushCopyToROM();
-    	TEST_ASSERT_EQUAL_INT(-1, result);
+    	TEST_ASSERT_EQUAL_INT(LLKERNEL_ERROR, result);
     }
 
 }
