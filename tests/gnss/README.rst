@@ -17,7 +17,7 @@ Tests can be launched:
 Requirements
 ------------
 
--  MicroEJ SDK version ``5.1.0`` (included in MicroEJ SDK dist. ``19.05``).
+-  See Platform Test Suites `documentation <../README.rst>`_.
 
 Usage
 -----
