@@ -181,12 +181,16 @@ static void T_LLKERNEL_CHECK_resource_allocate_and_free(void)
         // Free installed feature
         LLKERNEL_IMPL_freeFeature__I(featureHandles[i]);
 
+        // Check that feature handle at index 0 is not valid
+        int32_t featureHandle = LLKERNEL_IMPL_getFeatureHandle__I(0);
+        TEST_ASSERT_EQUAL_INT(0, featureHandle);
+
         // Check that feature handle is useless since feature free called
         void *tmpFeatureRomAddr = LLKERNEL_IMPL_getFeatureAddressROM__I(featureHandles[i]);
-        TEST_ASSERT_MESSAGE(tmpFeatureRomAddr != featureRomAddr, "Feature free not working as expected (valid ROM address returned)");
+        TEST_ASSERT_MESSAGE(NULL == tmpFeatureRomAddr, "Feature free not working as expected (valid ROM address returned)");
 
         void *tmpFeatureRamAddr = LLKERNEL_IMPL_getFeatureAddressRAM__I(featureHandles[i]);
-        TEST_ASSERT_MESSAGE(tmpFeatureRamAddr != featureRamAddr, "Feature free not working as expected (valid RAM address returned)");
+        TEST_ASSERT_MESSAGE(NULL == tmpFeatureRamAddr, "Feature free not working as expected (valid RAM address returned)");
 
         // Reset feature handle array
         featureHandles[i] = 0;
@@ -231,8 +235,6 @@ static void T_LLKERNEL_CHECK_resource_install_overflow(void)
     	TEST_ASSERT_EQUAL_INT(LLKERNEL_ERROR, result);
     }
 
-    LLKERNEL_IMPL_freeFeature__I(featureHandles[0]);
-    featureHandles[0] = 0;
 }
 
 /** @brief Attempt to install a feature out of the defined ROM area:
@@ -281,6 +283,51 @@ static void T_LLKERNEL_CHECK_resource_install_out_of_bounds(void)
 
 }
 
+/** @brief Attempt to check that no feature handle can be retrieved if no feature have been installed.
+ */
+static void T_LLKERNEL_CHECK_resource_installation(void)
+{
+	UTIL_print_string("LLKERNEL resource installation\n");
+
+	// Prerequisite is to start with no feature already allocated
+    int32_t nbAllocatedFeatures = LLKERNEL_IMPL_getAllocatedFeaturesCount();
+	TEST_ASSERT_EQUAL_INT(0, nbAllocatedFeatures);
+
+    // Check that feature handle at index 0 is not valid
+    int32_t featureHandle = LLKERNEL_IMPL_getFeatureHandle__I(0);
+    TEST_ASSERT_EQUAL_INT(0, featureHandle);
+
+	// Allocate the first feature
+	featureHandles[0] = LLKERNEL_IMPL_allocateFeature__II(FEATURE_DATA_BUFFER_SIZE, FEATURE_DATA_BUFFER_SIZE);
+	if (0 == featureHandles[0]) {
+		// Allocate new feature failed (no more space ?)
+		TEST_ASSERT_MESSAGE(false, "LLKERNEL_IMPL_allocateFeature() returned an error");
+	}
+
+	// Allocate the second feature
+	featureHandles[1] = LLKERNEL_IMPL_allocateFeature__II(FEATURE_DATA_BUFFER_SIZE, FEATURE_DATA_BUFFER_SIZE);
+	if (0 == featureHandles[1]) {
+		// Allocate new feature failed (no more space ?)
+		TEST_ASSERT_MESSAGE(false, "LLKERNEL_IMPL_allocateFeature() returned an error");
+	}
+
+	// Check that feature handle at index 0 is valid
+	featureHandle = LLKERNEL_IMPL_getFeatureHandle__I(0);
+	TEST_ASSERT_EQUAL_INT(featureHandles[0], featureHandle);
+
+	// Check that feature handle at index 1 is valid
+	featureHandle = LLKERNEL_IMPL_getFeatureHandle__I(1);
+	TEST_ASSERT_EQUAL_INT(featureHandles[1], featureHandle);
+
+    // Check that feature handle at index 2 is not valid
+    featureHandle = LLKERNEL_IMPL_getFeatureHandle__I(2);
+    TEST_ASSERT_EQUAL_INT(0, featureHandle);
+
+    // Check that feature handle at wrong negative index -1 is not valid
+    featureHandle = LLKERNEL_IMPL_getFeatureHandle__I(-1);
+    TEST_ASSERT_EQUAL_INT(0, featureHandle);
+}
+
 TestRef T_LLKERNEL_tests(void)
 {
 	EMB_UNIT_TESTFIXTURES(fixture_llkernel) {
@@ -289,6 +336,7 @@ TestRef T_LLKERNEL_tests(void)
 		new_TestFixture("T_LLKERNEL_resource_allocate_overflow", T_LLKERNEL_CHECK_resource_allocate_overflow),
 		new_TestFixture("T_LLKERNEL_resource_install_overflow", T_LLKERNEL_CHECK_resource_install_overflow),
         new_TestFixture("T_LLKERNEL_resource_install_out_of_bounds", T_LLKERNEL_CHECK_resource_install_out_of_bounds),
+        new_TestFixture("T_LLKERNEL_resource_installation", T_LLKERNEL_CHECK_resource_installation),
 	};
 	EMB_UNIT_TESTCALLER(llkernel_tests, "LLKERNEL tests", T_LLKERNEL_setUp, T_LLKERNEL_tearDown, fixture_llkernel);
 
