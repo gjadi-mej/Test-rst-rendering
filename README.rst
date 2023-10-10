@@ -35,6 +35,13 @@ All other Test Suites assume the CORE Test Suite is validated.
 
 See `CORE Readme <tests/core/README.rst>`_
 
+Multi-Sandbox Test Suite
+------------------------
+
+The Multi-Sandbox Test Suite contains a C Test Suite. It ensures MicroEJ Multi-Sandbox features install/uninstall flow will run correctly.
+
+See `Multi-Sandbox Readme <tests/llkernel/README.rst>`_
+
 Graphical User Interface Test Suite
 -----------------------------------
 
