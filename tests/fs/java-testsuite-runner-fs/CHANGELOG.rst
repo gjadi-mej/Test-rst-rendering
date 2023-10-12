@@ -13,7 +13,7 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 Added
 ~~~~~
 
-- Add Openjdk Filesystem Test Suite.
+- Add Openjdk Filesystem Test Suite v1.0.1.
 
 Changed
 ~~~~~~~
