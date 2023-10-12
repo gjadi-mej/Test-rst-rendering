@@ -34,7 +34,7 @@
 			To keep the VEE Ports made for the new Architectures (>=8.1) compatible with the old Architectures (<=8.0),
 			initialize the old property 'com.microej.platformbuilder.module.multi.enabled' to:
 			- 'true' when capability is 'multi'
-			- 'false' when capability is 'single' or 'tiny'
+			- 'false' when capability is 'mono' or 'tiny'
 			- nothing (not set) when capability is not set (this will prevent a modification of the .platform file.
 		-->
 		<condition property="com.microej.platformbuilder.module.multi.enabled" value="true">
@@ -42,7 +42,7 @@
 		</condition>
 		<condition property="com.microej.platformbuilder.module.multi.enabled" value="false">
 			<or>
-				<equals arg1="${com.microej.runtime.capability}" arg2="single"/>
+				<equals arg1="${com.microej.runtime.capability}" arg2="mono"/>
 				<equals arg1="${com.microej.runtime.capability}" arg2="tiny"/>
 			</or>
 		</condition>
