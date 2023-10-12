@@ -19,6 +19,7 @@ This version requires SDK `5.8.0` or higher.
 - Add publication of `NOTICE.txt` and `MICROEJ_SDK_EULA.txt` files. The notice describes the list of files licensed under SDK EULA.
 - Add include/exclude pattern when copying the BSP project.
 - Rename Platform to VEE Port in module.ivy.
+- Use include/exclude pattern when copying the bsp project.
 
 ### Fixed
 
