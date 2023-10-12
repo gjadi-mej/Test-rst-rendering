@@ -29,6 +29,7 @@ Changed
 - MicroEJ UI Validation (Java) 1.3.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
 - MicroEJ VG Validation (Java) 2.4.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-vg/CHANGELOG.rst>`_).
 - MicroEJ SSL Validation (Java) 1.0.2 (see `CHANGELOG <tests/ssl/java-testsuite-runner-ssl/CHANGELOG.rst>`_).
+- Platform Configuration Additions 2.1.0 (see `CHANGELOG <framework/platform/content-sdk-5/build/CHANGELOG.md>`_).
 
 Fixed
 =====
