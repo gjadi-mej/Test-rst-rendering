@@ -14,6 +14,11 @@ See `VG Readme <../README.rst>`_ to have more information about the relationship
 [1.1.0] - Unreleased
 --------------------
 
+Added
+~~~~~
+
+- Relationship table between the version of the test suite and the VG Pack in `VG Readme <../README.rst>`_.
+
 Changed
 ~~~~~~~
 

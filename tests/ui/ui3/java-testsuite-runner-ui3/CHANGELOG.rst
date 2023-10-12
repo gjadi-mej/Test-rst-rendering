@@ -16,6 +16,11 @@ See `UI Readme <README.rst>`_ to have more information about the relationship be
 [1.3.0] - Unreleased
 --------------------
 
+Added
+~~~~~
+
+- Relationship table between the version of the test suite and the UI Pack in `UI Readme <README.rst>`_.
+
 Changed
 ~~~~~~~
 
