@@ -13,7 +13,7 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 Added
 ~~~~~
 
-- Add the Java Test Suite runner in this PQT repository.
+- Add the Java Test Suite runner for ``com.microej.pack.event.event-testsuite`` v2.0.0 (see `CHANGELOG <https://forge.microej.com/microej-developer-repository-release/com/microej/pack/event/event-testsuite/2.0.0/CHANGELOG-2.0.0.md>`_).
 
 ..
     Copyright 2023 MicroEJ Corp. All rights reserved.
