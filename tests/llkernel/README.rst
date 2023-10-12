@@ -46,6 +46,7 @@ Expected Results
 
 ::
 
+    T_LLKERNEL v1.0.0
 	.
 	T_LLKERNEL_setUp
 	LLKERNEL resource allocate
