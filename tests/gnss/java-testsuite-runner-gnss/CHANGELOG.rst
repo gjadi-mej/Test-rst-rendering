@@ -12,7 +12,7 @@ Versioning <https://semver.org/spec/v2.0.0.html>`__.
 Added
 ~~~~~
 
-- Add the Java Test Suite runner in this PQT repository.
+- Add the Java Test Suite runner for ``com.microej.validation.gnss-testsuite-report`` v1.0.0 (see `CHANGELOG <https://forge.microej.com/microej-developer-repository-release/com/microej/validation/gnss-testsuite-report/1.0.0/CHANGELOG-1.0.0.md>`_).
 
 ..
     Copyright 2023 MicroEJ Corp. All rights reserved.
