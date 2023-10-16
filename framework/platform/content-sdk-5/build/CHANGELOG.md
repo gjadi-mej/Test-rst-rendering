@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add support for Architecture 8.1 and the new property `com.microej.runtime.capability`
 
+### Fixed
+
+- Fix execution of artifact checker on `-configuration` project instead of `-fp` project.
+
 ## [2.0.0] - [2023-06-29]
 
 ### Added
