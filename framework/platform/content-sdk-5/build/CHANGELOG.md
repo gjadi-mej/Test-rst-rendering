@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.0] - [unreleased]
 
+This version requires SDK `5.8.0` or higher.
+
 ### Added
 
 - Add support for Architecture 8.1 and the new property `com.microej.runtime.capability`
+- Add execution of artifact checker for `CHANGELOG.rst` and `LICENSE.txt` (`README.rst` is ignored).
 
 ### Fixed
 
