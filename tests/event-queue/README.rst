@@ -27,7 +27,7 @@ Requirements
 ============
 
 - Read VEE Port Test Suites `documentation <../README.rst>`_.
-- Read External resource loader Test Suites `documentation <./java-testsuite-runner-event-queue/README.md>`_.
+- Read External resource loader Test Suites `documentation <../ext-res-loader/README.rst>`_.
 
 Usage
 =====

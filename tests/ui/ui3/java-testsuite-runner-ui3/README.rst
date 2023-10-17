@@ -15,8 +15,8 @@ Tests are written as JUnit test cases, thus the main entry point is automaticall
 
 Tests can be launched:
 
--  as a standard Application by using a `local launcher<Launcher Mode>`_.
--  as a VEE Port Test Suite by `building the module<VEE Port Test Suite Mode>`_.
+-  as a standard Application by using a local launcher, see `Launcher Mode>`_.
+-  as a VEE Port Test Suite by building the module, see `VEE Port Test Suite Mode`_.
 
 Requirements
 ------------
