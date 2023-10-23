@@ -38,7 +38,7 @@
 	<!-- Translate changelog file for artifact checker -->
 	<target name="module-publish:artifactchecker-files:changelog" extensionOf="package" if="has.additional.changelog.file" depends="changelog:init" unless="${skip.publish}">
 		<copy tofile="${target.artifacts}/${changelog.name}.${changelog.ext}" file="${additional.changelog.file}" />
-		<replace file="${target.artifacts}/${changelog.name}.${changelog.ext}" token="[" value="## ["/>
+		<replaceregexp file="${target.artifacts}/${changelog.name}.${changelog.ext}" match="^\s*\[" replace="## [" flags="gm"/>
 	</target>
 
 	<!-- 
