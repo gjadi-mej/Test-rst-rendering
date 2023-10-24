@@ -23,8 +23,9 @@
 	</target>
 	
 	<!-- 
-		Checks if the "Multi Applications" module is available in the MicroEJ Architecture and if the property "com.microej.platformbuilder.module.multi.enabled" is set.
-		Starting from version 8.1.0, the "Multi Applications" module has been removed and replaced with the property "com.microej.runtime.capability".
+		Checks if the "Multi Applications" module is available in the MicroEJ Architecture and if the PCA property 'com.microej.platformbuilder.module.multi.enabled' is set.
+		Starting from version 8.1.0, the "Multi Applications" module has been removed and replaced with the Architecture property 'com.microej.runtime.capability'.
+		The PCA property 'com.microej.platformbuilder.module.multi.enabled' takes precedence to the Architecture property 'com.microej.runtime.capability'.
 		 
 		Set the property "architecture.multi.module.to.update".
 	-->
@@ -61,11 +62,18 @@
 		</condition>
 		
 		<!--
-			To keep the VEE Ports made for the old Architectures (<=8.0) compatible with the new Architectures (>=8.1),
-			initialize the new property 'com.microej.runtime.capability' to 'multi' when KF is enabled.
+			Initialize the Architecture property 'com.microej.runtime.capability' (if not explicitely set) to:
+			- 'multi' when 'com.microej.platformbuilder.module.multi.enabled' is set to 'true'.
+			- 'mono' when 'com.microej.platformbuilder.module.multi.enabled' is set to 'false'.
 		-->
 		<condition property="com.microej.runtime.capability" value="multi">
 			<istrue value="${com.microej.platformbuilder.module.multi.enabled}"/>
+		</condition>
+		<condition property="com.microej.runtime.capability" value="mono">
+			<and>
+				<isset property="com.microej.platformbuilder.module.multi.enabled"/>
+				<isfalse value="${com.microej.platformbuilder.module.multi.enabled}"/>
+			</and>
 		</condition>
 	</target>
 	
