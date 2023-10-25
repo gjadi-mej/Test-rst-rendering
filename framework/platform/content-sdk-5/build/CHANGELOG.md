@@ -18,6 +18,10 @@ This version requires SDK `5.8.0` or higher.
 
 - Fix execution of artifact checker on `-configuration` project instead of `-fp` project.
 
+### Fixed
+
+- Fix build and run Linux scripts end-of-line (EOL) characters if the VEE port was built on Windows.
+
 ## [2.0.0] - [2023-06-29]
 
 ### Added
