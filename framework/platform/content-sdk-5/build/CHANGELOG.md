@@ -20,7 +20,7 @@ This version requires SDK `5.8.0` or higher.
 
 ### Fixed
 
-- Fix running build and run scripts on Linux if the VEE port was built on Windows.
+- Fix build and run Linux scripts end-of-line (EOL) characters if the VEE port was built on Windows.
 
 ## [2.0.0] - [2023-06-29]
 
