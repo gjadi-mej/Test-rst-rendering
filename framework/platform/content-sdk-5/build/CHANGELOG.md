@@ -23,6 +23,10 @@ This version requires SDK `5.8.0` or higher.
 - Fix execution of artifact checker on `-configuration` project instead of `-fp` project.
 - Fix build and run Linux scripts end-of-line (EOL) characters if the VEE port was built on Windows.
 
+## Fixed
+
+- Fix update in some cases of The _Multi Applications_ (`kf`) module in the `.platform` file (only when `com.microej.platformbuilder.module.multi.enabled` was set to `true`).
+
 ## [2.0.0] - [2023-06-29]
 
 ### Added
