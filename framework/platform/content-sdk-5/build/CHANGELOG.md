@@ -11,15 +11,16 @@ This version requires SDK `5.8.0` or higher.
 
 ### Added
 
-- Add support for Architecture 8.1 and the new property `com.microej.runtime.capability`
+- Add support for Architecture version `8.1.0`.
+  The _Multi Applications_ module has been removed and replaced by the property `com.microej.runtime.capability`.
+  This property can be set either in the configuration project (in `mjvm/mjvm.properties` file) or as a MMM property.
+  The MMM property takes precedence to the configuration project property.
+  The MMM property `com.microej.platformbuilder.module.multi.enabled` is deprecated but still supported.
 - Add execution of artifact checker for `CHANGELOG.rst` and `LICENSE.txt` (`README.rst` is ignored).
 
 ### Fixed
 
 - Fix execution of artifact checker on `-configuration` project instead of `-fp` project.
-
-### Fixed
-
 - Fix build and run Linux scripts end-of-line (EOL) characters if the VEE port was built on Windows.
 
 ## [2.0.0] - [2023-06-29]
