@@ -16,6 +16,7 @@ This version requires SDK `5.8.0` or higher.
   This property can be set either in the configuration project (in `mjvm/mjvm.properties` file) or as an MMM property to override the configuration project.
   The MMM property `com.microej.platformbuilder.module.multi.enabled` is deprecated but still supported when `com.microej.runtime.capability` is not set.
 - Add execution of artifact checker for `CHANGELOG.rst` and `LICENSE.txt` (`README.rst` is ignored).
+- Add publication of `NOTICE.txt` and `MICROEJ_SDK_EULA.txt` files. The notice describes the list of files licensed under SDK EULA.
 
 ### Fixed
 

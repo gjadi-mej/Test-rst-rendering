@@ -276,6 +276,7 @@
 	<!-- Copy the platform in target output dir -->
 	<target name="module-platform:preparePublication" extensionOf="abstract-compile:compile" depends="module-platform:move" unless="${skip.publish}">
 		<property name="platform.publish.dir" location="${target}/platform"/>
+    	<property name="platform.publish.source.dir" value="${platform.publish.dir}/${platform.project.name}/source"/>
 		<copy todir="${platform.publish.dir}/${platform.project.name}">
 			<fileset dir="${project.parent.dir}/${platform.project.name}" includes="**/*"/>
 		</copy>
