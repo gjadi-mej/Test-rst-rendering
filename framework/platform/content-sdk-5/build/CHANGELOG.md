@@ -17,6 +17,8 @@ This version requires SDK `5.8.0` or higher.
   The MMM property `com.microej.platformbuilder.module.multi.enabled` is deprecated but still supported when `com.microej.runtime.capability` is not set.
 - Add execution of artifact checker for `CHANGELOG.rst` and `LICENSE.txt` (`README.rst` is ignored).
 - Add publication of `NOTICE.txt` and `MICROEJ_SDK_EULA.txt` files. The notice describes the list of files licensed under SDK EULA.
+- Add include/exclude pattern when copying the BSP project.
+- Rename Platform to VEE Port in module.ivy.
 
 ### Fixed
 
