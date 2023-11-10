@@ -11,9 +11,9 @@ Relationship
 
 See `UI Readme <README.rst>`_ to have more information about the relationship between the version of the test suite and the UI Pack.
 
-.. _130---Unreleased:
+.. _140---Unreleased:
 
-[1.3.0] - Unreleased
+[1.4.0] - Unreleased
 --------------------
 
 Added
@@ -24,7 +24,7 @@ Added
 Changed
 ~~~~~~~
 
-- UI Test Suite 1.3.0.
+- UI Test Suite 1.4.0.
 
 .. _120---2023-02-08:
 

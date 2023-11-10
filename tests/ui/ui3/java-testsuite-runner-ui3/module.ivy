@@ -6,7 +6,7 @@
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:ej="https://developer.microej.com" ej:version="2.0.0"> 
 	<!-- Please synchronize the version of this module with the one in MicroejUiValidation.java -->
-	<info organisation="com.microej.testsuite" module="ui-testsuite-report" status="integration" revision="1.3.0">
+	<info organisation="com.microej.testsuite" module="ui-testsuite-report" status="integration" revision="1.4.0">
 
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-javaimpl" revision="4.+"/>
 		<ea:property name="target.main.classes" value="${basedir}/target~/test/classes"/>
@@ -37,6 +37,6 @@
 		The last module version is automatically fetched by default.
 		To freeze the module version, add the following attribute: ej:match="perfect"
 	-->
-		<dependency org="com.microej.pack.ui" name="ui-testsuite" rev="1.3.0" conf="test->default"/>
+		<dependency org="com.microej.pack.ui" name="ui-testsuite" rev="1.4.0" conf="test->default"/>
 	</dependencies>
 </ivy-module>
