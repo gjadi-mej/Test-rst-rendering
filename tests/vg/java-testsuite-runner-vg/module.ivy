@@ -31,6 +31,6 @@
     		The last module version is automatically fetched by default.
     		To freeze the module version, add the following attribute: ej:match="perfect"
     	-->
-		<dependency org="com.microej.pack.vg" name="vg-testsuite" rev="2.4.0" conf="test->default" />
+		<dependency org="com.microej.pack.vg" name="vg-testsuite" rev="2.5.0" conf="test->default" />
     </dependencies>
 </ivy-module>
