@@ -4,9 +4,9 @@
 	Copyright 2023 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 -->
-<project name="jpf.testsuite.security" xmlns:ea="antlib:org.apache.easyant" xmlns:ivy="antlib:org.apache.ivy.ant"  xmlns:ac="antlib:net.sf.antcontrib">
+<project name="jpf.testsuite.gnss" xmlns:ea="antlib:org.apache.easyant" xmlns:ivy="antlib:org.apache.ivy.ant"  xmlns:ac="antlib:net.sf.antcontrib">
 	
-	<dirname file="${ant.file.jpf.testsuite.security}" property="project"/>
+	<dirname file="${ant.file.jpf.testsuite.gnss}" property="project"/>
 	<dirname file="${project}" property="workspace.dir"/>
 	
 	<target name="tracefile:init" extensionOf="abstract-test:test-ready">
