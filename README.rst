@@ -106,6 +106,13 @@ The Event Queue Test Suite is a Java Test Suite.
 
 See `Event Queue Readme <tests/event-queue/README.rst>`_
 
+External Resource Loader Test Suite
+-----------------------------------
+
+The External Resource Loader Test Suite is a Java Test Suite.
+
+See `External Resource Loader Readme <tests/ext-res-loader/README.rst>`_
+
 Platform Qualification Tools Overview
 =====================================
 
