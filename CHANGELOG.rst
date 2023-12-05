@@ -21,6 +21,7 @@ Added
 - MicroEJ FS Validation (Java) 1.1.0 (see `CHANGELOG <tests/fs/java-testsuite-runner-fs/CHANGELOG.rst>`_).
 - MicroEJ EVENT QUEUE Validation (Java) 1.0.0 (see `CHANGELOG <tests/event-queue/java-testsuite-runner-event-queue/CHANGELOG.rst>`_).
 - MicroEJ Multi-Sandbox C Validation (C) 1.0.0 (see `CHANGELOG <tests/llkernel/CHANGELOG.rst>`_).
+- MicroEJ External Resource Loader Validation (Java) 1.0.0 (see `CHANGELOG <tests/ext-res-loader/java-testsuite-runner-ext-res-loader/CHANGELOG.rst>`_).
 
 Changed
 =======
