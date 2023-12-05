@@ -6,29 +6,13 @@ Changelog <https://keepachangelog.com/en/1.0.0/>`__, and this project
 adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
-[1.0.2] - 2023-10-12
---------------------
-
-Fixed
-~~~~~
-
-- Use correct prefix for remote app log properties.
-
-[1.0.1] - 2023-06-14
---------------------
-
-Fixed
-~~~~~
-
-- Use ``deploy.dir.microejscript`` instead of ``deploy.bsp.microejscript`` in ``config.properties.tpl`` file.
-
-[1.0.0] - 2022-06-23
+[1.0.0] - 2023-10-12
 --------------------
 
 Added
 ~~~~~
 
-- Add the Java Test Suite runner in this PQT repository.
+- Added Multi-Sandbox Test Suite.
 
 ..
     Copyright 2023 MicroEJ Corp. All rights reserved.

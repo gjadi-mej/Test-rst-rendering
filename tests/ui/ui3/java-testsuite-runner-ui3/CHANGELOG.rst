@@ -11,9 +11,9 @@ Relationship
 
 See `UI Readme <README.rst>`_ to have more information about the relationship between the version of the test suite and the UI Pack.
 
-.. _140---Unreleased:
+.. _140---2023-12-05:
 
-[1.4.0] - Unreleased
+[1.4.0] - 2023-12-05
 --------------------
 
 Added

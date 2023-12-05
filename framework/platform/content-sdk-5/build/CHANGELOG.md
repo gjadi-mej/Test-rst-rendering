@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.1.0] - [unreleased]
+## [2.1.0] - 2023-12-05
 
 This version requires SDK `5.8.0` or higher.
 
@@ -19,6 +19,7 @@ This version requires SDK `5.8.0` or higher.
 - Add publication of `NOTICE.txt` and `MICROEJ_SDK_EULA.txt` files. The notice describes the list of files licensed under SDK EULA.
 - Add include/exclude pattern when copying the BSP project.
 - Rename Platform to VEE Port in module.ivy.
+- Use include/exclude pattern when copying the bsp project.
 
 ### Fixed
 

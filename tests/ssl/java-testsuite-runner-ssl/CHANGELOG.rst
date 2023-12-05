@@ -6,14 +6,14 @@ Changelog <https://keepachangelog.com/en/1.0.0/>`__, and this project
 adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
-[1.0.2] - Unreleased
+[1.0.2] - 2023-12-05
 --------------------
 
 Changed
 ~~~~~~~
 
-- SSL Test Suite 4.0.2.
-- SSL Test Suite openjdk 1.0.2.
+- Use SSL Test Suite 4.0.2.
+- Use SSL Test Suite openjdk 1.0.2.
 
 [1.0.1] - 2023-06-14
 --------------------

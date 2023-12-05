@@ -7,13 +7,13 @@ adheres to `Semantic
 Versioning <https://semver.org/spec/v2.0.0.html>`__.
 
 
-[1.1.0] - Unreleased
+[1.1.0] - 2023-12-05
 -------------------
 
 Added
 ~~~~~
 
-- Add Openjdk Filesystem Test Suite.
+- Add Openjdk Filesystem Test Suite v1.0.1.
 
 Changed
 ~~~~~~~

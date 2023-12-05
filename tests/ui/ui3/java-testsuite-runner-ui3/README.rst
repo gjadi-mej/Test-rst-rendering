@@ -15,8 +15,8 @@ Tests are written as JUnit test cases, thus the main entry point is automaticall
 
 Tests can be launched:
 
--  as a standard Application by using a `local launcher<Launcher Mode>`_.
--  as a VEE Port Test Suite by `building the module<VEE Port Test Suite Mode>`_.
+-  as a standard Application by using a local launcher, see `Launcher Mode`_.
+-  as a VEE Port Test Suite by building the module, see `VEE Port Test Suite Mode`_.
 
 Requirements
 ------------
@@ -124,8 +124,8 @@ Tearing
 A tearing effect (flickering) visible on LCD indicates a synchronization issue with
 the LCD tearing signal (TE).
 
-* "Full screen" test toggles black and white screens. If the flush job is properly synchronized and quite
-fast, the LCD is gray. The LCD being cut in multiple parts indicates a synchronization issue of the flush job.
+* "Full screen" test toggles black and white screens. If the flush job is properly synchronized and quite fast, the LCD is gray. The LCD being cut in multiple parts indicates a synchronization issue of the flush job.
+
 * "Black band" test moves a black band on a white background. The band being cut in multiple parts indicates a synchronization issue of the flush job.
 
 Drawing Time

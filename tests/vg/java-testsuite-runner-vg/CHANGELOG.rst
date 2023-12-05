@@ -11,7 +11,7 @@ Relationship
 
 See `VG Readme <../README.rst>`_ to have more information about the relationship between the version of the test suite and the VG Pack.
 
-[1.1.0] - Unreleased
+[1.1.0] - 2023-12-05
 --------------------
 
 Added
