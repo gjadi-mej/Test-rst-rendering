@@ -1,5 +1,5 @@
 ..
-	Copyright 2019-2023 MicroEJ Corp. All rights reserved.
+	Copyright 2019-2024 MicroEJ Corp. All rights reserved.
 	Use of this source code is governed by a BSD-style license that can be found with this software.
 
 =========
@@ -18,6 +18,11 @@ Changed
 =======
 
 - MicroEJ Multi-Sandbox C Validation (C) 1.1.0 (see `CHANGELOG <tests/llkernel/CHANGELOG.rst>`_).
+
+Fixed
+=====
+
+- Fix an include path in CORE C sources.
 
 -------------------
 2.10.0 - 2023-12-05
