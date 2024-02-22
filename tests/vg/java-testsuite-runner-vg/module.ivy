@@ -23,7 +23,7 @@
     </publications>
     
     <dependencies>
-		<dependency org="ej.api" name="microui" rev="3.4.0"/>
+		<dependency org="ej.api" name="microui" rev="3.5.0"/>
 		<dependency org="ej.api" name="microvg" rev="1.4.0"/>
 		
     	<!--
