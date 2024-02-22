@@ -18,6 +18,8 @@ Changed
 =======
 
 - MicroEJ Multi-Sandbox C Validation (C) 1.1.0 (see `CHANGELOG <tests/llkernel/CHANGELOG.rst>`_).
+- MicroEJ UI Validation (Java) 1.7.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-ui3/CHANGELOG.rst>`_).
+- MicroEJ VG Validation (Java) 2.6.0 (see `CHANGELOG <tests/ui/ui3/java-testsuite-runner-vg/CHANGELOG.rst>`_).
 
 Fixed
 =====
